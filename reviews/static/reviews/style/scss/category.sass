@@ -1,0 +1,103 @@
+@import useful-classes
+
+.title-return
+    justify-content: space-between
+    align-items: center
+    width: 100%
+
+    .category-title
+        align-self: center
+
+    .go-back-btn
+        //background: rgba(#ffca28, .5)
+        padding: 10px
+        padding-left: 0px
+        cursor: pointer
+        justify-self: flex-end
+
+        i
+            color: rgba($c-primary-color, 0.7)
+            font-size: 24pt
+
+    .go-back-btn:hover
+        i
+            color: rgba($c-primary-color, 0.9)
+            transform: translateX(-5px)
+
+.category
+    padding: 20px
+    height: 600px
+    width: 90%
+    margin-bottom: -20px
+
+    .category-title
+        align-self: flex-start
+        font-size: 26pt
+        font-weight: 300
+        color: rgba(black, 0.9)
+        //text-shadow: 1px 1px 5px rgba(#000, .3)
+
+    .category-title:hover
+        color: rgba(black, 0.8)
+        cursor: pointer
+
+    .category-content
+        width: 100%
+        margin-top: 30px
+        justify-content: center
+
+        .reviews-wrapper
+            width: calc((180px + 25px ) * 4 - 25px)
+            position: relative
+            margin: 0 10px
+
+            .reviews
+                position: absolute
+                left: 0
+
+        .swipe
+            width: 32px
+            height: 55px
+            border-radius: 3px
+            justify-content: center
+
+            i
+                font-size: 16pt
+                color: rgba($c-primary-color, 0.75)
+
+        .swipe:hover
+            cursor: pointer
+
+            i
+                color: rgba($c-primary-color, 1)
+
+        .list-type
+            .reviews
+                flex-wrap: wrap
+                position: relative
+
+                .review
+                    max-width: 180px
+                    margin-bottom: 25px
+
+                .review:nth-child(4n)
+                    margin-right: 0px
+
+        .carousel-type
+            height: 300px
+            overflow-x: hidden
+
+    .see-more
+        margin: 5px
+        margin-top: 50px
+        padding: 7px 12px
+        border-radius: 3px
+        align-self: flex-end
+        font-size: 11pt
+        font-weight: 400
+        color: rgba($accent-color, 0.7)
+        background: rgba(black, 1)
+        cursor: pointer
+
+    .see-more:hover
+        color: rgba($accent-color, 0.85)

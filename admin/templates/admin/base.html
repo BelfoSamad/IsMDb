@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <title>{{ title }} | {{ site_title|default:_('Django site admin') }}</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/css/admin_styles.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+          crossorigin="anonymous">
+
+
+    <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}">
+    {% block extrastyle %}{% endblock %}
+    {% block extrahead %}{% endblock %}
+    {% block responsive %}
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{% static "admin/css/responsive.css" %}">
+    {% endblock %}
+    {% block blockbots %}
+        <meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
+</head>
+
+
+<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}"
+      data-admin-utc-offset="{% now "Z" %}">
+
+<!-- Container -->
+<div id="container">
+    <!-- Header -->
+
+    {#    {% block messages %}#}
+    {#        {% if messages %}#}
+    {#        <ul class="messagelist">{% for message in messages %}#}
+    {#          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>#}
+    {#        {% endfor %}</ul>#}
+    {#        {% endif %}#}
+    {#    {% endblock messages %}#}
+
+    <!-- Left Panel -->
+    {% block left_panel %}
+
+    {% endblock %}
+    <!-- END Left Panel -->
+
+    <div id="wrapper">
+
+        <div id="header">
+
+            {% block sidebar_toggler %}
+            {% endblock %}
+
+            {% block header %}
+            {% endblock %}
+
+
+
+            {% block usertools %}
+                {% if has_permission %}
+                    <div id="user-tools">
+                        {% block welcome-msg %}
+                            Welcome ,
+                            <strong>{% firstof user.get_short_name user.get_username %}</strong>
+                        {% endblock %}
+                        {% block userlinks %}
+                            {% if site_url %}
+                                <button type="button" class="btn btn-light">
+                                    <a href="{{ site_url }}">View site</a>
+                                </button>
+                            {% endif %}
+                            {% if user.is_active and user.is_staff %}
+                                {% url 'django-admindocs-docroot' as docsroot %}
+                                {% if docsroot %}
+                                    <button type="button" class="btn btn-light">
+                                        <a href="{{ docsroot }}">Documentation</a>
+                                    </button>
+                                {% endif %}
+                            {% endif %}
+                            <div class="dropdown">
+                                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Account
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    {% if user.has_usable_password %}
+                                        <a class="dropdown-item" href="{% url 'admin:password_change' %}">Change password</a>
+                                    {% endif %}
+                                    <a class="dropdown-item" href="{% url 'admin:logout' %}">Log out</a>
+                                </div>
+                            </div>
+                        {% endblock %}
+                    </div>
+                {% endif %}
+            {% endblock %}
+        </div>
+
+        <!-- Content -->
+
+        <div id="content">
+            {% block pretitle %}{% endblock %}
+            {#            {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}#}
+            {% block content %}
+                {% block object-tools %}{% endblock %}
+                {{ content }}
+            {% endblock %}
+            <br class="clear">
+        </div>
+    </div>
+
+
+</div>
+<!-- END Main Content Container -->
+
+
+<!-- Scripts required for bootstrap -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'admin/js/panel.js' %}"></script>
+</body>
+</html>

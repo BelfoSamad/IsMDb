@@ -1,0 +1,175 @@
+#content-related {
+  margin-right: 0 !important;
+}
+
+#container {
+  display: flex !important;
+}
+
+#branding {
+  float: none !important;
+  height: 80px;
+  width: 100%;
+  padding: 10px 10px 10px 10px !important;
+  border-bottom: 1px solid #2a2a2a !important;
+}
+
+#branding a {
+  color: #8d8d8d !important;
+}
+
+body {
+  display: table;
+  width: 100%;
+  background: #d5d9c8;
+  overflow: auto;
+}
+
+#header {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap;
+  min-height: 80px;
+  width: 100% !important;
+  padding: 0 !important;
+  justify-content: space-between !important;
+  background: #ffffff !important;
+  border-bottom: 1px solid #dee2e6 !important;
+  font-family: "Montserrat", sans-serif;
+  overflow: visible !important;
+  z-index: 100;
+}
+
+#header a:link,
+#header a:visited {
+  color: #000000 !important;
+}
+
+#user-tools {
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 40px 0 0 !important;
+  font-size: medium !important;
+  color: #000;
+}
+
+#user-tools button {
+  box-shadow: 0 0 1px rgba(255, 0, 31, 0.12), 0 1px 3px rgba(255, 0, 31, 0.2) !important;
+  margin-left: 20px !important;
+}
+
+#content {
+  min-height: 100vh;
+  padding: 40px !important;
+  margin: 0 0 0 0 !important;
+  width: 100% !important;
+  background: #fbfbfb;
+}
+
+#wrapper {
+  background: #ffffff;
+  display: block;
+  min-height: 100vh;
+  width: 100%;
+  align-items: stretch;
+}
+
+#content-main {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+}
+
+#content-main caption {
+  caption-side: top !important;
+}
+
+.card {
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.125), 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+  border-radius: 0.25rem !important;
+  margin: 20px !important;
+  padding: 0 !important;
+}
+
+.card-header {
+  height: 50%;
+  background-color: #ffffff;
+}
+
+.card-header h1 {
+  color: #b21f2d;
+  font-family: "Raleway SemiBold", sans-serif;
+}
+
+.card-body h1 {
+  font-family: "Raleway SemiBold", sans-serif;
+}
+
+#sidebar {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  display: table;
+  background: #f1f1f1;
+  min-height: 100%;
+  min-width: 250px;
+  max-width: 250px;
+  z-index: 1;
+  transition: 0.5s;
+}
+
+#sidebar.active {
+  margin-left: -250px;
+}
+
+#sidebar ul li {
+  line-height: 1.5 !important;
+}
+
+#sidebar ul li a {
+  font-size: large !important;
+  text-align: left;
+}
+
+#sidebarCollapse {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+#sidebarCollapse span {
+  width: 80%;
+  height: 2px;
+  margin: 0 auto;
+  display: block;
+  background: #555;
+  transition: all 0.8s cubic-bezier(0.81, -0.33, 0.345, 1.375);
+}
+
+#sidebarCollapse span:first-of-type {
+  /* rotate first one */
+  transform: rotate(45deg) translate(2px, 2px);
+}
+
+#sidebarCollapse span:nth-of-type(2) {
+  /* second one is not visible */
+  opacity: 0;
+}
+
+#sidebarCollapse span:last-of-type {
+  /* rotate third one */
+  transform: rotate(-45deg) translate(1px, -1px);
+}
+
+#sidebarCollapse.active span {
+  /* no rotation */
+  transform: none;
+  /* all bars are visible */
+  opacity: 1;
+  margin: 5px auto;
+}
+
+/*# sourceMappingURL=admin_styles.css.map */

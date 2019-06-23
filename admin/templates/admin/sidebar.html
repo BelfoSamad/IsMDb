@@ -1,0 +1,51 @@
+{% load static %}
+
+<!-- Sidebar -->
+<nav id="sidebar">
+
+
+    <div id="branding">
+        <h1 id="site-name"><a
+                href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
+    </div>
+
+
+    <ul class="nav flex-column nav-pills">
+        <li class="nav-item">
+            <a class="nav-link" href="index.html">
+                <i class="fas fa-home"></i>
+                Dashboard</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="reviews.html">
+                <i class="fas fa-briefcase"></i>
+                Manage Users</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="reviews.html">
+                <i class="fas fa-briefcase"></i>
+                Manage Groups</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="reviews.html">
+                <i class="fas fa-briefcase"></i>
+                Manage Reviews</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="reviews.html">
+                <i class="fas fa-briefcase"></i>
+                Manage Suggestions</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="reviews.html">
+                <i class="fas fa-briefcase"></i>
+                Manage Reports</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="history.html">
+                <i class="fas fa-copy"></i>
+                History
+            </a>
+        </li>
+    </ul>
+</nav>

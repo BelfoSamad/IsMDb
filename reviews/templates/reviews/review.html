@@ -1,0 +1,50 @@
+{% extends 'reviews/content.html' %}
+{% block review %}
+    <div class="v-flex" style="width: 90%; margin-top: 20px">
+        <div class="h-flex title-return">
+            <a href="{% url 'reviews:home' %}">
+                <div class="v-flex go-back-btn" title="Go Back">
+                    <i class="fas fa-long-arrow-alt-left"></i>
+                </div>
+            </a>
+        </div>
+        {% for review in movies %}
+            <div id="review" class="review-container v-flex">
+                <div class="review-cover v-flex">
+                    <img src="{{ review.cover.url }}" alt="cover-photo">
+                </div>
+                <div class="review-header h-flex">
+                    <div class="review-title">{{ review.title }}</div>
+                    <div class="actions h-flex">
+                        <div class="bookmark-rev-later v-flex">
+                            <i title="Bookmark" class="v-flex far fa-bookmark"></i>
+                        </div>
+                        <div class="bookmark-rev-later v-flex">
+                            <i title="Review later" class="far fa-clock"></i>
+                        </div>
+                        <div class="trailer">Official Trailer</div>
+                    </div>
+                </div>
+                <div class="plot">
+                    <p>{{ review.description }}</p>
+                </div>
+                <div class="separator"></div>
+                <div class="ismdb-review">
+                    <div class="title"><span class="logo">IsMDb</span></div>
+                    <div class="critic">
+                        <p>Joker is fairly a watchable movie by adults, since it does not contain anything that
+                            motivates to
+                            do
+                            harm
+                            or to be violent, instead it teaches a very important moral.</p>
+                    </div>
+                    <div class="criteria"></div>
+                </div>
+                <div class="community-review">
+                    <div class="add-review"></div>
+                    <div class="com-review"></div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,52 @@
+body {
+  background: #1A1A1A; }
+
+.bigger-wrapper {
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center; }
+  .bigger-wrapper .wrapper {
+    box-shadow: 0 5px 10px 0 #000;
+    border-radius: 5px; }
+    .bigger-wrapper .wrapper .form-wrapper {
+      padding: 30px 50px;
+      width: 600px;
+      height: 100%;
+      justify-content: center;
+      background: black; }
+      .bigger-wrapper .wrapper .form-wrapper form {
+        width: 75%; }
+        .bigger-wrapper .wrapper .form-wrapper form .logo {
+          text-align: center;
+          padding: 0;
+          margin-bottom: 80px; }
+          .bigger-wrapper .wrapper .form-wrapper form .logo h1 {
+            padding: 0;
+            margin: 0;
+            color: #ffca28;
+            font-weight: bold;
+            font-size: 30pt;
+            font-family: Stardos Stencil; }
+        .bigger-wrapper .wrapper .form-wrapper form .row {
+          padding: 0;
+          margin: 0; }
+        .bigger-wrapper .wrapper .form-wrapper form .username-row {
+          margin-top: 50px; }
+        .bigger-wrapper .wrapper .form-wrapper form .input-field {
+          padding: 0; }
+        .bigger-wrapper .wrapper .form-wrapper form .input-field input:not([type=checkbox]):focus + label {
+          color: #ffca28; }
+        .bigger-wrapper .wrapper .form-wrapper form .input-field input:not([type=checkbox]):focus {
+          border-bottom: 1px solid #ffca28;
+          box-shadow: 0 1px 0 0 #ffca28; }
+        .bigger-wrapper .wrapper .form-wrapper form .btn {
+          align-self: flex-end;
+          width: 100px;
+          background: #ffca28;
+          color: black;
+          font-weight: bold; }
+        .bigger-wrapper .wrapper .form-wrapper form .signup-row {
+          margin-top: 60px; }
+
+/*# sourceMappingURL=signup.css.map */
