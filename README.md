@@ -1,0 +1,51 @@
+# IsMDb
+Main Project's GIT Repository
+
+<h2>TODO:</h2>
+
+- [ ] Front End:
+  - [ ] Redesign Home Page
+  - [ ] Redesign Review Page
+  - [ ] ...
+- [ ] Backend:
+  - [ ] Admin:
+    - [ ] Admin Panel
+    - [ ] ...
+  - [ ] Users:
+    - [ ] Registration Implementation
+    - [ ] Login Implementation
+    - [ ] User Managment
+  - [ ] Reviews:
+    - [ ] Fix Models
+    - [ ] Views
+    - [ ] Routing
+    - [ ] Last Retouches
+    - [ ] Implementation (w/ Front End)
+  - [ ] Comments:
+    - [ ] Conception
+    - [ ] Models
+    - [ ] Views
+    - [ ] Implementations
+  - [ ] Suggestions:
+    - [ ] Conception
+    - [ ] Models
+    - [ ] Views
+    - [ ] Spell Checking
+    - [ ] Implementations
+  - [ ] Reports:
+    - [ ] Conception
+    - [ ] Models
+    - [ ] Views
+    - [ ] Implementations
+  - [ ] Notifications:
+    - [ ] Conception
+    - [ ] Models
+    - [ ] Views
+    - [ ] Implementations
+- [ ] Additional Features:
+  - [ ] Recommendation Engine:
+    - [ ] Recommendation Engine Development
+    - [ ] Deployment
+    - [ ] Datasets
+- [ ] Report:
+  - ...
