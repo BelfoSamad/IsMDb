@@ -14,7 +14,7 @@ pip install --upgrade -r requirements.txt
 
 <h2>Problems:</h2>
 
-<h3>Python 2.6 Problem:</h3>
+<h3>Can't setup Pyhon SDK on Python 2.6 Problem:</h3>
 
 1- Delete <b>venv</b> folder
 
