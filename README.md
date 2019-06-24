@@ -1,47 +1,17 @@
 # IsMDb
 Main Project's GIT Repository
 
-<h2>Setup Steps:</h2>
+<h2>Affected Files:</h2>
 
-- Accept the Invitation sent by mail
-- In Pycharm, use VCS to get the Project from this repository
-- to install the required packages, use this command in the terminal (bottom toolbar)
-
-```
-pip install --upgrade -r requirements.txt
-```
-
-<h2>Problems:</h2>
-
-<h3>Python 2.6 Problem:</h3>
-
-1- Delete <b>venv</b> folder
-
-2- Create Project Interrepter
-
-3- Re-install Packages 
-
-<h3>No Run Configurations Problem:</h3>
-
-instead of Edit Configurations, click on add
-![Step 1:](./1.png)
-![Step 2:](./2.png)
+- Reviews Folder (admin, models, views, forms, maybe templates Folder)
+- Comments Folder (admin, models, views, forms, templates Folder)
+- Suggestions Folder (admin, models, views, forms, templates Folder)
+- Reports Folder (admin, models, views, forms, templates Folder)
++ Maybe Editing the settings.py file 
 
 <h2>TODO:</h2>
 
-- [ ] Front End:
-  - [ ] Redesign Home Page
-  - [ ] Redesign Review Page
-  - [ ] ...
 - [ ] Backend:
-  - [ ] Admin:
-    - [ ] Admin Panel
-    - [ ] ...
-  - [ ] Users:
-    - [ ] Registration Implementation
-    - [ ] Login Implementation
-    - [ ] User Managment
-    - [ ] ...
   - [ ] Reviews:
     - [ ] Fix Models
     - [ ] Views
@@ -67,16 +37,9 @@ instead of Edit Configurations, click on add
     - [ ] Models
     - [ ] Views
     - [ ] Implementations
-  - [ ] Notifications:
-    - [ ] Conception
-    - [ ] Models
-    - [ ] Views
-    - [ ] Implementations
 - [ ] Additional Features:
   - [ ] Recommendation Engine:
     - [ ] Recommendation Engine Development
     - [ ] Deployment
     - [ ] Datasets
     - [ ] ...
-- [ ] Report:
-  - ...
