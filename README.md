@@ -10,7 +10,6 @@ Main Project's GIT Repository
 '''
 
 pip install --upgrade -r requirements.txt
-
 '''
 
 <h2>Problems:</h2>
