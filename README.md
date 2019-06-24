@@ -23,8 +23,9 @@ pip install --upgrade -r requirements.txt
 
 <h3>No Run Configurations Problem:</h3>
 
-![Step 1:]()
-![Step 2:]()
+instead of Edit Configurations, click on add
+![Step 1:](./1.png)
+![Step 2:](./2.png)
 
 <h2>TODO:</h2>
 
