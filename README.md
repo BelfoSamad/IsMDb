@@ -1,6 +1,16 @@
 # IsMDb
 Main Project's GIT Repository
 
+<h2>Setup Steps:</h2>
+
+- Accept the Invitation sent by mail
+- In Pycharm, use VCS to get the Project from this repository
+- to install the required packages, use this command in the terminal (bottom toolbar)
+
+'pip install --upgrade -r requirements.txt'
+
+<h2>Problems:</h2>
+
 <h2>TODO:</h2>
 
 - [ ] Front End:
@@ -15,12 +25,16 @@ Main Project's GIT Repository
     - [ ] Registration Implementation
     - [ ] Login Implementation
     - [ ] User Managment
+    - [ ] ...
   - [ ] Reviews:
     - [ ] Fix Models
     - [ ] Views
     - [ ] Routing
     - [ ] Last Retouches
     - [ ] Implementation (w/ Front End)
+    - [ ] Add Bookmarks
+    - [ ] Add Review Later
+    - [ ] Add Likes
   - [ ] Comments:
     - [ ] Conception
     - [ ] Models
@@ -47,5 +61,6 @@ Main Project's GIT Repository
     - [ ] Recommendation Engine Development
     - [ ] Deployment
     - [ ] Datasets
+    - [ ] ...
 - [ ] Report:
   - ...
