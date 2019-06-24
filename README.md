@@ -5,6 +5,7 @@ Main Project's GIT Repository
 
 - Accept the Invitation sent by mail
 - In Pycharm, use VCS to get the Project from this repository
+- Checkout as your branche
 - to install the required packages, use this command in the terminal (bottom toolbar)
 
 ```
