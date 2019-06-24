@@ -8,7 +8,9 @@ Main Project's GIT Repository
 - to install the required packages, use this command in the terminal (bottom toolbar)
 
 '''
+
 pip install --upgrade -r requirements.txt
+
 '''
 
 <h2>Problems:</h2>
