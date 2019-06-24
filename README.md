@@ -13,9 +13,18 @@ pip install --upgrade -r requirements.txt
 
 <h2>Problems:</h2>
 
-  <h3>Problem 1:</h3>
+<h3>Python 2.6 Problem:</h3>
 
-  <h3>Problem 2:</h3>
+1- Delete <b>venv</b> folder
+
+2- Create Project Interrepter
+
+3- Re-install Packages 
+
+<h3>No Run Configurations Problem:</h3>
+
+![Step 1:]()
+![Step 2:]()
 
 <h2>TODO:</h2>
 
