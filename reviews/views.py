@@ -2,9 +2,10 @@ import logging
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import loader
+from django.views.generic import ListView, DetailView
 from haystack.query import SearchQuerySet
 
-from reviews.models import MovieReview
+from reviews.models import MovieReview, Actor
 
 
 def home(request):
@@ -81,3 +82,24 @@ def review(request):
     template = 'reviews/review.html'
     print(id)
     return render(request, template, {'movies': movies})
+
+
+class ReviewsListView(ListView):
+    model = MovieReview
+    # template_name = 'reviews/reviews.html'
+    context_object_name = 'reviews_list'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        casts = Actor.objects.all()
+        context['casts'] = casts
+        return context
+
+
+class MovieDetailView(DetailView):
+    model = MovieReview
+    # template_name = 'reviews/review.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
