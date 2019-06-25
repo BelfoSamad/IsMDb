@@ -13,8 +13,8 @@ Main Project's GIT Repository
 
 - [ ] Backend:
   - [ ] Reviews:
-    - [ ] Fix Models
-    - [ ] Views
+    - [x] Fix Models
+    - [x] Views
     - [ ] Routing
     - [ ] Last Retouches
     - [ ] Implementation (w/ Front End)
