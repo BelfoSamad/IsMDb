@@ -31,8 +31,16 @@ instead of Edit Configurations, click on add
   - [ ] ...
 - [ ] Backend:
   - [ ] Admin:
-    - [ ] Admin Panel
-    - [ ] ...
+    - [ ] Admin Panel (Frontend : 40%)
+    - [ ] Functionalities :
+      - [x] Manage Users
+      - [x] Manage Groups (eg : Moderator Group)
+      - [x] Manage Reviews
+      - [x] Manage Suggestions
+      - [x] Admin Account
+      - [x] Admin History
+      - [x] History for each model
+      - [ ] Global history (ie : history that tracks all admins and moderators)
   - [ ] Users:
     - [ ] Registration Implementation
     - [ ] Login Implementation
