@@ -86,5 +86,6 @@ instead of Edit Configurations, click on add
     - [x] Setup Docker
     - [x] Dockerfile
     - [ ] Upload to Registery
+  - [ ] Add Reviews (0/30) *30: starting point, maybe 50 later
 - [ ] Report:
   - ...
