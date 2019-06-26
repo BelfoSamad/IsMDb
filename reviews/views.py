@@ -4,7 +4,11 @@ from django.shortcuts import render
 from django.template import loader
 from django.views.generic import ListView, DetailView
 from haystack.query import SearchQuerySet
+from rest_framework import authentication, permissions
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
+from IsMDb.utils import convert_to_dataframe
 from reviews.models import MovieReview, Actor
 
 
@@ -94,3 +98,36 @@ def autocomplete(request):
     sqs = SearchQuerySet().autocomplete(content_auto=request.GET.get('query', ''))
     template = loader.get_template('reviews/autocomplete_template.html')
     return HttpResponse(template.render({'reviews': sqs}, request))
+
+
+class LikeReview(APIView):
+    authentication_classes = (authentication.SessionAuthentication,)
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request, id=None):
+        # id = self.kwargs.get("id")
+        user = self.request.user
+        print(id)
+        liked = False
+        if id != -1:
+            obj = MovieReview.objects.get(id=id)
+            if user in obj.likes.all():
+                liked = False
+                obj.likes.remove(user)
+            else:
+                liked = True
+                obj.likes.add(user)
+        updated = True
+        data = {
+            "updated": updated,
+            "liked": liked
+        }
+        return Response(data)
+
+
+def get_csv(request):
+    qs = MovieReview.objects.all()
+    df = convert_to_dataframe(qs, fields=['genre', 'alcohol', 'nudity', 'sex', 'LGBTQ', 'violence', 'language'])
+    df.drop()
+    print(df.head())
+    return render(request, '')

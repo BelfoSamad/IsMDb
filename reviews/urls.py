@@ -11,4 +11,5 @@ urlpatterns = [
     path(r'^movie/', views.review, name='review'),
     # url(r'^(?P<slug>[-\w]+)/$', views.MovieDetailView.as_view(), name='review'),
     url(r'^autocomplete/', views.autocomplete, name="autocomplete"),
+    url(r'^api/like/(?P<id>\d+)$', views.LikeReview.as_view(), name='like'),
 ]

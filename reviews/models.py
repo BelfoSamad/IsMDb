@@ -92,6 +92,7 @@ class MovieReview(models.Model):
     cast_producer = models.ManyToManyField(Producer)
     cast_writer = models.ManyToManyField(Writer)
     cast_director = models.ManyToManyField(Director)
+    likes = models.ManyToManyField(Member, blank=True, related_name='review_likes')
 
     def get_absolute_url(self):
         return reverse('reviews:review', kwargs={'slug': self.slug})

@@ -8,3 +8,4 @@ Pillow==6.0.0
 pytz==2019.1
 sqlparse==0.3.0
 Whoosh==2.7.4
+pandas==0.24.2
