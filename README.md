@@ -16,11 +16,9 @@ Main Project's GIT Repository
     - [x] Fix Models
     - [x] Views
     - [x] Routing
-    - [ ] Last Retouches
     - [ ] Implementation (w/ Front End)
-    - [ ] Add Bookmarks
-    - [ ] Add Review Later
-    - [ ] Add Likes
+    - [ ] Add WatchList
+    - [x] Add Likes
   - [ ] Comments:
     - [ ] Conception
     - [ ] Models
@@ -30,7 +28,7 @@ Main Project's GIT Repository
     - [ ] Conception
     - [ ] Models
     - [ ] Views
-    - [ ] Spell Checking
+    - [ ] Moderator Approvement
     - [ ] Implementations
   - [ ] Reports:
     - [ ] Conception
@@ -39,6 +37,7 @@ Main Project's GIT Repository
     - [ ] Implementations
 - [ ] Additional Features:
   - [ ] Recommendation Engine:
+    - [x] Export Dataframes From Database
     - [ ] Recommendation Engine Development
     - [ ] Deployment
     - [ ] Datasets
