@@ -39,14 +39,12 @@ instead of Edit Configurations, click on add
     - [ ] User Managment
     - [ ] ...
   - [ ] Reviews:
-    - [ ] Fix Models
-    - [ ] Views
-    - [ ] Routing
-    - [ ] Last Retouches
+    - [x] Fix Models
+    - [x] Views
+    - [x] Routing
     - [ ] Implementation (w/ Front End)
-    - [ ] Add Bookmarks
-    - [ ] Add Review Later
-    - [ ] Add Likes
+    - [ ] Add WatchList
+    - [x] Add Likes
   - [ ] Comments:
     - [ ] Conception
     - [ ] Models
@@ -70,6 +68,7 @@ instead of Edit Configurations, click on add
     - [ ] Implementations
 - [ ] Additional Features:
   - [ ] Recommendation Engine:
+    - [x] Export Dataframes From Database
     - [ ] Recommendation Engine Development
     - [ ] Deployment
     - [ ] Datasets
