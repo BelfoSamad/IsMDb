@@ -15,7 +15,7 @@ Main Project's GIT Repository
   - [ ] Reviews:
     - [x] Fix Models
     - [x] Views
-    - [ ] Routing
+    - [x] Routing
     - [ ] Last Retouches
     - [ ] Implementation (w/ Front End)
     - [ ] Add Bookmarks
