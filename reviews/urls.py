@@ -7,7 +7,8 @@ app_name = 'reviews'
 
 urlpatterns = [
     path('', views.home, name='home'),
+    # url(r'^$', views.ReviewsListView.as_view(), name='reviews'),
     path(r'^movie/', views.review, name='review'),
-    url(r'^.*\.html', views.html_loader, name="html-loader"),
+    # url(r'^(?P<slug>[-\w]+)/$', views.MovieDetailView.as_view(), name='review'),
     url(r'^autocomplete/', views.autocomplete, name="autocomplete"),
 ]

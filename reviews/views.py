@@ -57,33 +57,7 @@ def home(request):
     return render(request, template_name, context)
 
 
-def html_loader(request):
-    load_template = request.path.split('/')[-1]
-    template = loader.get_template('reviews/' + load_template)
-
-    reviews = MovieReview.objects.all()
-    popular = MovieReview.objects.all()
-    recently_added = MovieReview.objects.order_by('date_created')
-    movie_cast = MovieReview.objects.filter('directors')
-    return HttpResponse(template.render({'reviews': reviews, 'popular': popular,
-                                         'recently_added': recently_added, 'casts': movie_cast},
-                                        request))
-
-
-def autocomplete(request):
-    sqs = SearchQuerySet().autocomplete(content_auto=request.GET.get('query', ''))
-    template = loader.get_template('reviews/autocomplete_template.html')
-    return HttpResponse(template.render({'reviews': sqs}, request))
-
-
-def review(request):
-    movie_id = request.GET.get('id', -1)
-    movies = MovieReview.objects.filter(id=movie_id)
-    template = 'reviews/review.html'
-    print(id)
-    return render(request, template, {'movies': movies})
-
-
+'''
 class ReviewsListView(ListView):
     model = MovieReview
     # template_name = 'reviews/reviews.html'
@@ -94,12 +68,29 @@ class ReviewsListView(ListView):
         casts = Actor.objects.all()
         context['casts'] = casts
         return context
+'''
 
 
+def review(request):
+    movie_id = request.GET.get('id', -1)
+    movies = MovieReview.objects.filter(id=movie_id)
+    template = 'reviews/review.html'
+    print(id)
+    return render(request, template, {'movies': movies})
+
+
+'''
 class MovieDetailView(DetailView):
     model = MovieReview
-    # template_name = 'reviews/review.html'
+    template_name = 'reviews/review.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+'''
+
+
+def autocomplete(request):
+    sqs = SearchQuerySet().autocomplete(content_auto=request.GET.get('query', ''))
+    template = loader.get_template('reviews/autocomplete_template.html')
+    return HttpResponse(template.render({'reviews': sqs}, request))

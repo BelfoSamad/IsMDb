@@ -1,6 +1,5 @@
 from django.conf.urls import url
-from suggestions import views
-from suggestions.views import SuggestionCreateView, SuggestionsListView
+from suggestions.views import SuggestionsListView
 
 app_name = 'suggestions'
 

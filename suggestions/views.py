@@ -1,10 +1,4 @@
-from django.shortcuts import render
-from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView
-from rest_framework import authentication, permissions
-from rest_framework.response import Response
-from rest_framework.views import APIView
-
+from django.views.generic import ListView
 from suggestions.models import Suggestion
 
 
@@ -21,8 +15,9 @@ class SuggestionsListView(ListView):
         return context
 
 
+'''
 class SuggestionCreateView(CreateView):
-    # template_name = 'suggestions/add_suggestion.html'
+    template_name = 'suggestions/add_suggestion.html'
     model = Suggestion
     fields = ('title', 'description')
     success_url = reverse_lazy('suggestions:suggestions')
@@ -30,8 +25,9 @@ class SuggestionCreateView(CreateView):
     def form_valid(self, form):
         form.instance.memberID = self.request.user
         return super(SuggestionCreateView, self).form_valid(form)
+'''
 
-
+'''
 class SuggestionUpVote(APIView):
     authentication_classes = (authentication.SessionAuthentication,)
     permission_classes = (permissions.IsAuthenticated,)
@@ -55,3 +51,4 @@ class SuggestionUpVote(APIView):
             "liked": liked
         }
         return Response(data)
+'''
