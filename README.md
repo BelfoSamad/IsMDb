@@ -81,5 +81,10 @@ instead of Edit Configurations, click on add
     - [ ] Deployment
     - [ ] Datasets
     - [ ] ...
+- [ ] Deployment:
+  - [ ] Docker Implementation:
+    - [x] Setup Docker
+    - [x] Dockerfile
+    - [ ] Upload to Registery
 - [ ] Report:
   - ...
