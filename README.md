@@ -44,8 +44,9 @@ instead of Edit Configurations, click on add
   - [ ] Users:
     - [ ] Registration Implementation
     - [ ] Login Implementation
-    - [ ] User Managment
-    - [ ] ...
+    - [ ] User Profile
+    - [ ] User honor points
+    - [ ] User Badge ( moderator and admin badges)
   - [ ] Reviews:
     - [x] Fix Models
     - [x] Views
