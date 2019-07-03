@@ -1,4 +1,10 @@
 from django.shortcuts import render
+from django.views.generic import ListView
+from rest_framework import permissions, authentication
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from reviews.models import MovieReview
 from users.forms import UserForm, UserMemberInfoForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
@@ -65,3 +71,37 @@ def user_login(request):
             return HttpResponse("Invalid login details given")
     else:
         return render(request, 'users/login.html', {})
+
+
+class BookmarkReview(APIView):
+    authentication_classes = (authentication.SessionAuthentication,)
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request, id=None):
+        # id = self.kwargs.get("id")
+        user = self.request.user
+        liked = False
+        if id != -1:
+            obj = MovieReview.objects.get(id=id)
+            if obj in user.watchlist.all():
+                liked = False
+                user.watchlist.remove(obj)
+            else:
+                liked = True
+                user.watchlist.add(obj)
+        updated = True
+        data = {
+            "updated": updated,
+            "liked": liked
+        }
+        return Response(data)
+
+
+class WatchListView(ListView):
+    # template_name = 'users/bookmarks.html'
+
+    def get_queryset(self):
+        queryset = self.request.user.watchlist.all()
+        return queryset
+
+    context_object_name = 'reviews_list'

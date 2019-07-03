@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'comments',
     'suggestions',
     'reports',
+    'pandas',
 ]
 
 MIDDLEWARE = [
@@ -68,7 +69,8 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [TEMPLATE_DIR,
                  # os.path.join(BASE_DIR, 'admin/templates'),
-                 os.path.join(BASE_DIR, 'user/templates'),
+                 # os.path.join(BASE_DIR, 'users/templates'),
+                 # TODO: add templates
                  os.path.join(BASE_DIR, 'reviews/templates')],
         'APP_DIRS': True,
         'OPTIONS': {

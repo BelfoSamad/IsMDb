@@ -9,6 +9,7 @@ from django.utils.text import slugify
 from django_countries.fields import CountryField
 from languages.fields import LanguageField
 from multiselectfield import MultiSelectField
+
 from users.models import Member
 
 
@@ -81,7 +82,7 @@ class MovieReview(models.Model):
     country = CountryField(default='US', null=False)
     movie_language = LanguageField(default='En', null=False)
     IMDB_rating = models.FloatField(max_length=255, blank=True, null=True)
-    pub_date = models.DateField(default=datetime.date.today)
+    pub_date = models.DateField(default=datetime.datetime.now())
     alcohol = FloatRangeField(min_value=0.0, max_value=5.0, default=0.0)
     nudity = FloatRangeField(min_value=0.0, max_value=5.0, default=0.0)
     LGBTQ = FloatRangeField(min_value=0.0, max_value=5.0, default=0.0)

@@ -27,7 +27,7 @@ def home(request):
                 'reviews': reviews
             }
         elif category_name == 'recently_added':
-            reviews = MovieReview.objects.order_by('date_created')
+            reviews = MovieReview.objects.order_by('pub_date')
             context = {
                 'name': 'Recently Added',
                 'reviews': reviews
@@ -49,7 +49,7 @@ def home(request):
     else:
         reviews = MovieReview.objects.all()
         popular = MovieReview.objects.all()
-        recently_added = MovieReview.objects.order_by('date_created')
+        recently_added = MovieReview.objects.order_by('pub_date')
 
         context = {
             'reviews': reviews,
@@ -90,7 +90,13 @@ class MovieDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        title = self.object.title
+        qs = MovieReview.objects.all()
+        related = getRelated(qs, title)
+        context["form"] = CommentForm()
+        context["related"] = reversed(MovieReview.objects.filter(title__in=related))
         return context
+
 '''
 
 
