@@ -79,8 +79,8 @@ instead of Edit Configurations, click on add
   - [ ] Recommendation Engine:
     - [x] Export Dataframes From Database
     - [ ] Recommendation Engine Development
+    - [x] Related Movies
     - [ ] Deployment
-    - [ ] Datasets
     - [ ] ...
 - [ ] Deployment:
   - [ ] Docker Implementation:
