@@ -79,8 +79,16 @@ instead of Edit Configurations, click on add
   - [ ] Recommendation Engine:
     - [x] Export Dataframes From Database
     - [ ] Recommendation Engine Development
-    - [x] Related Movies
+    - [x] Related Movies 
     - [ ] Deployment
+    - [ ] ...
+- [ ] Provide Content Locally (Remove all the cdn and download the stuff in the project main static folder): 
+    - [ ] Jquery.js
+    - [x] bootstrap
+    - [ ] fonts
+    - [ ] icons
+    - [ ] images 
+    - [ ] popper.js
     - [ ] ...
 - [ ] Deployment:
   - [ ] Docker Implementation:
