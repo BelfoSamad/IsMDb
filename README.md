@@ -85,6 +85,7 @@ instead of Edit Configurations, click on add
     - [x] Send Notification
     - [x] Get Notification
       + [ ] Customize Notifications
+      - [ ] Live Update
     - [ ] Implementations
 - [ ] Additional Features:
   - [ ] Recommendation Engine:
