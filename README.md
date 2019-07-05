@@ -47,23 +47,33 @@ instead of Edit Configurations, click on add
     - [ ] User Profile
     - [ ] User honor points
     - [ ] User Badge ( moderator and admin badges)
+    - [ ] User Authentification (Condition)
   - [ ] Reviews:
     - [x] Fix Models
     - [x] Views
     - [x] Routing
     - [ ] Implementation (w/ Front End)
-    - [ ] Add WatchList
+    - [x] Add WatchList
     - [x] Add Likes
   - [ ] Comments:
-    - [ ] Conception
-    - [ ] Models
-    - [ ] Views
+    - [x] Conception
+    - [x] Models
+    - [ ] Views:
+      - [x] Add Comment
+        + [ ] Add Criterias
+      - [x] Like Comment
+      - [x] Dislike Comment
+      - [ ] Fix Redirect
     - [ ] Implementations
   - [ ] Suggestions:
-    - [ ] Conception
-    - [ ] Models
-    - [ ] Views
-    - [ ] Spell Checking
+    - [x] Conception
+    - [x] Models
+    - [x] Views:
+      - [x] Adding Suggestion
+      - [x] Upvoting Suggestion
+    - [x] Admin Approval:
+      - [x] Filter Suggestions
+      - [x] Approve Suggestions
     - [ ] Implementations
   - [ ] Reports:
     - [ ] Conception
@@ -71,9 +81,10 @@ instead of Edit Configurations, click on add
     - [ ] Views
     - [ ] Implementations
   - [ ] Notifications:
-    - [ ] Conception
-    - [ ] Models
-    - [ ] Views
+    - [x] Conception
+    - [x] Send Notification
+    - [x] Get Notification
+      + [ ] Customize Notifications
     - [ ] Implementations
 - [ ] Additional Features:
   - [ ] Recommendation Engine:
