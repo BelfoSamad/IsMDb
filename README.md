@@ -58,12 +58,12 @@ instead of Edit Configurations, click on add
   - [ ] Comments:
     - [x] Conception
     - [x] Models
-    - [ ] Views:
+    - [x] Views:
       - [x] Add Comment
-        + [ ] Add Criterias
+        + [x] Add Criterias
       - [x] Like Comment
       - [x] Dislike Comment
-      - [ ] Fix Redirect
+      - [x] Fix Redirect
     - [ ] Implementations
   - [ ] Suggestions:
     - [x] Conception
