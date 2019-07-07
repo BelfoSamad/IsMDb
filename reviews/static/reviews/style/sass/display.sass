@@ -13,3 +13,57 @@
             width: 100%
             height: 100%
             object-fit: cover
+    .content
+        width: 100%
+        height: 100%
+        background: rgba(#111, .8)
+        z-index: 2
+        .left
+            color: #EEE
+            height: 100%
+            width: 65%
+            padding: 64px
+            justify-content: flex-start
+            align-items: flex-start
+            .header
+                width: 100%
+                .title
+                    font-size: 64pt
+                    font-weight: bold
+                .ismdb-rating
+                    //background: orange
+                    width: 65px
+                    height: 65px
+                    justify-content: center
+                    border: 4px solid #EC7063
+                    border-radius: 100%
+                    span
+                        font-weight: bold
+                        font-size: 16px
+            .metadata
+                //background: rgba(pink, .8)
+                width: 100%
+                color: rgba(#EEE, .7)
+                justify-content: flex-start
+                div
+                    margin-right: 8px
+                    font-size: 12px
+                .genres
+                    text-transform: uppercase
+            .separator
+                width: 100%
+                height: 1px
+                margin: 4px 0 8px 0
+                background: grey
+            .plot
+                width: 100%
+                margin-top: 16px
+                h1
+                    font-size: 12pt
+                    font-weight: bold
+                    color: rgba(#EEE, .8)
+                    text-transform: uppercase
+                p
+                    font-size: 10pt
+        .right
+            background: purple

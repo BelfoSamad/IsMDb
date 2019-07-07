@@ -13,5 +13,57 @@
       width: 100%;
       height: 100%;
       object-fit: cover; }
+  .display .content {
+    width: 100%;
+    height: 100%;
+    background: rgba(17, 17, 17, 0.8);
+    z-index: 2; }
+    .display .content .left {
+      color: #EEE;
+      height: 100%;
+      width: 65%;
+      padding: 64px;
+      justify-content: flex-start;
+      align-items: flex-start; }
+      .display .content .left .header {
+        width: 100%; }
+        .display .content .left .header .title {
+          font-size: 64pt;
+          font-weight: bold; }
+        .display .content .left .header .ismdb-rating {
+          width: 65px;
+          height: 65px;
+          justify-content: center;
+          border: 4px solid #EC7063;
+          border-radius: 100%; }
+          .display .content .left .header .ismdb-rating span {
+            font-weight: bold;
+            font-size: 16px; }
+      .display .content .left .metadata {
+        width: 100%;
+        color: rgba(238, 238, 238, 0.7);
+        justify-content: flex-start; }
+        .display .content .left .metadata div {
+          margin-right: 8px;
+          font-size: 12px; }
+        .display .content .left .metadata .genres {
+          text-transform: uppercase; }
+      .display .content .left .separator {
+        width: 100%;
+        height: 1px;
+        margin: 4px 0 8px 0;
+        background: grey; }
+      .display .content .left .plot {
+        width: 100%;
+        margin-top: 16px; }
+        .display .content .left .plot h1 {
+          font-size: 12pt;
+          font-weight: bold;
+          color: rgba(238, 238, 238, 0.8);
+          text-transform: uppercase; }
+        .display .content .left .plot p {
+          font-size: 10pt; }
+    .display .content .right {
+      background: purple; }
 
 /*# sourceMappingURL=display.css.map */
