@@ -1,13 +1,89 @@
 {% extends 'reviews/base.html' %}
+{% load static %}
 {% block content %}
-    <div id="home" class="v-flex">
-        <div class="content-holder v-flex">
-            {% block home %}
-            {% endblock %}
-            {% block category %}
-            {% endblock %}
-            {% block review %}
-            {% endblock %}
+<div id="content" class="v-flex">
+    {% block category %}
+    {% endblock %}
+    <div class="display v-flex">
+        <div class="cover">
+            <img src="{% static 'reviews/assets/joker-banner.jpg' %}" alt="film-cover">
         </div>
     </div>
+    <div class="category-holder v-flex">
+        <div class="h-flex title">
+            <a href="#" class="c-link">Recently Added</a>
+        </div>
+        <div class="h-flex content">
+            <div class="h-flex reviews-wrapper list-type">
+                <div class="h-flex reviews">
+                    <div class="review h-flex">
+                    </div>
+                    <div class="review h-flex">
+                    </div>
+                    <div class="review h-flex">
+                    </div>
+                    <div class="review h-flex">
+                    </div>
+                    <div class="review h-flex">
+                    </div>
+                    <div class="review h-flex">
+                    </div>
+                    <div class="review h-flex">
+                    </div>
+                    <div class="review h-flex">
+                    </div>
+                    <div class="review h-flex">
+                    </div>
+                    <div class="review h-flex">
+                    </div>
+                    <div class="review h-flex">
+                    </div>
+                    <div class="review h-flex">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="h-flex see-more">
+            <a href="#" class="c-link">See More</a>
+        </div>
+    </div>
+    <div class="category-holder v-flex">
+        <div class="h-flex title">
+            <a href="#" class="c-link">Explore</a>
+        </div>
+        <div class="h-flex content">
+            <div class="h-flex reviews-wrapper list-type">
+                <div class="h-flex reviews">
+                    <div class="review h-flex">
+                    </div>
+                    <div class="review h-flex">
+                    </div>
+                    <div class="review h-flex">
+                    </div>
+                    <div class="review h-flex">
+                    </div>
+                    <div class="review h-flex">
+                    </div>
+                    <div class="review h-flex">
+                    </div>
+                    <div class="review h-flex">
+                    </div>
+                    <div class="review h-flex">
+                    </div>
+                    <div class="review h-flex">
+                    </div>
+                    <div class="review h-flex">
+                    </div>
+                    <div class="review h-flex">
+                    </div>
+                    <div class="review h-flex">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="h-flex see-more">
+            <a href="#" class="c-link">See More</a>
+        </div>
+    </div>
+</div>
 {% endblock %}

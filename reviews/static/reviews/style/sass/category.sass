@@ -1,0 +1,95 @@
+.category-holder
+    //height: 300px
+    width: calc((180px + 25px ) * 4 - 25px)
+    text-transform: uppercase
+    padding: 32px 0
+    scroll: hidden
+    //background: grey
+
+    .title
+        background: white
+        align-self: flex-start
+        position: relative
+        margin-bottom: 32px
+        padding: 8px 0
+        width: 180px
+        //background: yellow
+        a
+            font-weight: bold
+            font-size: 14px
+            color: #222
+            width: 100%
+    
+    .title:hover
+        a
+            color: #353535
+
+    .title::after
+        content: ''
+        width: 100%
+        height: 4px
+        background: #EC7063
+        position: absolute
+        bottom: 0
+        left: 0
+
+    .content
+        .reviews-wrapper
+            width: 100%
+            position: relative
+            //background: red
+
+            .reviews
+                position: absolute
+                //background: blue
+                left: 0
+                max-height: 600px
+                overflow-y: auto
+                padding-right: 5px
+
+        .list-type
+            .reviews
+                flex-wrap: wrap
+                position: relative
+
+                .review
+                    min-width: 180px
+                    height: 260px
+                    border-radius: 3px
+                    background: #BBB
+                    margin-bottom: 25px
+
+                .review:nth-child(4n)
+                    margin-right: 0px
+                
+                .review:nth-last-child(1), .review:nth-last-child(2), .review:nth-last-child(3), .review:nth-last-child(4)
+                    margin-bottom: 0
+
+    .see-more
+        background: white
+        align-self: flex-end
+        justify-content: flex-end
+        position: relative
+        margin-top: 32px
+        padding: 8px 0
+        width: 180px
+        //background: yellow
+        a
+            font-weight: bold
+            font-size: 14px
+            width: 180px
+            text-align: right
+            color: #222
+
+    .see-more:hover
+        a
+            color: #353535
+
+    .see-more::after
+        content: ''
+        width: 100%
+        height: 4px
+        background: #EC7063
+        position: absolute
+        top: 0
+        right: 0

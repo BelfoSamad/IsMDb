@@ -1,0 +1,56 @@
+body, *
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+  font-family: Roboto
+
+body
+  background: #EEE
+  
+
+*
+  transition: all ease-in-out 0.15s
+  -webkit-transition: all ease-in-out 0.15s
+
+#main
+  justify-content: space-between
+  scroll: hidden
+
+.waves-effect.waves-darker .waves-ripple
+  background-color: rgba(black, .9)
+
+.h-flex, .v-flex
+  display: flex
+  justify-content: space-between
+  align-items: center
+
+.v-flex
+  flex-direction: column
+
+.fake-list
+  list-style: none
+  padding: 0
+  margin: 0 
+
+.c-link
+  text-decoration: none
+  color: black
+  background: rgba(white, 0)
+
+.hidden
+    display: none
+
+.visually-hidden
+    opacity: 0
+  
+::-webkit-scrollbar
+  width: 6px
+/* Track */
+::-webkit-scrollbar-track
+  background: rgba(#111, 1)
+/* Handle */
+::-webkit-scrollbar-thumb
+  background: rgba(#EC7063, 1)
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover
+  background: rgba(#EC7063, 0.9)    
