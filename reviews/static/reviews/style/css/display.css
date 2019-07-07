@@ -20,6 +20,7 @@
     z-index: 2; }
     .display .content .left {
       color: #EEE;
+      background: rgba(0, 0, 0, 0.5);
       height: 100%;
       width: 65%;
       padding: 64px;
@@ -63,6 +64,10 @@
           text-transform: uppercase; }
         .display .content .left .plot p {
           font-size: 10pt; }
+      .display .content .left .buttons .btn-wrapper {
+        background: white;
+        padding: 4px 8px;
+        margin-right: 4px; }
     .display .content .right {
       background: purple; }
 
