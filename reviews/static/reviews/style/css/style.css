@@ -8,8 +8,8 @@ body {
   background: #EEE; }
 
 * {
-  transition: all ease-in-out 0.15s;
-  -webkit-transition: all ease-in-out 0.15s; }
+  transition: all ease-in-out 0.1s;
+  -webkit-transition: all ease-in-out 0.1s; }
 
 #main {
   justify-content: space-between;

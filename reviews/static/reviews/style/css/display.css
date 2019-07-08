@@ -3,7 +3,8 @@
   height: calc(100vh - 80px);
   background: #222;
   border-bottom: 4px solid #EC7063;
-  position: relative; }
+  position: relative;
+  z-index: 2; }
   .display .cover {
     position: absolute;
     width: 100%;
@@ -16,39 +17,48 @@
   .display .content {
     width: 100%;
     height: 100%;
-    background: rgba(17, 17, 17, 0.8);
+    background: rgba(17, 17, 17, 0.75);
+    position: relative;
     z-index: 2; }
     .display .content .left {
       color: #EEE;
-      background: rgba(0, 0, 0, 0.5);
       height: 100%;
       width: 65%;
-      padding: 64px;
+      padding: 32px 64px;
       justify-content: flex-start;
       align-items: flex-start; }
       .display .content .left .header {
         width: 100%; }
-        .display .content .left .header .title {
-          font-size: 64pt;
-          font-weight: bold; }
-        .display .content .left .header .ismdb-rating {
-          width: 65px;
-          height: 65px;
-          justify-content: center;
-          border: 4px solid #EC7063;
-          border-radius: 100%; }
-          .display .content .left .header .ismdb-rating span {
+        .display .content .left .header .title-div {
+          width: 100%;
+          margin-bottom: -4px; }
+          .display .content .left .header .title-div .title {
+            font-size: 64pt;
             font-weight: bold;
-            font-size: 16px; }
-      .display .content .left .metadata {
-        width: 100%;
-        color: rgba(238, 238, 238, 0.7);
-        justify-content: flex-start; }
-        .display .content .left .metadata div {
-          margin-right: 8px;
-          font-size: 12px; }
-        .display .content .left .metadata .genres {
-          text-transform: uppercase; }
+            position: relative;
+            z-index: 2; }
+          .display .content .left .header .title-div .ttitle::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            background: rgba(236, 112, 99, 0.5); }
+        .display .content .left .header .metadata {
+          width: 100%;
+          color: rgba(238, 238, 238, 0.7);
+          justify-content: flex-start; }
+          .display .content .left .header .metadata div {
+            margin-right: 8px;
+            font-size: 12px; }
+          .display .content .left .header .metadata .genres {
+            text-transform: uppercase; }
+            .display .content .left .header .metadata .genres span {
+              margin-right: 2px; }
+          .display .content .left .header .metadata span {
+            cursor: pointer; }
+          .display .content .left .header .metadata span:hover {
+            color: #f0f0f0; }
       .display .content .left .separator {
         width: 100%;
         height: 1px;
@@ -56,7 +66,7 @@
         background: grey; }
       .display .content .left .plot {
         width: 100%;
-        margin-top: 16px; }
+        margin: 32px 0 16px 0; }
         .display .content .left .plot h1 {
           font-size: 12pt;
           font-weight: bold;
@@ -64,11 +74,90 @@
           text-transform: uppercase; }
         .display .content .left .plot p {
           font-size: 10pt; }
-      .display .content .left .buttons .btn-wrapper {
-        background: white;
-        padding: 4px 8px;
-        margin-right: 4px; }
+      .display .content .left .ismdb-rating {
+        height: 150px;
+        width: 100%;
+        justify-content: space-around; }
+        .display .content .left .ismdb-rating .header {
+          justify-content: flex-start; }
+          .display .content .left .ismdb-rating .header .rating {
+            margin-right: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            padding: 2px 8px;
+            background: #111111;
+            border-bottom: 2px solid #EC7063; }
+          .display .content .left .ismdb-rating .header .text {
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase; }
+        .display .content .left .ismdb-rating .ratings {
+          width: 80%;
+          padding: 0 32px; }
+          .display .content .left .ismdb-rating .ratings .circle-rating {
+            font-size: 20px;
+            font-weight: bold;
+            justify-content: center;
+            width: 100px;
+            height: 100px;
+            border: 4px solid #EC7063;
+            border-radius: 50%; }
+          .display .content .left .ismdb-rating .ratings .bar-rating {
+            width: 55%; }
+            .display .content .left .ismdb-rating .ratings .bar-rating .rating {
+              width: 100%;
+              margin: 3px 0; }
+              .display .content .left .ismdb-rating .ratings .bar-rating .rating .title {
+                font-size: 13px;
+                font-weight: bold;
+                text-transform: uppercase;
+                text-align: left; }
+              .display .content .left .ismdb-rating .ratings .bar-rating .rating .value {
+                justify-content: flex-start;
+                background: #F0F0F0;
+                border-radius: 0px;
+                height: 4px;
+                width: 125px; }
+                .display .content .left .ismdb-rating .ratings .bar-rating .rating .value .unit {
+                  background: #EC7063;
+                  height: 100%;
+                  width: 25px;
+                  margin-rigth: 1px; }
+      .display .content .left .buttons {
+        margin-top: auto;
+        justify-self: flex-end; }
+        .display .content .left .buttons button {
+          background: #FFF;
+          justify-content: center;
+          width: 120px;
+          height: 32px;
+          margin-right: 8px;
+          padding: 0 8px;
+          font-size: 13px;
+          font-weight: bold;
+          text-transform: uppercase;
+          border: none;
+          outline: none;
+          cursor: pointer;
+          box-sizing: border-box; }
+          .display .content .left .buttons button i {
+            color: #111;
+            margin-right: 12px; }
+          .display .content .left .buttons button .btn-sep {
+            height: 32px;
+            width: 1px;
+            background: rgba(17, 17, 17, 0.7); }
+        .display .content .left .buttons button:hover {
+          background: #eeeeee; }
     .display .content .right {
-      background: purple; }
+      height: 100%;
+      width: 35%;
+      padding: 32px;
+      justify-content: center; }
+      .display .content .right img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 1px; }
 
 /*# sourceMappingURL=display.css.map */

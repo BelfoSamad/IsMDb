@@ -2,7 +2,8 @@
   background: white;
   width: 100%;
   height: 80px;
-  position: sticky;
+  position: fixed;
+  z-index: 5;
   padding: 0 16px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }
   #topnav .logo {
@@ -36,24 +37,113 @@
       color: #111; }
     #topnav .other-actions div {
       justify-content: center; }
-    #topnav .other-actions div:hover {
-      cursor: pointer;
-      background: #f0f0f0; }
     #topnav .other-actions .library {
       height: 100%;
       padding: 0 24px;
       position: relative; }
     #topnav .other-actions .notifications {
       height: 100%;
-      padding: 0 24px; }
+      position: relative; }
+      #topnav .other-actions .notifications .bell {
+        height: 100%;
+        padding: 0 24px; }
+      #topnav .other-actions .notifications .dropdown {
+        justify-content: flex-start;
+        position: absolute;
+        width: 480px;
+        height: 80vh;
+        top: 80px;
+        right: 0;
+        background: #f0f0f0;
+        color: #111;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6);
+        overflow-y: scroll; }
+        #topnav .other-actions .notifications .dropdown .notification-title {
+          font-weight: bold;
+          font-size: 14pt;
+          width: 100%;
+          background: #dddddd;
+          padding: 12px 16px; }
+        #topnav .other-actions .notifications .dropdown .notification {
+          width: 100%;
+          min-height: 90px;
+          padding: 8px 16px;
+          align-items: flex-start;
+          justify-content: space-around;
+          border-bottom: 1px solid rgba(17, 17, 17, 0.3); }
+          #topnav .other-actions .notifications .dropdown .notification .notif-content {
+            font-size: 11pt;
+            color: rgba(17, 17, 17, 0.9);
+            margin-right: 5px; }
+          #topnav .other-actions .notifications .dropdown .notification .notif-timestamp {
+            font-size: 10pt;
+            color: rgba(17, 17, 17, 0.3);
+            text-align: right; }
+        #topnav .other-actions .notifications .dropdown .notification:last-child {
+          border-bottom: none; }
     #topnav .other-actions .profile {
       height: 100%;
-      width: 80px; }
-      #topnav .other-actions .profile img {
-        width: 50%;
-        height: 50%;
-        object-fit: cover;
-        border-radius: 100%; }
+      width: 80px;
+      position: relative; }
+      #topnav .other-actions .profile .profile-icon {
+        height: 100%;
+        width: 100%; }
+        #topnav .other-actions .profile .profile-icon img {
+          width: 50%;
+          height: 50%;
+          object-fit: cover;
+          border-radius: 100%; }
+      #topnav .other-actions .profile .profile-dropdown {
+        width: 300px;
+        justify-content: flex-start;
+        position: absolute;
+        top: 80px;
+        right: 0;
+        background: #f0f0f0;
+        color: #111;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6); }
+        #topnav .other-actions .profile .profile-dropdown .header {
+          width: 100%;
+          background: #DDD;
+          border-left: 4px solid #ec7063;
+          justify-content: flex-start;
+          padding: 16px; }
+          #topnav .other-actions .profile .profile-dropdown .header img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 16px; }
+          #topnav .other-actions .profile .profile-dropdown .header .info {
+            align-items: flex-start;
+            height: 48px;
+            justify-content: space-between;
+            font-size: 16px;
+            font-weight: bold;
+            color: #111; }
+            #topnav .other-actions .profile .profile-dropdown .header .info i {
+              font-size: 16px; }
+        #topnav .other-actions .profile .profile-dropdown .option {
+          width: 100%;
+          justify-content: flex-start;
+          padding: 16px;
+          text-transform: uppercase;
+          font-size: 13px;
+          font-weight: bold;
+          color: #111; }
+          #topnav .other-actions .profile .profile-dropdown .option i {
+            font-size: 16px;
+            margin-right: 16px; }
+        #topnav .other-actions .profile .profile-dropdown .option:hover {
+          cursor: pointer;
+          background: #dddddd; }
+        #topnav .other-actions .profile .profile-dropdown .separator {
+          width: 100%;
+          height: 1px;
+          background: rgba(0, 0, 0, 0.3); }
+    #topnav .other-actions .profile-icon:hover, #topnav .other-actions .bell:hover, #topnav .other-actions .library:hover {
+      cursor: pointer;
+      background: #f0f0f0; }
   #topnav .active {
     background: #eaeaea; }
   #topnav .active::after {

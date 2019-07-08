@@ -171,8 +171,25 @@ $(".content-holder").scroll(() => {
     }
 });
 
-$(".bell-icon").click(() => {
-    var notif_box = $(".c-notifications");
+$(".bell").click(() => {
+    console.log("yo")
+    var notif_box = $(".dropdown");
+    if (notif_box.hasClass("hidden")) {
+        notif_box.removeClass("hidden");
+        setTimeout(function () {
+            notif_box.removeClass("visually-hidden");
+        }, 20);
+    } else {
+        notif_box.addClass("visually-hidden");
+        notif_box.one("transitionend", function () {
+            notif_box.addClass("hidden");
+        });
+    }
+});
+
+$(".profile-icon").click(() => {
+    console.log("yo")
+    var notif_box = $(".profile-dropdown");
     if (notif_box.hasClass("hidden")) {
         notif_box.removeClass("hidden");
         setTimeout(function () {

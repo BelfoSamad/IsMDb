@@ -47,10 +47,77 @@
                     <a class="c-link" href="#"><i class="fas fa-folder"></i></a>
                 </div>
                 <div class="notifications v-flex">
-                    <i class="fas fa-bell"></i>
+                    <div class="bell v-flex"><i class="fas fa-bell"></i></div>
+                    <div class="dropdown hidden visually-hidden v-flex">
+                        <div class="notification-title">NOTIFICATIONS</div>
+                        <div class="notification v-flex">
+                            <div class="notif-content">Your account has been unbanned account has been unbanned account
+                                has been unbanned account has been unbanned account has been unbanned</div>
+                            <div class="notif-timestamp">2 hours ago</div>
+                        </div>
+                        <div class="notification v-flex">
+                            <div class="notif-content">@username liked your comment</div>
+                            <div class="notif-timestamp">7 hours ago</div>
+                        </div>
+                        <div class="notification v-flex">
+                            <div class="notif-content">@username liked your comment</div>
+                            <div class="notif-timestamp">6 hours ago</div>
+                        </div>
+                        <div class="notification v-flex">
+                            <div class="notif-content">@username liked your comment</div>
+                            <div class="notif-timestamp">7 hours ago</div>
+                        </div>
+                        <div class="notification v-flex">
+                            <div class="notif-content">Your suggestion has been upvoted by @username</div>
+                            <div class="notif-timestamp">yesterday</div>
+                        </div>
+                        <div class="notification v-flex">
+                            <div class="notif-content">You might be interested in this review: Avengers</div>
+                            <div class="notif-timestamp">3 days ago</div>
+                        </div>
+                        <div class="notification v-flex">
+                            <div class="notif-content">Please review our rules before making a post</div>
+                            <div class="notif-timestamp">7 weeks ago</div>
+                        </div>
+                        <div class="notification v-flex">
+                            <div class="notif-content">Your registration was successful. Welcome in our community!</div>
+                            <div class="notif-timestamp">7 weeks ago</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="profile v-flex">
-                    <img src="{% static 'reviews/assets/profile-image.jpeg' %}" alt="profile-photo">
+                    <div class="profile-icon v-flex">
+                        <img src="{% static 'reviews/assets/profile-image.jpeg' %}" alt="profile-photo">
+                    </div>
+                    <div class="profile-dropdown hsidden svisually-hidden v-flex">
+                        <div class="header h-flex">
+                            <img src="{% static 'reviews/assets/profile-image.jpeg' %}" alt="profile-image">
+                            <div class="info v-flex">
+                                <span class="nickname">@nickname</span>
+                                <span class="honors">521 <i class="fas fa-award"></i></span>
+                            </div>
+                        </div>
+                        <div class="option h-flex">
+                            <i class="far fa-edit"></i> Edit Profile
+                        </div>
+                        <div class="option h-flex">
+                            <i class="fas fa-cog"></i> Settings
+                        </div>
+                        <div class="separator"></div>
+                        <div class="option h-flex">
+                            <i class="fas fa-film"></i> Suggest A Review
+                        </div>
+                        <div class="separator"></div>
+                        <div class="option h-flex">
+                            <i class="far fa-question-circle"></i> Help
+                        </div>
+                        <div class="option h-flex">
+                            <i class="fas fa-comment-alt"></i> Send Feedback
+                        </div>
+                        <div class="option h-flex">
+                            <i class="fas fa-sign-out-alt"></i> Sign Out
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
