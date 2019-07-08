@@ -38,6 +38,58 @@ class Carousel {
 popCarousel = new Carousel($(".content-holder").find("#pop-carousel"));
 recCarousel = new Carousel($(".content-holder").find("#rec-carousel"));
 
+class CarouselV2 {
+    constructor(container) {
+        this.container = container;
+        this.rightSwipeIcon = this.container.find(".right-arrow");
+        this.leftSwipeIcon = this.container.find(".left-arrow");
+        this.reviewsWrapper = this.container.find(".elements");
+        this.currentReview = 0;
+        this.totalReviews = this.reviewsWrapper.children().length;
+        this.swipeRightListener = this.rightSwipeIcon.click(this.swipeRight.bind(this));
+        this.swipeLeftListener = this.leftSwipeIcon.click(this.swipeLeft.bind(this));
+    }
+
+    swipeRight() {
+        let currentElement = this.reviewsWrapper.children().eq(this.currentReview);
+
+        currentElement.addClass("visually-hidden");
+        currentElement.one("transitionend", function () {
+            currentElement.addClass("hidden");
+        });
+        setTimeout(() => {
+            this.currentReview++;
+            if (this.currentReview == this.totalReviews) this.currentReview = 0;
+            currentElement = this.reviewsWrapper.children().eq(this.currentReview);
+            currentElement.removeClass("hidden");
+            setTimeout(function () {
+                currentElement.removeClass("visually-hidden");
+            }, 20);
+        }, 800);
+    }
+
+    swipeLeft() {
+        let currentElement = this.reviewsWrapper.children().eq(this.currentReview);
+
+        currentElement.addClass("visually-hidden");
+        currentElement.one("transitionend", function () {
+            currentElement.addClass("hidden");
+        });
+        setTimeout(() => {
+            this.currentReview--;
+            if (this.currentReview == -1) this.currentReview = this.totalReviews - 1;
+            currentElement = this.reviewsWrapper.children().eq(this.currentReview);
+            currentElement.removeClass("hidden");
+            setTimeout(function () {
+                currentElement.removeClass("visually-hidden");
+            }, 20);
+        }, 1000);
+    }
+}
+
+displayCarousel = new CarouselV2($("#content").find(".display"));
+//setInterval(() => displayCarousel.swipeRight(), 15000)
+
 // function loadHtml(file_name) {
 //     console.log("loading: " + file_name);
 //     $(".content-holder").scrollTop(0);

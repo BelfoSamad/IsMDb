@@ -36,12 +36,129 @@
             <div class="logo"></div>
             <div class="categories h-flex">
                 <ul class="fake-list h-flex">
-                    <li class="category h-flex active"><a class="h-flex c-link" href="#">Explore</a></li>
+                    <li class="category h-flex"><a class="h-flex c-link" href="#">Explore</a></li>
                     <li class="category h-flex"><a class="h-flex c-link" href="#">Popular</a></li>
                     <li class="category h-flex"><a class="h-flex c-link" href="#">Recently Added</a></li>
                 </ul>
             </div>
-            <div class="search-bar"></div>
+            <div class="search-bar">
+                <div class="search-input h-flex">
+                    <div class="search-icon v-flex"><i class="fa fa-search"></i></div>
+                    <input type="text" placeholder="Search..." name="search">
+                    <button title="Advanced Search (Filters)"><i class="fas fa-sliders-h"></i></button>
+                </div>
+                <div class="search-results v-flex">
+                    <!--
+                    <div class="search-result h-flex">
+                        <div class="cover">
+                            <img src="{% static 'reviews/assets/joker.jpg' %}" alt="">
+                        </div>
+                        <div class="details v-flex">
+                            <div class="title">Joker</div>
+                            <div class="plot">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut
+                                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                    ullamco
+                                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                                    reprehenderit in
+                                    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                                    cupidatat
+                                    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            </div>
+                            <div class="metadata h-flex">
+                                <div class="year"><span>2019</span></div>
+                                <div class="genres">
+                                    <span>Drama</span>
+                                    <span>Sci-Fi</span>
+                                    <span>Action</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="search-result h-flex">
+                        <div class="cover">
+                            <img src="{% static 'reviews/assets/joker.jpg' %}" alt="">
+                        </div>
+                        <div class="details v-flex">
+                            <div class="title">Joker</div>
+                            <div class="plot">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut
+                                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                    ullamco
+                                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                                    reprehenderit in
+                                    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                                    cupidatat
+                                    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            </div>
+                            <div class="metadata h-flex">
+                                <div class="year"><span>2019</span></div>
+                                <div class="genres">
+                                    <span>Drama</span>
+                                    <span>Sci-Fi</span>
+                                    <span>Action</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="search-result h-flex">
+                        <div class="cover">
+                            <img src="{% static 'reviews/assets/joker.jpg' %}" alt="">
+                        </div>
+                        <div class="details v-flex">
+                            <div class="title">Joker</div>
+                            <div class="plot">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut
+                                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                    ullamco
+                                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                                    reprehenderit in
+                                    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                                    cupidatat
+                                    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            </div>
+                            <div class="metadata h-flex">
+                                <div class="year"><span>2019</span></div>
+                                <div class="genres">
+                                    <span>Drama</span>
+                                    <span>Sci-Fi</span>
+                                    <span>Action</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="search-result h-flex">
+                        <div class="cover">
+                            <img src="{% static 'reviews/assets/joker.jpg' %}" alt="">
+                        </div>
+                        <div class="details v-flex">
+                            <div class="title">Joker</div>
+                            <div class="plot">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut
+                                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                    ullamco
+                                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                                    reprehenderit in
+                                    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                                    cupidatat
+                                    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            </div>
+                            <div class="metadata h-flex">
+                                <div class="year"><span>2019</span></div>
+                                <div class="genres">
+                                    <span>Drama</span>
+                                    <span>Sci-Fi</span>
+                                    <span>Action</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
             <div class="other-actions h-flex">
                 <div class="library v-flex">
                     <a class="c-link" href="#"><i class="fas fa-folder"></i></a>
@@ -89,7 +206,7 @@
                     <div class="profile-icon v-flex">
                         <img src="{% static 'reviews/assets/profile-image.jpeg' %}" alt="profile-photo">
                     </div>
-                    <div class="profile-dropdown hsidden svisually-hidden v-flex">
+                    <div class="profile-dropdown hidden visually-hidden v-flex">
                         <div class="header h-flex">
                             <img src="{% static 'reviews/assets/profile-image.jpeg' %}" alt="profile-image">
                             <div class="info v-flex">
@@ -130,6 +247,8 @@
                     <div class="cat-links v-flex">
                         <a class="c-link" href="#">About</a>
                         <a class="c-link" href="#">Contact Us</a>
+                        <a class="c-link" href="#">Conditions of Use</a>
+                        <a class="c-link" href="#">Privacy Policy</a>
                     </div>
                 </div>
                 <div class="category v-flex">
@@ -149,11 +268,11 @@
                     </div>
                 </div>
                 <div class="category v-flex">
-                    <div class="cat-title">Resources</div>
+                    <div class="cat-title">MISC</div>
                     <div class="cat-links v-flex">
+                        <a class="c-link" href="#">Advanced Search (Filters)</a>
+                        <a class="c-link" href="#">Suggest a Review</a>
                         <a class="c-link" href="#">FAQ</a>
-                        <a class="c-link" href="#">Conditions of Use</a>
-                        <a class="c-link" href="#">Privacy Policy</a>
                     </div>
                 </div>
                 <div class="category v-flex">
