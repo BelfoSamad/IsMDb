@@ -4,23 +4,29 @@
     background: rgba(#111, 1)
     border-bottom: 4px solid #EC7063
     position: relative
+
     .arrow
         height: 100%
         padding: 0 16px
         justify-content: center
         background: rgba(#111, 0.75)
         z-index: 2
+
         i
             font-size: 32px
             color: #DDD
+
     .arrow:hover
         cursor: pointer
-        background: rgba(#222, .75)
+        background: rgba(#222, 0.75)
+
     .elements
         height: 100%
+
         .element
             height: 100%
-            transition: .5s
+            transition: 0.5s
+
             .cover
                 position: absolute
                 top: 0
@@ -33,7 +39,7 @@
                     width: 100%
                     height: 100%
                     object-fit: cover
-            
+
             .content
                 width: 100%
                 height: 100%
@@ -83,6 +89,7 @@
 
                             .genres
                                 text-transform: uppercase
+
                                 span
                                     margin-right: 2px
 
@@ -117,10 +124,12 @@
                         height: 150px
                         width: 100%
                         justify-content: space-around
+
                         //background: rgba(pink, .1)
 
                         .header
                             justify-content: flex-start
+
                             //background: rgba(yellow, .1)
                             .rating
                                 margin-right: 4px
@@ -129,14 +138,17 @@
                                 padding: 2px 8px
                                 background: rgba(#111, 1)
                                 border-bottom: 2px solid #EC7063
+
                             .text
                                 font-weight: bold
                                 font-size: 12px
                                 text-transform: uppercase
+
                         .ratings
                             width: 80%
                             padding: 0 32px
                             align-self: flex-start
+
                             //background: rgba(#111, .9)
                             .circle-rating
                                 font-size: 20px
@@ -146,22 +158,27 @@
                                 height: 100px
                                 border: 4px solid #EC7063
                                 border-radius: 50%
+
                             .bar-rating
                                 width: 55%
+
                                 .rating
                                     width: 100%
                                     margin: 3px 0
+
                                     .title
                                         font-size: 13px
                                         font-weight: bold
                                         text-transform: uppercase
                                         text-align: left
+
                                     .value
                                         justify-content: flex-start
                                         background: #F0F0F0
                                         border-radius: 0px
                                         height: 4px
                                         width: 125px
+
                                         .unit
                                             background: #EC7063
                                             height: 100%
@@ -169,8 +186,10 @@
                                             margin-rigth: 1px
 
                     .buttons
+                        width: 100%
                         margin-top: auto
                         justify-self: flex-end
+                        justify-content: flex-start
 
                         button
                             background: #EEE
@@ -196,6 +215,14 @@
                                 width: 1px
                                 background: rgba(#111, 0.7)
 
+                        .view
+                            margin-left: auto
+                            width: 160px
+                            border-right: 8px solid #ec7063
+                            i
+                                margin-left: 12px
+                                margin-right: 0
+
                         button:hover
                             background: rgba(#DDD, 1)
 
@@ -204,6 +231,7 @@
                     width: 35%
                     padding: 32px 16px
                     justify-content: center
+
                     img
                         width: 100%
                         height: 100%

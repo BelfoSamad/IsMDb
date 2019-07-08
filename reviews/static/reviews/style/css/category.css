@@ -1,6 +1,5 @@
 .category-holder {
   width: calc((180px + 25px ) * 4 - 25px);
-  text-transform: uppercase;
   padding: 32px 0;
   scroll: hidden; }
   .category-holder .title {
@@ -13,6 +12,7 @@
     .category-holder .title a {
       font-weight: bold;
       font-size: 14px;
+      text-transform: uppercase;
       color: #222;
       width: 100%; }
   .category-holder .title:hover a {
@@ -38,7 +38,7 @@
     flex-wrap: wrap;
     position: relative; }
     .category-holder .content .list-type .reviews .review {
-      min-width: 180px;
+      width: 180px;
       height: 260px;
       border-radius: 3px;
       background: #BBB;

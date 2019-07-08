@@ -90,32 +90,6 @@ class CarouselV2 {
 displayCarousel = new CarouselV2($("#content").find(".display"));
 //setInterval(() => displayCarousel.swipeRight(), 15000)
 
-// function loadHtml(file_name) {
-//     console.log("loading: " + file_name);
-//     $(".content-holder").scrollTop(0);
-//     $(".home-animation").css("height", "calc(100vh - 90px)");
-//     switch (file_name) {
-//         case "category.html":
-//             setTimeout(() => $(".category-holder").load(file_name), 1000);
-//             break;
-//         case "home.html":
-//             setTimeout(() => $(".category-holder").load(file_name), 1000);
-//             break;
-//         case "reviews.html":
-//             setTimeout(() => $(".category-holder").css("height", "0%"), 1000);
-//             setTimeout(() => $(".reviews-holder").css("height", "100%"), 1000);
-//             setTimeout(() => $(".reviews-holder").load(file_name), 1000);
-//             break;
-//     }
-//     setTimeout(() => $(".home-animation").css("height", "0"), 2000);
-//     if (file_name == "home.html") {
-//         setTimeout(() => {
-//             popCarousel = new Carousel($(".content-holder").find("#pop-carousel"));
-//             recCarousel = new Carousel($(".content-holder").find("#rec-carousel"));
-//         }, 2000);
-//     }
-// }
-
 function hideReviewDetails(element) {
     console.log("hideReviewDetails");
     $(element).find(".film-cover").css("border-radius", "1px");
@@ -131,13 +105,13 @@ function showReviewDetails(element, direction) {
     if (direction == "left") {
         $(".more-info").css("right", "auto");
         $(".more-info").css("left", "100%");
-        cover_border = "8px 0 0 8px";
-        details_border = "0 8px 8px 0";
+        cover_border = "1px 0 0 1px";
+        details_border = "0 1px 1px 0";
     } else {
         $(".more-info").css("left", "auto");
         $(".more-info").css("right", "100%");
-        cover_border = "0 8px 8px 0";
-        details_border = "8px 0 0 8px";
+        cover_border = "0 1px 1px 0";
+        details_border = "1px 0 0 1px";
     }
     $(element).find(".film-cover").css("border-radius", cover_border);
     $(element).siblings(".more-info").css("border-radius", details_border);
@@ -149,15 +123,15 @@ function showReviewDetails(element, direction) {
 
 function leftShown(element) {
     console.log("leftShown");
-    let revs_wrapper = $("#home").find(".reviews-wrapper");
-    let elementy = $("#home").find(element);
+    let revs_wrapper = $("#content").find(".reviews-wrapper");
+    let elementy = $("#content").find(element);
     let elementy_right = elementy.offset().left + elementy.width() + 400;
     let revs_wrapper_right = revs_wrapper.offset().left + revs_wrapper.width();
     return revs_wrapper_right - elementy_right > 0
 }
 
 function isDisplayed(element) {
-    return $("#home").find(element).siblings(".more-info").css("width") !== "0px";
+    return $("#content").find(element).siblings(".more-info").css("width") !== "0px";
 }
 
 function empty(element) {
@@ -183,7 +157,7 @@ function empty(element) {
 
 // $(".content-holder").on("click", ".view-reviews", () => loadHtml("reviews.html"));
 
-$("#home").on("click", ".review-cover", function () {
+$("#content").on("click", ".review-cover", function () {
     let this_elem = this;
     console.log(!isDisplayed(this_elem));
 

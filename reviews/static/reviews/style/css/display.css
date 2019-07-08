@@ -142,8 +142,10 @@
                       width: 25px;
                       margin-rigth: 1px; }
           .display .elements .element .content .left .buttons {
+            width: 100%;
             margin-top: auto;
-            justify-self: flex-end; }
+            justify-self: flex-end;
+            justify-content: flex-start; }
             .display .elements .element .content .left .buttons button {
               background: #EEE;
               justify-content: center;
@@ -165,6 +167,13 @@
                 height: 32px;
                 width: 1px;
                 background: rgba(17, 17, 17, 0.7); }
+            .display .elements .element .content .left .buttons .view {
+              margin-left: auto;
+              width: 160px;
+              border-right: 8px solid #ec7063; }
+              .display .elements .element .content .left .buttons .view i {
+                margin-left: 12px;
+                margin-right: 0; }
             .display .elements .element .content .left .buttons button:hover {
               background: #dddddd; }
         .display .elements .element .content .right {
