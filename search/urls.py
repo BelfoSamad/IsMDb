@@ -1,8 +1,9 @@
 from django.conf.urls import url
-from search.views import AdvancedSearch
+from search import views
 
 app_name = 'search'
 
 urlpatterns = [
-    # url(r'^search/$', AdvancedSearch.as_view(), name='search'),
+    url(r'^auto_complete/$', views.autocomplete, name="autocomplete"),
+    url(r'^$', views.AdvancedSearch.as_view(), name='advanced_search'),
 ]

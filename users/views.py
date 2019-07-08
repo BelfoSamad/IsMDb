@@ -80,28 +80,27 @@ class BookmarkReview(APIView):
     def get(self, request, id=None):
         # id = self.kwargs.get("id")
         user = self.request.user
-        liked = False
+        bookmarked = False
         if id != -1:
             obj = MovieReview.objects.get(id=id)
             if obj in user.watchlist.all():
-                liked = False
+                bookmarked = False
                 user.watchlist.remove(obj)
             else:
-                liked = True
+                bookmarked = True
                 user.watchlist.add(obj)
         updated = True
         data = {
             "updated": updated,
-            "liked": liked
+            "bookmarked": bookmarked
         }
         return Response(data)
 
 
 class WatchListView(ListView):
-    # template_name = 'users/bookmarks.html'
+    template_name = 'users/bookmarks.html'
+    context_object_name = 'reviews_list'
 
     def get_queryset(self):
         queryset = self.request.user.watchlist.all()
         return queryset
-
-    context_object_name = 'reviews_list'

@@ -7,6 +7,7 @@ class Suggestion(models.Model):
     description = models.CharField(max_length=255, blank=True, null=False)
     up_votes = models.ManyToManyField(Member, blank=True, related_name='up_vote')
     memberID = models.ForeignKey(Member, on_delete=models.CASCADE, null=True)
+    approved = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title

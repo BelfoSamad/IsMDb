@@ -1,17 +1,18 @@
 import datetime
 
-from django.shortcuts import render
-from django.views.generic import ListView
+from django.shortcuts import render, get_object_or_404
 from rest_framework import authentication, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from comments.models import Comment
+from reviews.models import MovieReview
 
 
-class CommentsListView(ListView):
-    model = Comment
-    # template_name = 'comments/comments.html'
+def load_comments(request, id):
+    print(id)
+    object = get_object_or_404(MovieReview, id=id)
+    return render(request, 'comments/comments.html', {'object': object})
 
 
 class CommentCreateView(APIView):
@@ -23,8 +24,15 @@ class CommentCreateView(APIView):
         title = request.GET.get('title', None)
         content = request.GET.get('content', None)
         review_id = request.GET.get('id', None)
+        alcohol = request.GET.get('alcohol', None)
+        language = request.GET.get('language', None)
+        lgbtq = request.GET.get('lgbtq', None)
+        nudity = request.GET.get('nudity', None)
+        sex = request.GET.get('sex', None)
+        violence = request.GET.get('violence', None)
         Comment.objects.create(title=title, content=content, memberID=user, reviewID_id=review_id,
-                               date_added=datetime.datetime.now())
+                               alcohol=alcohol, language=language, LGBTQ=lgbtq, nudity=nudity, sex=sex,
+                               violence=violence, date_added=datetime.datetime.now())
         data = {
             "added": True,
         }
@@ -36,26 +44,31 @@ class CommentLike(APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request, id=None):
-        # id = self.kwargs.get("id")
         user = self.request.user
-        print(id)
         liked = False
+        dislikes = 0
+        likes = 0
         if id != -1:
             obj = Comment.objects.get(id=id)
             if user in obj.dislikes.all():
                 liked = True
                 obj.dislikes.remove(user)
                 obj.likes.add(user)
+                # notify.send(user, recipient=obj.memberID, verb='Liked Your Comment',action_object=obj)
             elif user in obj.likes.all():
                 liked = False
                 obj.likes.remove(user)
             else:
                 liked = True
                 obj.likes.add(user)
+            likes = obj.likes.count()
+            dislikes = obj.dislikes.count()
         updated = True
         data = {
             "updated": updated,
-            "liked": liked
+            "liked": liked,
+            "likes": likes,
+            "dislikes": dislikes
         }
         return Response(data)
 
@@ -65,10 +78,11 @@ class CommentDislike(APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request, id=None):
-        # id = self.kwargs.get("id")
         user = self.request.user
         print(id)
         disliked = False
+        dislikes = 0
+        likes = 0
         if id != -1:
             obj = Comment.objects.get(id=id)
             if user in obj.likes.all():
@@ -81,9 +95,13 @@ class CommentDislike(APIView):
             else:
                 disliked = True
                 obj.dislikes.add(user)
+            dislikes = obj.dislikes.count()
+            likes = obj.likes.count()
         updated = True
         data = {
             "updated": updated,
-            "liked": disliked
+            "disliked": disliked,
+            "dislikes": dislikes,
+            "likes": likes
         }
         return Response(data)

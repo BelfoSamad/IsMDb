@@ -1,9 +1,16 @@
-from django.views.generic import ListView
+from django.http import HttpResponse
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView
+from rest_framework import authentication, permissions
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
 from suggestions.models import Suggestion
 
 
 class SuggestionsListView(ListView):
-    # template_name = 'suggestions/suggestions.html'
+    print('in')
+    template_name = 'suggestions/suggestions.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -15,7 +22,6 @@ class SuggestionsListView(ListView):
         return context
 
 
-'''
 class SuggestionCreateView(CreateView):
     template_name = 'suggestions/add_suggestion.html'
     model = Suggestion
@@ -25,9 +31,8 @@ class SuggestionCreateView(CreateView):
     def form_valid(self, form):
         form.instance.memberID = self.request.user
         return super(SuggestionCreateView, self).form_valid(form)
-'''
 
-'''
+
 class SuggestionUpVote(APIView):
     authentication_classes = (authentication.SessionAuthentication,)
     permission_classes = (permissions.IsAuthenticated,)
@@ -51,4 +56,4 @@ class SuggestionUpVote(APIView):
             "liked": liked
         }
         return Response(data)
-'''
+

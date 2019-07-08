@@ -1,18 +1,17 @@
-from django.shortcuts import render
-
-
-# Create your views here.
+from django.http import HttpResponse
+from django.template import loader
 from haystack.generic_views import SearchView
+from haystack.query import SearchQuerySet
 
 from search.forms import DateRangeSearchForm
 
 
 class AdvancedSearch(SearchView):
-    # template_name = 'reviews/advanced_search.html'
+    template_name = 'search/advanced_search.html'
     form_class = DateRangeSearchForm
 
 
-'''
-def advanced_search(request):
-    return render(request, 'reviews/advanced_search.html')
-'''
+def autocomplete(request):
+    sqs = SearchQuerySet().autocomplete(content_auto=request.GET.get('query', ''))
+    template = loader.get_template('search/autocomplete_template.html')
+    return HttpResponse(template.render({'reviews': sqs}, request))

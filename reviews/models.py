@@ -79,6 +79,7 @@ class MovieReview(models.Model):
     time = models.IntegerField(blank=True, null=False, default=0)
     release_date = models.DateField(default=datetime.date.today)
     description = models.TextField(max_length=255, blank=True, null=False)
+    tags = models.TextField(blank=True)
     country = CountryField(default='US', null=False)
     movie_language = LanguageField(default='En', null=False)
     IMDB_rating = models.FloatField(max_length=255, blank=True, null=True)
@@ -97,6 +98,9 @@ class MovieReview(models.Model):
 
     def get_absolute_url(self):
         return reverse('reviews:review', kwargs={'slug': self.slug})
+
+    def split_tags(self):
+        return self.tags.split(',')
 
     def __str__(self):
         return self.title
