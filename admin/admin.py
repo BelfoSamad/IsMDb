@@ -1,24 +1,32 @@
+from django.apps import apps
 from django.conf.urls import url
+from django.contrib.admin import AdminSite, ModelAdmin
+# from .sites import AdminSite,ModelAdmin
+from django.contrib.auth.models import Group, User
 from django.http import HttpResponse
 from django.template import loader
-from django.contrib.admin import AdminSite,ModelAdmin
-# from .sites import AdminSite,ModelAdmin
-from django.contrib.admin.sites import site as default_site
-from django.contrib.auth.models import Group, User
 # from django.contrib.auth.admin import GroupAdmin, UserAdmin
 from django.urls import reverse, NoReverseMatch
 from django.utils.text import capfirst
-from django.apps import apps
 
+import admin.views as my_views
+import logging
 
 class CustomAdminSite(AdminSite):
-    site_header = 'Majid Administration'
+    site_header = 'IsMDb'
+
     def get_urls(self):
         urls = super(CustomAdminSite, self).get_urls()
         custom_urls = [
             # re_path(r'^.*\.html', views.custom_admin_template_loader, name='custom-loader'),
 
             url(r'^.*\.html', self.my_view, name="my-view"),
+            url('account/', my_views.account, {'admin_instance': self}, name='account'),
+            url('authorization/', self.my_view, name='authorization'),
+            url('suggestions/', self.my_view, name='suggestions'),
+            url('reports/', self.my_view, name='reports'),
+            url('history/', self.my_view, name='history'),
+            url('reviews/', self.my_view, name='reviews'),
         ]
         return urls + custom_urls
 
@@ -30,9 +38,14 @@ class CustomAdminSite(AdminSite):
             'title': self.index_title,
             'app_list': app_list,
         }
+
         request.current_app = self.name
-        load_template = request.path.split('/')[-1]
-        template = loader.get_template('admin/' + load_template)
+        load_template = request.path
+        load_template = load_template[:-1]
+        load_template = load_template[1:]
+        load_template += '.html'
+        # logger.warning("load bliet : " + load_template)
+        template = loader.get_template(load_template)
         return HttpResponse(template.render(context, request))
 
     def _build_app_dict(self, request, label=None):
@@ -105,7 +118,6 @@ class CustomAdminSite(AdminSite):
         return app_dict
 
 
-
 class MyModelAdmin(ModelAdmin):
     # default_site = CustomAdminSite
     pass
@@ -118,6 +130,7 @@ class MyModelAdmin(ModelAdmin):
     #
     # _registry = property(_registry_getter, _registry_setter)
 
+
 # custom_admin = CustomAdminSite()
 
 # register the default model
@@ -127,7 +140,6 @@ class MyModelAdmin(ModelAdmin):
 
 
 admin_site = CustomAdminSite(name='myadmin')
-admin_site.register(User, MyModelAdmin)
+# admin_site.register(User, MyModelAdmin)
 
-admin_site.register(Group, MyModelAdmin)
-
+# admin_site.register(Group, MyModelAdmin)

@@ -1,9 +1,20 @@
+# users/forms.py
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
-from users.models import Member
+from .models import Member
 from django.contrib.auth.models import User
 
 
-# Create your views here.
+class CustomUserCreationForm(UserCreationForm):
+    class Meta(UserCreationForm):
+        model = Member
+        fields = ('username', 'email')
+
+
+class CustomUserChangeForm(UserChangeForm):
+    class Meta:
+        model = Member
+        fields = ('username', 'email')
 
 
 class UserForm(forms.ModelForm):

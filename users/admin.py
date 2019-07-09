@@ -1,6 +1,21 @@
-from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin, GroupAdmin
 
+from admin.admin import admin_site
 # Register your models here.
-from users.models import Member
+from users.forms import CustomUserCreationForm, CustomUserChangeForm
+from users.models import Member, MemberGroup
 
-admin.site.register(Member)
+
+class CustomUserAdmin(UserAdmin):
+    add_form = CustomUserCreationForm
+    form = CustomUserChangeForm
+    model = Member
+    list_display = ['email', 'username', ]
+
+
+class CustomGroupAdmin(GroupAdmin):
+    pass
+
+
+admin_site.register(Member, CustomUserAdmin)
+admin_site.register(MemberGroup, CustomGroupAdmin)

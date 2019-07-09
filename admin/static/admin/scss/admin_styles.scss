@@ -1,16 +1,22 @@
 $colors: (
         primary: #d5d9c8,
-        accent: #005dff,
-        sidebar-bg: #f1f1f1,
+        primary-dark: #000000,
+        light-dark: #0b0b0b,
+        accent: #ffca28,
+        accent-text : white,
+        white-grayish: #f0f0f0,
+        gray: #95a5a6,
+        transparent: rgba(255, 255, 255, 0),
 );
 
-@function color($color-name){
+@function color($color-name) {
   @return map_get($colors, $color-name);
 }
+
 // OVERRIDES
 
 
-#content-related{
+#content-related {
   margin-right: 0 !important;
 }
 
@@ -18,18 +24,33 @@ $colors: (
   display: flex !important;
 }
 
-#branding{
+#branding {
   float: none !important;
   height: 80px;
   width: 100%;
   padding: 10px 10px 10px 10px !important;
   //margin: 10px 10px 10px 10px !important;
   border-bottom: 1px solid #2a2a2a !important;
-}
-#branding a {
-  color: #8d8d8d !important;
+  justify-content: center !important;
 }
 
+#branding a {
+  font-size: 36pt;
+  font-family: "Stardos Stencil";
+  text-shadow: 5px 5px #000;
+  color: color(accent) !important;
+  text-align: center;
+}
+
+#site-name {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+#branding h1 {
+  margin: 0 !important;
+}
 
 
 body {
@@ -56,11 +77,11 @@ body {
 
 
 #header a:link,
-#header a:visited{
+#header a:visited {
   color: #000000 !important;
 }
 
-#user-tools{
+#user-tools {
   display: flex !important;
   align-items: center !important;
   margin: 0 40px 0 0 !important;
@@ -68,16 +89,25 @@ body {
   color: #000;
 }
 
-#user-tools button {
-  box-shadow: 0 0 1px rgba(255, 0, 31, 0.12), 0 1px 3px rgba(255, 0, 31, 0.2) !important;
+button {
+  //box-shadow: 0 0 1px rgba(255, 0, 31, 0.12), 0 1px 3px rgba(255, 0, 31, 0.2) !important;
   margin-left: 20px !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12) !important;
+  background: color(accent) !important;
+  border-color: transparent !important;
+  color: color(accent-text) !important;
 }
 
+button a {
+  color: color(accent-text) !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
 
 #content {
   min-height: 100vh;
   padding: 40px !important;
-  margin:  0 0 0 0 !important;
+  margin: 0 0 0 0 !important;
   width: 100% !important;
   background: #fbfbfb;
 }
@@ -90,41 +120,30 @@ body {
   align-items: stretch;
 }
 
-#content-main {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important;
-}
-
 // Bootstrap table caption fix
 #content-main caption {
   caption-side: top !important;
+  background-color: color(accent);
+  color: color(accent-text);
 }
 
-.card {
-  box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 3px rgba(0,0,0,.2) !important;
-  border-radius: .25rem !important;
-  margin: 20px !important;
-  padding: 0 !important;
+
+.dropdown-menu {
+  position: absolute !important;
+  left: auto !important;
+  right: 0 !important;
+  margin-right: -17px !important;
 }
 
-.card-header{
-  height: 50%;
-  background-color: #ffffff;
-}
-.card-header h1 {
-  color: #b21f2d;
-  font-family: "Raleway SemiBold", sans-serif;
+.dropdown-menu a {
+  font-size: small !important;
 }
 
-.card-body h1 {
-  font-family: "Raleway SemiBold", sans-serif;
-}
 
 #sidebar {
-  box-shadow:  0 14px 28px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.22);
+  box-shadow: 0 0 28px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0, 0, 0, 0.8);
   display: table;
-  background: color(sidebar-bg);
+  background: color(light-dark);
   min-height: 100%;
   min-width: 250px;
   max-width: 250px;
@@ -135,31 +154,42 @@ body {
 
 #sidebar.active {
   margin-left: -250px;
+  box-shadow: none;
 }
 
 
 #sidebar ul li {
   line-height: 1.5 !important;
+  padding-top: .5rem;
   //padding: 40px !important;
 }
+
 #sidebar ul li a {
-  //color: #b21f2d;
+  color: color(accent);
   font-size: large !important;
   text-align: left;
 }
 
+#sidebar ul li a i {
+  padding-left: .3rem;
+  padding-right: .3rem;
+}
 
-
-
-
+#sidebar ul li a.active {
+  background-color: color(accent);
+  font-weight: bold !important;
+  color: color(accent-text);
+  border-radius: 0 !important;
+  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.16), 0 2px 10px rgba(255, 255, 255, 0.12) !important;
+}
 
 
 #sidebarCollapse {
   background-color: Transparent;
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
   border: none;
-  cursor:pointer;
-  outline:none;
+  cursor: pointer;
+  outline: none;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -179,14 +209,17 @@ body {
   /* rotate first one */
   transform: rotate(45deg) translate(2px, 2px);
 }
+
 #sidebarCollapse span:nth-of-type(2) {
   /* second one is not visible */
   opacity: 0;
 }
+
 #sidebarCollapse span:last-of-type {
   /* rotate third one */
   transform: rotate(-45deg) translate(1px, -1px);
 }
+
 #sidebarCollapse.active span {
   /* no rotation */
   transform: none;

@@ -32,8 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    # 'admin.apps.MyAdminConfig',
-    'django.contrib.admin',
+    'admin.apps.MyAdminConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -42,6 +41,7 @@ INSTALLED_APPS = [
     'languages',
     'django_countries',
     'multiselectfield',
+    'crispy_forms',
     'haystack',
     'whoosh',
     'reviews',
@@ -68,7 +68,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [TEMPLATE_DIR,
-                 # os.path.join(BASE_DIR, 'admin/templates'),
+                 os.path.join(BASE_DIR, 'admin/templates'),
                  # os.path.join(BASE_DIR, 'users/templates'),
                  # TODO: add templates
                  os.path.join(BASE_DIR, 'reviews/templates')],

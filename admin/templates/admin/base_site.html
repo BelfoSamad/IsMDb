@@ -7,8 +7,59 @@
 {% endblock %}
 
 {% block nav-global %}{% endblock %}
+
 {% block left_panel %}
-    {% include "admin/sidebar.html" %}
+
+    <!-- Sidebar -->
+    <nav id="sidebar">
+
+
+        <div id="branding">
+            <h1 id="site-name"><a
+                    href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
+        </div>
+
+
+        <ul class="nav flex-column nav-pills">
+            <li class="nav-item">
+                <a class="nav-link {% block dashboard_item_class %}{% endblock %}" href="{% url 'admin:index' %}">
+                    <i class="fas fa-home"></i>
+                    Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% block authorization_item_class %}{% endblock %}" href="{% url 'admin:authorization' %}">
+                    <i class="fas fa-briefcase"></i>
+                    Authorization</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% block reviews_item_class %}{% endblock %}" href="{% url 'admin:reviews' %}">
+                    <i class="fas fa-briefcase"></i>
+                    Manage Reviews</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% block suggestions_item_class %}{% endblock %}" href="{% url 'admin:suggestions' %}">
+                    <i class="fas fa-briefcase"></i>
+                    Manage Suggestions</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% block reports_item_class %}{% endblock %}" href="{% url 'admin:reports' %}">
+                    <i class="fas fa-briefcase"></i>
+                    Manage Reports</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% block history_item_class %}{% endblock %}" href="{% url 'admin:history' %}">
+                    <i class="fas fa-copy"></i>
+                    History
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% block account_item_class %}{% endblock %}" href="{% url 'admin:account' %}">
+                    <i class="fas fa-copy"></i>
+                    Account
+                </a>
+            </li>
+        </ul>
+    </nav>
 {% endblock %}
 {% block sidebar_toggler %}
 
