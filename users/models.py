@@ -15,6 +15,13 @@ class Member(AbstractUser):
     honor_points = models.IntegerField(default=0)
     watchlist = models.ManyToManyField('reviews.MovieReview', blank=True, related_name='watch_list')
 
+    class Meta:
+        verbose_name = 'member'
+        verbose_name_plural = 'members'
+
 
 class MemberGroup(Group):
-    pass
+    class Meta:
+        verbose_name = 'group'
+        verbose_name_plural = 'groups'
+

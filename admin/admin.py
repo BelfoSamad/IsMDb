@@ -26,7 +26,7 @@ class CustomAdminSite(AdminSite):
             url('suggestions/', self.my_view, name='suggestions'),
             url('reports/', self.my_view, name='reports'),
             url('history/', self.my_view, name='history'),
-            url('reviews/', self.my_view, name='reviews'),
+            url('manage_reviews/', self.my_view, name='manage_reviews'),
         ]
         return urls + custom_urls
 
@@ -44,7 +44,6 @@ class CustomAdminSite(AdminSite):
         load_template = load_template[:-1]
         load_template = load_template[1:]
         load_template += '.html'
-        # logger.warning("load bliet : " + load_template)
         template = loader.get_template(load_template)
         return HttpResponse(template.render(context, request))
 
