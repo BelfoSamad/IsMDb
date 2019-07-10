@@ -9,7 +9,7 @@
         height: 100%
         padding: 0 16px
         justify-content: center
-        background: rgba(#111, 0.75)
+        background: rgba(#111, 0.85)
         z-index: 2
 
         i
@@ -18,7 +18,7 @@
 
     .arrow:hover
         cursor: pointer
-        background: rgba(#222, 0.75)
+        background: rgba(#222, 0.65)
 
     .elements
         height: 100%
@@ -43,7 +43,7 @@
             .content
                 width: 100%
                 height: 100%
-                background: rgba(#111, 0.75)
+                background: rgba(#111, 0.85)
                 position: relative
 
                 .left
@@ -53,19 +53,21 @@
                     height: 100%
                     width: 65%
                     padding: 32px 16px
-                    justify-content: flex-start
                     align-items: flex-start
 
-                    .header
+                    .top
                         width: 100%
+
+                        //background: rgba(#EEE, .8)
 
                         .title-div
                             width: 100%
-                            margin-bottom: -4px
 
                             .title
-                                font-size: 64pt
+                                font-size: 48pt
                                 font-weight: bold
+
+                                color: rgba(#EEE, .9)
                                 position: relative
                                 z-index: 2
 
@@ -77,11 +79,40 @@
                                 height: 100%
                                 background: rgba(#EC7063, 0.5)
 
+                        .rating
+                            margin-right: 4px
+                            font-weight: bold
+                            font-size: 20px
+                            padding: 12px 16px
+                            background: rgba(#111, 1)
+                            border-bottom: 4px solid #EC7063
+
+                    .plot
+                        width: 100%
+
+                        //margin: 32px 0 16px 0
+
+                        h1
+                            font-size: 12pt
+                            font-weight: bold
+                            color: rgba(#EEE, 0.8)
+                            text-transform: uppercase
+
+                        .separator
+                            width: 100%
+                            height: 1px
+                            margin: 4px 0 8px 0
+                            background: grey
+
+                        p
+                            font-size: 10pt
+
                         .metadata
                             //background: rgba(pink, .8)
                             width: 100%
                             color: rgba(#EEE, 0.7)
                             justify-content: flex-start
+                            margin-top: 16px
 
                             div
                                 margin-right: 8px
@@ -95,100 +126,74 @@
 
                             span
                                 cursor: pointer
+                                padding: 4px
+                                border: 1px solid rgba(#EEE, 0.3)
 
                             span:hover
-                                color: rgba(#F0F0F0, 1)
-
-                    .separator
-                        width: 100%
-                        height: 1px
-                        margin: 4px 0 8px 0
-                        background: grey
-
-                    .plot
-                        width: 100%
-                        margin: 32px 0 16px 0
-
-                        h1
-                            font-size: 12pt
-                            font-weight: bold
-                            color: rgba(#EEE, 0.8)
-                            text-transform: uppercase
-
-                        p
-                            font-size: 10pt
+                                background: rgba(#EEE, 0.1)
 
                     .ismdb-rating
                         //background: orange
-                        //margin: 32px 0
-                        height: 150px
+                        //margin: 16px 0 32px 0
                         width: 100%
                         justify-content: space-around
 
                         //background: rgba(pink, .1)
 
                         .header
-                            justify-content: flex-start
+                            width: 100%
+                            margin-bottom: 16px
 
                             //background: rgba(yellow, .1)
-                            .rating
-                                margin-right: 4px
-                                font-weight: bold
-                                font-size: 14px
-                                padding: 2px 8px
-                                background: rgba(#111, 1)
-                                border-bottom: 2px solid #EC7063
 
                             .text
                                 font-weight: bold
                                 font-size: 12px
                                 text-transform: uppercase
+                            i
+                                color: rgba(#EEE, .7)
+                                cursor: pointer
 
                         .ratings
                             width: 80%
-                            padding: 0 32px
-                            align-self: flex-start
-
-                            //background: rgba(#111, .9)
-                            .circle-rating
-                                font-size: 20px
-                                font-weight: bold
-                                justify-content: center
-                                width: 100px
-                                height: 100px
-                                border: 4px solid #EC7063
-                                border-radius: 50%
+                            padding: 0 16px
+                            align-self: center
 
                             .bar-rating
-                                width: 55%
+                                //background: rgba(yellow, .2)
 
-                                .rating
-                                    width: 100%
-                                    margin: 3px 0
+                                .bars
+                                    //background: rgba(pink, .2)
+                                    margin-right: 48px
 
-                                    .title
-                                        font-size: 13px
-                                        font-weight: bold
-                                        text-transform: uppercase
-                                        text-align: left
+                                    .rating
+                                        width: 100%
+                                        margin: 8px 0
 
-                                    .value
-                                        justify-content: flex-start
-                                        background: #F0F0F0
-                                        border-radius: 0px
-                                        height: 4px
-                                        width: 125px
+                                        .title
+                                            font-size: 13px
+                                            font-weight: bold
+                                            text-transform: uppercase
+                                            text-align: left
+                                            margin-right: 16px
 
-                                        .unit
-                                            background: #EC7063
-                                            height: 100%
-                                            width: 25px
-                                            margin-rigth: 1px
+                                        .value
+                                            justify-content: flex-start
+                                            background: #EAEAEA
+                                            border-radius: 0px
+                                            height: 8px
+                                            width: 125px
+
+                                            .unit
+                                                background: #EC7063
+                                                height: 100%
+                                                width: 25px
+                                                margin-rigth: 1px
 
                     .buttons
                         width: 100%
-                        margin-top: auto
-                        justify-self: flex-end
+                        //margin-top: auto
+                        //justify-self: flex-end
                         justify-content: flex-start
 
                         button
@@ -219,6 +224,7 @@
                             margin-left: auto
                             width: 160px
                             border-right: 8px solid #ec7063
+
                             i
                                 margin-left: 12px
                                 margin-right: 0

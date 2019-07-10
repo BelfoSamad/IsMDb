@@ -8,14 +8,14 @@
     height: 100%;
     padding: 0 16px;
     justify-content: center;
-    background: rgba(17, 17, 17, 0.75);
+    background: rgba(17, 17, 17, 0.85);
     z-index: 2; }
     .display .arrow i {
       font-size: 32px;
       color: #DDD; }
   .display .arrow:hover {
     cursor: pointer;
-    background: rgba(34, 34, 34, 0.75); }
+    background: rgba(34, 34, 34, 0.65); }
   .display .elements {
     height: 100%; }
     .display .elements .element {
@@ -35,116 +35,111 @@
       .display .elements .element .content {
         width: 100%;
         height: 100%;
-        background: rgba(17, 17, 17, 0.75);
+        background: rgba(17, 17, 17, 0.85);
         position: relative; }
         .display .elements .element .content .left {
           color: #EEE;
           height: 100%;
           width: 65%;
           padding: 32px 16px;
-          justify-content: flex-start;
           align-items: flex-start; }
-          .display .elements .element .content .left .header {
+          .display .elements .element .content .left .top {
             width: 100%; }
-            .display .elements .element .content .left .header .title-div {
-              width: 100%;
-              margin-bottom: -4px; }
-              .display .elements .element .content .left .header .title-div .title {
-                font-size: 64pt;
+            .display .elements .element .content .left .top .title-div {
+              width: 100%; }
+              .display .elements .element .content .left .top .title-div .title {
+                font-size: 48pt;
                 font-weight: bold;
+                color: rgba(238, 238, 238, 0.9);
                 position: relative;
                 z-index: 2; }
-              .display .elements .element .content .left .header .title-div .ttitle::before {
+              .display .elements .element .content .left .top .title-div .ttitle::before {
                 content: "";
                 position: absolute;
                 z-index: -1;
                 width: 100%;
                 height: 100%;
                 background: rgba(236, 112, 99, 0.5); }
-            .display .elements .element .content .left .header .metadata {
-              width: 100%;
-              color: rgba(238, 238, 238, 0.7);
-              justify-content: flex-start; }
-              .display .elements .element .content .left .header .metadata div {
-                margin-right: 8px;
-                font-size: 12px; }
-              .display .elements .element .content .left .header .metadata .genres {
-                text-transform: uppercase; }
-                .display .elements .element .content .left .header .metadata .genres span {
-                  margin-right: 2px; }
-              .display .elements .element .content .left .header .metadata span {
-                cursor: pointer; }
-              .display .elements .element .content .left .header .metadata span:hover {
-                color: #f0f0f0; }
-          .display .elements .element .content .left .separator {
-            width: 100%;
-            height: 1px;
-            margin: 4px 0 8px 0;
-            background: grey; }
+            .display .elements .element .content .left .top .rating {
+              margin-right: 4px;
+              font-weight: bold;
+              font-size: 20px;
+              padding: 12px 16px;
+              background: #111111;
+              border-bottom: 4px solid #EC7063; }
           .display .elements .element .content .left .plot {
-            width: 100%;
-            margin: 32px 0 16px 0; }
+            width: 100%; }
             .display .elements .element .content .left .plot h1 {
               font-size: 12pt;
               font-weight: bold;
               color: rgba(238, 238, 238, 0.8);
               text-transform: uppercase; }
+            .display .elements .element .content .left .plot .separator {
+              width: 100%;
+              height: 1px;
+              margin: 4px 0 8px 0;
+              background: grey; }
             .display .elements .element .content .left .plot p {
               font-size: 10pt; }
+            .display .elements .element .content .left .plot .metadata {
+              width: 100%;
+              color: rgba(238, 238, 238, 0.7);
+              justify-content: flex-start;
+              margin-top: 16px; }
+              .display .elements .element .content .left .plot .metadata div {
+                margin-right: 8px;
+                font-size: 12px; }
+              .display .elements .element .content .left .plot .metadata .genres {
+                text-transform: uppercase; }
+                .display .elements .element .content .left .plot .metadata .genres span {
+                  margin-right: 2px; }
+              .display .elements .element .content .left .plot .metadata span {
+                cursor: pointer;
+                padding: 4px;
+                border: 1px solid rgba(238, 238, 238, 0.3); }
+              .display .elements .element .content .left .plot .metadata span:hover {
+                background: rgba(238, 238, 238, 0.1); }
           .display .elements .element .content .left .ismdb-rating {
-            height: 150px;
             width: 100%;
             justify-content: space-around; }
             .display .elements .element .content .left .ismdb-rating .header {
-              justify-content: flex-start; }
-              .display .elements .element .content .left .ismdb-rating .header .rating {
-                margin-right: 4px;
-                font-weight: bold;
-                font-size: 14px;
-                padding: 2px 8px;
-                background: #111111;
-                border-bottom: 2px solid #EC7063; }
+              width: 100%;
+              margin-bottom: 16px; }
               .display .elements .element .content .left .ismdb-rating .header .text {
                 font-weight: bold;
                 font-size: 12px;
                 text-transform: uppercase; }
+              .display .elements .element .content .left .ismdb-rating .header i {
+                color: rgba(238, 238, 238, 0.7);
+                cursor: pointer; }
             .display .elements .element .content .left .ismdb-rating .ratings {
               width: 80%;
-              padding: 0 32px;
-              align-self: flex-start; }
-              .display .elements .element .content .left .ismdb-rating .ratings .circle-rating {
-                font-size: 20px;
-                font-weight: bold;
-                justify-content: center;
-                width: 100px;
-                height: 100px;
-                border: 4px solid #EC7063;
-                border-radius: 50%; }
-              .display .elements .element .content .left .ismdb-rating .ratings .bar-rating {
-                width: 55%; }
-                .display .elements .element .content .left .ismdb-rating .ratings .bar-rating .rating {
+              padding: 0 16px;
+              align-self: center; }
+              .display .elements .element .content .left .ismdb-rating .ratings .bar-rating .bars {
+                margin-right: 48px; }
+                .display .elements .element .content .left .ismdb-rating .ratings .bar-rating .bars .rating {
                   width: 100%;
-                  margin: 3px 0; }
-                  .display .elements .element .content .left .ismdb-rating .ratings .bar-rating .rating .title {
+                  margin: 8px 0; }
+                  .display .elements .element .content .left .ismdb-rating .ratings .bar-rating .bars .rating .title {
                     font-size: 13px;
                     font-weight: bold;
                     text-transform: uppercase;
-                    text-align: left; }
-                  .display .elements .element .content .left .ismdb-rating .ratings .bar-rating .rating .value {
+                    text-align: left;
+                    margin-right: 16px; }
+                  .display .elements .element .content .left .ismdb-rating .ratings .bar-rating .bars .rating .value {
                     justify-content: flex-start;
-                    background: #F0F0F0;
+                    background: #EAEAEA;
                     border-radius: 0px;
-                    height: 4px;
+                    height: 8px;
                     width: 125px; }
-                    .display .elements .element .content .left .ismdb-rating .ratings .bar-rating .rating .value .unit {
+                    .display .elements .element .content .left .ismdb-rating .ratings .bar-rating .bars .rating .value .unit {
                       background: #EC7063;
                       height: 100%;
                       width: 25px;
                       margin-rigth: 1px; }
           .display .elements .element .content .left .buttons {
             width: 100%;
-            margin-top: auto;
-            justify-self: flex-end;
             justify-content: flex-start; }
             .display .elements .element .content .left .buttons button {
               background: #EEE;

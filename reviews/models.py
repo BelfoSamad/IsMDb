@@ -2,9 +2,14 @@ import datetime
 
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models import SlugField
+from django.db.models.signals import pre_save
+from django.urls import reverse
+from django.utils.text import slugify
 from django_countries.fields import CountryField
 from languages.fields import LanguageField
 from multiselectfield import MultiSelectField
+
 from users.models import Member
 
 
@@ -49,7 +54,9 @@ class Writer(Staff):
 
 class MovieReview(models.Model):
     title = models.CharField(max_length=255, blank=True, null=False)
-    cover = models.ImageField(default='default_cast.png', upload_to="gallery")
+    slug = SlugField(max_length=255)
+    poster = models.ImageField(default='default_poster.png', upload_to="gallery")
+    cover = models.ImageField(default='default_cover.png', upload_to="gallery")
     YEAR_CHOICES = []
     for r in range(1900, (datetime.datetime.now().year + 1)):
         YEAR_CHOICES.append((r, r))
@@ -72,10 +79,11 @@ class MovieReview(models.Model):
     time = models.IntegerField(blank=True, null=False, default=0)
     release_date = models.DateField(default=datetime.date.today)
     description = models.TextField(max_length=255, blank=True, null=False)
+    tags = models.TextField(blank=True)
     country = CountryField(default='US', null=False)
     movie_language = LanguageField(default='En', null=False)
     IMDB_rating = models.FloatField(max_length=255, blank=True, null=True)
-    date_created = models.DateField(default=datetime.date.today)
+    pub_date = models.DateField(default=datetime.datetime.now())
     alcohol = FloatRangeField(min_value=0.0, max_value=5.0, default=0.0)
     nudity = FloatRangeField(min_value=0.0, max_value=5.0, default=0.0)
     LGBTQ = FloatRangeField(min_value=0.0, max_value=5.0, default=0.0)
@@ -86,11 +94,20 @@ class MovieReview(models.Model):
     cast_producer = models.ManyToManyField(Producer)
     cast_writer = models.ManyToManyField(Writer)
     cast_director = models.ManyToManyField(Director)
+    likes = models.ManyToManyField(Member, blank=True, related_name='review_likes')
 
     def get_absolute_url(self):
-        return "/reviews/?id=" % self.id
+        return reverse('reviews:review', kwargs={'slug': self.slug})
+
+    def split_tags(self):
+        return self.tags.split(',')
 
     def __str__(self):
         return self.title
 
 
+def pre_save_movie_receiver(sender, instance, *args, **kwargs):
+    instance.slug = "%s-%s" % (slugify(instance.title), instance.year)
+
+
+pre_save.connect(pre_save_movie_receiver, sender=MovieReview)

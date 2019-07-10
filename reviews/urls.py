@@ -1,13 +1,11 @@
 from django.conf.urls import url
-from django.urls import path
-
 from . import views
 
 app_name = 'reviews'
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path(r'^movie/', views.review, name='review'),
-    url(r'^.*\.html', views.html_loader, name="html-loader"),
-    url(r'^autocomplete/', views.autocomplete, name="autocomplete"),
+    url(r'^$', views.get_reviews, name='reviews'),
+    url(r'^category/(?P<category>[-\w]+)/$', views.get_category, name='reviews'),
+    url(r'^review/(?P<slug>[-\w]+)/$', views.MovieDetailView.as_view(), name='review'),
+    url(r'^api/like/(?P<id>\d+)$', views.LikeReview.as_view(), name='like'),
 ]
