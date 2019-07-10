@@ -1,0 +1,122 @@
+@import useful-classes
+.review
+    position: relative
+    background-size: cover
+
+    .review-cover
+        height: 100%
+        width: 100%
+
+        .film-cover
+            cursor: pointer
+            width: 100%
+            height: 100%
+            border-radius: 1px
+            object-fit: cover
+
+    .more-info
+        background: rgba(#EEE, 1)
+        position: absolute
+        width: 0px
+        height: 100%
+        z-index: 3
+        overflow: hidden
+
+        .animation-div
+            width: 100%
+            height: 100%
+            position: absolute
+            background-color: $x-primary-color
+            transition: 0.15s
+
+        .more-info-wrapper
+            height: 100%
+            padding: 8px 16px
+
+            p, span
+                color: $c-primary-color
+
+            .film-title
+                width: 100%
+
+                h4
+                    color: rgba($c-primary-color, 0.85)
+                    font-weight: 600
+                    font-size: 36px
+                    margin: 0
+
+                
+                .rating
+                    font-weight: bold
+                    font-size: 16px
+                    color: #eee
+                    width: auto
+                    padding: 8px 12px
+                    background: rgba(#111, 1)
+                    border-bottom: 2px solid #EC7063
+
+            .plot
+                width: 100%
+
+                p
+                    font-size: 10pt
+                    line-height: 18px
+                    max-height: calc(18px * 5)
+                    overflow: hidden
+
+            .metadata
+                //background: rgba(pink, .8)
+                width: 100%
+                justify-content: flex-start
+
+                div
+                    margin-right: 8px
+                    font-size: 12px
+
+                .genres
+                    text-transform: uppercase
+                    span
+                        margin-right: 2px
+                
+                span
+                    cursor: pointer
+                    padding: 4px
+                    border: 1px solid rgba(#222, .5)
+
+                span:hover
+                    background: rgba(#111, .1)
+
+            .review-actions
+                width: 100%
+                justify-self: flex-end
+
+                i
+                    background: rgba(#0A0A0A, 1)
+                    font-size: 14px
+
+                i:hover
+
+                button
+                    margin-right: 4px
+                    font-size: 12px
+                    font-weight: bold
+                    text-transform: uppercase
+                    height: 36px
+                    min-width: 36px
+                    background: rgba(#0A0A0A, 1)
+                    color: #eee
+                    border: none
+                    outline: none
+                    cursor: pointer
+                    padding: 5px 10px
+                    border-radius: 1px
+
+                button:hover
+                    background: rgba(#111, 1)
+                
+                .view-review
+                    border-right: 8px solid #ec7063
+                    margin-right: 0
+
+                .fa-long-arrow-alt-right
+                    margin-left: 8px
