@@ -60,7 +60,6 @@ def convert_to_dataframe(qs, fields=None, index=None):
     ::param qs is an QuerySet from Django
     ::fields is a list of field names from the Model of the QuerySet
     ::index is the preferred index column we want our dataframe to be set to
-
     Using the methods from above, we can easily build a dataframe
     from this data.
     '''
@@ -75,16 +74,16 @@ def convert_to_dataframe(qs, fields=None, index=None):
     return df
 
 
-def getRelated(qs, title):
-
-    df = convert_to_dataframe(qs, fields=['title', 'genre'])
+def get_related(qs, title):
+    df = convert_to_dataframe(qs, fields=['title', 'genre', 'tags'])
 
     # prepare genres
     df['words'] = ''
     for index, row in df.iterrows():
+        row['tags'] = row['tags'].lower().replace(',', '')
         row['words'] = [row['genre'].choices.get(int(x)).lower().replace(' ', '') for x in row['genre']]
 
-    df = df[['title', 'words']]
+    df = df[['title', 'words', 'tags']]
 
     # get words
     columns = df.columns
@@ -94,9 +93,10 @@ def getRelated(qs, title):
             if col == 'words':
                 for word in row[col]:
                     words = words + word + ' '
+            elif col == 'tags':
+                words = words + row[col]
+        words = ' '.join(non_duplicated_words(words.split()))
         row['words'] = words[:-1]
-
-    print(df.head())
 
     # transfer words to numbers
     count = CountVectorizer()
@@ -124,3 +124,19 @@ def getRelated(qs, title):
         related_movies.append(list(df['title'])[i])
 
     return related_movies
+
+
+def non_duplicated_words(wlist):
+    unique_list = []
+    [unique_list.append(x) for x in wlist if x not in unique_list]
+    return unique_list
+
+
+def getSimilarToCriteria( qs , likes):
+
+    df = convert_to_dataframe(qs, fields=['alcohol', 'nudity','LGBTQ','sex','language','violence'])
+
+    list
+    for review in likes:
+        df = convert_to_dataframe(qs, fields=['title', 'genre'])
+
