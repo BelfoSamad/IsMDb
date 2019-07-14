@@ -1,0 +1,97 @@
+.review {
+  position: relative;
+  background-size: cover; }
+  .review .review-cover {
+    height: 100%;
+    width: 100%; }
+    .review .review-cover .film-cover {
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+      border-radius: 1px;
+      object-fit: cover; }
+  .review .more-info {
+    background: #eeeeee;
+    position: absolute;
+    width: 0px;
+    height: 100%;
+    z-index: 3;
+    overflow: hidden; }
+    .review .more-info .animation-div {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background-color: #FFF;
+      transition: 0.15s; }
+    .review .more-info .more-info-wrapper {
+      height: 100%;
+      padding: 8px 16px; }
+      .review .more-info .more-info-wrapper p, .review .more-info .more-info-wrapper span {
+        color: #050505; }
+      .review .more-info .more-info-wrapper .film-title {
+        width: 100%; }
+        .review .more-info .more-info-wrapper .film-title h4 {
+          color: rgba(5, 5, 5, 0.85);
+          font-weight: 600;
+          font-size: 36px;
+          margin: 0; }
+        .review .more-info .more-info-wrapper .film-title .rating {
+          font-weight: bold;
+          font-size: 16px;
+          color: #eee;
+          width: auto;
+          padding: 8px 12px;
+          background: #111111;
+          border-bottom: 2px solid #EC7063; }
+      .review .more-info .more-info-wrapper .plot {
+        width: 100%; }
+        .review .more-info .more-info-wrapper .plot p {
+          font-size: 10pt;
+          line-height: 18px;
+          max-height: calc(18px * 5);
+          overflow: hidden; }
+      .review .more-info .more-info-wrapper .metadata {
+        width: 100%;
+        justify-content: flex-start; }
+        .review .more-info .more-info-wrapper .metadata div {
+          margin-right: 8px;
+          font-size: 12px; }
+        .review .more-info .more-info-wrapper .metadata .genres {
+          text-transform: uppercase; }
+          .review .more-info .more-info-wrapper .metadata .genres span {
+            margin-right: 2px; }
+        .review .more-info .more-info-wrapper .metadata span {
+          cursor: pointer;
+          padding: 4px;
+          border: 1px solid rgba(34, 34, 34, 0.5); }
+        .review .more-info .more-info-wrapper .metadata span:hover {
+          background: rgba(17, 17, 17, 0.1); }
+      .review .more-info .more-info-wrapper .review-actions {
+        width: 100%;
+        justify-self: flex-end; }
+        .review .more-info .more-info-wrapper .review-actions i {
+          background: #0a0a0a;
+          font-size: 14px; }
+        .review .more-info .more-info-wrapper .review-actions button {
+          margin-right: 4px;
+          font-size: 12px;
+          font-weight: bold;
+          text-transform: uppercase;
+          height: 36px;
+          min-width: 36px;
+          background: #0a0a0a;
+          color: #eee;
+          border: none;
+          outline: none;
+          cursor: pointer;
+          padding: 5px 10px;
+          border-radius: 1px; }
+        .review .more-info .more-info-wrapper .review-actions button:hover {
+          background: #111111; }
+        .review .more-info .more-info-wrapper .review-actions .view-review {
+          border-right: 8px solid #ec7063;
+          margin-right: 0; }
+        .review .more-info .more-info-wrapper .review-actions .fa-long-arrow-alt-right {
+          margin-left: 8px; }
+
+/*# sourceMappingURL=review-cover.css.map */

@@ -1,0 +1,81 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+
+{% block extrastyle %}{{ block.super }}
+    <link rel="stylesheet" href="{% static 'admin/css/manage_reviews.css' %}">
+{% endblock %}
+
+{% block coltype %}colMS{% endblock %}
+
+{% block bodyclass %}{{ block.super }} dashboard{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+
+{% block reviews_item_class %}active{% endblock %}
+
+{% block content %}
+    <div id="content-main">
+
+        {% if app_list %}
+            {% for app in app_list %}
+                {% if app.app_label == 'reviews' %}
+                    <div class="app-{{ app.app_label }} module">
+                        <div class="cards-container">
+                            <div class="caption">
+                                <h1>
+                                    <a href="{{ app.app_url }}" class="section"
+                                       title="{% blocktrans with name=app.name %}Models in the {{ name }} application{% endblocktrans %}">
+                                        Manage Reviews</a>
+                                </h1>
+
+                            </div>
+                            <div class="cards-wrapper">
+
+                                {% for model in app.models %}
+                                    {% if model.name != 'Suggestions' %}
+                                        <div class="card col-lg-6 col-sm-12 ">
+                                            <div class="card-header">
+                                                {% if model.admin_url %}
+                                                    <h2><a href="{{ model.admin_url }}">{{ model.name }}</a></h2>
+                                                {% else %}
+                                                    <h2>{{ model.name }}</h2>
+                                                {% endif %}
+                                            </div>
+                                            <div class="card-body" style="background: pink">
+                                            </div>
+                                            <div class="card-footer">
+                                                <div class="btn-group">
+                                                    {% if model.add_url %}
+                                                        <button><a href="{{ model.add_url }}"
+                                                                   class="addlink">{% trans 'Add' %}</a></button>
+
+                                                    {% endif %}
+
+
+                                                    {% if model.admin_url %}
+                                                        {% if model.view_only %}
+                                                            <button><a href="{{ model.admin_url }}"
+                                                                       class="viewlink">{% trans 'View' %}</a></button>
+                                                        {% else %}
+                                                            <button><a href="{{ model.admin_url }}"
+                                                                       class="changelink">{% trans 'Change' %}</a>
+                                                            </button>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <p>{% trans "You don't have permission to view or edit anything." %}</p>
+        {% endif %}
+    </div>
+{% endblock %}

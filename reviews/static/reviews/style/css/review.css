@@ -1,0 +1,23 @@
+.review-holder {
+  height: 1000px;
+  width: 100%; }
+  .review-holder .cover {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 80px);
+    background-attachment: fixed; }
+    .review-holder .cover div {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(17, 17, 17, 0.25); }
+    .review-holder .cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; }
+  .review-holder .separator {
+    width: 100%;
+    height: 4px;
+    background: #ec7063; }
+
+/*# sourceMappingURL=review.css.map */

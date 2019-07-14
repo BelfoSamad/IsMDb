@@ -1,0 +1,75 @@
+.library-holder
+    //height: 300px
+    width: calc((180px + 25px ) * 4 - 25px)
+    padding: 32px 0
+    scroll: hidden
+    //background: grey
+
+    .header
+        align-self: flex-start
+        font-size: 48px
+        //text-transform: uppercase
+        //font-weight: bold
+        color: rgba(#111, .4)
+        margin-bottom: 16px
+    .options
+        width: 100%
+        margin: 32px 0 
+        .selection
+            position: relative
+            z-index: 2
+            //background: yellow
+            .select
+                border: none
+                border-bottom: 4px solid #ec7063
+                outline: none
+                background: none
+                padding: 8px 0px
+                padding-right: 32px
+                font-weight: bold
+                text-transform: uppercase
+                color: #222
+                cursor: pointer
+                -webkit-appearance: none
+            .select:hover
+                //background: rgba(#EEE, .5)
+            i
+                position: absolute
+                z-index: -1
+                top: 2px
+                right: 0
+                margin-top: auto
+                font-size: 18px
+                color: #111
+
+    .content
+        .reviews-wrapper
+            width: 100%
+            position: relative
+            //background: red
+
+            .reviews
+                position: absolute
+                //background: blue
+                left: 0
+                max-height: 600px
+                overflow-y: auto
+                padding-right: 5px
+
+        .list-type
+            .reviews
+                flex-wrap: wrap
+                position: relative
+
+                .review
+                    width: 180px
+                    height: 260px
+                    border-radius: 3px
+                    background: #BBB
+                    margin-bottom: 25px
+
+                .review:nth-child(4n)
+                    margin-right: 0px
+                
+                .review:nth-last-child(1), .review:nth-last-child(2), .review:nth-last-child(3), .review:nth-last-child(4)
+                    margin-bottom: 0

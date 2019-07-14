@@ -1,0 +1,238 @@
+#topnav {
+  background: white;
+  width: 100%;
+  height: 80px;
+  position: fixed;
+  z-index: 5;
+  padding: 0 16px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }
+  #topnav .logo {
+    width: 200px;
+    height: 50%;
+    background: #222; }
+  #topnav .categories {
+    height: 100%; }
+    #topnav .categories ul {
+      height: 100%; }
+      #topnav .categories ul li {
+        height: 100%;
+        position: relative; }
+        #topnav .categories ul li a {
+          height: 100%;
+          padding: 8px 16px;
+          font-size: 14px;
+          font-weight: bold;
+          text-transform: uppercase;
+          color: #222; }
+      #topnav .categories ul li:hover {
+        background: #f0f0f0; }
+  #topnav .search-bar {
+    height: 45px;
+    width: 350px;
+    background: #eee;
+    position: relative; }
+    #topnav .search-bar .search-input {
+      height: 100%;
+      width: 100%;
+      position: relative;
+      border-radius: 1px; }
+      #topnav .search-bar .search-input input {
+        color: #222;
+        font-size: 14px;
+        font-weight: bold;
+        width: 100%;
+        height: 100%;
+        padding: 0 8px;
+        border: none;
+        outline: none;
+        background: none; }
+      #topnav .search-bar .search-input button {
+        border: none;
+        outline: none;
+        height: 100%;
+        width: 55px;
+        background: #EEE; }
+      #topnav .search-bar .search-input i {
+        color: #222; }
+      #topnav .search-bar .search-input button:hover {
+        background: #DDD;
+        cursor: pointer; }
+      #topnav .search-bar .search-input .search-icon {
+        height: 100%;
+        width: 55px;
+        justify-content: center; }
+    #topnav .search-bar .search-results {
+      position: absolute;
+      top: 45px;
+      width: 100%;
+      max-height: 400px;
+      overflow-y: scroll;
+      background: #F0F0F0;
+      justify-content: flex-start; }
+      #topnav .search-bar .search-results .search-result {
+        width: 100%;
+        min-height: 160px;
+        height: 160px;
+        padding: 8px;
+        margin: 4px 0;
+        background: #FFF; }
+        #topnav .search-bar .search-results .search-result .cover {
+          width: 30%;
+          height: 100%; }
+          #topnav .search-bar .search-results .search-result .cover img {
+            height: 100%;
+            width: auto; }
+        #topnav .search-bar .search-results .search-result .details {
+          width: 70%;
+          height: 100%;
+          padding: 0 16px;
+          align-items: flex-start; }
+          #topnav .search-bar .search-results .search-result .details .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #111; }
+          #topnav .search-bar .search-results .search-result .details .plot {
+            font-size: 12px; }
+            #topnav .search-bar .search-results .search-result .details .plot p {
+              line-height: 16px;
+              max-height: calc(16px * 4);
+              overflow-y: hidden; }
+          #topnav .search-bar .search-results .search-result .details .metadata {
+            width: 100%;
+            color: rgba(17, 17, 17, 0.7);
+            justify-content: flex-start; }
+            #topnav .search-bar .search-results .search-result .details .metadata div {
+              margin-right: 8px;
+              font-size: 12px; }
+            #topnav .search-bar .search-results .search-result .details .metadata .genres {
+              text-transform: uppercase; }
+              #topnav .search-bar .search-results .search-result .details .metadata .genres span {
+                margin-right: 2px; }
+      #topnav .search-bar .search-results .search-result:hover {
+        background: #FAFAFA;
+        cursor: pointer; }
+  #topnav .other-actions {
+    height: 100%; }
+    #topnav .other-actions i {
+      font-size: 18pt;
+      color: #111; }
+    #topnav .other-actions div {
+      justify-content: center; }
+    #topnav .other-actions .library {
+      height: 100%;
+      padding: 0 24px;
+      position: relative; }
+    #topnav .other-actions .notifications {
+      height: 100%;
+      position: relative; }
+      #topnav .other-actions .notifications .bell {
+        height: 100%;
+        padding: 0 24px; }
+      #topnav .other-actions .notifications .dropdown {
+        justify-content: flex-start;
+        position: absolute;
+        width: 480px;
+        height: 80vh;
+        top: 80px;
+        right: 0;
+        background: #f0f0f0;
+        color: #111;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6);
+        overflow-y: scroll; }
+        #topnav .other-actions .notifications .dropdown .notification-title {
+          font-weight: bold;
+          font-size: 14pt;
+          width: 100%;
+          background: #dddddd;
+          padding: 12px 16px; }
+        #topnav .other-actions .notifications .dropdown .notification {
+          width: 100%;
+          min-height: 90px;
+          padding: 8px 16px;
+          align-items: flex-start;
+          justify-content: space-around;
+          border-bottom: 1px solid rgba(17, 17, 17, 0.3); }
+          #topnav .other-actions .notifications .dropdown .notification .notif-content {
+            font-size: 11pt;
+            color: rgba(17, 17, 17, 0.9);
+            margin-right: 5px; }
+          #topnav .other-actions .notifications .dropdown .notification .notif-timestamp {
+            font-size: 10pt;
+            color: rgba(17, 17, 17, 0.3);
+            text-align: right; }
+        #topnav .other-actions .notifications .dropdown .notification:last-child {
+          border-bottom: none; }
+    #topnav .other-actions .profile {
+      height: 100%;
+      width: 80px;
+      position: relative; }
+      #topnav .other-actions .profile .profile-icon {
+        height: 100%;
+        width: 100%; }
+        #topnav .other-actions .profile .profile-icon img {
+          width: 50%;
+          height: 50%;
+          object-fit: cover;
+          border-radius: 100%; }
+      #topnav .other-actions .profile .profile-dropdown {
+        width: 300px;
+        justify-content: flex-start;
+        position: absolute;
+        top: 80px;
+        right: 0;
+        background: #f0f0f0;
+        color: #111;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6); }
+        #topnav .other-actions .profile .profile-dropdown .header {
+          width: 100%;
+          background: #DDD;
+          border-left: 4px solid #ec7063;
+          justify-content: flex-start;
+          padding: 16px; }
+          #topnav .other-actions .profile .profile-dropdown .header img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 16px; }
+          #topnav .other-actions .profile .profile-dropdown .header .info {
+            align-items: flex-start;
+            height: 48px;
+            justify-content: space-between;
+            font-size: 16px;
+            font-weight: bold;
+            color: #111; }
+            #topnav .other-actions .profile .profile-dropdown .header .info i {
+              font-size: 16px; }
+        #topnav .other-actions .profile .profile-dropdown .option {
+          width: 100%;
+          justify-content: flex-start;
+          padding: 16px;
+          text-transform: uppercase;
+          font-size: 13px;
+          font-weight: bold;
+          color: #111; }
+          #topnav .other-actions .profile .profile-dropdown .option i {
+            font-size: 16px;
+            margin-right: 16px; }
+        #topnav .other-actions .profile .profile-dropdown .option:hover {
+          cursor: pointer;
+          background: #dddddd; }
+        #topnav .other-actions .profile .profile-dropdown .separator {
+          width: 100%;
+          height: 1px;
+          background: rgba(0, 0, 0, 0.3); }
+    #topnav .other-actions .profile-icon:hover, #topnav .other-actions .bell:hover, #topnav .other-actions .library:hover {
+      cursor: pointer;
+      background: #f0f0f0; }
+  #topnav .active {
+    background: #eaeaea; }
+  #topnav .active::after {
+    content: "";
+    width: 100%;
+    height: 4px;
+    background: #EC7063;
+    position: absolute;
+    bottom: 0; }
+
+/*# sourceMappingURL=topnav.css.map */

@@ -1,0 +1,46 @@
+$colors: (
+        primary: #d5d9c8,
+        primary-dark: #000000,
+        light-dark: #0b0b0b,
+        accent: #ffca28,
+        accent-text : white,
+        white-grayish: #f0f0f0,
+        gray: #95a5a6,
+        transparent: rgba(255, 255, 255, 0),
+);
+
+@function color($color-name) {
+  @return map_get($colors, $color-name);
+}
+
+
+#container {
+  display: flex !important;
+}
+
+#content-main {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+}
+
+.card {
+  box-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2) !important;
+  border-radius: .25rem !important;
+  margin: 20px !important;
+  padding: 0 !important;
+}
+
+.card-header {
+  height: 50%;
+  background-color: #ffffff;
+}
+
+.card-header h1 {
+  color: #b21f2d;
+  font-family: "Raleway SemiBold", sans-serif;
+}
+
+.card-body h1 {
+  font-family: "Raleway SemiBold", sans-serif;
+}

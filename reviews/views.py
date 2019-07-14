@@ -4,7 +4,7 @@ from rest_framework import authentication, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from IsMDb.utils import get_related
+from IsMDb.recommendation_engine.content_based_filtering.related_reviews import get_related
 from comments.forms import CommentForm
 from reviews.models import MovieReview
 
