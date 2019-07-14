@@ -25,31 +25,35 @@
 
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
-        integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Roboto|Stardos+Stencil|Circular+Std" rel="stylesheet" />
+          integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Stardos+Stencil|Circular+Std" rel="stylesheet"/>
 
 
 </head>
 
 <body>
-    <div id="main" class="v-flex">
-        <div id="topnav" class="h-flex">
-            <div class="logo"></div>
-            <div class="categories h-flex">
-                <ul class="fake-list h-flex">
-                    <li class="category h-flex"><a class="h-flex c-link" href="#">Explore</a></li>
-                    <li class="category h-flex"><a class="h-flex c-link" href="#">Popular</a></li>
-                    <li class="category h-flex"><a class="h-flex c-link" href="#">Recently Added</a></li>
-                </ul>
+<div id="main" class="v-flex">
+    <div id="topnav" class="h-flex">
+        <div class="logo"></div>
+        <div class="categories h-flex">
+            <ul class="fake-list h-flex">
+                <li class="category h-flex"><a class="h-flex c-link"
+                                               href="{% url 'reviews:category' category='explore' %}">Explore</a></li>
+                <li class="category h-flex"><a class="h-flex c-link"
+                                               href="{% url 'reviews:category' category='popular' %}">Popular</a></li>
+                <li class="category h-flex"><a class="h-flex c-link"
+                                               href="{% url 'reviews:category' category='recently_added' %}">Recently
+                    Added</a></li>
+            </ul>
+        </div>
+        <div class="search-bar">
+            <div class="search-input h-flex">
+                <div class="search-icon v-flex"><i class="fa fa-search"></i></div>
+                <input type="text" placeholder="Search..." name="search">
+                <button title="Advanced Search (Filters)"><i class="fas fa-sliders-h"></i></button>
             </div>
-            <div class="search-bar">
-                <div class="search-input h-flex">
-                    <div class="search-icon v-flex"><i class="fa fa-search"></i></div>
-                    <input type="text" placeholder="Search..." name="search">
-                    <button title="Advanced Search (Filters)"><i class="fas fa-sliders-h"></i></button>
-                </div>
-                <div class="search-results v-flex">
-                    <!--
+            <div class="search-results v-flex">
+                <!--
                     <div class="search-result h-flex">
                         <div class="cover">
                             <img src="{% static 'reviews/assets/joker.jpg' %}" alt="">
@@ -158,143 +162,144 @@
                             </div>
                         </div>
                     </div>-->
-                </div>
-            </div>
-            <div class="other-actions h-flex">
-                <div class="library v-flex">
-                    <a class="c-link" href="#"><i class="fas fa-folder"></i></a>
-                </div>
-                <div class="notifications v-flex">
-                    <div class="bell v-flex"><i class="fas fa-bell"></i></div>
-                    <div class="dropdown hidden visually-hidden v-flex">
-                        <div class="notification-title">NOTIFICATIONS</div>
-                        <div class="notification v-flex">
-                            <div class="notif-content">Your account has been unbanned account has been unbanned account
-                                has been unbanned account has been unbanned account has been unbanned</div>
-                            <div class="notif-timestamp">2 hours ago</div>
-                        </div>
-                        <div class="notification v-flex">
-                            <div class="notif-content">@username liked your comment</div>
-                            <div class="notif-timestamp">7 hours ago</div>
-                        </div>
-                        <div class="notification v-flex">
-                            <div class="notif-content">@username liked your comment</div>
-                            <div class="notif-timestamp">6 hours ago</div>
-                        </div>
-                        <div class="notification v-flex">
-                            <div class="notif-content">@username liked your comment</div>
-                            <div class="notif-timestamp">7 hours ago</div>
-                        </div>
-                        <div class="notification v-flex">
-                            <div class="notif-content">Your suggestion has been upvoted by @username</div>
-                            <div class="notif-timestamp">yesterday</div>
-                        </div>
-                        <div class="notification v-flex">
-                            <div class="notif-content">You might be interested in this review: Avengers</div>
-                            <div class="notif-timestamp">3 days ago</div>
-                        </div>
-                        <div class="notification v-flex">
-                            <div class="notif-content">Please review our rules before making a post</div>
-                            <div class="notif-timestamp">7 weeks ago</div>
-                        </div>
-                        <div class="notification v-flex">
-                            <div class="notif-content">Your registration was successful. Welcome in our community!</div>
-                            <div class="notif-timestamp">7 weeks ago</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="profile v-flex">
-                    <div class="profile-icon v-flex">
-                        <img src="{% static 'reviews/assets/profile-image.jpeg' %}" alt="profile-photo">
-                    </div>
-                    <div class="profile-dropdown hidden visually-hidden v-flex">
-                        <div class="header h-flex">
-                            <img src="{% static 'reviews/assets/profile-image.jpeg' %}" alt="profile-image">
-                            <div class="info v-flex">
-                                <span class="nickname">@nickname</span>
-                                <span class="honors">521 <i class="fas fa-award"></i></span>
-                            </div>
-                        </div>
-                        <div class="option h-flex">
-                            <i class="far fa-edit"></i> Edit Profile
-                        </div>
-                        <div class="option h-flex">
-                            <i class="fas fa-cog"></i> Settings
-                        </div>
-                        <div class="separator"></div>
-                        <div class="option h-flex">
-                            <i class="fas fa-film"></i> Suggest A Review
-                        </div>
-                        <div class="separator"></div>
-                        <div class="option h-flex">
-                            <i class="far fa-question-circle"></i> Help
-                        </div>
-                        <div class="option h-flex">
-                            <i class="fas fa-comment-alt"></i> Send Feedback
-                        </div>
-                        <div class="option h-flex">
-                            <i class="fas fa-sign-out-alt"></i> Sign Out
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
-        <div id="content" class="v-flex">
-            {% block content %}
-            {% endblock %}
-        </div>
-        <div id="footer" class="v-flex">
-            <div class="h-flex categories">
-                <div class="category v-flex">
-                    <div class="cat-title">Company</div>
-                    <div class="cat-links v-flex">
-                        <a class="c-link" href="#">About</a>
-                        <a class="c-link" href="#">Contact Us</a>
-                        <a class="c-link" href="#">Conditions of Use</a>
-                        <a class="c-link" href="#">Privacy Policy</a>
+        <div class="other-actions h-flex">
+            <div class="library v-flex">
+                <a class="c-link" href="#"><i class="fas fa-folder"></i></a>
+            </div>
+            <div class="notifications v-flex">
+                <div class="bell v-flex"><i class="fas fa-bell"></i></div>
+                <div class="dropdown hidden visually-hidden v-flex">
+                    <div class="notification-title">NOTIFICATIONS</div>
+                    <div class="notification v-flex">
+                        <div class="notif-content">Your account has been unbanned account has been unbanned account
+                            has been unbanned account has been unbanned account has been unbanned
+                        </div>
+                        <div class="notif-timestamp">2 hours ago</div>
                     </div>
-                </div>
-                <div class="category v-flex">
-                    <div class="cat-title">Categories</div>
-                    <div class="cat-links v-flex">
-                        <a class="c-link" href="#">Explore</a>
-                        <a class="c-link" href="#">Popular</a>
-                        <a class="c-link" href="#">Recently Added</a>
+                    <div class="notification v-flex">
+                        <div class="notif-content">@username liked your comment</div>
+                        <div class="notif-timestamp">7 hours ago</div>
                     </div>
-                </div>
-                <div class="category v-flex">
-                    <div class="cat-title">Library</div>
-                    <div class="cat-links v-flex">
-                        <a class="c-link" href="#">Your Watchlist</a>
-                        <a class="c-link" href="#">Liked</a>
-                        <a class="c-link" href="#">Review Later</a>
+                    <div class="notification v-flex">
+                        <div class="notif-content">@username liked your comment</div>
+                        <div class="notif-timestamp">6 hours ago</div>
                     </div>
-                </div>
-                <div class="category v-flex">
-                    <div class="cat-title">MISC</div>
-                    <div class="cat-links v-flex">
-                        <a class="c-link" href="#">Advanced Search (Filters)</a>
-                        <a class="c-link" href="#">Suggest a Review</a>
-                        <a class="c-link" href="#">FAQ</a>
+                    <div class="notification v-flex">
+                        <div class="notif-content">@username liked your comment</div>
+                        <div class="notif-timestamp">7 hours ago</div>
                     </div>
-                </div>
-                <div class="category v-flex">
-                    <div class="cat-title">Social Media</div>
-                    <div class="cat-links v-flex">
-                        <a class="c-link" href="#">Facebook</a>
-                        <a class="c-link" href="#">Instagram</a>
-                        <a class="c-link" href="#">Twitter</a>
+                    <div class="notification v-flex">
+                        <div class="notif-content">Your suggestion has been upvoted by @username</div>
+                        <div class="notif-timestamp">yesterday</div>
+                    </div>
+                    <div class="notification v-flex">
+                        <div class="notif-content">You might be interested in this review: Avengers</div>
+                        <div class="notif-timestamp">3 days ago</div>
+                    </div>
+                    <div class="notification v-flex">
+                        <div class="notif-content">Please review our rules before making a post</div>
+                        <div class="notif-timestamp">7 weeks ago</div>
+                    </div>
+                    <div class="notification v-flex">
+                        <div class="notif-content">Your registration was successful. Welcome in our community!</div>
+                        <div class="notif-timestamp">7 weeks ago</div>
                     </div>
                 </div>
             </div>
-            <div class="h-flex copyright">COPYRIGHT © 2019 — IsMDb.</div>
+            <div class="profile v-flex">
+                <div class="profile-icon v-flex">
+                    <img src="{% static 'reviews/assets/profile-image.jpeg' %}" alt="profile-photo">
+                </div>
+                <div class="profile-dropdown hidden visually-hidden v-flex">
+                    <div class="header h-flex">
+                        <img src="{% static 'reviews/assets/profile-image.jpeg' %}" alt="profile-image">
+                        <div class="info v-flex">
+                            <span class="nickname">@nickname</span>
+                            <span class="honors">521 <i class="fas fa-award"></i></span>
+                        </div>
+                    </div>
+                    <div class="option h-flex">
+                        <i class="far fa-edit"></i> Edit Profile
+                    </div>
+                    <div class="option h-flex">
+                        <i class="fas fa-cog"></i> Settings
+                    </div>
+                    <div class="separator"></div>
+                    <div class="option h-flex">
+                        <i class="fas fa-film"></i> Suggest A Review
+                    </div>
+                    <div class="separator"></div>
+                    <div class="option h-flex">
+                        <i class="far fa-question-circle"></i> Help
+                    </div>
+                    <div class="option h-flex">
+                        <i class="fas fa-comment-alt"></i> Send Feedback
+                    </div>
+                    <div class="option h-flex">
+                        <i class="fas fa-sign-out-alt"></i> Sign Out
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <div id="content" class="v-flex">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <div id="footer" class="v-flex">
+        <div class="h-flex categories">
+            <div class="category v-flex">
+                <div class="cat-title">Company</div>
+                <div class="cat-links v-flex">
+                    <a class="c-link" href="#">About</a>
+                    <a class="c-link" href="#">Contact Us</a>
+                    <a class="c-link" href="#">Conditions of Use</a>
+                    <a class="c-link" href="#">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="category v-flex">
+                <div class="cat-title">Categories</div>
+                <div class="cat-links v-flex">
+                    <a class="c-link" href="#">Explore</a>
+                    <a class="c-link" href="#">Popular</a>
+                    <a class="c-link" href="#">Recently Added</a>
+                </div>
+            </div>
+            <div class="category v-flex">
+                <div class="cat-title">Library</div>
+                <div class="cat-links v-flex">
+                    <a class="c-link" href="#">Your Watchlist</a>
+                    <a class="c-link" href="#">Liked</a>
+                    <a class="c-link" href="#">Review Later</a>
+                </div>
+            </div>
+            <div class="category v-flex">
+                <div class="cat-title">MISC</div>
+                <div class="cat-links v-flex">
+                    <a class="c-link" href="#">Advanced Search (Filters)</a>
+                    <a class="c-link" href="#">Suggest a Review</a>
+                    <a class="c-link" href="#">FAQ</a>
+                </div>
+            </div>
+            <div class="category v-flex">
+                <div class="cat-title">Social Media</div>
+                <div class="cat-links v-flex">
+                    <a class="c-link" href="#">Facebook</a>
+                    <a class="c-link" href="#">Instagram</a>
+                    <a class="c-link" href="#">Twitter</a>
+                </div>
+            </div>
+        </div>
+        <div class="h-flex copyright">COPYRIGHT © 2019 — IsMDb.</div>
+    </div>
+</div>
 
-    <script type="text/javascript" src="{% static 'reviews/js/materialize.js' %}"></script>
-    <script type="text/javascript" src="{% static 'reviews/js/jquery-3.4.1.js' %}"></script>
-    <script type="text/javascript" src="{% static 'reviews/js/script.js' %}"></script>
-    <script type="text/javascript" src="{% static 'reviews/js/autocomplete.js' %}"></script>
+<script type="text/javascript" src="{% static 'reviews/js/materialize.js' %}"></script>
+<script type="text/javascript" src="{% static 'reviews/js/jquery-3.4.1.js' %}"></script>
+<script type="text/javascript" src="{% static 'reviews/js/script.js' %}"></script>
+<script type="text/javascript" src="{% static 'reviews/js/autocomplete.js' %}"></script>
 </body>
 
 </html>

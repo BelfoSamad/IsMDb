@@ -22,19 +22,19 @@ def get_reviews(request):
     return render(request, template, context)
 
 
-def get_category(request):
+def get_category(request, category):
     template = 'reviews/category.html'
-    category = request.GET.get('category', None)
     reviews = None
     if category == 'popular':
         reviews = MovieReview.objects.order_by('likes')
     elif category == 'recently_added':
-        reviews = MovieReview.objects.order_by('pub_date')
+        reviews = MovieReview.objects.order_by('-pub_date')
     elif category == 'explore':
         reviews = MovieReview.objects.order_by('title')
 
     context = {
-        'reviews': reviews
+        'reviews': reviews,
+        'category': category
     }
     return render(request, template, context)
 

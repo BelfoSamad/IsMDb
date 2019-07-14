@@ -1,42 +1,22 @@
 {% extends 'reviews/content.html' %}
 
 {% block category %}
-<div class="category-holder v-flex">
-    <div class="h-flex title">
-        <a href="#" class="c-link">Recently Added</a>
-    </div>
-    <div class="h-flex content">
-        <div class="h-flex reviews-wrapper list-type">
-            <div class="h-flex reviews">
-                <div class="review h-flex">
-                </div>
-                <div class="review h-flex">
-                </div>
-                <div class="review h-flex">
-                </div>
-                <div class="review h-flex">
-                </div>
-                <div class="review h-flex">
-                </div>
-                <div class="review h-flex">
-                </div>
-                <div class="review h-flex">
-                </div>
-                <div class="review h-flex">
-                </div>
-                <div class="review h-flex">
-                </div>
-                <div class="review h-flex">
-                </div>
-                <div class="review h-flex">
-                </div>
-                <div class="review h-flex">
+    <div class="category-holder v-flex">
+        <div class="h-flex title">
+            <a href="#" class="c-link">{{ category }}</a>
+        </div>
+        <div class="h-flex content">
+            <div class="h-flex reviews-wrapper list-type">
+                <div class="h-flex reviews">
+                    {% for review in reviews %}
+                        <div class="review h-flex">
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
+        <div class="h-flex see-more">
+            <a href="#" class="c-link">See More</a>
+        </div>
     </div>
-    <div class="h-flex see-more">
-        <a href="#" class="c-link">See More</a>
-    </div>
-</div>
 {% endblock %}
