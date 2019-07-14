@@ -1,28 +1,6 @@
-{% extends 'reviews/base.html' %}
-
-{% load static %}
-
-{% block content %}
-
-<div class="library-holder v-flex">
-    <div class="header">Library</div>
-    <div class="h-flex options">
-        <div class="selection">
-            <select class="select">
-                <option value="your-watchlist">Your Watchlist</option>
-                <option value="liked">Liked</option>
-                <option value="review-later">Review Later</option>
-            </select>
-            <i class="fas fa-sort-down"></i>
-        </div>
-        <div class="selection">
-            <select class="select">
-                <option value="alphabetical-order">Alphabetical Order</option>
-                <option value="date-order-oldest">Date Order (Oldest)</option>
-                <option value="date-order-newest">Date Order (Newest)</option>
-            </select>
-            <i class="fas fa-sort-down"></i>
-        </div>
+<div class="category-holder v-flex">
+    <div class="h-flex title">
+        <a href="#" class="c-link">Recently Added</a>
     </div>
     <div class="h-flex content">
         <div class="h-flex reviews-wrapper list-type">
@@ -534,6 +512,45 @@
             </div>
         </div>
     </div>
+    <div class="h-flex see-more">
+        <a href="#" class="c-link">See More</a>
+    </div>
 </div>
-
-{% endblock %}
+<div class="category-holder v-flex">
+    <div class="h-flex title">
+        <a href="#" class="c-link">Explore</a>
+    </div>
+    <div class="h-flex content">
+        <div class="h-flex reviews-wrapper list-type">
+            <div class="h-flex reviews">
+                <div class="review h-flex">
+                </div>
+                <div class="review h-flex">
+                </div>
+                <div class="review h-flex">
+                </div>
+                <div class="review h-flex">
+                </div>
+                <div class="review h-flex">
+                </div>
+                <div class="review h-flex">
+                </div>
+                <div class="review h-flex">
+                </div>
+                <div class="review h-flex">
+                </div>
+                <div class="review h-flex">
+                </div>
+                <div class="review h-flex">
+                </div>
+                <div class="review h-flex">
+                </div>
+                <div class="review h-flex">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="h-flex see-more">
+        <a href="#" class="c-link">See More</a>
+    </div>
+</div>

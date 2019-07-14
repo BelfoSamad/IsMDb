@@ -7,9 +7,11 @@
   padding: 0 16px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }
   #topnav .logo {
-    width: 200px;
-    height: 50%;
-    background: #222; }
+    height: 65%;
+    margin-left: 8px; }
+    #topnav .logo img {
+      width: auto;
+      height: 100%; }
   #topnav .categories {
     height: 100%; }
     #topnav .categories ul {
