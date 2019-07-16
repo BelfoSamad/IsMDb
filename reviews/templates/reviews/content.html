@@ -4,365 +4,635 @@
 
 {% block content %}
 
-<div class="library-holder v-flex">
-    <div class="header">Library</div>
-    <div class="h-flex options">
-        <div class="selection">
-            <select class="select">
-                <option value="your-watchlist">Your Watchlist</option>
-                <option value="liked">Liked</option>
-                <option value="review-later">Review Later</option>
-            </select>
-            <i class="fas fa-sort-down"></i>
+<div class="review-holder">
+    <div class="back-cover">
+        <div></div>
+        <img src="{% static 'reviews/assets/bb-banner.png' %}" alt="film-cover">
+    </div>
+    <div class="h-flex film-content">
+        <div class="cover">
+            <img src="{% static 'reviews/assets/bb.jpg' %}" alt="film-cover">
         </div>
-        <div class="selection">
-            <select class="select">
-                <option value="alphabetical-order">Alphabetical Order</option>
-                <option value="date-order-oldest">Date Order (Oldest)</option>
-                <option value="date-order-newest">Date Order (Newest)</option>
-            </select>
-            <i class="fas fa-sort-down"></i>
+        <div class="text v-flex">
+            <div class="header h-flex">
+                <div class="title">Breaking Bad</div>
+                <span class="rating">6.9</span>
+            </div>
+            <div class="plot">
+                <h1>Story Line</h1>
+                <div class="separator"></div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                    ut
+                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco
+                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                    in
+                    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                    cupidatat
+                    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <div class="metadata h-flex">
+                    <div class="year"><span>2019</span></div>
+                    <div class="duration"><span>120min</span></div>
+                    <div class="genres">
+                        <span>Drama</span>
+                        <span>Sci-Fi</span>
+                        <span>Action</span>
+                    </div>
+                </div>
+            </div>
+            <div class="information">
+                <div class="director">
+                    <span class="not">Director: </span><span class="director">Jacob William</span></div>
+                <div class="stars">
+                    <span class="not">Stars:</span>
+                    <span class="star">James Spader</span>,
+                    <span class="star">George Grace</span>,
+                    <span class="star">John Paul</span>,
+                    <span class="star">Taylor Spin</span>
+                </div>
+                <div class="release-date">
+                    <span class="not">Realease Date: </span>
+                    <span class="release">3 March 2019</span>
+                </div>
+                <div class="country">
+                    <span class="not">Country: </span>
+                    <span class="c-value">USA</span>
+                </div>
+            </div>
+            <div class="buttons h-flex">
+                <div class="actions h-flex">
+                    <button class="h-flex btn btn-l-icon watchlist">
+                        <i class="fas fa-plus"></i>
+                        <span>Watchlist</span>
+                    </button>
+                    <button class="h-flex btn btn-l-icon trailer">
+                        <i class="fas fa-play"></i>
+                        <span>Trailer</span>
+                    </button>
+                </div>
+                <div class="reactions h-flex">
+                    <button class="h-flex btn btn-l-icon btn-nbg like">
+                        <i class="fas fa-thumbs-up"></i>
+                        <span>5663</span>
+                    </button>
+                    <button class="h-flex btn btn-l-icon btn-nbg like">
+                        <i class="fas fa-comment-alt"></i>
+                        <span>252</span>
+                    </button>
+                </div>
+                <button class="h-flex btn btn-r-icon review">
+                    <a href="#" class="c-link h-flex">
+                        <span>Review Now</span>
+                        <i class="fas fa-long-arrow-alt-right"></i>
+                    </a>
+                </button>
+            </div>
         </div>
     </div>
-    <div class="h-flex content">
-        <div class="h-flex reviews-wrapper list-type">
-            <div class="h-flex reviews">
-                <div class="review h-flex">
-                    <div class="v-flex review-cover">
-                        <img class="film-cover" src="{% static 'reviews/assets/joker.jpg' %}">
+    <div class="ismdb-review">
+        <div class="header">Review
+        </div>
+        <div class="content v-flex">
+            <div class="summary">
+                <p>
+                    Breaking Bad is fairly a good TV show to watch. Puts the spot light on multiple aspects of
+                    responsiblity.
+                    Shows important principles and life must haves to survive in a world, surrounded by corruption.
+                </p>
+            </div>
+            <div class="rating-content">
+                <div class="ismdb-rating v-flex">
+                    <div class="rating-header h-flex">
+                        <span class="text">rating based on the following
+                            criteria:</span>
+                        <i class="far fa-question-circle"></i>
                     </div>
-                    <div class="more-info">
-                        <div class="animation-div"></div>
-                        <div class="more-info-wrapper v-flex">
-                            <div class="film-title h-flex">
-                                <h4>Joker</h4>
-                                <span title="IsMDb Rating" class="rating">2.4</span>
-                            </div>
-                            <div class="plot">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                    minim
-                                    veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                    commodo
-                                    consequat.</p>
-                            </div>
-                            <div class="metadata h-flex">
-                                <div class="year"><span>2019</span></div>
-                                <div class="genres">
-                                    <span>Drama</span>
-                                    <span>Sci-Fi</span>
-                                    <span>Action</span>
+                    <div class="ratings h-flex">
+                        <!--<div class="circle-rating v-flex">2.4</div>-->
+                        <div class="bar-rating h-flex">
+                            <div class="bars v-flex">
+                                <div class="rating h-flex">
+                                    <div class="title">Nudity</div>
+                                    <div class="value h-flex">
+                                        <div class="unit"></div>
+                                        <div class="unit"></div>
+                                        <div class="unit"></div>
+                                        <div class="unit"></div>
+                                        <div class="unit"></div>
+                                    </div>
+                                </div>
+                                <div class="rating h-flex">
+                                    <div class="title">LGBT</div>
+                                    <div class="value h-flex">
+                                        <div class="unit"></div>
+                                        <div class="unit"></div>
+                                        <div class="unit"></div>
+                                    </div>
+                                </div>
+                                <div class="rating h-flex">
+                                    <div class="title">Violence</div>
+                                    <div class="value h-flex">
+                                        <div class="unit"></div>
+                                        <div class="unit"></div>
+                                        <div class="unit"></div>
+                                        <div class="unit"></div>
+                                    </div>
+
                                 </div>
                             </div>
-                            <div class="review-actions h-flex">
-                                <div class="bookmark-rev-later">
-                                    <button><i title="Bookmark" class="far fa-bookmark"></i></button>
-                                    <button><i title="Review later" class="far fa-clock"></i></button>
+                            <div class="bars v-flex">
+                                <div class="rating h-flex">
+                                    <div class="title">Morality</div>
+                                    <div class="value h-flex">
+                                        <div class="unit"></div>
+                                    </div>
                                 </div>
-                                <button class="view-review" type="button" name="action">View Review<i
-                                        class="fas fa-long-arrow-alt-right"></i>
-                                </button>
+                                <div class="rating h-flex">
+                                    <div class="title">Sex</div>
+                                    <div class="value h-flex">
+                                        <div class="unit"></div>
+                                        <div class="unit"></div>
+                                        <div class="unit"></div>
+                                        <div class="unit"></div>
+                                    </div>
+                                </div>
+                                <div class="rating h-flex">
+                                    <div class="title">Morality</div>
+                                    <div class="value h-flex">
+                                        <div class="unit"></div>
+                                        <div class="unit"></div>
+                                        <div class="unit"></div>
+                                        <div class="unit"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="review h-flex">
-                    <div class="v-flex review-cover">
-                        <img class="film-cover" src="{% static 'reviews/assets/joker.jpg' %}">
+            </div>
+        </div>
+    </div>
+    <div class="community-review">
+        <div class="community-header">Community</div>
+        <div class="content">
+            <div class="com-post v-flex">
+                <div class="com-header h-flex">
+                    <div class="profile h-flex">
+                        <img src="{% static 'reviews/assets/profile-image.jpeg' %}" alt="profile-image">
+                        <div class="v-flex">
+                            <span class="nickname">nickname</span>
+                            <span class="honors">521 <i class="fas fa-award"></i></span>
+                        </div>
                     </div>
-                    <div class="more-info">
-                        <div class="animation-div"></div>
-                        <div class="more-info-wrapper v-flex">
-                            <div class="film-title h-flex">
-                                <h4>Joker</h4>
-                                <span title="IsMDb Rating" class="rating">2.4</span>
+                </div>
+                <div class="com-content">
+                    <input type="text">
+                </div>
+                <div class="buttons h-flex">
+                    <button class="h-flex btn">
+                        <span>Comment</span>
+                    </button>
+                </div>
+            </div>
+            <div class="comments">
+                <div class="com-review v-flex">
+                    <div class="com-header h-flex">
+                        <div class="profile h-flex">
+                            <img src="{% static 'reviews/assets/profile-image.jpeg' %}" alt="profile-image">
+                            <div class="v-flex">
+                                <span class="nickname">tvguru54</span>
+                                <span class="honors">1033 <i class="fas fa-award"></i></span>
                             </div>
-                            <div class="plot">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                    minim
-                                    veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                    commodo
-                                    consequat.</p>
+                        </div>
+                        <div class="timestamp">2 days ago</div>
+                    </div>
+                    <div class="com-content">
+                        <p>
+                            Frankly, I don't think this is a good and fair review. First, nudity definitely roams all
+                            the
+                            show.
+                            For language, I'd say it's a fair rating. Apart from that, I like alot the show.
+                        </p>
+                    </div>
+                    <div class="buttons h-flex">
+                        <div class="h-flex reactions">
+                            <button title="Like" class="h-flex btn btn-nbg btn-l-icon like">
+                                <i class="fas fa-thumbs-up"></i>
+                                <span>63</span>
+                            </button>
+                            <button title="Dislike" class="h-flex btn btn-nbg dislike">
+                                <i class="fas fa-thumbs-down"></i>
+                            </button>
+                        </div>
+                        <div class="h-flex actions">
+                            <button onclick="showRating(this)" class="h-flex btn btn-r-icon view-review">
+                                <span>Show Review</span>
+                                <i class="fas fa-sort-down"></i>
+                            </button>
+                            <button title="Report" class="h-flex btn btn-nbg report">
+                                <i class="fas fa-flag"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hidden visually-hidden rating-content">
+                        <div class="ismdb-rating v-flex">
+                            <div class="rating-header h-flex">
+                                <span class="text">rating based on the following
+                                    criteria:</span>
+                                <i class="far fa-question-circle"></i>
                             </div>
-                            <div class="metadata h-flex">
-                                <div class="year"><span>2019</span></div>
-                                <div class="genres">
-                                    <span>Drama</span>
-                                    <span>Sci-Fi</span>
-                                    <span>Action</span>
+                            <div class="ratings h-flex">
+                                <!--<div class="circle-rating v-flex">2.4</div>-->
+                                <div class="bar-rating h-flex">
+                                    <div class="bars v-flex">
+                                        <div class="rating h-flex">
+                                            <div class="title">Nudity</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                            </div>
+                                        </div>
+                                        <div class="rating h-flex">
+                                            <div class="title">LGBT</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                            </div>
+                                        </div>
+                                        <div class="rating h-flex">
+                                            <div class="title">Violence</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="bars v-flex">
+                                        <div class="rating h-flex">
+                                            <div class="title">Morality</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                            </div>
+                                        </div>
+                                        <div class="rating h-flex">
+                                            <div class="title">Sex</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                            </div>
+                                        </div>
+                                        <div class="rating h-flex">
+                                            <div class="title">Morality</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="review-actions h-flex">
-                                <div class="bookmark-rev-later">
-                                    <button><i title="Bookmark" class="far fa-bookmark"></i></button>
-                                    <button><i title="Review later" class="far fa-clock"></i></button>
-                                </div>
-                                <button class="view-review" type="button" name="action">View Review<i
-                                        class="fas fa-long-arrow-alt-right"></i>
-                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="review h-flex">
-                    <div class="v-flex review-cover">
-                        <img class="film-cover" src="{% static 'reviews/assets/joker.jpg' %}">
+                <div class="com-review v-flex">
+                    <div class="com-header h-flex">
+                        <div class="profile h-flex">
+                            <img src="{% static 'reviews/assets/profile-image.jpeg' %}" alt="profile-image">
+                            <div class="v-flex">
+                                <span class="nickname">dayzmax</span>
+                                <span class="honors">22 <i class="fas fa-award"></i></span>
+                            </div>
+                        </div>
+                        <div class="timestamp">1 week ago</div>
                     </div>
-                    <div class="more-info">
-                        <div class="animation-div"></div>
-                        <div class="more-info-wrapper v-flex">
-                            <div class="film-title h-flex">
-                                <h4>Joker</h4>
-                                <span title="IsMDb Rating" class="rating">2.4</span>
+                    <div class="com-content">
+                        <p>
+                            Hah. Good review. For the nudity, I don't think it's a fair rating.
+                        </p>
+                    </div>
+                    <div class="buttons h-flex">
+                        <div class="h-flex reactions">
+                            <button title="Like" class="h-flex btn btn-nbg btn-l-icon like">
+                                <i class="fas fa-thumbs-up"></i>
+                                <span>63</span>
+                            </button>
+                            <button title="Dislike" class="h-flex btn btn-nbg dislike">
+                                <i class="fas fa-thumbs-down"></i>
+                            </button>
+                        </div>
+                        <div class="h-flex actions">
+                            <button onclick="showRating(this)" class="h-flex btn btn-r-icon view-review">
+                                <span>Show Review</span>
+                                <i class="fas fa-sort-down"></i>
+                            </button>
+                            <button title="Report" class="h-flex btn btn-nbg report">
+                                <i class="fas fa-flag"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hidden visually-hidden rating-content">
+                        <div class="ismdb-rating v-flex">
+                            <div class="rating-header h-flex">
+                                <span class="text">rating based on the following
+                                    criteria:</span>
+                                <i class="far fa-question-circle"></i>
                             </div>
-                            <div class="plot">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                    minim
-                                    veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                    commodo
-                                    consequat.</p>
-                            </div>
-                            <div class="metadata h-flex">
-                                <div class="year"><span>2019</span></div>
-                                <div class="genres">
-                                    <span>Drama</span>
-                                    <span>Sci-Fi</span>
-                                    <span>Action</span>
+                            <div class="ratings h-flex">
+                                <!--<div class="circle-rating v-flex">2.4</div>-->
+                                <div class="bar-rating h-flex">
+                                    <div class="bars v-flex">
+                                        <div class="rating h-flex">
+                                            <div class="title">Nudity</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                            </div>
+                                        </div>
+                                        <div class="rating h-flex">
+                                            <div class="title">LGBT</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                            </div>
+                                        </div>
+                                        <div class="rating h-flex">
+                                            <div class="title">Violence</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="bars v-flex">
+                                        <div class="rating h-flex">
+                                            <div class="title">Morality</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                            </div>
+                                        </div>
+                                        <div class="rating h-flex">
+                                            <div class="title">Sex</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                            </div>
+                                        </div>
+                                        <div class="rating h-flex">
+                                            <div class="title">Morality</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="review-actions h-flex">
-                                <div class="bookmark-rev-later">
-                                    <button><i title="Bookmark" class="far fa-bookmark"></i></button>
-                                    <button><i title="Review later" class="far fa-clock"></i></button>
-                                </div>
-                                <button class="view-review" type="button" name="action">View Review<i
-                                        class="fas fa-long-arrow-alt-right"></i>
-                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="review h-flex">
-                    <div class="v-flex review-cover">
-                        <img class="film-cover" src="{% static 'reviews/assets/joker.jpg' %}">
+                <div class="com-review v-flex">
+                    <div class="com-header h-flex">
+                        <div class="profile h-flex">
+                            <img src="{% static 'reviews/assets/profile-image.jpeg' %}" alt="profile-image">
+                            <div class="v-flex">
+                                <span class="nickname">Jake55</span>
+                                <span class="honors">102 <i class="fas fa-award"></i></span>
+                            </div>
+                        </div>
+                        <div class="timestamp">1 week ago</div>
                     </div>
-                    <div class="more-info">
-                        <div class="animation-div"></div>
-                        <div class="more-info-wrapper v-flex">
-                            <div class="film-title h-flex">
-                                <h4>Joker</h4>
-                                <span title="IsMDb Rating" class="rating">2.4</span>
+                    <div class="com-content">
+                        <p>
+                            One of the best shows I have seen so far.
+                        </p>
+                    </div>
+                    <div class="buttons h-flex">
+                        <div class="h-flex reactions">
+                            <button title="Like" class="h-flex btn btn-nbg btn-l-icon like">
+                                <i class="fas fa-thumbs-up"></i>
+                                <span>63</span>
+                            </button>
+                            <button title="Dislike" class="h-flex btn btn-nbg dislike">
+                                <i class="fas fa-thumbs-down"></i>
+                            </button>
+                        </div>
+                        <div class="h-flex actions">
+                            <button onclick="showRating(this)" class="h-flex btn btn-r-icon view-review">
+                                <span>Show Review</span>
+                                <i class="fas fa-sort-down"></i>
+                            </button>
+                            <button title="Report" class="h-flex btn btn-nbg report">
+                                <i class="fas fa-flag"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hidden visually-hidden rating-content">
+                        <div class="ismdb-rating v-flex">
+                            <div class="rating-header h-flex">
+                                <span class="text">rating based on the following
+                                    criteria:</span>
+                                <i class="far fa-question-circle"></i>
                             </div>
-                            <div class="plot">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                    minim
-                                    veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                    commodo
-                                    consequat.</p>
-                            </div>
-                            <div class="metadata h-flex">
-                                <div class="year"><span>2019</span></div>
-                                <div class="genres">
-                                    <span>Drama</span>
-                                    <span>Sci-Fi</span>
-                                    <span>Action</span>
+                            <div class="ratings h-flex">
+                                <!--<div class="circle-rating v-flex">2.4</div>-->
+                                <div class="bar-rating h-flex">
+                                    <div class="bars v-flex">
+                                        <div class="rating h-flex">
+                                            <div class="title">Nudity</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                            </div>
+                                        </div>
+                                        <div class="rating h-flex">
+                                            <div class="title">LGBT</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                            </div>
+                                        </div>
+                                        <div class="rating h-flex">
+                                            <div class="title">Violence</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="bars v-flex">
+                                        <div class="rating h-flex">
+                                            <div class="title">Morality</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                            </div>
+                                        </div>
+                                        <div class="rating h-flex">
+                                            <div class="title">Sex</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                            </div>
+                                        </div>
+                                        <div class="rating h-flex">
+                                            <div class="title">Morality</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="review-actions h-flex">
-                                <div class="bookmark-rev-later">
-                                    <button><i title="Bookmark" class="far fa-bookmark"></i></button>
-                                    <button><i title="Review later" class="far fa-clock"></i></button>
-                                </div>
-                                <button class="view-review" type="button" name="action">View Review<i
-                                        class="fas fa-long-arrow-alt-right"></i>
-                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="review h-flex">
-                    <div class="v-flex review-cover">
-                        <img class="film-cover" src="{% static 'reviews/assets/joker.jpg' %}">
+                <div class="com-review v-flex">
+                    <div class="com-header h-flex">
+                        <div class="profile h-flex">
+                            <img src="{% static 'reviews/assets/profile-image.jpeg' %}" alt="profile-image">
+                            <div class="v-flex">
+                                <span class="nickname">ache01</span>
+                                <span class="honors">6 <i class="fas fa-award"></i></span>
+                            </div>
+                        </div>
+                        <div class="timestamp">3 months ago</div>
                     </div>
-                    <div class="more-info">
-                        <div class="animation-div"></div>
-                        <div class="more-info-wrapper v-flex">
-                            <div class="film-title h-flex">
-                                <h4>Joker</h4>
-                                <span title="IsMDb Rating" class="rating">2.4</span>
+                    <div class="com-content">
+                        <p>
+                            Agree with this review.
+                        </p>
+                    </div>
+                    <div class="buttons h-flex">
+                        <div class="h-flex reactions">
+                            <button title="Like" class="h-flex btn btn-nbg btn-l-icon like">
+                                <i class="fas fa-thumbs-up"></i>
+                                <span>63</span>
+                            </button>
+                            <button title="Dislike" class="h-flex btn btn-nbg dislike">
+                                <i class="fas fa-thumbs-down"></i>
+                            </button>
+                        </div>
+                        <div class="h-flex actions">
+                            <button onclick="showRating(this)" class="h-flex btn btn-r-icon view-review">
+                                <span>Show Review</span>
+                                <i class="fas fa-sort-down"></i>
+                            </button>
+                            <button title="Report" class="h-flex btn btn-nbg report">
+                                <i class="fas fa-flag"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hidden visually-hidden rating-content">
+                        <div class="ismdb-rating v-flex">
+                            <div class="rating-header h-flex">
+                                <span class="text">rating based on the following
+                                    criteria:</span>
+                                <i class="far fa-question-circle"></i>
                             </div>
-                            <div class="plot">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                    minim
-                                    veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                    commodo
-                                    consequat.</p>
-                            </div>
-                            <div class="metadata h-flex">
-                                <div class="year"><span>2019</span></div>
-                                <div class="genres">
-                                    <span>Drama</span>
-                                    <span>Sci-Fi</span>
-                                    <span>Action</span>
+                            <div class="ratings h-flex">
+                                <!--<div class="circle-rating v-flex">2.4</div>-->
+                                <div class="bar-rating h-flex">
+                                    <div class="bars v-flex">
+                                        <div class="rating h-flex">
+                                            <div class="title">Nudity</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                            </div>
+                                        </div>
+                                        <div class="rating h-flex">
+                                            <div class="title">LGBT</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                            </div>
+                                        </div>
+                                        <div class="rating h-flex">
+                                            <div class="title">Violence</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="bars v-flex">
+                                        <div class="rating h-flex">
+                                            <div class="title">Morality</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                            </div>
+                                        </div>
+                                        <div class="rating h-flex">
+                                            <div class="title">Sex</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                            </div>
+                                        </div>
+                                        <div class="rating h-flex">
+                                            <div class="title">Morality</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="review-actions h-flex">
-                                <div class="bookmark-rev-later">
-                                    <button><i title="Bookmark" class="far fa-bookmark"></i></button>
-                                    <button><i title="Review later" class="far fa-clock"></i></button>
-                                </div>
-                                <button class="view-review" type="button" name="action">View Review<i
-                                        class="fas fa-long-arrow-alt-right"></i>
-                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="review h-flex">
-                    <div class="v-flex review-cover">
-                        <img class="film-cover" src="{% static 'reviews/assets/joker.jpg' %}">
-                    </div>
-                    <div class="more-info">
-                        <div class="animation-div"></div>
-                        <div class="more-info-wrapper v-flex">
-                            <div class="film-title h-flex">
-                                <h4>Joker</h4>
-                                <span title="IsMDb Rating" class="rating">2.4</span>
-                            </div>
-                            <div class="plot">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                    minim
-                                    veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                    commodo
-                                    consequat.</p>
-                            </div>
-                            <div class="metadata h-flex">
-                                <div class="year"><span>2019</span></div>
-                                <div class="genres">
-                                    <span>Drama</span>
-                                    <span>Sci-Fi</span>
-                                    <span>Action</span>
-                                </div>
-                            </div>
-                            <div class="review-actions h-flex">
-                                <div class="bookmark-rev-later">
-                                    <button><i title="Bookmark" class="far fa-bookmark"></i></button>
-                                    <button><i title="Review later" class="far fa-clock"></i></button>
-                                </div>
-                                <button class="view-review" type="button" name="action">View Review<i
-                                        class="fas fa-long-arrow-alt-right"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="review h-flex">
-                    <div class="v-flex review-cover">
-                        <img class="film-cover" src="{% static 'reviews/assets/joker.jpg' %}">
-                    </div>
-                    <div class="more-info">
-                        <div class="animation-div"></div>
-                        <div class="more-info-wrapper v-flex">
-                            <div class="film-title h-flex">
-                                <h4>Joker</h4>
-                                <span title="IsMDb Rating" class="rating">2.4</span>
-                            </div>
-                            <div class="plot">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                    minim
-                                    veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                    commodo
-                                    consequat.</p>
-                            </div>
-                            <div class="metadata h-flex">
-                                <div class="year"><span>2019</span></div>
-                                <div class="genres">
-                                    <span>Drama</span>
-                                    <span>Sci-Fi</span>
-                                    <span>Action</span>
-                                </div>
-                            </div>
-                            <div class="review-actions h-flex">
-                                <div class="bookmark-rev-later">
-                                    <button><i title="Bookmark" class="far fa-bookmark"></i></button>
-                                    <button><i title="Review later" class="far fa-clock"></i></button>
-                                </div>
-                                <button class="view-review" type="button" name="action">View Review<i
-                                        class="fas fa-long-arrow-alt-right"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="review h-flex">
-                    <div class="v-flex review-cover">
-                        <img class="film-cover" src="{% static 'reviews/assets/joker.jpg' %}">
-                    </div>
-                    <div class="more-info">
-                        <div class="animation-div"></div>
-                        <div class="more-info-wrapper v-flex">
-                            <div class="film-title h-flex">
-                                <h4>Joker</h4>
-                                <span title="IsMDb Rating" class="rating">2.4</span>
-                            </div>
-                            <div class="plot">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                    minim
-                                    veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                    commodo
-                                    consequat.</p>
-                            </div>
-                            <div class="metadata h-flex">
-                                <div class="year"><span>2019</span></div>
-                                <div class="genres">
-                                    <span>Drama</span>
-                                    <span>Sci-Fi</span>
-                                    <span>Action</span>
-                                </div>
-                            </div>
-                            <div class="review-actions h-flex">
-                                <div class="bookmark-rev-later">
-                                    <button><i title="Bookmark" class="far fa-bookmark"></i></button>
-                                    <button><i title="Review later" class="far fa-clock"></i></button>
-                                </div>
-                                <button class="view-review" type="button" name="action">View Review<i
-                                        class="fas fa-long-arrow-alt-right"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            </div>
+        </div>
+    </div>
+    <div class="related-reviews">
+        <div class="related-header">Similar Reviews</div>
+        <div class="content v-flex">
+            <div class="reviews h-flex">
                 <div class="review h-flex">
                     <div class="v-flex review-cover">
                         <img class="film-cover" src="{% static 'reviews/assets/joker.jpg' %}">

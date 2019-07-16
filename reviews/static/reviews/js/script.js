@@ -240,6 +240,25 @@ $(".close-icon").click(() => {
     $(".settings-wrapper .settings").css("left", "100%");
 });
 
+function showRating(element) {
+    var rating_box = $(element).closest(".com-review").find(".rating-content");
+    if (rating_box.hasClass("hidden")) {
+        rating_box.removeClass("hidden");
+        setTimeout(function () {
+            rating_box.removeClass("visually-hidden");
+            $(element).find("span").text("Hide Review");
+            $(element).find("i").css("transform", "rotate(180deg) translateY(-1px)");
+        }, 20);
+    } else {
+        rating_box.addClass("visually-hidden");
+        rating_box.one("transitionend", function () {
+            rating_box.addClass("hidden");
+            $(element).find("span").text("Show Review");
+            $(element).find("i").css("transform", "rotate(0deg) translateY(0px)");
+        });
+    }
+};
+
 /**
  $("#email-username").focusout(function () {
     if ($(this).text() == '') {

@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="{% static 'reviews/style/css/style.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'reviews/style/css/components.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'reviews/style/css/topnav.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'reviews/style/css/content.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'reviews/style/css/category.css' %}" rel="stylesheet" type="text/css">
@@ -52,8 +53,8 @@
                     <input type="text" placeholder="Search..." name="search">
                     <button title="Advanced Search (Filters)"><i class="fas fa-sliders-h"></i></button>
                 </div>
-                <div class="search-results v-flex">
-                    <!--
+                <div class="search-results hidden v-flex">
+
                     <div class="search-result h-flex">
                         <div class="cover">
                             <img src="{% static 'reviews/assets/joker.jpg' %}" alt="">
@@ -161,7 +162,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>-->
+                    </div>
                 </div>
             </div>
             <div class="other-actions h-flex">
@@ -252,7 +253,10 @@
                 <div class="category v-flex">
                     <div class="cat-title">Company</div>
                     <div class="cat-links v-flex">
-                        <a class="c-link" href="#">About</a>
+                        <a class="c-link" href="#">
+                            <i></i>
+                            <span>About</span>
+                        </a>
                         <a class="c-link" href="#">Contact Us</a>
                         <a class="c-link" href="#">Conditions of Use</a>
                         <a class="c-link" href="#">Privacy Policy</a>
