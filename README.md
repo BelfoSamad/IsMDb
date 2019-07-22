@@ -41,7 +41,7 @@ instead of Edit Configurations, click on add
   - [ ] Develop Advanced Search Page
 - [ ] Backend:
   - [ ] Admin:
-    - [ ] Admin Panel (Frontend : 40%)
+    - [ ] Admin Panel (Frontend : Redesigning with materialize instead of bootstrap.)
     - [ ] Functionalities :
       - [x] Manage Users
       - [x] Manage Groups (eg : Moderator Group)
@@ -108,6 +108,7 @@ instead of Edit Configurations, click on add
     - [ ] Jquery.js
     - [x] bootstrap
     - [ ] fonts
+    - [ ] materialize
     - [ ] icons
     - [ ] images 
     - [ ] popper.js
