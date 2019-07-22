@@ -37,11 +37,11 @@
         <div class="logo"></div>
         <div class="categories h-flex">
             <ul class="fake-list h-flex">
-                <li class="category h-flex"><a class="h-flex c-link"
+                <li class="category h-flex {% block explore_class %}{% endblock %}"><a class="h-flex c-link"
                                                href="{% url 'reviews:category' category='explore' %}">Explore</a></li>
-                <li class="category h-flex"><a class="h-flex c-link"
+                <li class="category h-flex {% block popular_class %}{% endblock %}"><a class="h-flex c-link"
                                                href="{% url 'reviews:category' category='popular' %}">Popular</a></li>
-                <li class="category h-flex"><a class="h-flex c-link"
+                <li class="category h-flex {% block recent_class %}{% endblock %}"><a class="h-flex c-link"
                                                href="{% url 'reviews:category' category='recently_added' %}">Recently
                     Added</a></li>
             </ul>

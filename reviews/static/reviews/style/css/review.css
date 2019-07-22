@@ -1,17 +1,19 @@
 .review-holder {
-  height: 1000px;
-  width: 100%; }
-  .review-holder .cover {
-    position: relative;
+  width: 100%;
+  padding: 32px; }
+  .review-holder .back-cover {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: calc(100vh - 80px);
-    background-attachment: fixed; }
-    .review-holder .cover div {
+    height: 100%;
+    z-index: -10; }
+    .review-holder .back-cover div {
       position: absolute;
       width: 100%;
       height: 100%;
       background: rgba(17, 17, 17, 0.25); }
-    .review-holder .cover img {
+    .review-holder .back-cover img {
       width: 100%;
       height: 100%;
       object-fit: cover; }
@@ -19,5 +21,259 @@
     width: 100%;
     height: 4px;
     background: #ec7063; }
+  .review-holder .film-content {
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 500px; }
+    .review-holder .film-content .cover {
+      width: 35%;
+      height: 100%; }
+      .review-holder .film-content .cover img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; }
+    .review-holder .film-content .text {
+      width: 65%;
+      height: 100%;
+      padding: 0px 0 0px 32px;
+      align-items: flex-start; }
+      .review-holder .film-content .text .header {
+        width: 100%; }
+        .review-holder .film-content .text .header .title {
+          font-size: 64px;
+          font-weight: bold;
+          color: #222; }
+        .review-holder .film-content .text .header .rating {
+          margin-right: 4px;
+          font-weight: bold;
+          font-size: 20px;
+          padding: 12px 16px;
+          color: #EEE;
+          background: #111111;
+          border-bottom: 4px solid #EC7063; }
+      .review-holder .film-content .text .plot {
+        width: 100%; }
+        .review-holder .film-content .text .plot h1 {
+          font-size: 18px;
+          font-weight: bold;
+          color: rgba(34, 34, 34, 0.8);
+          text-transform: uppercase; }
+        .review-holder .film-content .text .plot .separator {
+          width: 100%;
+          height: 1px;
+          margin: 4px 0 8px 0;
+          background: grey; }
+        .review-holder .film-content .text .plot p {
+          font-size: 14px;
+          color: #111; }
+        .review-holder .film-content .text .plot .metadata {
+          width: 100%;
+          color: rgba(34, 34, 34, 0.9);
+          justify-content: flex-start;
+          margin-top: 16px; }
+          .review-holder .film-content .text .plot .metadata div {
+            margin-right: 8px;
+            font-size: 12px; }
+          .review-holder .film-content .text .plot .metadata .genres {
+            text-transform: uppercase; }
+            .review-holder .film-content .text .plot .metadata .genres span {
+              margin-right: 2px; }
+          .review-holder .film-content .text .plot .metadata span {
+            cursor: pointer;
+            padding: 4px;
+            border: 1px solid rgba(17, 17, 17, 0.5); }
+          .review-holder .film-content .text .plot .metadata span:hover {
+            background: rgba(17, 17, 17, 0.1); }
+      .review-holder .film-content .text .information {
+        width: 100%; }
+        .review-holder .film-content .text .information div {
+          margin: 4px 0; }
+        .review-holder .film-content .text .information .not {
+          font-size: 14px;
+          font-weight: bold;
+          color: rgba(34, 34, 34, 0.8);
+          text-transform: uppercase; }
+        .review-holder .film-content .text .information .star, .review-holder .film-content .text .information .director, .review-holder .film-content .text .information .release, .review-holder .film-content .text .information .c-value {
+          font-size: 16px;
+          font-weight: bold;
+          color: #222222; }
+      .review-holder .film-content .text .buttons {
+        width: 100%;
+        justify-content: flex-start; }
+        .review-holder .film-content .text .buttons button {
+          background: #DDD;
+          justify-content: center;
+          height: 36px;
+          margin-right: 8px;
+          padding: 0 16px;
+          font-size: 13px;
+          font-weight: bold;
+          text-transform: uppercase;
+          border: none;
+          outline: none;
+          cursor: pointer;
+          box-sizing: border-box; }
+          .review-holder .film-content .text .buttons button i:not(.fa-heart) {
+            color: #111;
+            margin-right: 12px; }
+          .review-holder .film-content .text .buttons button .btn-sep {
+            height: 32px;
+            width: 1px;
+            background: rgba(17, 17, 17, 0.7); }
+        .review-holder .film-content .text .buttons .like {
+          padding: 0;
+          width: 36px; }
+          .review-holder .film-content .text .buttons .like i {
+            font-size: 16px; }
+        .review-holder .film-content .text .buttons .like:hover {
+          background: rgba(236, 112, 99, 0.9); }
+        .review-holder .film-content .text .buttons .like.liked {
+          background: #ec7063; }
+        .review-holder .film-content .text .buttons .review {
+          margin-left: auto;
+          width: 160px;
+          border-right: 8px solid #ec7063; }
+          .review-holder .film-content .text .buttons .review i {
+            margin-left: 12px;
+            margin-right: 0; }
+        .review-holder .film-content .text .buttons button:hover {
+          background: rgba(204, 204, 204, 0.9); }
+  .review-holder .ismdb-review {
+    margin-top: 64px; }
+    .review-holder .ismdb-review .header {
+      padding: 4px 8px;
+      border-left: 8px solid #ec7063;
+      font-size: 64px;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #222;
+      background: #eaeaea; }
+    .review-holder .ismdb-review .content {
+      padding: 16px;
+      align-items: center; }
+      .review-holder .ismdb-review .content .summary {
+        padding: 16px 0; }
+        .review-holder .ismdb-review .content .summary p {
+          padding: 0;
+          color: #111;
+          font-size: 20px;
+          font-weight: bold; }
+      .review-holder .ismdb-review .content .rating-content {
+        background: rgba(128, 128, 128, 0.15);
+        padding: 16px 16px;
+        margin-top: 16px;
+        width: 70%; }
+        .review-holder .ismdb-review .content .rating-content .ismdb-rating {
+          width: 100%;
+          justify-content: space-around; }
+          .review-holder .ismdb-review .content .rating-content .ismdb-rating .rating-header {
+            width: 100%;
+            margin-bottom: 16px; }
+            .review-holder .ismdb-review .content .rating-content .ismdb-rating .rating-header .text {
+              font-weight: bold;
+              font-size: 16px;
+              text-transform: uppercase;
+              color: #111; }
+            .review-holder .ismdb-review .content .rating-content .ismdb-rating .rating-header i {
+              color: rgba(17, 17, 17, 0.9);
+              cursor: pointer;
+              font-size: 24px; }
+          .review-holder .ismdb-review .content .rating-content .ismdb-rating .ratings {
+            width: 100%;
+            justify-content: center; }
+            .review-holder .ismdb-review .content .rating-content .ismdb-rating .ratings .bar-rating .bars .rating {
+              width: 100%;
+              margin: 8px 0; }
+              .review-holder .ismdb-review .content .rating-content .ismdb-rating .ratings .bar-rating .bars .rating .title {
+                color: #111;
+                font-size: 16px;
+                font-weight: bold;
+                text-transform: uppercase;
+                text-align: left;
+                margin-right: 16px; }
+              .review-holder .ismdb-review .content .rating-content .ismdb-rating .ratings .bar-rating .bars .rating .value {
+                justify-content: flex-start;
+                background: #F8F8F8;
+                border-radius: 0px;
+                height: 8px;
+                width: 125px; }
+                .review-holder .ismdb-review .content .rating-content .ismdb-rating .ratings .bar-rating .bars .rating .value .unit {
+                  background: #EC7063;
+                  height: 100%;
+                  width: 25px;
+                  margin-rigth: 1px; }
+            .review-holder .ismdb-review .content .rating-content .ismdb-rating .ratings .bar-rating .bars:nth-child(1) {
+              margin-right: 48px; }
+  .review-holder .community-review {
+    margin-top: 64px; }
+    .review-holder .community-review .community-header {
+      padding: 4px 8px;
+      border-left: 8px solid #ec7063;
+      font-size: 64px;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #222;
+      background: #eaeaea; }
+    .review-holder .community-review .content {
+      width: 100%;
+      padding: 32px; }
+      .review-holder .community-review .content .com-review {
+        width: 70%;
+        padding: 16px;
+        margin-bottom: 32px;
+        background: #EAEAEA; }
+        .review-holder .community-review .content .com-review .com-header {
+          width: 100%;
+          align-items: flex-start; }
+          .review-holder .community-review .content .com-review .com-header .profile {
+            align-items: flex-start; }
+            .review-holder .community-review .content .com-review .com-header .profile img {
+              width: 50px;
+              height: 50px;
+              object-fit: cover;
+              margin-right: 16px;
+              border-radius: 50%; }
+            .review-holder .community-review .content .com-review .com-header .profile div {
+              align-items: flex-start; }
+              .review-holder .community-review .content .com-review .com-header .profile div .nickname {
+                font-weight: bold; }
+              .review-holder .community-review .content .com-review .com-header .profile div .honors {
+                font-size: 14px; }
+          .review-holder .community-review .content .com-review .com-header .timestamp {
+            font-size: 14px;
+            font-weight: bold;
+            color: rgba(34, 34, 34, 0.6);
+            justify-self: flex-end; }
+        .review-holder .community-review .content .com-review .com-content {
+          width: 100%;
+          margin-top: 16px;
+          justify-content: flex-start; }
+  .review-holder .related-reviews {
+    margin-top: 64px; }
+    .review-holder .related-reviews .related-header {
+      padding: 4px 8px;
+      border-left: 8px solid #ec7063;
+      font-size: 64px;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #222;
+      background: #eaeaea; }
+    .review-holder .related-reviews .content {
+      width: 100%;
+      padding: 32px; }
+      .review-holder .related-reviews .content .reviews {
+        flex-wrap: wrap;
+        position: relative;
+        width: calc(190px * 4); }
+        .review-holder .related-reviews .content .reviews .review {
+          width: 180px;
+          height: 260px;
+          border-radius: 3px;
+          background: #BBB;
+          margin-bottom: 25px; }
+        .review-holder .related-reviews .content .reviews .review:nth-child(4n) {
+          margin-right: 0px; }
+        .review-holder .related-reviews .content .reviews .review:nth-last-child(1), .review-holder .related-reviews .content .reviews .review:nth-last-child(2), .review-holder .related-reviews .content .reviews .review:nth-last-child(3), .review-holder .related-reviews .content .reviews .review:nth-last-child(4) {
+          margin-bottom: 0; }
 
 /*# sourceMappingURL=review.css.map */

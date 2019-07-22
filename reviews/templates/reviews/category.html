@@ -1,5 +1,19 @@
 {% extends 'reviews/content.html' %}
-
+{#{% if category == 'popular' %}#}
+{#    {% block popular_class %}active{% endblock %}#}
+{#    {% block recent_class %}{% endblock %}#}
+{#    {% block explore_class %}{% endblock %}#}
+{#{% endif %}#}
+{#{% if category == 'recently_added' %}#}
+{#    {% block recent_class %}active{% endblock %}#}
+{#    {% block popular_class %}{% endblock %}#}
+{#    {% block explore_class %}{% endblock %}#}
+{#{% endif %}#}
+{#{% if category == 'explore' %}#}
+{#    {% block explore_class %}active{% endblock %}#}
+{#    {% block popular_class %}{% endblock %}#}
+{#    {% block recent_class %}{% endblock %}#}
+{#{% endif %}#}
 {% block category %}
     <div class="category-holder v-flex">
         <div class="h-flex title">
@@ -10,6 +24,40 @@
                 <div class="h-flex reviews">
                     {% for review in reviews %}
                         <div class="review h-flex">
+                            <div class="v-flex review-cover">
+                                <img class="film-cover" src="{{ review.poster.url }}">
+                            </div>
+                            <div class="more-info">
+                                <div class="animation-div"></div>
+                                <div class="more-info-wrapper v-flex">
+                                    <div class="film-title h-flex">
+                                        <h4>{{ review.title }}</h4>
+                                        <span title="IsMDb Rating" class="rating">{{ review.IMDB_rating }}</span>
+                                    </div>
+                                    <div class="plot">
+                                        <p>{{ review.description }}</p>
+                                    </div>
+                                    <div class="metadata h-flex">
+                                        <div class="year"><span>{{ review.year }}</span></div>
+                                        <div class="genres">
+                                            {% for genre in review.genre %}
+                                                <span>{{ genre }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    <div class="review-actions h-flex">
+                                        <div class="bookmark-rev-later">
+                                            <button><i title="Bookmark" class="far fa-bookmark"></i></button>
+                                            <button><i title="Review later" class="far fa-clock"></i></button>
+                                        </div>
+                                        <a href="{{ review.get_absolute_url }}">
+                                            <button class="view-review" type="submit" name="action">View Review<i
+                                                    class="fas fa-long-arrow-alt-right"></i>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     {% endfor %}
                 </div>

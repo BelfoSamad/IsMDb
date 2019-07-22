@@ -25,10 +25,10 @@ def get_reviews(request):
 def get_category(request, category):
     template = 'reviews/category.html'
     reviews = None
-    if category == 'popular':
-        reviews = MovieReview.objects.order_by('likes')
-    elif category == 'recently_added':
+    if category == 'recently_added':
         reviews = MovieReview.objects.order_by('-pub_date')
+    elif category == 'popular':
+        reviews = MovieReview.objects.order_by('likes')
     elif category == 'explore':
         reviews = MovieReview.objects.order_by('title')
 
