@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView
+from notifications.signals import notify
 from rest_framework import authentication, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -41,19 +42,22 @@ class SuggestionUpVote(APIView):
         # id = self.kwargs.get("id")
         user = self.request.user
         print(id)
-        liked = False
+        up_voted = False
+        up_votes = 0
         if id != -1:
             obj = Suggestion.objects.get(id=id)
             if user in obj.up_votes.all():
-                liked = False
+                up_voted = False
                 obj.up_votes.remove(user)
             else:
-                liked = True
+                up_voted = True
                 obj.up_votes.add(user)
+                notify.send(user, recipient=obj.memberID, verb='UpVoted Your Suggestion :', action_object=obj)
+            up_votes = obj.up_votes.count()
         updated = True
         data = {
             "updated": updated,
-            "liked": liked
+            "up_voted": up_voted,
+            "up_votes": up_votes
         }
         return Response(data)
-

@@ -44,10 +44,6 @@ class Director(Staff):
     pass
 
 
-class Producer(Staff):
-    pass
-
-
 class Writer(Staff):
     pass
 
@@ -91,9 +87,9 @@ class MovieReview(models.Model):
     language = FloatRangeField(min_value=0.0, max_value=5.0, default=0.0)
     violence = FloatRangeField(min_value=0.0, max_value=5.0, default=0.0)
     cast_actor = models.ManyToManyField(Actor)
-    cast_producer = models.ManyToManyField(Producer)
     cast_writer = models.ManyToManyField(Writer)
     cast_director = models.ManyToManyField(Director)
+    trailer = models.CharField(max_length=255, blank=True)
     likes = models.ManyToManyField(Member, blank=True, related_name='review_likes')
 
     def get_absolute_url(self):

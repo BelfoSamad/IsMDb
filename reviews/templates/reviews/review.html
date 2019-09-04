@@ -1,5 +1,6 @@
 {% extends 'reviews/content.html' %}
 {% load static %}
+{% load movie_review_extras %}
 {% block review %}
     <div class="review-holder">
         <div class="back-cover">
@@ -21,23 +22,32 @@
                     <p>{{ object.description }}</p>
                     <div class="metadata h-flex">
                         <div class="year"><span>{{ object.year }}</span></div>
-                        <div class="duration"><span>{{ object.time}}</span></div>
+                        <div class="duration"><span>{{ object.time|duration_format }}</span></div>
                         <div class="genres">
                             {% for genre in object.genre %}
-                                <span>{{ genre }}</span>
+                                <span>{{ genre|genre_text }}</span>
                             {% endfor %}
                         </div>
                     </div>
                 </div>
                 <div class="information">
                     <div class="director">
-                        <span class="not">Director: </span><span class="director">Jacob William</span></div>
+                        <span class="not">Director: </span>
+                        {% for director in directors %}
+                            <span class="star">{{ director.first_name }} {{ director.last_name }}</span>,
+                        {% endfor %}
+                    </div>
                     <div class="stars">
                         <span class="not">Stars:</span>
-                        <span class="star">James Spader</span>,
-                        <span class="star">George Grace</span>,
-                        <span class="star">John Paul</span>,
-                        <span class="star">Taylor Spin</span>
+                        {% for actor in actors %}
+                            <span class="star">{{ actor.first_name }} {{ actor.last_name }}</span>,
+                        {% endfor %}
+                    </div>
+                    <div class="writers">
+                        <span class="not">Writers:</span>
+                        {% for director in directors %}
+                            <span class="star">{{ director.first_name }} {{ director.last_name }}</span>,
+                        {% endfor %}
                     </div>
                     <div class="release-date">
                         <span class="not">Realease Date: </span>
@@ -49,13 +59,14 @@
                     </div>
                 </div>
                 <div class="buttons h-flex">
-                    <button class="h-flex like">
+                    <button class="h-flex like" data-href="{% url 'reviews:like' id=object.id %}">
                         <i class="far fa-heart"></i>
                     </button>
                     <button class="h-flex watchlist">
                         <i class="fas fa-plus"></i>
                         <div>Watchlist</div>
                     </button>
+                    <!-- TODO: Add Trailer action Here -->
                     <button class="h-flex trailer">
                         <i class="fas fa-play"></i>
                         <div>Trailer</div>
@@ -152,7 +163,34 @@
         </div>
         <div class="community-review">
             <div class="community-header">Community</div>
+            <!-- TODO: Add Comment Form -->
             <div class="content">
+                {% for comment in comments %}
+                    <div class="com-review v-flex">
+                        <div class="com-header h-flex">
+                            <div class="profile h-flex">
+                                <!-- TODO: get Profile Picture of User -->
+                                <img src="{% static 'reviews/assets/profile-image.jpeg' %}" alt="profile-image">
+                                <div class="v-flex">
+                                    <!-- TODO: get nickname of User -->
+                                    <span class="nickname">tvguru54</span>
+                                    <span class="honors">{{ comment.memberID.honor_points }} <i
+                                            class="fas fa-award"></i></span>
+                                </div>
+                            </div>
+                            <div class="timestamp">{{ comment.date_added|timesince }}</div>
+                        </div>
+                        <div class="com-content">
+                            <p>
+                                {{ comment.title }}
+                                {{ comment.content }}
+                            </p>
+                        </div>
+                        <!-- TODO: Add Likes, Dislikes and Report -->
+                    </div>
+                {% endfor %}
+
+                <!-- TODO: Remove Those -->
                 <div class="com-review v-flex">
                     <div class="com-header h-flex">
                         <div class="profile h-flex">
@@ -232,7 +270,7 @@
                                         <div class="year"><span>{{ review.year }}</span></div>
                                         <div class="genres">
                                             {% for genre in review.genre %}
-                                                <span>{{ genre }}</span>
+                                                <span>{{ genre|genre_text }}</span>
                                             {% endfor %}
                                         </div>
                                     </div>
@@ -256,3 +294,7 @@
         </div>
     </div>
 {% endblock %}
+
+<!-- TODO: Add Js Code For Bookmark-->
+
+<script type="text/javascript" src="{% static 'reviews/js/reactions.js' %}"></script>

@@ -1,4 +1,5 @@
 {% extends 'reviews/content.html' %}
+{% load movie_review_extras %}
 {#{% if category == 'popular' %}#}
 {#    {% block popular_class %}active{% endblock %}#}
 {#    {% block recent_class %}{% endblock %}#}
@@ -39,9 +40,10 @@
                                     </div>
                                     <div class="metadata h-flex">
                                         <div class="year"><span>{{ review.year }}</span></div>
+                                        <div class="duration"><span>{{ review.time|duration_format }}</span></div>
                                         <div class="genres">
                                             {% for genre in review.genre %}
-                                                <span>{{ genre }}</span>
+                                                <span>{{ genre|genre_text }}</span>
                                             {% endfor %}
                                         </div>
                                     </div>

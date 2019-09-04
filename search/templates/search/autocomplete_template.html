@@ -1,0 +1,18 @@
+{% load static %}
+{% load movie_review_extras %}
+{% for review in reviews %}
+    <div class="search-result h-flex">
+        <div class="cover">
+            <img src="{{ review.object.poster.url }}" alt="">
+        </div>
+        <div class="details v-flex">
+            <a href="{{ review.object.get_absolute_url }}">
+                <div class="title">{{ review.title }}</div>
+            </a>
+            <div class="year"><span>{{ review.year }}</span></div>
+            <div class="plot">
+                <p>{{ review.description }}</p>
+            </div>
+        </div>
+    </div>
+{% endfor %}

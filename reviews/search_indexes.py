@@ -1,5 +1,7 @@
 import datetime
 from haystack import indexes
+from haystack.fields import CharField
+
 from reviews.models import MovieReview
 
 
@@ -7,9 +9,7 @@ class MovieReviewIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
     title = indexes.CharField(model_attr='title')
     year = indexes.IntegerField(model_attr='year')
-    time = indexes.IntegerField(model_attr='time')
-    release_date = indexes.DateField(model_attr='release_date')
-    IMDB_rating = indexes.IntegerField(model_attr='IMDB_rating')
+    description = indexes.CharField(model_attr='description')
 
     content_auto = indexes.EdgeNgramField(model_attr='title')
 

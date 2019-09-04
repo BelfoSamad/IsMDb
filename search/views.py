@@ -11,7 +11,7 @@ class AdvancedSearch(SearchView):
     form_class = DateRangeSearchForm
 
 
-def autocomplete(request):
-    sqs = SearchQuerySet().autocomplete(content_auto=request.GET.get('query', ''))
+def autocomplete(request, query):
+    sqs = SearchQuerySet().autocomplete(content_auto=query)
     template = loader.get_template('search/autocomplete_template.html')
     return HttpResponse(template.render({'reviews': sqs}, request))

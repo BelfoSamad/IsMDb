@@ -10,10 +10,9 @@ def get_related(qs, title):
     # prepare genres
     df['words'] = ''
     for index, row in df.iterrows():
-        row['tags'] = row['tags'].lower().replace(',', '')
         row['words'] = [row['genre'].choices.get(int(x)).lower().replace(' ', '') for x in row['genre']]
+        row['words'] = row['words'] + [row['tags'].lower().replace(' ', '').replace(',', ' ')]
 
-    #TODO add tags
     df = df[['title', 'words']]
 
     # get words
@@ -24,10 +23,8 @@ def get_related(qs, title):
             if col == 'words':
                 for word in row[col]:
                     words = words + word + ' '
-            #elif col == 'tags':
-            #   words = words + row[col]
         words = ' '.join(non_duplicated_words(words.split()))
-        row['words'] = words[:-1]
+        row['words'] = words
 
     # transfer words to numbers
     count = CountVectorizer()
@@ -48,7 +45,6 @@ def get_related(qs, title):
     score_series = pd.Series(cosine_sim[idx]).sort_values(ascending=False)
 
     # getting the indexes of the 10 most similar movies
-    #TODO: change to 10
     top_10_indexes = list(score_series.iloc[1:5].index)
 
     # populating the list with the titles of the best 10 matching movies

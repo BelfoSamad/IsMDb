@@ -13,11 +13,13 @@ class Member(AbstractUser):
         ('f', 'Female'))
     gender = models.CharField(choices=GENDER_CHOICES, max_length=6)
     honor_points = models.IntegerField(default=0)
+    cant_comment = models.BooleanField(default=False)
     watchlist = models.ManyToManyField('reviews.MovieReview', blank=True, related_name='watch_list')
 
     class Meta:
         verbose_name = 'member'
         verbose_name_plural = 'members'
+
 
 class MemberGroup(Group):
     class Meta:

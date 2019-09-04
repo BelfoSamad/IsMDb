@@ -39,17 +39,43 @@ def get_category(request, category):
     return render(request, template, context)
 
 
+def get_library(request):
+    template = 'reviews/library.html'
+    reviews = None
+    context = {
+        'reviews': reviews
+    }
+    return render(request, template, context)
+
+
 class MovieDetailView(DetailView):
     model = MovieReview
     template_name = 'reviews/review.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        # Cast
+        context["actors"] = self.object.cast_actor.all()
+        context["writers"] = self.object.cast_writer.all()
+        context["directors"] = self.object.cast_director.all()
+
+        # Comment
+        comments = self.object.comment_set.all()
+        context["comments"] = reversed(comments)
+
+        # Related Movies
         title = self.object.title
         qs = MovieReview.objects.all()
         related = get_related(qs, title)
+        related_qs = []
+        for x in related:
+            related_qs.extend(MovieReview.objects.filter(title=x))
+        context["related"] = related_qs
+
+        # Form
         context["form"] = CommentForm()
-        context["related"] = reversed(MovieReview.objects.filter(title__in=related))
+
         return context
 
 
