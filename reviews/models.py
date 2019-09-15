@@ -9,7 +9,9 @@ from django.utils.text import slugify
 from django_countries.fields import CountryField
 from languages.fields import LanguageField
 from multiselectfield import MultiSelectField
+from notifications.signals import notify
 
+from suggestions.models import Suggestion
 from users.models import Member
 
 
@@ -76,6 +78,7 @@ class MovieReview(models.Model):
     release_date = models.DateField(default=datetime.date.today)
     description = models.TextField(max_length=255, blank=True, null=False)
     tags = models.TextField(blank=True)
+    suggestion = models.ForeignKey(Suggestion, on_delete=models.SET_NULL, null=True, blank=True)
     country = CountryField(default='US', null=False)
     movie_language = LanguageField(default='En', null=False)
     IMDB_rating = models.FloatField(max_length=255, blank=True, null=True)
@@ -100,6 +103,19 @@ class MovieReview(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        super(MovieReview, self).save(*args, **kwargs)
+        suggestion = self.suggestion
+        if suggestion is not None:
+            notify.send(suggestion.memberID, recipient=suggestion.memberID,
+                        verb='The Movie You Suggested Has Been Added',
+                        action_object=self)
+            for user in suggestion.up_votes.all():
+                notify.send(user, recipient=user,
+                            verb='The Movie You Up voted Has Been Added',
+                            action_object=self)
+            suggestion.delete()
 
 
 def pre_save_movie_receiver(sender, instance, *args, **kwargs):

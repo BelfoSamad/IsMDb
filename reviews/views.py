@@ -86,7 +86,6 @@ class LikeReview(APIView):
     def get(self, request, id=None):
         # id = self.kwargs.get("id")
         user = self.request.user
-        print(id)
         liked = False
         if id != -1:
             obj = MovieReview.objects.get(id=id)
@@ -100,5 +99,29 @@ class LikeReview(APIView):
         data = {
             "updated": updated,
             "liked": liked
+        }
+        return Response(data)
+
+
+class BookmarkReview(APIView):
+    authentication_classes = (authentication.SessionAuthentication,)
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request, id=None):
+        # id = self.kwargs.get("id")
+        user = self.request.user
+        bookmarked = False
+        if id != -1:
+            obj = MovieReview.objects.get(id=id)
+            if obj in user.watchlist.all():
+                bookmarked = False
+                user.watchlist.remove(obj)
+            else:
+                bookmarked = True
+                user.watchlist.add(obj)
+        updated = True
+        data = {
+            "updated": updated,
+            "liked": bookmarked
         }
         return Response(data)

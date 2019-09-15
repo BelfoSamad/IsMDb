@@ -9,5 +9,9 @@ class Suggestion(models.Model):
     memberID = models.ForeignKey(Member, on_delete=models.CASCADE, null=True)
     approved = models.BooleanField(default=False)
 
+    def save(self, *args, **kwargs):
+        super(Suggestion, self).save(*args, **kwargs)
+        self.up_votes.add(self.memberID)
+
     def __str__(self):
         return self.title
