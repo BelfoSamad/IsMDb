@@ -1,5 +1,7 @@
 var lastActiveReview, popCarousel, recCarousel;
 
+var instance = M.Tabs.init($(".tabs"), null);
+
 class Carousel {
     constructor(container) {
         this.container = container;
@@ -240,20 +242,20 @@ $(".close-icon").click(() => {
     $(".settings-wrapper .settings").css("left", "100%");
 });
 
-function showRating(element) {
+function showRating(element, text1, text2) {
     var rating_box = $(element).closest(".com-review").find(".rating-content");
     if (rating_box.hasClass("hidden")) {
         rating_box.removeClass("hidden");
         setTimeout(function () {
             rating_box.removeClass("visually-hidden");
-            $(element).find("span").text("Hide Review");
+            $(element).find("span").text(text2);
             $(element).find("i").css("transform", "rotate(180deg) translateY(-1px)");
         }, 20);
     } else {
         rating_box.addClass("visually-hidden");
         rating_box.one("transitionend", function () {
             rating_box.addClass("hidden");
-            $(element).find("span").text("Show Review");
+            $(element).find("span").text(text1);
             $(element).find("i").css("transform", "rotate(0deg) translateY(0px)");
         });
     }

@@ -20,9 +20,18 @@
           color: rgba(255, 255, 255, 0.6);
           font-weight: 400;
           font-size: 10pt;
-          margin-bottom: 8px; }
+          margin-bottom: 8px;
+          position: relative; }
+          #footer .categories .category .cat-links a i {
+            position: absolute;
+            height: 100%;
+            left: -20px;
+            top: 1px;
+            opacity: 0; }
         #footer .categories .category .cat-links a:hover {
-          color: white; }
+          color: #eeeeee; }
+          #footer .categories .category .cat-links a:hover i {
+            opacity: 1; }
   #footer .copyright {
     color: rgba(255, 255, 255, 0.5);
     margin-top: 64px;

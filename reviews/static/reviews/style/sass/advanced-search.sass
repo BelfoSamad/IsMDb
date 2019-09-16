@@ -1,0 +1,157 @@
+.advanced-search-wrapper
+    height: calc(100vh - 80px)
+    width: 100%
+    padding: 32px
+    box-sizing: border-box
+    .filters
+        width: 40%
+        height: 100%
+        padding-right: 32px
+        //background: rgba(pink, .3)
+        border-right: 4px solid rgba(#EC7063, 1)
+        .header
+            align-self: flex-start
+            font-size: 36px
+            font-weight: bold
+            color: rgba(#222, .5)
+        .content
+            width: 100%
+            height: 100%
+            //background: green
+            .tabs
+                margin: 16px 0
+                width: 100%
+                .tab
+                    a
+                        //background: yellow
+                        font-weight: bold
+                        padding: 0px 16px !important
+                .indicator
+                    height: 4px
+            .tab-content
+                .range-field
+                    label
+                        font-weight: bold
+                        color: rgba(#222, .75)
+                span
+                    color: rgba(#222, .9)
+            #genres
+                width: 100%
+                margin-top: 32px
+                justify-content: flex-start
+                align-items: flex-start
+                max-height: 75%
+                overflow-y: scroll
+                .genre
+                    margin-bottom: 16px
+                    input[type=checkbox]
+                        width: 100px
+                        height: 100px
+                        transform: scale(2)
+                    input:checked + label:before
+                        color: black
+                        background: #EC7063
+                    span
+                        font-size: 16px
+                        font-weight: bold
+                        color: rgba(#222, .9)
+            #year
+                width: 100%
+                margin-top: 32px
+                justify-content: flex-start
+                align-items: flex-start
+                max-height: 75%
+                overflow-y: scroll
+                .genre
+                    margin-bottom: 16px
+                    input:checked + label:before
+                        color: black
+                        background: #EC7063
+                        transform: scale(.9)
+                    span
+                        font-size: 18px
+                        font-weight: bold
+            #duration
+                .range-field
+                    label
+                        font-size: 16px
+                    input[type=range] + .thumb
+                        background: #EC7063
+                    input[type=range] + .thumb.active .value
+                        color: white
+                        font-weight: bold
+            #criteria
+                .range-field
+                    label
+                        font-size: 16px
+                    input[type=range] + .thumb
+                        background: #EC7063
+                    input[type=range] + .thumb.active .value
+                        color: white
+                        font-weight: bold
+    .search
+        width: 65%
+        height: 100%
+        padding-left: 32px
+        //background: yellow
+        .search-bar
+            height: 45px
+            width: 80%
+            background: #eee
+            position: relative
+            .search-input
+                height: 100%
+                width: 100%
+                position: relative
+                border-radius: 1px
+                input
+                    color: #222
+                    font-size: 16px
+                    width: 100%
+                    height: 100%
+                    padding: 0 8px
+                    position: relative
+                    bottom: -4px
+                    border: none
+                    outline: none
+                    background: none
+                input:focus
+                    border-bottom: none
+                    box-shadow: 0 0 0 0 #000
+                i
+                    color: #222
+                button:hover
+                    background: #DDD
+                    cursor: pointer
+                .search-icon
+                    height: 100%
+                    width: 55px
+                    justify-content: center
+        .search-results
+            max-height: 450px
+            overflow-y: scroll
+            .result
+                align-items: flex-start
+                width: 100%
+                padding: 16px
+                background: yellow
+                margin-bottom: 16px
+                .cover
+                    width: 100px
+                    height: 120px
+                    background: pink
+                    margin-right: 8px
+                .info
+                    background: red
+                    align-items: flex-start
+                    justify-content: flex-start
+                    h1
+                        font-size: 20px
+                        font-weight: bold
+                        padding: 0
+                        background: pink
+                    p
+                        font-size: 14px
+                .actions
+                    .btn
+                        background: none

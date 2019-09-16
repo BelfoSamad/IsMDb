@@ -13,10 +13,19 @@
 
     <link href="{% static 'reviews/style/css/style.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'reviews/style/css/components.css' %}" rel="stylesheet" type="text/css">
+    <!--
+    <link href="{% static 'reviews/style/css/all.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'reviews/style/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'reviews/style/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'reviews/style/css/solid.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'reviews/style/css/regular.css' %}" rel="stylesheet" type="text/css">
+-->
     <link href="{% static 'reviews/style/css/topnav.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'reviews/style/css/content.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'reviews/style/css/category.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'reviews/style/css/library.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'reviews/style/css/suggestions.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'reviews/style/css/advanced-search.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'reviews/style/css/display.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'reviews/style/css/review-cover.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'reviews/style/css/review.css' %}" rel="stylesheet" type="text/css">
@@ -37,7 +46,7 @@
         <div id="topnav" class="h-flex">
             <div class="logo">
                 <a href="#" class="c-link">
-                    <img src="{% static 'reviews/assets/ismdb-logo.jpg' %}" alt="logo-image">
+                    <img src="{% static 'reviews/assets/ismdb-logo-v3.jpg' %}" alt="logo-image">
                 </a>
             </div>
             <div class="categories h-flex">
@@ -254,44 +263,89 @@
                     <div class="cat-title">Company</div>
                     <div class="cat-links v-flex">
                         <a class="c-link" href="#">
-                            <i></i>
+                            <i class=""></i>
                             <span>About</span>
                         </a>
-                        <a class="c-link" href="#">Contact Us</a>
-                        <a class="c-link" href="#">Conditions of Use</a>
-                        <a class="c-link" href="#">Privacy Policy</a>
+                        <a class="c-link" href="#">
+                            <i class=""></i>
+                            <span>Contact Us</span>
+                        </a>
+                        <a class="c-link" href="#">
+                            <i class=""></i>
+                            <span>Conditions of Use</span>
+                        </a>
+                        <a class="c-link" href="#">
+                            <i class=""></i>
+                            <span>Privacy Policy</span>
+                        </a>
                     </div>
                 </div>
                 <div class="category v-flex">
                     <div class="cat-title">Categories</div>
                     <div class="cat-links v-flex">
-                        <a class="c-link" href="#">Explore</a>
-                        <a class="c-link" href="#">Popular</a>
-                        <a class="c-link" href="#">Recently Added</a>
+                        <a class="c-link" href="#">
+                            <i class=""></i>
+                            <span>Explore</span>
+                        </a>
+                        <a class="c-link" href="#">
+                            <i class=""></i>
+                            <span>Popular</span>
+                        </a>
+                        <a class="c-link" href="#">
+                            <i class=""></i>
+                            <span>Recently Added</span>
+                        </a>
                     </div>
                 </div>
                 <div class="category v-flex">
                     <div class="cat-title">Library</div>
                     <div class="cat-links v-flex">
-                        <a class="c-link" href="#">Your Watchlist</a>
-                        <a class="c-link" href="#">Liked</a>
-                        <a class="c-link" href="#">Review Later</a>
+                        <a class="c-link" href="#">
+                            <i class=""></i>
+                            <span>Your Watchlist</span>
+                        </a>
+                        <a class="c-link" href="#">
+                            <i class=""></i>
+                            <span>Liked</span>
+                        </a>
+                        <a class="c-link" href="#">
+                            <i class=""></i>
+                            <span>Review Later</span>
+                        </a>
                     </div>
                 </div>
                 <div class="category v-flex">
                     <div class="cat-title">MISC</div>
                     <div class="cat-links v-flex">
-                        <a class="c-link" href="#">Advanced Search (Filters)</a>
-                        <a class="c-link" href="#">Suggest a Review</a>
-                        <a class="c-link" href="#">FAQ</a>
+                        <a class="c-link" href="#">
+                            <i class="fas fa-sliders-h"></i>
+                            <span>Advanced Search (Filters)</span>
+                        </a>
+                        <a class="c-link" href="#">
+                            <i class=""></i>
+                            <span>Suggest a Review</span>
+                        </a>
+                        <a class="c-link" href="#">
+                            <i class=""></i>
+                            <span>FAQ</span>
+                        </a>
                     </div>
                 </div>
                 <div class="category v-flex">
                     <div class="cat-title">Social Media</div>
                     <div class="cat-links v-flex">
-                        <a class="c-link" href="#">Facebook</a>
-                        <a class="c-link" href="#">Instagram</a>
-                        <a class="c-link" href="#">Twitter</a>
+                        <a class="c-link" href="#">
+                            <i class="fab fa-facebook-f"></i>
+                            <span>Facebook</span>
+                        </a>
+                        <a class="c-link" href="#">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram</span>
+                        </a>
+                        <a class="c-link" href="#">
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter</span>
+                        </a>
                     </div>
                 </div>
             </div>

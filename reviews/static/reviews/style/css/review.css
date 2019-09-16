@@ -125,7 +125,7 @@
     .review-holder .ismdb-review .header {
       font-size: 48px;
       font-weight: bold;
-      color: rgba(34, 34, 34, 0.5); }
+      color: rgba(34, 34, 34, 0.65); }
     .review-holder .ismdb-review .content {
       padding: 16px;
       align-items: center; }
@@ -187,7 +187,7 @@
     .review-holder .community-review .community-header {
       font-size: 48px;
       font-weight: bold;
-      color: rgba(34, 34, 34, 0.5); }
+      color: rgba(34, 34, 34, 0.65); }
     .review-holder .community-review .content {
       width: 100%;
       padding: 32px; }
@@ -216,13 +216,17 @@
                 font-size: 14px; }
         .review-holder .community-review .content .com-post .com-content {
           width: 100%; }
-          .review-holder .community-review .content .com-post .com-content input {
+          .review-holder .community-review .content .com-post .com-content textarea {
+            font-size: 16px;
             width: 100%;
             margin-top: 16px;
+            resize: none;
             border: none;
             outline: none;
             padding: 8px;
-            border-bottom: 2px solid #ec7063; }
+            border-bottom: 4px solid rgba(236, 112, 99, 0); }
+          .review-holder .community-review .content .com-post .com-content textarea:focus {
+            border-bottom: 4px solid #ec7063; }
         .review-holder .community-review .content .com-post .buttons {
           width: 100%;
           margin-top: 16px;
@@ -233,6 +237,8 @@
             font-weight: bold; }
           .review-holder .community-review .content .com-post .buttons .btn:not(.btn-nbg):hover {
             background: rgba(204, 204, 204, 0.9); }
+          .review-holder .community-review .content .com-post .buttons .btn:first-child {
+            margin-right: 8px; }
       .review-holder .community-review .content .com-review {
         width: 100%;
         padding: 16px 32px;
@@ -331,29 +337,36 @@
                     margin-rigth: 1px; }
               .review-holder .community-review .content .com-review .rating-content .ismdb-rating .ratings .bar-rating .bars:nth-child(1) {
                 margin-right: 48px; }
+      .review-holder .community-review .content .com-more {
+        justify-content: flex-end; }
+        .review-holder .community-review .content .com-more button {
+          padding: 12px 16px;
+          font-size: 13px;
+          font-weight: bold;
+          background: rgba(204, 204, 204, 0.7);
+          border: none;
+          outline: none;
+          cursor: pointer; }
+        .review-holder .community-review .content .com-more button:hover {
+          background: rgba(204, 204, 204, 0.9); }
   .review-holder .related-reviews {
-    margin-top: 64px; }
+    margin-top: 32px; }
     .review-holder .related-reviews .related-header {
-      padding: 4px 8px;
-      border-left: 8px solid #ec7063;
       font-size: 48px;
       font-weight: bold;
-      text-transform: uppercase;
-      color: #222;
-      background: #eaeaea; }
+      color: rgba(34, 34, 34, 0.65); }
     .review-holder .related-reviews .content {
       width: 100%;
       padding: 32px; }
       .review-holder .related-reviews .content .reviews {
         flex-wrap: wrap;
         position: relative;
-        width: calc(190px * 4); }
+        width: 100%; }
         .review-holder .related-reviews .content .reviews .review {
-          width: 180px;
-          height: 260px;
-          border-radius: 3px;
-          background: #BBB;
-          margin-bottom: 25px; }
+          width: 220px;
+          height: 310px;
+          border-radius: 5px;
+          background: #BBB; }
         .review-holder .related-reviews .content .reviews .review:nth-child(4n) {
           margin-right: 0px; }
         .review-holder .related-reviews .content .reviews .review:nth-last-child(1), .review-holder .related-reviews .content .reviews .review:nth-last-child(2), .review-holder .related-reviews .content .reviews .review:nth-last-child(3), .review-holder .related-reviews .content .reviews .review:nth-last-child(4) {

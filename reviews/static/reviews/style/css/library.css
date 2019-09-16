@@ -44,16 +44,16 @@
       padding-right: 5px; }
   .library-holder .content .list-type .reviews {
     flex-wrap: wrap;
-    position: relative; }
+    position: relative;
+    justify-content: flex-start; }
     .library-holder .content .list-type .reviews .review {
       width: 180px;
       height: 260px;
       border-radius: 3px;
       background: #BBB;
+      margin-right: 16px;
       margin-bottom: 25px; }
     .library-holder .content .list-type .reviews .review:nth-child(4n) {
       margin-right: 0px; }
-    .library-holder .content .list-type .reviews .review:nth-last-child(1), .library-holder .content .list-type .reviews .review:nth-last-child(2), .library-holder .content .list-type .reviews .review:nth-last-child(3), .library-holder .content .list-type .reviews .review:nth-last-child(4) {
-      margin-bottom: 0; }
 
 /*# sourceMappingURL=library.css.map */
