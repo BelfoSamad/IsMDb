@@ -1,0 +1,81 @@
+.suggestions-wrapper
+    //height: 1000px
+    width: 100%
+    padding: 64px
+    .my-suggestions
+        margin-bottom: 64px
+    .my-suggestions, .com-suggestions
+        justify-content: flex-start
+        align-items: flex-start
+        width: 100%
+        //background: yellow
+        .header
+            width: 100%
+            //background: red
+            h1
+                font-size: 48px
+                font-weight: bold
+                color: rgba(#222, 0.55)
+            .add
+                padding: 16px
+                font-weight: bold
+                font-size: 15px
+                color: rgba(#222, .8)
+                text-transform: uppercase
+                border-right: 4px solid #EC7063
+            .add:hover
+                background: rgba(#CCC, .8)
+        .four-suggs
+            width: 100%
+            margin-bottom: 16px
+        .four-suggs:last-child
+            margin-bottom: 0
+        .content
+            margin-top: 32px
+            width: 100%
+            max-height: 380px
+            overflow-y: scroll
+            .my-suggestion, , .com-suggestion, .no-suggestions
+                margin-bottom: 16px
+                padding: 16px
+                background: rgba(#CCC, .75)
+                width: 100%
+                .header
+                    //align-items: flex-start
+                    width: 100%
+                    h1
+                        color: rgba(black, 0.8)
+                        font-size: 36px
+                        font-weight: bold
+                    .actions
+                        //background: rgba(pink, .5)
+                        button
+                            font-size: 20px
+                            width: 24px
+                            height: 24px
+                            margin-left: 32px
+                            padding: 0
+                            background: none
+                            color: rgba(#222, .8)
+                            border: none
+                            //border-bottom: 3px solid #EC7063
+                        .active
+                            color: rgba(#111, 1)
+                        span
+                            background: rgba(#CCC, 1)
+                            padding: 8px 16px
+                            margin-left: 32px
+                            font-size: 16px
+                            font-weight: bold
+                            color: rgba(black, .75)
+                .content
+                    overflow: hidden
+                    p
+                        font-size: 16px
+                        color: rgba(black, .7)
+            .my-suggestion:last-child, .com-suggestion:last-child, .no-suggestions:last-child
+                margin-bottom: 0px
+
+    .com-suggestions
+        .content
+            max-height: 700px

@@ -12,34 +12,34 @@ Autocomplete.prototype.setup = function () {
     var self = this;
 
     this.form_elem = $(this.form_selector);
-    this.query_box = this.form_elem.find('input[name=q]');
+    this.query_box = this.form_elem.find('input[name=q1]');
 
     // Watch the input box.
     this.query_box.on('keyup', function () {
         const query = self.query_box.val();
         if (query.length < self.minimum_length) {
-            return false
+            $(".search-results1").load("search/init");
         }
 
         self.fetch(query)
     });
 
     // On selecting a result, populate the search field.
-    this.form_elem.on('click', '.search-results', function () {
+    this.form_elem.on('click', '.search-results1', function () {
         self.query_box.val($(this).text());
-        $('.search-results').remove();
+        $('.search-results1').remove();
         return false
     })
 };
 
 Autocomplete.prototype.fetch = function (query) {
     console.log(query);
-    $(".search-results").load("search/auto_search/" + query);
+    $(".search-results1").load("search/auto_search/" + query);
 };
 
 $(document).ready(function () {
     window.autocomplete = new Autocomplete({
-        form_selector: '.autocomplete-me'
+        form_selector: '.autocomplete-me1'
     });
     window.autocomplete.setup()
 });

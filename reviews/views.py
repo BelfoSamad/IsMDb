@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import DetailView
 from rest_framework import authentication, permissions
 from rest_framework.response import Response
@@ -7,6 +7,7 @@ from rest_framework.views import APIView
 from IsMDb.recommendation_engine.content_based_filtering.related_reviews import get_related
 from comments.forms import CommentForm
 from reviews.models import MovieReview
+from users.models import Member
 
 
 def get_reviews(request):
@@ -39,9 +40,32 @@ def get_category(request, category):
     return render(request, template, context)
 
 
-def get_library(request):
+def get_library(request, library, sort):
     template = 'reviews/library.html'
     reviews = None
+    user = request.user
+    member = get_object_or_404(Member, id=user.id)
+    if library == 'your-watchlist':
+        if sort == 'alphabetical-order':
+            reviews = member.watchlist.order_by('title')
+        elif sort == 'date-order-oldest':
+            reviews = member.watchlist.order_by('pub-date')
+        elif sort == 'date-order-newest':
+            reviews = member.watchlist.order_by('-pub_date')
+    elif library == 'liked':
+        if sort == 'alphabetical-order':
+            reviews = member.review_likes.order_by('title')
+        elif sort == 'date-order-oldest':
+            reviews = member.review_likes.order_by('pub-date')
+        elif sort == 'date-order-newest':
+            reviews = member.review_likes.order_by('-pub_date')
+    elif library == 'review-later':
+        if sort == 'alphabetical-order':
+            reviews = member.review_later.order_by('title')
+        elif sort == 'date-order-oldest':
+            reviews = member.review_later.order_by('pub-date')
+        elif sort == 'date-order-newest':
+            reviews = member.review_later.order_by('-pub_date')
     context = {
         'reviews': reviews
     }
@@ -119,6 +143,30 @@ class BookmarkReview(APIView):
             else:
                 bookmarked = True
                 user.watchlist.add(obj)
+        updated = True
+        data = {
+            "updated": updated,
+            "liked": bookmarked
+        }
+        return Response(data)
+
+
+class ReviewLater(APIView):
+    authentication_classes = (authentication.SessionAuthentication,)
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request, id=None):
+        # id = self.kwargs.get("id")
+        user = self.request.user
+        bookmarked = False
+        if id != -1:
+            obj = MovieReview.objects.get(id=id)
+            if obj in user.review_later.all():
+                bookmarked = False
+                user.review_later.remove(obj)
+            else:
+                bookmarked = True
+                user.review_later.add(obj)
         updated = True
         data = {
             "updated": updated,

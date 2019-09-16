@@ -1,18 +1,27 @@
 {% load static %}
 {% load movie_review_extras %}
 {% for review in reviews %}
-    <div class="search-result h-flex">
-        <div class="cover">
-            <img src="{{ review.object.poster.url }}" alt="">
-        </div>
-        <div class="details v-flex">
-            <a href="{{ review.object.get_absolute_url }}">
+    <a href="{{ review.object.get_absolute_url }}">
+        <div class="search-result h-flex">
+            <div class="cover">
+                <img src="{{ review.object.poster.url }}" alt="">
+            </div>
+            <div class="details v-flex">
+                <!-- TODO: Fix the Link -->
                 <div class="title">{{ review.title }}</div>
-            </a>
-            <div class="year"><span>{{ review.year }}</span></div>
-            <div class="plot">
-                <p>{{ review.description }}</p>
+                <div class="plot">
+                    <p>{{ review.description }}</p>
+                </div>
+                <div class="metadata h-flex">
+                    <div class="year"><span>{{ review.year }}</span></div>
+                    <div class="genres">
+                        <!-- TODO: Fix the Genres -->
+                        <span>Drama</span>
+                        <span>Sci-Fi</span>
+                        <span>Action</span>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </a>
 {% endfor %}

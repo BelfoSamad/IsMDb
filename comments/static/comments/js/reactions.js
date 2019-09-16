@@ -3,14 +3,21 @@ $(".add_comment").click(function (e) {
     var this_ = $(this);
     var id = this_.attr("id");
     var add_comment_url = this_.attr("data-href");
-    var title = document.getElementById("id_title").value;
+    var title = "test";
+        //document.getElementById("id_title").value;
     var content = document.getElementById("id_content").value;
-    var alcohol = document.getElementById("id_alcohol").value;
-    var language = document.getElementById("id_language").value;
-    var lgbtq = document.getElementById("id_lgbtq").value;
-    var nudity = document.getElementById("id_nudity").value;
-    var sex = document.getElementById("id_sex").value;
-    var violence = document.getElementById("id_violence").value;
+    var alcohol = 2.5;
+        //document.getElementById("id_alcohol").value;
+    var language = 4.2;
+        //document.getElementById("id_language").value;
+    var lgbtq = 1;
+        //document.getElementById("id_lgbtq").value;
+    var nudity = 1;
+        //document.getElementById("id_nudity").value;
+    var sex = 3;
+        //document.getElementById("id_sex").value;
+    var violence = 2;
+        //document.getElementById("id_violence").value;
 
     $.ajax({
         url: add_comment_url,
@@ -29,9 +36,9 @@ $(".add_comment").click(function (e) {
         success: function (data) {
             console.log(data);
             if (data.added) {
-                const selector = $(".comments");
-                const url = selector.attr("id");
-                selector.load(url);
+                // const selector = $(".comments");
+                // const url = selector.attr("id");
+                // selector.load(url);
             }
         },
         error: function (error) {
@@ -44,38 +51,32 @@ $(".add_comment").click(function (e) {
 $(".like").click(function (e) {
     var this_ = $(this);
     var like_url = this_.attr("data-href");
-    var likes = $("." + this_.attr("id") + "-like");
-    var dislikes = $("." + this_.attr("id") + "-dislike");
+    var likes = document.getElementById("like_" + this_.attr("id"));
     $.ajax({
         url: like_url,
         method: "GET",
         data: {},
         success: function (data) {
             console.log(data);
-            likes.text(data.likes);
-            dislikes.text(data.dislikes);
+            likes.innerHTML = data.likes;
         }, error: function (error) {
             console.log(error);
-            console.log("error");
         }
     });
 });
 $(".dislike").click(function (e) {
     var this_ = $(this);
     var dislike_url = this_.attr("data-href");
-    var likes = $("." + this_.attr("id") + "-like");
-    var dislikes = $("." + this_.attr("id") + "-dislike");
+    var likes = document.getElementById("like_" + this_.attr("id"));
     $.ajax({
         url: dislike_url,
         method: "GET",
         data: {},
         success: function (data) {
             console.log(data);
-            likes.text(data.likes);
-            dislikes.text(data.dislikes);
+            likes.innerHTML = data.likes;
         }, error: function (error) {
             console.log(error);
-            console.log("error");
         }
     });
 });

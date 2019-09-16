@@ -53,17 +53,20 @@
 
             .header
                 width: 100%
+                align-items: flex-start
 
                 .title
-                    font-size: 64px
+                    font-size: 36px
                     font-weight: bold
                     color: #222
+                    width: 85%
 
                 .rating
+                    margin-top: 16px
                     margin-right: 4px
                     font-weight: bold
                     font-size: 20px
-                    padding: 12px 16px
+                    padding: 4px 12px
                     color: #EEE
                     background: rgba(#111, 1)
                     border-bottom: 4px solid #EC7063
@@ -71,7 +74,10 @@
             .plot
                 width: 100%
 
+                //background: rgba(yellow, .5)
+
                 h1
+                    margin: 0
                     font-size: 18px
                     font-weight: bold
                     color: rgba(#222, 0.8)
@@ -80,7 +86,7 @@
                 .separator
                     width: 100%
                     height: 1px
-                    margin: 4px 0 8px 0
+                    margin: 8px 0
                     background: grey
 
                 p
@@ -133,102 +139,85 @@
             .buttons
                 width: 100%
 
-                //margin-top: auto
-                //justify-self: flex-end
-                justify-content: flex-start
-
-                button
-                    background: #DDD
-                    justify-content: center
+                .btn
                     height: 36px
-                    margin-right: 8px
-                    padding: 0 16px
                     font-size: 13px
                     font-weight: bold
                     text-transform: uppercase
-                    border: none
-                    outline: none
-                    cursor: pointer
-                    box-sizing: border-box
 
-                    i:not(.fa-heart)
+                    i
                         color: #111
-                        margin-right: 12px
 
-                    .btn-sep
-                        height: 32px
-                        width: 1px
-                        background: rgba(#111, 0.7)
+                .actions
+                    .btn:nth-child(1)
+                        margin-right: 4px
 
-                .like
-                    padding: 0
-                    width: 36px
+                .reactions
+                    .btn:nth-child(1)
+                        margin-right: 16px
+
                     i
                         font-size: 16px
 
-                .like:hover
-                    background: rgba(#ec7063, 0.9)
-
-                .like.liked
-                    background: #ec7063
-
                 .review
-                    margin-left: auto
-                    width: 160px
-                    border-right: 8px solid #ec7063
+                    border-right: 4px solid #ec7063
 
-                    i
-                        margin-left: 12px
-                        margin-right: 0
-
-                button:hover
+                .btn:not(.btn-nbg):hover
                     background: rgba(#CCC, 0.9)
 
     .ismdb-review
         margin-top: 64px
+
         .header
-            padding: 4px 8px
-            border-left: 8px solid #ec7063
-            font-size: 64px
+            font-size: 48px
             font-weight: bold
-            text-transform: uppercase
-            color: #222
-            background: rgba(#EAEAEA, 1)
+            color: rgba(#222, 0.65)
+
         .content
             padding: 16px
             align-items: center
+
             .summary
                 //background: grey
                 padding: 16px 0
+
                 p
                     padding: 0
                     color: #111
                     font-size: 20px
                     font-weight: bold
+
             .rating-content
-                background: rgba(grey, .15)
+                background: rgba(grey, 0.15)
                 padding: 16px 16px
                 margin-top: 16px
                 width: 70%
+
                 .ismdb-rating
                     width: 100%
                     justify-content: space-around
+
                     .rating-header
                         width: 100%
                         margin-bottom: 16px
+
                         .text
                             font-weight: bold
                             font-size: 16px
                             text-transform: uppercase
                             color: #111
+
                         i
-                            color: rgba(#111, .9)
+                            color: rgba(#111, 0.9)
                             cursor: pointer
                             font-size: 24px
+
                     .ratings
                         width: 100%
+
                         //background: grey
                         justify-content: center
+
                         .bar-rating
                             //background: rgba(yellow, .2)
                             .bars
@@ -236,6 +225,7 @@
                                 .rating
                                     width: 100%
                                     margin: 8px 0
+
                                     .title
                                         color: #111
                                         font-size: 16px
@@ -243,94 +233,280 @@
                                         text-transform: uppercase
                                         text-align: left
                                         margin-right: 16px
+
                                     .value
                                         justify-content: flex-start
                                         background: #F8F8F8
                                         border-radius: 0px
                                         height: 8px
                                         width: 125px
+
                                         .unit
                                             background: #EC7063
                                             height: 100%
                                             width: 25px
                                             margin-rigth: 1px
+
                             .bars:nth-child(1)
                                 margin-right: 48px
 
-
     .community-review
         margin-top: 64px
+
         .community-header
-            padding: 4px 8px
-            border-left: 8px solid #ec7063
-            font-size: 64px
+            font-size: 48px
             font-weight: bold
-            text-transform: uppercase
-            color: #222
-            background: rgba(#EAEAEA, 1)
+            color: rgba(#222, 0.65)
+
         .content
             width: 100%
             padding: 32px
+
             //background: red
-            .com-review
-                width: 70%
-                padding: 16px
+            .com-post
+                width: 100%
+                padding: 16px 32px
                 margin-bottom: 32px
                 background: #EAEAEA
+
                 .com-header
                     width: 100%
                     align-items: flex-start
+
                     //background: pink
                     .profile
                         align-items: flex-start
+
                         img
                             width: 50px
                             height: 50px
                             object-fit: cover
                             margin-right: 16px
                             border-radius: 50%
+
                         div
                             align-items: flex-start
+
                             .nickname
                                 font-weight: bold
+                                margin-bottom: 4px
+
                             .honors
                                 font-size: 14px
+
+                .com-content
+                    width: 100%
+
+                    textarea
+                        font-size: 16px
+                        width: 100%
+                        margin-top: 16px
+                        resize: none
+                        border: none
+                        outline: none
+                        padding: 8px
+                        border-bottom: 4px solid rgba(#ec7063, 0)
+
+                    textarea:focus
+                        border-bottom: 4px solid #ec7063
+
+                .buttons
+                    width: 100%
+                    margin-top: 16px
+                    justify-content: flex-end
+
+                    .btn
+                        //background: #DADADA
+                        height: 36px
+                        font-size: 13px
+                        font-weight: bold
+
+                    .btn:not(.btn-nbg):hover
+                        background: rgba(#CCC, 0.9)
+
+                    .btn:first-child
+                        margin-right: 8px
+
+            .com-review
+                width: 100%
+                padding: 16px 32px
+                margin-bottom: 32px
+                background: #EAEAEA
+
+                .com-header
+                    width: 100%
+                    align-items: flex-start
+
+                    //background: pink
+                    .profile
+                        align-items: flex-start
+
+                        img
+                            width: 50px
+                            height: 50px
+                            object-fit: cover
+                            margin-right: 16px
+                            border-radius: 50%
+
+                        div
+                            align-items: flex-start
+
+                            .nickname
+                                font-weight: bold
+                                margin-bottom: 4px
+
+                            .honors
+                                font-size: 14px
+
                     .timestamp
                         font-size: 14px
                         font-weight: bold
-                        color: rgba(#222, .6)
+                        color: rgba(#222, 0.6)
                         justify-self: flex-end
+
                 .com-content
                     width: 100%
+
+                    //padding: 0 32px
                     margin-top: 16px
                     justify-content: flex-start
+
+                .buttons
+                    width: 100%
+                    margin-top: 16px
+
+                    .btn
+                        //background: #DADADA
+                        height: 36px
+                        font-size: 13px
+                        font-weight: bold
+
+                    .btn:not(.btn-nbg):hover
+                        background: rgba(#CCC, 0.9)
+
+                    .btn-nbg:hover
+                        i
+                            transform: translateY(-1px)
+
+                    .reactions
+                        i
+                            font-size: 16px
+
+                        .btn:first-child
+                            margin-right: 16px
+
+                    .actions
+                        .btn:first-child
+                            margin-right: 16px
+
+                    .view-review
+                        i
+                            font-size: 18px
+                            height: 24px
+                            transition: 0.3s
+
+                .rating-content
+                    background: rgba(grey, 0.15)
+                    padding: 16px 16px
+                    margin-top: 32px
+                    width: 70%
+
+                    .ismdb-rating
+                        width: 100%
+
+                        //background: yellow
+
+                        .rating-header
+                            width: 100%
+                            margin-bottom: 16px
+
+                            .text
+                                font-weight: bold
+                                font-size: 16px
+                                text-transform: uppercase
+                                color: #111
+
+                            i
+                                color: rgba(#111, 0.9)
+                                cursor: pointer
+                                font-size: 24px
+
+                        .ratings
+                            width: 100%
+                            justify-content: center
+
+                            .bar-rating
+                                //background: rgba(yellow, .2)
+                                .bars
+                                    //background: rgba(pink, .2)
+                                    .rating
+                                        width: 100%
+                                        margin: 8px 0
+
+                                        .title
+                                            color: #111
+                                            font-size: 16px
+                                            font-weight: bold
+                                            text-transform: uppercase
+                                            text-align: left
+                                            margin-right: 16px
+
+                                        .value
+                                            justify-content: flex-start
+                                            background: #F8F8F8
+                                            border-radius: 0px
+                                            height: 8px
+                                            width: 125px
+
+                                            .unit
+                                                background: #EC7063
+                                                height: 100%
+                                                width: 25px
+                                                margin-rigth: 1px
+
+                                .bars:nth-child(1)
+                                    margin-right: 48px
+            .com-more
+                //background: rgba(#CCC, 0.9)
+                justify-content: flex-end
+                button
+                    padding: 12px 16px
+                    font-size: 13px
+                    font-weight: bold
+                    background: rgba(#CCC, .7)
+                    border: none
+                    outline: none
+                    cursor: pointer
+                button:hover
+                    background: rgba(#CCC, .9)
+
     .related-reviews
-        margin-top: 64px
+        margin-top: 32px
+
         .related-header
-            padding: 4px 8px
-            border-left: 8px solid #ec7063
-            font-size: 64px
+            font-size: 48px
             font-weight: bold
-            text-transform: uppercase
-            color: #222
-            background: rgba(#EAEAEA, 1)
+            color: rgba(#222, 0.65)
+
         .content
             width: 100%
             padding: 32px
+
+            //background: rgba(yellow, .3)
+
             .reviews
                 flex-wrap: wrap
                 position: relative
-                width: calc(190px * 4)
+                width: 100%
 
                 .review
-                    width: 180px
-                    height: 260px
-                    border-radius: 3px
+                    width: 220px
+                    height: 310px
+                    border-radius: 5px
                     background: #BBB
-                    margin-bottom: 25px
 
                 .review:nth-child(4n)
                     margin-right: 0px
-                
+
                 .review:nth-last-child(1), .review:nth-last-child(2), .review:nth-last-child(3), .review:nth-last-child(4)
                     margin-bottom: 0

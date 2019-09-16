@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^autocomplete/$', views.autocomplete, name='autocomplete_suggestions'),
     url(r'^add_suggestion/$', views.SuggestionCreateView.as_view(), name='add_suggestion'),
     url(r'^api/upvote/(?P<id>\d+)$', views.SuggestionUpVote.as_view(), name='upvote'),
+    url(r'^api/delete/(?P<id>\d+)$', views.SuggestionDelete.as_view(), name='delete'),
 ]

@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.template import loader
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DeleteView
 from haystack.query import SearchQuerySet
 from notifications.signals import notify
 from rest_framework import authentication, permissions
@@ -13,6 +13,7 @@ from suggestions.models import Suggestion
 
 class SuggestionsListView(ListView):
     template_name = 'suggestions/suggestions.html'
+    model = Suggestion
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -33,6 +34,21 @@ class SuggestionCreateView(CreateView):
     def form_valid(self, form):
         form.instance.memberID = self.request.user
         return super(SuggestionCreateView, self).form_valid(form)
+
+
+class SuggestionDelete(APIView):
+    authentication_classes = (authentication.SessionAuthentication,)
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request, id=None):
+        deleted = False
+        if id != -1:
+            Suggestion.objects.filter(id=id).delete()
+            deleted = True
+        data = {
+            "deleted": deleted,
+        }
+        return Response(data)
 
 
 class SuggestionUpVote(APIView):

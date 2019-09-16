@@ -45,8 +45,8 @@ class CommentLike(APIView):
 
     def get(self, request, id=None, movie_id=None):
         user = self.request.user
+        print('in')
         liked = False
-        dislikes = 0
         likes = 0
         if id != -1:
             obj = Comment.objects.get(id=id)
@@ -64,13 +64,11 @@ class CommentLike(APIView):
                 obj.likes.add(user)
                 notify.send(user, recipient=obj.memberID, verb='Liked Your Comment On', action_object=movie)
             likes = obj.likes.count()
-            dislikes = obj.dislikes.count()
         updated = True
         data = {
             "updated": updated,
             "liked": liked,
-            "likes": likes,
-            "dislikes": dislikes
+            "likes": likes
         }
         return Response(data)
 

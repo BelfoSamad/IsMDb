@@ -13,10 +13,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="{% static 'reviews/style/css/style.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'reviews/style/css/components.css' %}" rel="stylesheet" type="text/css">
+    <!-- <link href="{ static 'reviews/style/css/all.css' %}" rel="stylesheet" type="text/css">
+    <link href="{ static 'reviews/style/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{ static 'reviews/style/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{ static 'reviews/style/css/solid.css' %}" rel="stylesheet" type="text/css">
+    <link href="{ static 'reviews/style/css/regular.css' %}" rel="stylesheet" type="text/css">-->
     <link href="{% static 'reviews/style/css/topnav.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'reviews/style/css/content.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'reviews/style/css/category.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'reviews/style/css/library.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'reviews/style/css/suggestions.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'reviews/style/css/advanced-search.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'reviews/style/css/display.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'reviews/style/css/review-cover.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'reviews/style/css/review.css' %}" rel="stylesheet" type="text/css">
@@ -29,13 +37,16 @@
           integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto|Stardos+Stencil|Circular+Std" rel="stylesheet"/>
 
-
 </head>
 
 <body>
 <div id="main" class="v-flex">
     <div id="topnav" class="h-flex">
-        <div class="logo"></div>
+        <div class="logo">
+            <a href="/" class="c-link">
+                <img src="{% static 'reviews/assets/ismdb-logo-v2.jpg' %}" alt="logo-image">
+            </a>
+        </div>
         <div class="categories h-flex">
             <ul class="fake-list h-flex">
                 <li class="category h-flex {% block explore_class %}{% endblock %}"><a class="h-flex c-link"
@@ -63,7 +74,8 @@
         </div>
         <div class="other-actions h-flex">
             <div class="library v-flex">
-                <a class="c-link" href="#"><i class="fas fa-folder"></i></a>
+                <a class="c-link" href="{% url 'reviews:library' library="your-watchlist" sort="alphabetical-order" %}"><i
+                        class="fas fa-folder"></i></a>
             </div>
             <div class="notifications v-flex">
                 <div class="bell v-flex"><i class="fas fa-bell"></i></div>
@@ -203,6 +215,10 @@
 <script type="text/javascript" src="{% static 'reviews/js/jquery-3.4.1.js' %}"></script>
 <script type="text/javascript" src="{% static 'reviews/js/script.js' %}"></script>
 <script type="text/javascript" src="{% static 'reviews/js/autocomplete.js' %}"></script>
+<script type="text/javascript" src="{% static 'search/js/autocomplete_search.js' %}"></script>
+<script type="text/javascript" src="{% static 'suggestions/js/suggestions_upvote.js' %}"></script>
+<script type="text/javascript" src="{% static 'comments/js/reactions.js' %}"></script>
+<script type="text/javascript" src="{% static 'reviews/js/library.js' %}"></script>
 </body>
 
 </html>

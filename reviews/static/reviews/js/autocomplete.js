@@ -33,7 +33,7 @@ Autocomplete.prototype.setup = function () {
 
 Autocomplete.prototype.fetch = function (query) {
     console.log(query);
-    $(".search-results").load("search/autocomplete/" + query);
+    $(".search-results").load("../../search/autocomplete/" + query);
 };
 
 $(document).ready(function () {

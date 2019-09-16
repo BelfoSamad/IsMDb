@@ -36,17 +36,17 @@
       padding-right: 5px; }
   .category-holder .content .list-type .reviews {
     flex-wrap: wrap;
-    position: relative; }
+    position: relative;
+    justify-content: flex-start; }
     .category-holder .content .list-type .reviews .review {
       width: 180px;
       height: 260px;
       border-radius: 3px;
       background: #BBB;
+      margin-right: 15px;
       margin-bottom: 25px; }
     .category-holder .content .list-type .reviews .review:nth-child(4n) {
       margin-right: 0px; }
-    .category-holder .content .list-type .reviews .review:nth-last-child(1), .category-holder .content .list-type .reviews .review:nth-last-child(2), .category-holder .content .list-type .reviews .review:nth-last-child(3), .category-holder .content .list-type .reviews .review:nth-last-child(4) {
-      margin-bottom: 0; }
   .category-holder .see-more {
     background: white;
     align-self: flex-end;

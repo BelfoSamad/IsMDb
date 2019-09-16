@@ -15,6 +15,7 @@ class Member(AbstractUser):
     honor_points = models.IntegerField(default=0)
     cant_comment = models.BooleanField(default=False)
     watchlist = models.ManyToManyField('reviews.MovieReview', blank=True, related_name='watch_list')
+    review_later = models.ManyToManyField('reviews.MovieReview', blank=True, related_name='review_later')
 
     class Meta:
         verbose_name = 'member'

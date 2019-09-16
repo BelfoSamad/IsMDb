@@ -38,22 +38,26 @@
       padding: 0px 0 0px 32px;
       align-items: flex-start; }
       .review-holder .film-content .text .header {
-        width: 100%; }
+        width: 100%;
+        align-items: flex-start; }
         .review-holder .film-content .text .header .title {
-          font-size: 64px;
+          font-size: 36px;
           font-weight: bold;
-          color: #222; }
+          color: #222;
+          width: 85%; }
         .review-holder .film-content .text .header .rating {
+          margin-top: 16px;
           margin-right: 4px;
           font-weight: bold;
           font-size: 20px;
-          padding: 12px 16px;
+          padding: 4px 12px;
           color: #EEE;
           background: #111111;
           border-bottom: 4px solid #EC7063; }
       .review-holder .film-content .text .plot {
         width: 100%; }
         .review-holder .film-content .text .plot h1 {
+          margin: 0;
           font-size: 18px;
           font-weight: bold;
           color: rgba(34, 34, 34, 0.8);
@@ -61,7 +65,7 @@
         .review-holder .film-content .text .plot .separator {
           width: 100%;
           height: 1px;
-          margin: 4px 0 8px 0;
+          margin: 8px 0;
           background: grey; }
         .review-holder .film-content .text .plot p {
           font-size: 14px;
@@ -98,56 +102,30 @@
           font-weight: bold;
           color: #222222; }
       .review-holder .film-content .text .buttons {
-        width: 100%;
-        justify-content: flex-start; }
-        .review-holder .film-content .text .buttons button {
-          background: #DDD;
-          justify-content: center;
+        width: 100%; }
+        .review-holder .film-content .text .buttons .btn {
           height: 36px;
-          margin-right: 8px;
-          padding: 0 16px;
           font-size: 13px;
           font-weight: bold;
-          text-transform: uppercase;
-          border: none;
-          outline: none;
-          cursor: pointer;
-          box-sizing: border-box; }
-          .review-holder .film-content .text .buttons button i:not(.fa-heart) {
-            color: #111;
-            margin-right: 12px; }
-          .review-holder .film-content .text .buttons button .btn-sep {
-            height: 32px;
-            width: 1px;
-            background: rgba(17, 17, 17, 0.7); }
-        .review-holder .film-content .text .buttons .like {
-          padding: 0;
-          width: 36px; }
-          .review-holder .film-content .text .buttons .like i {
-            font-size: 16px; }
-        .review-holder .film-content .text .buttons .like:hover {
-          background: rgba(236, 112, 99, 0.9); }
-        .review-holder .film-content .text .buttons .like.liked {
-          background: #ec7063; }
+          text-transform: uppercase; }
+          .review-holder .film-content .text .buttons .btn i {
+            color: #111; }
+        .review-holder .film-content .text .buttons .actions .btn:nth-child(1) {
+          margin-right: 4px; }
+        .review-holder .film-content .text .buttons .reactions .btn:nth-child(1) {
+          margin-right: 16px; }
+        .review-holder .film-content .text .buttons .reactions i {
+          font-size: 16px; }
         .review-holder .film-content .text .buttons .review {
-          margin-left: auto;
-          width: 160px;
-          border-right: 8px solid #ec7063; }
-          .review-holder .film-content .text .buttons .review i {
-            margin-left: 12px;
-            margin-right: 0; }
-        .review-holder .film-content .text .buttons button:hover {
+          border-right: 4px solid #ec7063; }
+        .review-holder .film-content .text .buttons .btn:not(.btn-nbg):hover {
           background: rgba(204, 204, 204, 0.9); }
   .review-holder .ismdb-review {
     margin-top: 64px; }
     .review-holder .ismdb-review .header {
-      padding: 4px 8px;
-      border-left: 8px solid #ec7063;
-      font-size: 64px;
+      font-size: 48px;
       font-weight: bold;
-      text-transform: uppercase;
-      color: #222;
-      background: #eaeaea; }
+      color: rgba(34, 34, 34, 0.65); }
     .review-holder .ismdb-review .content {
       padding: 16px;
       align-items: center; }
@@ -207,19 +185,63 @@
   .review-holder .community-review {
     margin-top: 64px; }
     .review-holder .community-review .community-header {
-      padding: 4px 8px;
-      border-left: 8px solid #ec7063;
-      font-size: 64px;
+      font-size: 48px;
       font-weight: bold;
-      text-transform: uppercase;
-      color: #222;
-      background: #eaeaea; }
+      color: rgba(34, 34, 34, 0.65); }
     .review-holder .community-review .content {
       width: 100%;
       padding: 32px; }
+      .review-holder .community-review .content .com-post {
+        width: 100%;
+        padding: 16px 32px;
+        margin-bottom: 32px;
+        background: #EAEAEA; }
+        .review-holder .community-review .content .com-post .com-header {
+          width: 100%;
+          align-items: flex-start; }
+          .review-holder .community-review .content .com-post .com-header .profile {
+            align-items: flex-start; }
+            .review-holder .community-review .content .com-post .com-header .profile img {
+              width: 50px;
+              height: 50px;
+              object-fit: cover;
+              margin-right: 16px;
+              border-radius: 50%; }
+            .review-holder .community-review .content .com-post .com-header .profile div {
+              align-items: flex-start; }
+              .review-holder .community-review .content .com-post .com-header .profile div .nickname {
+                font-weight: bold;
+                margin-bottom: 4px; }
+              .review-holder .community-review .content .com-post .com-header .profile div .honors {
+                font-size: 14px; }
+        .review-holder .community-review .content .com-post .com-content {
+          width: 100%; }
+          .review-holder .community-review .content .com-post .com-content textarea {
+            font-size: 16px;
+            width: 100%;
+            margin-top: 16px;
+            resize: none;
+            border: none;
+            outline: none;
+            padding: 8px;
+            border-bottom: 4px solid rgba(236, 112, 99, 0); }
+          .review-holder .community-review .content .com-post .com-content textarea:focus {
+            border-bottom: 4px solid #ec7063; }
+        .review-holder .community-review .content .com-post .buttons {
+          width: 100%;
+          margin-top: 16px;
+          justify-content: flex-end; }
+          .review-holder .community-review .content .com-post .buttons .btn {
+            height: 36px;
+            font-size: 13px;
+            font-weight: bold; }
+          .review-holder .community-review .content .com-post .buttons .btn:not(.btn-nbg):hover {
+            background: rgba(204, 204, 204, 0.9); }
+          .review-holder .community-review .content .com-post .buttons .btn:first-child {
+            margin-right: 8px; }
       .review-holder .community-review .content .com-review {
-        width: 70%;
-        padding: 16px;
+        width: 100%;
+        padding: 16px 32px;
         margin-bottom: 32px;
         background: #EAEAEA; }
         .review-holder .community-review .content .com-review .com-header {
@@ -236,7 +258,8 @@
             .review-holder .community-review .content .com-review .com-header .profile div {
               align-items: flex-start; }
               .review-holder .community-review .content .com-review .com-header .profile div .nickname {
-                font-weight: bold; }
+                font-weight: bold;
+                margin-bottom: 4px; }
               .review-holder .community-review .content .com-review .com-header .profile div .honors {
                 font-size: 14px; }
           .review-holder .community-review .content .com-review .com-header .timestamp {
@@ -248,29 +271,102 @@
           width: 100%;
           margin-top: 16px;
           justify-content: flex-start; }
+        .review-holder .community-review .content .com-review .buttons {
+          width: 100%;
+          margin-top: 16px; }
+          .review-holder .community-review .content .com-review .buttons .btn {
+            height: 36px;
+            font-size: 13px;
+            font-weight: bold; }
+          .review-holder .community-review .content .com-review .buttons .btn:not(.btn-nbg):hover {
+            background: rgba(204, 204, 204, 0.9); }
+          .review-holder .community-review .content .com-review .buttons .btn-nbg:hover i {
+            transform: translateY(-1px); }
+          .review-holder .community-review .content .com-review .buttons .reactions i {
+            font-size: 16px; }
+          .review-holder .community-review .content .com-review .buttons .reactions .btn:first-child {
+            margin-right: 16px; }
+          .review-holder .community-review .content .com-review .buttons .actions .btn:first-child {
+            margin-right: 16px; }
+          .review-holder .community-review .content .com-review .buttons .view-review i {
+            font-size: 18px;
+            height: 24px;
+            transition: 0.3s; }
+        .review-holder .community-review .content .com-review .rating-content {
+          background: rgba(128, 128, 128, 0.15);
+          padding: 16px 16px;
+          margin-top: 32px;
+          width: 70%; }
+          .review-holder .community-review .content .com-review .rating-content .ismdb-rating {
+            width: 100%; }
+            .review-holder .community-review .content .com-review .rating-content .ismdb-rating .rating-header {
+              width: 100%;
+              margin-bottom: 16px; }
+              .review-holder .community-review .content .com-review .rating-content .ismdb-rating .rating-header .text {
+                font-weight: bold;
+                font-size: 16px;
+                text-transform: uppercase;
+                color: #111; }
+              .review-holder .community-review .content .com-review .rating-content .ismdb-rating .rating-header i {
+                color: rgba(17, 17, 17, 0.9);
+                cursor: pointer;
+                font-size: 24px; }
+            .review-holder .community-review .content .com-review .rating-content .ismdb-rating .ratings {
+              width: 100%;
+              justify-content: center; }
+              .review-holder .community-review .content .com-review .rating-content .ismdb-rating .ratings .bar-rating .bars .rating {
+                width: 100%;
+                margin: 8px 0; }
+                .review-holder .community-review .content .com-review .rating-content .ismdb-rating .ratings .bar-rating .bars .rating .title {
+                  color: #111;
+                  font-size: 16px;
+                  font-weight: bold;
+                  text-transform: uppercase;
+                  text-align: left;
+                  margin-right: 16px; }
+                .review-holder .community-review .content .com-review .rating-content .ismdb-rating .ratings .bar-rating .bars .rating .value {
+                  justify-content: flex-start;
+                  background: #F8F8F8;
+                  border-radius: 0px;
+                  height: 8px;
+                  width: 125px; }
+                  .review-holder .community-review .content .com-review .rating-content .ismdb-rating .ratings .bar-rating .bars .rating .value .unit {
+                    background: #EC7063;
+                    height: 100%;
+                    width: 25px;
+                    margin-rigth: 1px; }
+              .review-holder .community-review .content .com-review .rating-content .ismdb-rating .ratings .bar-rating .bars:nth-child(1) {
+                margin-right: 48px; }
+      .review-holder .community-review .content .com-more {
+        justify-content: flex-end; }
+        .review-holder .community-review .content .com-more button {
+          padding: 12px 16px;
+          font-size: 13px;
+          font-weight: bold;
+          background: rgba(204, 204, 204, 0.7);
+          border: none;
+          outline: none;
+          cursor: pointer; }
+        .review-holder .community-review .content .com-more button:hover {
+          background: rgba(204, 204, 204, 0.9); }
   .review-holder .related-reviews {
-    margin-top: 64px; }
+    margin-top: 32px; }
     .review-holder .related-reviews .related-header {
-      padding: 4px 8px;
-      border-left: 8px solid #ec7063;
-      font-size: 64px;
+      font-size: 48px;
       font-weight: bold;
-      text-transform: uppercase;
-      color: #222;
-      background: #eaeaea; }
+      color: rgba(34, 34, 34, 0.65); }
     .review-holder .related-reviews .content {
       width: 100%;
       padding: 32px; }
       .review-holder .related-reviews .content .reviews {
         flex-wrap: wrap;
         position: relative;
-        width: calc(190px * 4); }
+        width: 100%; }
         .review-holder .related-reviews .content .reviews .review {
-          width: 180px;
-          height: 260px;
-          border-radius: 3px;
-          background: #BBB;
-          margin-bottom: 25px; }
+          width: 220px;
+          height: 310px;
+          border-radius: 5px;
+          background: #BBB; }
         .review-holder .related-reviews .content .reviews .review:nth-child(4n) {
           margin-right: 0px; }
         .review-holder .related-reviews .content .reviews .review:nth-last-child(1), .review-holder .related-reviews .content .reviews .review:nth-last-child(2), .review-holder .related-reviews .content .reviews .review:nth-last-child(3), .review-holder .related-reviews .content .reviews .review:nth-last-child(4) {

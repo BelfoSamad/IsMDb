@@ -23,6 +23,7 @@ from django.conf.urls.static import static
 urlpatterns = [
                   url(r'^', include('reviews.urls')),
                   url(r'^suggestions/', include('suggestions.urls')),
+                  url(r'^', include('comments.urls')),
                   url(r'^search/', include('search.urls')),
                   url('^inbox/notifications/', include(notifications.urls, namespace='notifications')),
                   url('admin/', admin_site.urls),

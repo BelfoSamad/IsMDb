@@ -3,19 +3,33 @@ from django.template import loader
 from haystack.generic_views import SearchView
 from haystack.query import SearchQuerySet
 
-from search.forms import DateRangeSearchForm
+from reviews.models import MovieReview
 
 search_result = None
 
 
 class AdvancedSearch(SearchView):
     template_name = 'search/advanced_search.html'
-    form_class = DateRangeSearchForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        global search_result
+        search_result = MovieReview.objects.all()
+        context['reviews'] = search_result
+        return context
+
+
+def init(request):
+    global search_result
+    search_result = MovieReview.objects.all()
+    template = loader.get_template('search/advanced_search_results.html')
+    return HttpResponse(template.render({'reviews': search_result}, request))
 
 
 def auto_search(request, query):
     global search_result
-    search_result = SearchQuerySet().autocomplete(content_auto=query)
+    search_res = search_result.filter(title__contains=query)
+    search_result = search_res
     template = loader.get_template('search/advanced_search_results.html')
     return HttpResponse(template.render({'reviews': search_result}, request))
 
@@ -29,7 +43,7 @@ def auto_filter(request, max_year, min_year, max_time, min_time, genre, alcohol,
                        result.language >= language) and (result.language <= language) and (
                        result.lgbtq >= lgbtq) and (result.lgbtq <= lgbtq) and (result.nudity >= nudity) and (
                        result.nudity <= nudity) and (result.sex >= sex) and (result.sex <= sex) and (
-                           result.violence >= violence) and (result.violence <= violence)]
+                       result.violence >= violence) and (result.violence <= violence)]
     template = loader.get_template('search/advanced_search_results.html')
     return HttpResponse(template.render({'reviews': results}, request))
 
