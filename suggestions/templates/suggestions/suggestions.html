@@ -1,0 +1,77 @@
+{% extends 'reviews/content.html' %}
+{% load static %}
+{% block suggestions %}
+    <div class="suggestions-wrapper v-flex">
+        <div class="my-suggestions v-flex">
+            <div class="header h-flex">
+                <h1>My Suggestions</h1>
+                <button class="btn add">Add A Suggestion</button>
+            </div>
+            <div class="content v-flex">
+                <div class="no-suggestions">No suggestions yet.</div>
+                <div class="four-suggs v-flex">
+                    {% for suggestion in my_suggestions %}
+                        <div class="my-suggestion v-flex">
+                            <div class="header h-flex">
+                                <h1>Title</h1>
+                                <div class="actions h-flex">
+                                    <button title="Delete" class="delete btn"
+                                            data-href="{% url 'suggestions:delete' id=suggestion.id %}"><i
+                                            class="far fa-trash-alt"></i></button>
+                                    <span class="upvotes">67 upvotes</span>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <p>No description</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="my-suggestion v-flex">
+                        <div class="header h-flex">
+                            <h1>Title</h1>
+                            <div class="actions h-flex">
+                                <button title="Delete" class="delete btn"
+                                        data-href="{% url 'suggestions:delete' id=1 %}"><i
+                                        class="far fa-trash-alt"></i></button>
+                                <span class="upvotes">67 upvotes</span>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <p>No description</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="com-suggestions v-flex">
+            <div class="header h-flex">
+                <h1>Community Suggestions</h1>
+            </div>
+            <div class="content v-flex">
+                <div class="no-suggestions">No suggestions yet.</div>
+                <div class="four-suggs v-flex">
+                    {% for suggestion in other_suggestions %}
+                    {% endfor %}
+                    <div class="com-suggestion v-flex">
+                        <div class="header h-flex">
+                            <h1>Title</h1>
+                            <div class="actions h-flex">
+                                <button title="Report" class="btn"><i class="fas fa-flag"></i></button>
+                                <button title="Upvote" class="up_vote btn"
+                                        data-href="{% url 'suggestions:upvote' id=1 %}" id="sugg_1"><i
+                                        class="fas fa-level-up-alt"></i></button>
+                                <span class="upvotes" id="sugg_1">67 upvotes</span>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <p>No description</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+<script src="{% static 'js/jquery-3.4.1.js' %}"></script>
+<!-- TODO: Remove if Add Suggestions isn't with suggestions page -->
+<script src="{% static 'suggestions/js/autocomplete_suggestion.js' %}"></script>

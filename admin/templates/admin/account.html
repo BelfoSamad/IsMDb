@@ -1,0 +1,44 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}{{ block.super }}
+{% endblock %}
+
+{% block coltype %}colMS{% endblock %}
+
+{% block bodyclass %}{{ block.super }} dashboard{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% load crispy_forms_tags %}
+
+
+{% block account_item_class %}active{% endblock %}
+
+
+{% block content %}
+<div id="content-main">
+    <div class="content-section">
+        <div class="media">
+            <div class="media-body">
+                <h2 class="account-heading">{{ user.username }}</h2>
+                <p class="text-secondary">{{ user.email }}</p>
+            </div>
+        </div>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Profile Info</legend>
+                {{  u_form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Update</button>
+            </div>
+        </form>
+                <button class="btn btn-outline-info" type="button">
+                    <a href="{% url 'admin:password_change' %}">Change Password</a>
+                </button>
+    </div>
+</div>
+{% endblock %}
+

@@ -32,8 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    # 'admin.apps.MyAdminConfig',
-    'django.contrib.admin',
+    'admin.apps.MyAdminConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -41,14 +40,19 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'languages',
     'django_countries',
-    'multiselectfield',
-    'haystack',
     'whoosh',
+    'haystack',
+    'multiselectfield',
+    'rest_framework',
     'reviews',
+    'search',
     'users',
     'comments',
+    'notifications',
     'suggestions',
     'reports',
+    'pandas',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -67,8 +71,9 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [TEMPLATE_DIR,
-                 # os.path.join(BASE_DIR, 'admin/templates'),
-                 os.path.join(BASE_DIR, 'user/templates'),
+                 os.path.join(BASE_DIR, 'admin/templates'),
+                 # os.path.join(BASE_DIR, 'users/templates'),
+                 # TODO: add templates
                  os.path.join(BASE_DIR, 'reviews/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -100,6 +105,7 @@ HAYSTACK_CONNECTIONS = {
         'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
     },
 }
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

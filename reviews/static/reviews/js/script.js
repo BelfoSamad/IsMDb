@@ -1,5 +1,7 @@
 var lastActiveReview, popCarousel, recCarousel;
 
+var instance = M.Tabs.init($(".tabs"), null);
+
 class Carousel {
     constructor(container) {
         this.container = container;
@@ -38,31 +40,57 @@ class Carousel {
 popCarousel = new Carousel($(".content-holder").find("#pop-carousel"));
 recCarousel = new Carousel($(".content-holder").find("#rec-carousel"));
 
-// function loadHtml(file_name) {
-//     console.log("loading: " + file_name);
-//     $(".content-holder").scrollTop(0);
-//     $(".home-animation").css("height", "calc(100vh - 90px)");
-//     switch (file_name) {
-//         case "category.html":
-//             setTimeout(() => $(".category-holder").load(file_name), 1000);
-//             break;
-//         case "home.html":
-//             setTimeout(() => $(".category-holder").load(file_name), 1000);
-//             break;
-//         case "reviews.html":
-//             setTimeout(() => $(".category-holder").css("height", "0%"), 1000);
-//             setTimeout(() => $(".reviews-holder").css("height", "100%"), 1000);
-//             setTimeout(() => $(".reviews-holder").load(file_name), 1000);
-//             break;
-//     }
-//     setTimeout(() => $(".home-animation").css("height", "0"), 2000);
-//     if (file_name == "home.html") {
-//         setTimeout(() => {
-//             popCarousel = new Carousel($(".content-holder").find("#pop-carousel"));
-//             recCarousel = new Carousel($(".content-holder").find("#rec-carousel"));
-//         }, 2000);
-//     }
-// }
+class CarouselV2 {
+    constructor(container) {
+        this.container = container;
+        this.rightSwipeIcon = this.container.find(".right-arrow");
+        this.leftSwipeIcon = this.container.find(".left-arrow");
+        this.reviewsWrapper = this.container.find(".elements");
+        this.currentReview = 0;
+        this.totalReviews = this.reviewsWrapper.children().length;
+        this.swipeRightListener = this.rightSwipeIcon.click(this.swipeRight.bind(this));
+        this.swipeLeftListener = this.leftSwipeIcon.click(this.swipeLeft.bind(this));
+    }
+
+    swipeRight() {
+        let currentElement = this.reviewsWrapper.children().eq(this.currentReview);
+
+        currentElement.addClass("visually-hidden");
+        currentElement.one("transitionend", function () {
+            currentElement.addClass("hidden");
+        });
+        setTimeout(() => {
+            this.currentReview++;
+            if (this.currentReview == this.totalReviews) this.currentReview = 0;
+            currentElement = this.reviewsWrapper.children().eq(this.currentReview);
+            currentElement.removeClass("hidden");
+            setTimeout(function () {
+                currentElement.removeClass("visually-hidden");
+            }, 20);
+        }, 800);
+    }
+
+    swipeLeft() {
+        let currentElement = this.reviewsWrapper.children().eq(this.currentReview);
+
+        currentElement.addClass("visually-hidden");
+        currentElement.one("transitionend", function () {
+            currentElement.addClass("hidden");
+        });
+        setTimeout(() => {
+            this.currentReview--;
+            if (this.currentReview == -1) this.currentReview = this.totalReviews - 1;
+            currentElement = this.reviewsWrapper.children().eq(this.currentReview);
+            currentElement.removeClass("hidden");
+            setTimeout(function () {
+                currentElement.removeClass("visually-hidden");
+            }, 20);
+        }, 1000);
+    }
+}
+
+displayCarousel = new CarouselV2($("#content").find(".display"));
+//setInterval(() => displayCarousel.swipeRight(), 15000)
 
 function hideReviewDetails(element) {
     console.log("hideReviewDetails");
@@ -79,13 +107,13 @@ function showReviewDetails(element, direction) {
     if (direction == "left") {
         $(".more-info").css("right", "auto");
         $(".more-info").css("left", "100%");
-        cover_border = "8px 0 0 8px";
-        details_border = "0 8px 8px 0";
+        cover_border = "1px 0 0 1px";
+        details_border = "0 1px 1px 0";
     } else {
         $(".more-info").css("left", "auto");
         $(".more-info").css("right", "100%");
-        cover_border = "0 8px 8px 0";
-        details_border = "8px 0 0 8px";
+        cover_border = "0 1px 1px 0";
+        details_border = "1px 0 0 1px";
     }
     $(element).find(".film-cover").css("border-radius", cover_border);
     $(element).siblings(".more-info").css("border-radius", details_border);
@@ -97,15 +125,15 @@ function showReviewDetails(element, direction) {
 
 function leftShown(element) {
     console.log("leftShown");
-    let revs_wrapper = $("#home").find(".reviews-wrapper");
-    let elementy = $("#home").find(element);
+    let revs_wrapper = $("#content").find(".reviews-wrapper");
+    let elementy = $("#content").find(element);
     let elementy_right = elementy.offset().left + elementy.width() + 400;
     let revs_wrapper_right = revs_wrapper.offset().left + revs_wrapper.width();
     return revs_wrapper_right - elementy_right > 0
 }
 
 function isDisplayed(element) {
-    return $("#home").find(element).siblings(".more-info").css("width") !== "0px";
+    return $("#content").find(element).siblings(".more-info").css("width") !== "0px";
 }
 
 function empty(element) {
@@ -131,7 +159,7 @@ function empty(element) {
 
 // $(".content-holder").on("click", ".view-reviews", () => loadHtml("reviews.html"));
 
-$("#home").on("click", ".review-cover", function () {
+$("#content").on("click", ".review-cover", function () {
     let this_elem = this;
     console.log(!isDisplayed(this_elem));
 
@@ -171,8 +199,25 @@ $(".content-holder").scroll(() => {
     }
 });
 
-$(".bell-icon").click(() => {
-    var notif_box = $(".c-notifications");
+$(".bell").click(() => {
+    console.log("yo")
+    var notif_box = $(".dropdown");
+    if (notif_box.hasClass("hidden")) {
+        notif_box.removeClass("hidden");
+        setTimeout(function () {
+            notif_box.removeClass("visually-hidden");
+        }, 20);
+    } else {
+        notif_box.addClass("visually-hidden");
+        notif_box.one("transitionend", function () {
+            notif_box.addClass("hidden");
+        });
+    }
+});
+
+$(".profile-icon").click(() => {
+    console.log("yo")
+    var notif_box = $(".profile-dropdown");
     if (notif_box.hasClass("hidden")) {
         notif_box.removeClass("hidden");
         setTimeout(function () {
@@ -196,6 +241,25 @@ $(".close-icon").click(() => {
     $(".settings-wrapper").toggle();
     $(".settings-wrapper .settings").css("left", "100%");
 });
+
+function showRating(element, text1, text2) {
+    var rating_box = $(element).closest(".com-review").find(".rating-content");
+    if (rating_box.hasClass("hidden")) {
+        rating_box.removeClass("hidden");
+        setTimeout(function () {
+            rating_box.removeClass("visually-hidden");
+            $(element).find("span").text(text2);
+            $(element).find("i").css("transform", "rotate(180deg) translateY(-1px)");
+        }, 20);
+    } else {
+        rating_box.addClass("visually-hidden");
+        rating_box.one("transitionend", function () {
+            rating_box.addClass("hidden");
+            $(element).find("span").text(text1);
+            $(element).find("i").css("transform", "rotate(0deg) translateY(0px)");
+        });
+    }
+};
 
 /**
  $("#email-username").focusout(function () {

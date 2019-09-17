@@ -19,8 +19,10 @@ class FloatRangeField(models.FloatField):
 
 class Comment(models.Model):
     title = models.CharField(max_length=255, blank=True, null=False)
+    memberID = models.ForeignKey(Member, on_delete=models.CASCADE, null=True)
+    reviewID = models.ForeignKey(MovieReview, on_delete=models.CASCADE, null=True)
+    date_added = models.DateTimeField(default=datetime.datetime.now())
     content = models.TextField(blank=True, null=False)
-    date_added = models.DateField(default=datetime.date.today)
     likes = models.ManyToManyField(Member, related_name='likes')
     dislikes = models.ManyToManyField(Member, related_name='dislikes')
     alcohol = FloatRangeField(min_value=0.0, max_value=5.0, default=0.0)
@@ -29,8 +31,6 @@ class Comment(models.Model):
     sex = FloatRangeField(min_value=0.0, max_value=5.0, default=0.0)
     language = FloatRangeField(min_value=0.0, max_value=5.0, default=0.0)
     violence = FloatRangeField(min_value=0.0, max_value=5.0, default=0.0)
-    memberID = models.ForeignKey(Member, on_delete=models.CASCADE, null=True)
-    reviewID = models.ForeignKey(MovieReview, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.title

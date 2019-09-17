@@ -1,123 +1,65 @@
-# IsMDb
-Main Project's GIT Repository
+# Website URL Structure
 
-<h2>Setup Steps:</h2>
+- 'ismdb.com':
+    - <b>view</b>: get_reviews
+    - <b>template</b>: home.html
+    - <b>context</b>: popular, recently added, explore (list of moviereview)
+- 'ismdb.com/category/(slug)':
+    - <b>view</b>: get_category
+    - <b>template</b>: category.html
+    - <b>context</b>: popular or recently added or explore based on the slug (list of moviereview)
+- 'ismdb.com/review/(slug)':
+    - <b>view</b>: MovieDetailView
+    - <b>template</b>: review.html
+    - <b>context</b>: movie with the slug = slug (moviereview)
+- 'ismdb.com/api/like/(id)':
+    - <b>view</b>: LikeReviewn
+    - no template or context needed
+----------------------------------------------------------------------------------------------------------
+- 'ismdb.com/suggestion': 
+    - <b>view</b>: SuggestionsListView
+    - <b>template</b>: suggestions.html
+    - <b>context</b>: suggestions (list of suggestion)
+- 'ismdb.com/suggestions/add_suggestion':
+    - <b>view</b>: SuggestionCreateView,
+    - <b>template</b>: add_suggestion.html
+    - <b>context</b>: No Context
+    + redirect to suggestions list
+- 'ismdb.com/suggestions/api/upvote/(id)':
+    - <b>view</b>: SuggestionUpVote
+    - no template or context needed
+----------------------------------------------------------------------------------------------------------
+- 'ismdb.com/search':
+    - <b>view</b>: AdvancedSearch
+    - <b>template</b>: advanced_search.html
+    - <b>context</b>: No Context
+- 'ismdb.com/search/autocomplete':
+    - <b>view</b>: autocomplete
+    - <b>template</b>: autocomplete_template.html loaded in search bar
+    - <b>context</b>: search results (list of moviereview)
+----------------------------------------------------------------------------------------------------------
++ 'ismdb.com/comments/(id)':
+    - <b>view</b>: load_comments
+    - <b>template</b>: comments.html loaded in review.html
+    - <b>context</b>: comment list of the review with id = id
++ 'ismdb.com/api/like/(id)':
+    - <b>view</b>: CommentLike
+    - no template or context needed
++ 'ismdb.com/api/dislike/(id)':
+    - <b>view</b>: CommentDislike
+    - no template or context needed
++ 'ismdb.com/api/add_comment':
+    - <b>view</b>: CommentCreateView
+    - no template or context needed
+----------------------------------------------------------------------------------------------------------
++ 'ismdb.com/admin': admin
+----------------------------------------------------------------------------------------------------------
++ ...
+----------------------------------------------------------------------------------------------------------
 
-- Accept the invitation sent by mail
-- On Pycharm, use VCS to get the project from this repository
-- Checkout as your branch
-- Create new interpreter
-- To install the required packages, use this command in the terminal (bottom toolbar)
+# Infos:
 
-```
-pip install --upgrade -r requirements.txt
-```
+- slug: additional variable in the link with the name of the category (popular, recently_added, explore) or the title of the movie slugified (eg: Toy Story -> toy-story-2019)
+- id: additional variable in the link with the id of the movie or suggestions (depends on the link)
 
-*Before commiting, MAKE SURE to uncheck the venv and .idea folders
-
-<h2>Problems:</h2>
-
-<h3>No Run Configurations Problem:</h3>
-
-instead of Edit Configurations, click on add
-![Step 1:](./1.png)
-![Step 2:](./2.png)
-
-<h2>TODO:</h2>
-
-- [ ] Front End:
-  - [x] Redesign Home Page
-  - [x] Redesign Category Page
-  - [x] Redesign Library Page
-  - [x] Redesign Review Page
-  - [ ] Redesign Login/Register Form
-  - [ ] Design Suggestion Form
-  - [ ] Design Advanced Search Page
-  - [x] Develop Home Page
-  - [x] Develop Category Page
-  - [ ] Develop Library Page
-  - [ ] Develop Review Page
-  - [ ] Develop Suggestion Page
-  - [ ] Develop Advanced Search Page
-- [ ] Backend:
-  - [ ] Admin:
-    - [ ] Admin Panel (Frontend : Redesigning with materialize instead of bootstrap.)
-    - [ ] Functionalities :
-      - [x] Manage Users
-      - [x] Manage Groups (eg : Moderator Group)
-      - [x] Manage Reviews
-      - [x] Manage Suggestions
-      - [x] Admin Account
-      - [x] Admin History
-      - [x] History for each model
-      - [ ] Global history (ie : history that tracks all admins and moderators)
-  - [ ] Users:
-    - [ ] Registration Implementation
-    - [ ] Login Implementation
-    - [ ] User Profile
-    - [ ] User honor points
-    - [ ] User Badge ( moderator and admin badges)
-    - [ ] User Authentification (Condition)
-  - [ ] Reviews:
-    - [x] Fix Models
-    - [x] Views
-    - [x] Routing
-    - [ ] Implementation (w/ Front End)
-    - [x] Add WatchList
-    - [x] Add Likes
-  - [ ] Comments:
-    - [x] Conception
-    - [x] Models
-    - [x] Views:
-      - [x] Add Comment
-        + [x] Add Criterias
-      - [x] Like Comment
-      - [x] Dislike Comment
-      - [x] Fix Redirect
-    - [ ] Implementations
-  - [ ] Suggestions:
-    - [x] Conception
-    - [x] Models
-    - [x] Views:
-      - [x] Adding Suggestion
-      - [x] Upvoting Suggestion
-    - [x] Admin Approval:
-      - [x] Filter Suggestions
-      - [x] Approve Suggestions
-    - [ ] Implementations
-  - [ ] Reports:
-    - [ ] Conception
-    - [ ] Models
-    - [ ] Views
-    - [ ] Implementations
-  - [ ] Notifications:
-    - [x] Conception
-    - [x] Send Notification
-    - [x] Get Notification
-      + [ ] Customize Notifications
-      - [ ] Live Update
-    - [ ] Implementations
-- [ ] Additional Features:
-  - [ ] Recommendation Engine:
-    - [x] Export Dataframes From Database
-    - [ ] Recommendation Engine Development
-    - [x] Related Movies 
-    - [ ] Deployment
-    - [ ] ...
-- [ ] Provide Content Locally (Remove all the cdn and download the stuff in the project main static folder): 
-    - [ ] Jquery.js
-    - [x] bootstrap
-    - [ ] fonts
-    - [ ] materialize
-    - [ ] icons
-    - [ ] images 
-    - [ ] popper.js
-    - [ ] ...
-- [ ] Deployment:
-  - [ ] Docker Implementation:
-    - [x] Setup Docker
-    - [x] Dockerfile
-    - [ ] Upload to Registery
-  - [ ] Add Reviews (0/30) *30: starting point, maybe 50 later
-- [ ] Report:
-  - ...
+- links with api: used only for actions that doesn't need context or template like (liking, disliking, creating comment) - it uses (DjangoRestFramework)

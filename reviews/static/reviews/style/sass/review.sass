@@ -1,0 +1,512 @@
+.review-holder
+    //height: 1000px
+    width: 100%
+    padding: 32px
+
+    .back-cover
+        position: fixed
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        z-index: -10
+
+        div
+            position: absolute
+            width: 100%
+            height: 100%
+            background: rgba(#111, 0.25)
+
+        img
+            width: 100%
+            height: 100%
+            object-fit: cover
+
+    .separator
+        width: 100%
+        height: 4px
+        background: #ec7063
+
+    .film-content
+        justify-content: flex-start
+        align-items: flex-start
+        height: 500px
+
+        //background: red
+        .cover
+            width: 35%
+            height: 100%
+
+            //background: red
+            img
+                width: 100%
+                height: 100%
+                object-fit: cover
+
+        .text
+            width: 65%
+            height: 100%
+            padding: 0px 0 0px 32px
+
+            //background: rgba(red, .1)
+            align-items: flex-start
+
+            .header
+                width: 100%
+                align-items: flex-start
+
+                .title
+                    font-size: 36px
+                    font-weight: bold
+                    color: #222
+                    width: 85%
+
+                .rating
+                    margin-top: 16px
+                    margin-right: 4px
+                    font-weight: bold
+                    font-size: 20px
+                    padding: 4px 12px
+                    color: #EEE
+                    background: rgba(#111, 1)
+                    border-bottom: 4px solid #EC7063
+
+            .plot
+                width: 100%
+
+                //background: rgba(yellow, .5)
+
+                h1
+                    margin: 0
+                    font-size: 18px
+                    font-weight: bold
+                    color: rgba(#222, 0.8)
+                    text-transform: uppercase
+
+                .separator
+                    width: 100%
+                    height: 1px
+                    margin: 8px 0
+                    background: grey
+
+                p
+                    font-size: 14px
+                    color: #111
+
+                .metadata
+                    //background: rgba(pink, .8)
+                    width: 100%
+                    color: rgba(#222, 0.9)
+                    justify-content: flex-start
+                    margin-top: 16px
+
+                    div
+                        margin-right: 8px
+                        font-size: 12px
+
+                    .genres
+                        text-transform: uppercase
+
+                        span
+                            margin-right: 2px
+
+                    span
+                        cursor: pointer
+                        padding: 4px
+                        border: 1px solid rgba(#111, 0.5)
+
+                    span:hover
+                        background: rgba(#111, 0.1)
+
+            .information
+                //background: yellow
+                width: 100%
+
+                div
+                    margin: 4px 0
+
+                .not
+                    font-size: 14px
+                    font-weight: bold
+                    color: rgba(#222, 0.8)
+                    text-transform: uppercase
+
+                .star, .director, .release, .c-value
+                    font-size: 16px
+                    font-weight: bold
+                    color: rgba(#222, 1)
+
+            .buttons
+                width: 100%
+
+                .btn
+                    height: 36px
+                    font-size: 13px
+                    font-weight: bold
+                    text-transform: uppercase
+
+                    i
+                        color: #111
+
+                .actions
+                    .btn:nth-child(1)
+                        margin-right: 4px
+
+                .reactions
+                    .btn:nth-child(1)
+                        margin-right: 16px
+
+                    i
+                        font-size: 16px
+
+                .review
+                    border-right: 4px solid #ec7063
+
+                .btn:not(.btn-nbg):hover
+                    background: rgba(#CCC, 0.9)
+
+    .ismdb-review
+        margin-top: 64px
+
+        .header
+            font-size: 48px
+            font-weight: bold
+            color: rgba(#222, 0.65)
+
+        .content
+            padding: 16px
+            align-items: center
+
+            .summary
+                //background: grey
+                padding: 16px 0
+
+                p
+                    padding: 0
+                    color: #111
+                    font-size: 20px
+                    font-weight: bold
+
+            .rating-content
+                background: rgba(grey, 0.15)
+                padding: 16px 16px
+                margin-top: 16px
+                width: 70%
+
+                .ismdb-rating
+                    width: 100%
+                    justify-content: space-around
+
+                    .rating-header
+                        width: 100%
+                        margin-bottom: 16px
+
+                        .text
+                            font-weight: bold
+                            font-size: 16px
+                            text-transform: uppercase
+                            color: #111
+
+                        i
+                            color: rgba(#111, 0.9)
+                            cursor: pointer
+                            font-size: 24px
+
+                    .ratings
+                        width: 100%
+
+                        //background: grey
+                        justify-content: center
+
+                        .bar-rating
+                            //background: rgba(yellow, .2)
+                            .bars
+                                //background: rgba(pink, .2)
+                                .rating
+                                    width: 100%
+                                    margin: 8px 0
+
+                                    .title
+                                        color: #111
+                                        font-size: 16px
+                                        font-weight: bold
+                                        text-transform: uppercase
+                                        text-align: left
+                                        margin-right: 16px
+
+                                    .value
+                                        justify-content: flex-start
+                                        background: #F8F8F8
+                                        border-radius: 0px
+                                        height: 8px
+                                        width: 125px
+
+                                        .unit
+                                            background: #EC7063
+                                            height: 100%
+                                            width: 25px
+                                            margin-rigth: 1px
+
+                            .bars:nth-child(1)
+                                margin-right: 48px
+
+    .community-review
+        margin-top: 64px
+
+        .community-header
+            font-size: 48px
+            font-weight: bold
+            color: rgba(#222, 0.65)
+
+        .content
+            width: 100%
+            padding: 32px
+
+            //background: red
+            .com-post
+                width: 100%
+                padding: 16px 32px
+                margin-bottom: 32px
+                background: #EAEAEA
+
+                .com-header
+                    width: 100%
+                    align-items: flex-start
+
+                    //background: pink
+                    .profile
+                        align-items: flex-start
+
+                        img
+                            width: 50px
+                            height: 50px
+                            object-fit: cover
+                            margin-right: 16px
+                            border-radius: 50%
+
+                        div
+                            align-items: flex-start
+
+                            .nickname
+                                font-weight: bold
+                                margin-bottom: 4px
+
+                            .honors
+                                font-size: 14px
+
+                .com-content
+                    width: 100%
+
+                    textarea
+                        font-size: 16px
+                        width: 100%
+                        margin-top: 16px
+                        resize: none
+                        border: none
+                        outline: none
+                        padding: 8px
+                        border-bottom: 4px solid rgba(#ec7063, 0)
+
+                    textarea:focus
+                        border-bottom: 4px solid #ec7063
+
+                .buttons
+                    width: 100%
+                    margin-top: 16px
+                    justify-content: flex-end
+
+                    .btn
+                        //background: #DADADA
+                        height: 36px
+                        font-size: 13px
+                        font-weight: bold
+
+                    .btn:not(.btn-nbg):hover
+                        background: rgba(#CCC, 0.9)
+
+                    .btn:first-child
+                        margin-right: 8px
+
+            .com-review
+                width: 100%
+                padding: 16px 32px
+                margin-bottom: 32px
+                background: #EAEAEA
+
+                .com-header
+                    width: 100%
+                    align-items: flex-start
+
+                    //background: pink
+                    .profile
+                        align-items: flex-start
+
+                        img
+                            width: 50px
+                            height: 50px
+                            object-fit: cover
+                            margin-right: 16px
+                            border-radius: 50%
+
+                        div
+                            align-items: flex-start
+
+                            .nickname
+                                font-weight: bold
+                                margin-bottom: 4px
+
+                            .honors
+                                font-size: 14px
+
+                    .timestamp
+                        font-size: 14px
+                        font-weight: bold
+                        color: rgba(#222, 0.6)
+                        justify-self: flex-end
+
+                .com-content
+                    width: 100%
+
+                    //padding: 0 32px
+                    margin-top: 16px
+                    justify-content: flex-start
+
+                .buttons
+                    width: 100%
+                    margin-top: 16px
+
+                    .btn
+                        //background: #DADADA
+                        height: 36px
+                        font-size: 13px
+                        font-weight: bold
+
+                    .btn:not(.btn-nbg):hover
+                        background: rgba(#CCC, 0.9)
+
+                    .btn-nbg:hover
+                        i
+                            transform: translateY(-1px)
+
+                    .reactions
+                        i
+                            font-size: 16px
+
+                        .btn:first-child
+                            margin-right: 16px
+
+                    .actions
+                        .btn:first-child
+                            margin-right: 16px
+
+                    .view-review
+                        i
+                            font-size: 18px
+                            height: 24px
+                            transition: 0.3s
+
+                .rating-content
+                    background: rgba(grey, 0.15)
+                    padding: 16px 16px
+                    margin-top: 32px
+                    width: 70%
+
+                    .ismdb-rating
+                        width: 100%
+
+                        //background: yellow
+
+                        .rating-header
+                            width: 100%
+                            margin-bottom: 16px
+
+                            .text
+                                font-weight: bold
+                                font-size: 16px
+                                text-transform: uppercase
+                                color: #111
+
+                            i
+                                color: rgba(#111, 0.9)
+                                cursor: pointer
+                                font-size: 24px
+
+                        .ratings
+                            width: 100%
+                            justify-content: center
+
+                            .bar-rating
+                                //background: rgba(yellow, .2)
+                                .bars
+                                    //background: rgba(pink, .2)
+                                    .rating
+                                        width: 100%
+                                        margin: 8px 0
+
+                                        .title
+                                            color: #111
+                                            font-size: 16px
+                                            font-weight: bold
+                                            text-transform: uppercase
+                                            text-align: left
+                                            margin-right: 16px
+
+                                        .value
+                                            justify-content: flex-start
+                                            background: #F8F8F8
+                                            border-radius: 0px
+                                            height: 8px
+                                            width: 125px
+
+                                            .unit
+                                                background: #EC7063
+                                                height: 100%
+                                                width: 25px
+                                                margin-rigth: 1px
+
+                                .bars:nth-child(1)
+                                    margin-right: 48px
+            .com-more
+                //background: rgba(#CCC, 0.9)
+                justify-content: flex-end
+                button
+                    padding: 12px 16px
+                    font-size: 13px
+                    font-weight: bold
+                    background: rgba(#CCC, .7)
+                    border: none
+                    outline: none
+                    cursor: pointer
+                button:hover
+                    background: rgba(#CCC, .9)
+
+    .related-reviews
+        margin-top: 32px
+
+        .related-header
+            font-size: 48px
+            font-weight: bold
+            color: rgba(#222, 0.65)
+
+        .content
+            width: 100%
+            padding: 32px
+
+            //background: rgba(yellow, .3)
+
+            .reviews
+                flex-wrap: wrap
+                position: relative
+                width: 100%
+
+                .review
+                    width: 220px
+                    height: 310px
+                    border-radius: 5px
+                    background: #BBB
+
+                .review:nth-child(4n)
+                    margin-right: 0px
+
+                .review:nth-last-child(1), .review:nth-last-child(2), .review:nth-last-child(3), .review:nth-last-child(4)
+                    margin-bottom: 0

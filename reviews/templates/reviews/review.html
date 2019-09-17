@@ -1,50 +1,434 @@
 {% extends 'reviews/content.html' %}
+{% load static %}
+{% load movie_review_extras %}
 {% block review %}
-    <div class="v-flex" style="width: 90%; margin-top: 20px">
-        <div class="h-flex title-return">
-            <a href="{% url 'reviews:home' %}">
-                <div class="v-flex go-back-btn" title="Go Back">
-                    <i class="fas fa-long-arrow-alt-left"></i>
-                </div>
-            </a>
+    <div class="review-holder">
+        <div class="back-cover">
+            <div></div>
+            <img src="{{ object.cover.url }}" alt="film-cover">
         </div>
-        {% for review in movies %}
-            <div id="review" class="review-container v-flex">
-                <div class="review-cover v-flex">
-                    <img src="{{ review.cover.url }}" alt="cover-photo">
-                </div>
-                <div class="review-header h-flex">
-                    <div class="review-title">{{ review.title }}</div>
-                    <div class="actions h-flex">
-                        <div class="bookmark-rev-later v-flex">
-                            <i title="Bookmark" class="v-flex far fa-bookmark"></i>
-                        </div>
-                        <div class="bookmark-rev-later v-flex">
-                            <i title="Review later" class="far fa-clock"></i>
-                        </div>
-                        <div class="trailer">Official Trailer</div>
-                    </div>
+        <div class="h-flex film-content">
+            <div class="cover">
+                <img src="{{ object.poster.url }}" alt="film-cover">
+            </div>
+            <div class="text v-flex">
+                <div class="header h-flex">
+                    <div class="title">{{ object.title }}</div>
+                    <span class="rating">{{ object.IMDB_rating }}</span>
                 </div>
                 <div class="plot">
-                    <p>{{ review.description }}</p>
-                </div>
-                <div class="separator"></div>
-                <div class="ismdb-review">
-                    <div class="title"><span class="logo">IsMDb</span></div>
-                    <div class="critic">
-                        <p>Joker is fairly a watchable movie by adults, since it does not contain anything that
-                            motivates to
-                            do
-                            harm
-                            or to be violent, instead it teaches a very important moral.</p>
+                    <h1>Story Line</h1>
+                    <div class="separator"></div>
+                    <p>{{ object.description }}</p>
+                    <div class="metadata h-flex">
+                        <div class="year"><span>{{ object.year }}</span></div>
+                        <div class="duration"><span>{{ object.time|duration_format }}</span></div>
+                        <div class="genres">
+                            {% for genre in object.genre %}
+                                <span>{{ genre|genre_text }}</span>
+                            {% endfor %}
+                        </div>
                     </div>
-                    <div class="criteria"></div>
                 </div>
-                <div class="community-review">
-                    <div class="add-review"></div>
-                    <div class="com-review"></div>
+                <div class="information">
+                    <div class="director">
+                        <span class="not">Director: </span>
+                        {% for director in directors %}
+                            <span class="star">{{ director.first_name }} {{ director.last_name }}</span>,
+                        {% endfor %}
+                    </div>
+                    <div class="stars">
+                        <span class="not">Stars:</span>
+                        {% for actor in actors %}
+                            <span class="star">{{ actor.first_name }} {{ actor.last_name }}</span>,
+                        {% endfor %}
+                    </div>
+                    <div class="writers">
+                        <span class="not">Writers:</span>
+                        {% for director in directors %}
+                            <span class="star">{{ director.first_name }} {{ director.last_name }}</span>,
+                        {% endfor %}
+                    </div>
+                    <div class="release-date">
+                        <span class="not">Release Date: </span>
+                        <span class="release">{{ object.release_date }}</span>
+                    </div>
+                    <div class="country">
+                        <span class="not">Country: </span>
+                        <span class="c-value">{{ object.country }}</span>
+                    </div>
+                </div>
+                <div class="buttons h-flex">
+                    <button class="h-flex like_review" data-href="{% url 'reviews:like' id=object.id %}">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <button class="h-flex watchlist"
+                            data-href="{% url 'reviews:bookmark' id=object.id %}">
+                        <i class="fas fa-plus"></i>
+                        <div>Watchlist</div>
+                    </button>
+                    <!-- TODO: Add Trailer action Here -->
+                    <button class="h-flex trailer">
+                        <i class="fas fa-play"></i>
+                        <div>Trailer</div>
+                    </button>
+                    <button class="h-flex review">
+                        <a href="#" class="c-link h-flex">
+                            <div>Review Now</div>
+                            <i class="fas fa-long-arrow-alt-right"></i>
+                        </a>
+                    </button>
                 </div>
             </div>
-        {% endfor %}
+        </div>
+        <div class="ismdb-review">
+            <div class="header">REVIEW
+            </div>
+            <div class="content v-flex">
+                <div class="summary">
+                    <p>
+                        {{ object.description }}
+                    </p>
+                </div>
+                <div class="rating-content">
+                    <div class="ismdb-rating v-flex">
+                        <div class="rating-header h-flex">
+                        <span class="text">rating based on the following
+                            criteria:</span>
+                            <i class="far fa-question-circle"></i>
+                        </div>
+                        <div class="ratings h-flex">
+                            <!--<div class="circle-rating v-flex">2.4</div>-->
+                            <div class="bar-rating h-flex">
+                                <div class="bars v-flex">
+                                    <div class="rating h-flex">
+                                        <div class="title">Nudity</div>
+                                        <div class="value h-flex">
+                                            <div class="unit"></div>
+                                            <div class="unit"></div>
+                                            <div class="unit"></div>
+                                            <div class="unit"></div>
+                                            <div class="unit"></div>
+                                        </div>
+                                    </div>
+                                    <div class="rating h-flex">
+                                        <div class="title">LGBT</div>
+                                        <div class="value h-flex">
+                                            <div class="unit"></div>
+                                            <div class="unit"></div>
+                                            <div class="unit"></div>
+                                        </div>
+                                    </div>
+                                    <div class="rating h-flex">
+                                        <div class="title">Violence</div>
+                                        <div class="value h-flex">
+                                            <div class="unit"></div>
+                                            <div class="unit"></div>
+                                            <div class="unit"></div>
+                                            <div class="unit"></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="bars v-flex">
+                                    <div class="rating h-flex">
+                                        <div class="title">Morality</div>
+                                        <div class="value h-flex">
+                                            <div class="unit"></div>
+                                        </div>
+                                    </div>
+                                    <div class="rating h-flex">
+                                        <div class="title">Sex</div>
+                                        <div class="value h-flex">
+                                            <div class="unit"></div>
+                                            <div class="unit"></div>
+                                            <div class="unit"></div>
+                                            <div class="unit"></div>
+                                        </div>
+                                    </div>
+                                    <div class="rating h-flex">
+                                        <div class="title">Morality</div>
+                                        <div class="value h-flex">
+                                            <div class="unit"></div>
+                                            <div class="unit"></div>
+                                            <div class="unit"></div>
+                                            <div class="unit"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="community-review">
+            <div class="community-header">Community</div>
+            <div class="content">
+                <div class="com-review com-post v-flex">
+                    <div class="com-header h-flex">
+                        <div class="profile h-flex">
+                            <img src="{% static 'reviews/assets/profile-image.jpeg' %}" alt="profile-image">
+                            <div class="v-flex">
+                                <span class="nickname">nickname</span>
+                                <span class="honors">521 <i class="fas fa-award"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="com-content">
+                        <textarea name="title" id="id_title" rows="3"
+                                  placeholder="Type in the title of the Comment..."></textarea>
+                        <textarea name="comment" id="id_content" rows="3" placeholder="Type in a comment..."></textarea>
+                    </div>
+                    <div class="buttons h-flex">
+                        <button onclick="showRating(this, 'Add Review', 'Remove Review')"
+                                class="h-flex btn btn-r-icon view-review">
+                            <span>Add Review</span>
+                            <i class="fas fa-sort-down"></i>
+                        </button>
+                        <button class="add_comment h-flex btn" data-href="{% url 'comments:add_comment' %}"
+                                id="{{ object.id }}">
+                            <span>Comment</span>
+                        </button>
+                    </div>
+                    <div class="hidden visually-hidden rating-content">
+                        <div class="ismdb-rating v-flex">
+                            <div class="rating-header h-flex">
+                            <span class="text">rating based on the following
+                                criteria:</span>
+                                <i class="far fa-question-circle"></i>
+                            </div>
+                            <div class="ratings h-flex">
+                                <!--<div class="circle-rating v-flex">2.4</div>-->
+                                <div class="bar-rating h-flex">
+                                    <div class="bars v-flex">
+                                        <div class="rating h-flex">
+                                            <div class="title">Nudity</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                            </div>
+                                        </div>
+                                        <div class="rating h-flex">
+                                            <div class="title">LGBT</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                            </div>
+                                        </div>
+                                        <div class="rating h-flex">
+                                            <div class="title">Violence</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="bars v-flex">
+                                        <div class="rating h-flex">
+                                            <div class="title">Morality</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                            </div>
+                                        </div>
+                                        <div class="rating h-flex">
+                                            <div class="title">Sex</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                            </div>
+                                        </div>
+                                        <div class="rating h-flex">
+                                            <div class="title">Morality</div>
+                                            <div class="value h-flex">
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                                <div class="unit"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comments">
+                    {% for comment in comments %}
+                        <div class="com-review v-flex">
+                            <div class="com-header h-flex">
+                                <div class="profile h-flex">
+                                    <img src="{% static 'reviews/assets/profile-image.jpeg' %}" alt="profile-image">
+                                    <div class="v-flex">
+                                        <span class="nickname">{{ comment.memberId }}</span>
+                                        <span class="honors">1033 <i class="fas fa-award"></i></span>
+                                    </div>
+                                </div>
+                                <div class="timestamp">2 days ago</div>
+                            </div>
+                            <div class="com-content">
+                                <p>{{ comment.content }}</p>
+                            </div>
+                            <div class="buttons h-flex">
+                                <div class="h-flex reactions">
+                                    <button title="Like" class="h-flex btn btn-nbg btn-l-icon like"
+                                            data-href="{% url 'comments:like' id=comment.id movie_id=object.id %}"
+                                            id="{{ comment.id }}">
+                                        <i class="fas fa-thumbs-up"></i>
+                                        <span id="like_{{ comment.id }}">{{ comment.likes.count }}</span>
+                                    </button>
+                                    <button title="Dislike" class="h-flex btn btn-nbg dislike"
+                                            data-href="{% url 'comments:dislike' id=comment.id %}"
+                                            id="{{ comment.id }}">
+                                        <i class="fas fa-thumbs-down"></i>
+                                    </button>
+                                </div>
+                                <div class="h-flex actions">
+                                    <button onclick="showRating(this, 'Show Review', 'Hide Review')"
+                                            class="h-flex btn btn-r-icon view-review">
+                                        <span>Show Review</span>
+                                        <i class="fas fa-sort-down"></i>
+                                    </button>
+                                    <button title="Report" class="h-flex btn btn-nbg report">
+                                        <i class="fas fa-flag"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="hidden visually-hidden rating-content">
+                                <div class="ismdb-rating v-flex">
+                                    <div class="rating-header h-flex">
+                                <span class="text">rating based on the following
+                                    criteria:</span>
+                                        <i class="far fa-question-circle"></i>
+                                    </div>
+                                    <div class="ratings h-flex">
+                                        <!--<div class="circle-rating v-flex">2.4</div>-->
+                                        <div class="bar-rating h-flex">
+                                            <div class="bars v-flex">
+                                                <div class="rating h-flex">
+                                                    <div class="title">Nudity</div>
+                                                    <div class="value h-flex">
+                                                        <div class="unit"></div>
+                                                        <div class="unit"></div>
+                                                        <div class="unit"></div>
+                                                        <div class="unit"></div>
+                                                        <div class="unit"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="rating h-flex">
+                                                    <div class="title">LGBT</div>
+                                                    <div class="value h-flex">
+                                                        <div class="unit"></div>
+                                                        <div class="unit"></div>
+                                                        <div class="unit"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="rating h-flex">
+                                                    <div class="title">Violence</div>
+                                                    <div class="value h-flex">
+                                                        <div class="unit"></div>
+                                                        <div class="unit"></div>
+                                                        <div class="unit"></div>
+                                                        <div class="unit"></div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="bars v-flex">
+                                                <div class="rating h-flex">
+                                                    <div class="title">Morality</div>
+                                                    <div class="value h-flex">
+                                                        <div class="unit"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="rating h-flex">
+                                                    <div class="title">Sex</div>
+                                                    <div class="value h-flex">
+                                                        <div class="unit"></div>
+                                                        <div class="unit"></div>
+                                                        <div class="unit"></div>
+                                                        <div class="unit"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="rating h-flex">
+                                                    <div class="title">Morality</div>
+                                                    <div class="value h-flex">
+                                                        <div class="unit"></div>
+                                                        <div class="unit"></div>
+                                                        <div class="unit"></div>
+                                                        <div class="unit"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="com-more h-flex">
+                        <button>Show More</button>
+                    </div>
+                </div>
+                <!-- TODO: Remove Those -->
+            </div>
+        </div>
+        <div class="related-reviews">
+            <div class="related-header">Similar Reviews</div>
+            <div class="content v-flex">
+                <div class="reviews h-flex">
+                    {% for review in related %}
+                        <div class="review h-flex">
+                            <div class="v-flex review-cover">
+                                <img class="film-cover" src="{{ review.poster.url }}">
+                            </div>
+                            <div class="more-info">
+                                <div class="animation-div"></div>
+                                <div class="more-info-wrapper v-flex">
+                                    <div class="film-title h-flex">
+                                        <h4>{{ review.title }}</h4>
+                                        <span title="IsMDb Rating" class="rating">{{ review.IMDB_rating }}</span>
+                                    </div>
+                                    <div class="plot">
+                                        <p>{{ review.description }}</p>
+                                    </div>
+                                    <div class="metadata h-flex">
+                                        <div class="year"><span>{{ review.year }}</span></div>
+                                        <div class="genres">
+                                            {% for genre in review.genre %}
+                                                <span>{{ genre|genre_text }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    <div class="review-actions h-flex">
+                                        <div class="bookmark-rev-later">
+                                            <button><i title="Bookmark" class="far fa-bookmark"></i></button>
+                                            <button><i title="Review later" class="far fa-clock"></i></button>
+                                        </div>
+                                        <a href="{{ review.get_absolute_url }}">
+                                            <button class="view-review" type="submit" name="action">View Review<i
+                                                    class="fas fa-long-arrow-alt-right"></i>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
+
+<script src="{% static 'js/jquery-3.4.1.js' %}"></script>
+<script type="text/javascript" src="{% static 'reviews/js/autocomplete.js' %}"></script>

@@ -1,83 +1,175 @@
-import logging
-from django.http import HttpResponse
-from django.shortcuts import render
-from django.template import loader
-from haystack.query import SearchQuerySet
+from django.shortcuts import render, get_object_or_404
+from django.views.generic import DetailView
+from rest_framework import authentication, permissions
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
+from IsMDb.recommendation_engine.content_based_filtering.related_reviews import get_related
+from comments.forms import CommentForm
 from reviews.models import MovieReview
+from users.models import Member
 
 
-def home(request):
-    logger = logging.getLogger(__name__)
-    global context
-    category_name = request.GET.get('category', None)
-    review_name = request.GET.get('reviews', None)
+def get_reviews(request):
+    template = 'reviews/home.html'
+    popular = MovieReview.objects.order_by('likes')
+    recently_added = MovieReview.objects.order_by('-pub_date')
+    explore = MovieReview.objects.order_by('title')
+    context = {
+        'popular_reviews': popular,
+        'recently_added_reviews': recently_added,
+        'explore_reviews': explore
+    }
+    return render(request, template, context)
 
-    if category_name is not None:
-        if category_name == 'popular':
-            # Get Popular
-            reviews = MovieReview.objects.all()
-            context = {
-                'name': 'Popular',
-                'reviews': reviews
-            }
-        elif category_name == 'recently_added':
-            reviews = MovieReview.objects.order_by('date_created')
-            context = {
-                'name': 'Recently Added',
-                'reviews': reviews
-            }
-        elif category_name == 'explore':
-            reviews = MovieReview.objects.all
-            context = {
-                'name': 'Explore',
-                'reviews': reviews
-            }
-        template_name = 'reviews/category.html'
-    elif review_name is not None:
-        # review_name = urllib.parse.unquote(review_name)
-        review = MovieReview.objects.filter(id=review_name)
-        context = {
-            'reviews': review
+
+def get_category(request, category):
+    template = 'reviews/category.html'
+    reviews = None
+    if category == 'recently_added':
+        reviews = MovieReview.objects.order_by('-pub_date')
+    elif category == 'popular':
+        reviews = MovieReview.objects.order_by('likes')
+    elif category == 'explore':
+        reviews = MovieReview.objects.order_by('title')
+
+    context = {
+        'reviews': reviews,
+        'category': category
+    }
+    return render(request, template, context)
+
+
+def get_library(request, library, sort):
+    template = 'reviews/library.html'
+    reviews = None
+    user = request.user
+    member = get_object_or_404(Member, id=user.id)
+    if library == 'your-watchlist':
+        if sort == 'alphabetical-order':
+            reviews = member.watchlist.order_by('title')
+        elif sort == 'date-order-oldest':
+            reviews = member.watchlist.order_by('pub-date')
+        elif sort == 'date-order-newest':
+            reviews = member.watchlist.order_by('-pub_date')
+    elif library == 'liked':
+        if sort == 'alphabetical-order':
+            reviews = member.review_likes.order_by('title')
+        elif sort == 'date-order-oldest':
+            reviews = member.review_likes.order_by('pub-date')
+        elif sort == 'date-order-newest':
+            reviews = member.review_likes.order_by('-pub_date')
+    elif library == 'review-later':
+        if sort == 'alphabetical-order':
+            reviews = member.review_later.order_by('title')
+        elif sort == 'date-order-oldest':
+            reviews = member.review_later.order_by('pub-date')
+        elif sort == 'date-order-newest':
+            reviews = member.review_later.order_by('-pub_date')
+    context = {
+        'reviews': reviews
+    }
+    return render(request, template, context)
+
+
+class MovieDetailView(DetailView):
+    model = MovieReview
+    template_name = 'reviews/review.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Cast
+        context["actors"] = self.object.cast_actor.all()
+        context["writers"] = self.object.cast_writer.all()
+        context["directors"] = self.object.cast_director.all()
+
+        # Comment
+        comments = self.object.comment_set.all()
+        context["comments"] = reversed(comments)
+
+        # Related Movies
+        title = self.object.title
+        qs = MovieReview.objects.all()
+        related = get_related(qs, title)
+        related_qs = []
+        for x in related:
+            related_qs.extend(MovieReview.objects.filter(title=x))
+        context["related"] = related_qs
+
+        # Form
+        context["form"] = CommentForm()
+
+        return context
+
+
+class LikeReview(APIView):
+    authentication_classes = (authentication.SessionAuthentication,)
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request, id=None):
+        # id = self.kwargs.get("id")
+        user = self.request.user
+        liked = False
+        if id != -1:
+            obj = MovieReview.objects.get(id=id)
+            if user in obj.likes.all():
+                liked = False
+                obj.likes.remove(user)
+            else:
+                liked = True
+                obj.likes.add(user)
+        updated = True
+        data = {
+            "updated": updated,
+            "liked": liked
         }
-        template_name = 'reviews/review.html'
-    else:
-        reviews = MovieReview.objects.all()
-        popular = MovieReview.objects.all()
-        recently_added = MovieReview.objects.order_by('date_created')
+        return Response(data)
 
-        context = {
-            'reviews': reviews,
-            'popular': popular,
-            'recently_added': recently_added,
+
+class BookmarkReview(APIView):
+    authentication_classes = (authentication.SessionAuthentication,)
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request, id=None):
+        # id = self.kwargs.get("id")
+        user = self.request.user
+        bookmarked = False
+        if id != -1:
+            obj = MovieReview.objects.get(id=id)
+            if obj in user.watchlist.all():
+                bookmarked = False
+                user.watchlist.remove(obj)
+            else:
+                bookmarked = True
+                user.watchlist.add(obj)
+        updated = True
+        data = {
+            "updated": updated,
+            "liked": bookmarked
         }
-        template_name = 'reviews/home.html'
-
-    return render(request, template_name, context)
+        return Response(data)
 
 
-def html_loader(request):
-    load_template = request.path.split('/')[-1]
-    template = loader.get_template('reviews/' + load_template)
+class ReviewLater(APIView):
+    authentication_classes = (authentication.SessionAuthentication,)
+    permission_classes = (permissions.IsAuthenticated,)
 
-    reviews = MovieReview.objects.all()
-    popular = MovieReview.objects.all()
-    recently_added = MovieReview.objects.order_by('date_created')
-    movie_cast = MovieReview.objects.filter('directors')
-    return HttpResponse(template.render({'reviews': reviews, 'popular': popular,
-                                         'recently_added': recently_added, 'casts': movie_cast},
-                                        request))
-
-
-def autocomplete(request):
-    sqs = SearchQuerySet().autocomplete(content_auto=request.GET.get('query', ''))
-    template = loader.get_template('reviews/autocomplete_template.html')
-    return HttpResponse(template.render({'reviews': sqs}, request))
-
-
-def review(request):
-    movie_id = request.GET.get('id', -1)
-    movies = MovieReview.objects.filter(id=movie_id)
-    template = 'reviews/review.html'
-    print(id)
-    return render(request, template, {'movies': movies})
+    def get(self, request, id=None):
+        # id = self.kwargs.get("id")
+        user = self.request.user
+        bookmarked = False
+        if id != -1:
+            obj = MovieReview.objects.get(id=id)
+            if obj in user.review_later.all():
+                bookmarked = False
+                user.review_later.remove(obj)
+            else:
+                bookmarked = True
+                user.review_later.add(obj)
+        updated = True
+        data = {
+            "updated": updated,
+            "liked": bookmarked
+        }
+        return Response(data)
