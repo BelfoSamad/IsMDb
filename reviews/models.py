@@ -109,11 +109,11 @@ class MovieReview(models.Model):
         suggestion = self.suggestion
         if suggestion is not None:
             notify.send(suggestion.memberID, recipient=suggestion.memberID,
-                        verb='The Movie You Suggested Has Been Added',
+                        verb='Suggestion Added',
                         action_object=self)
             for user in suggestion.up_votes.all():
                 notify.send(user, recipient=user,
-                            verb='The Movie You Up voted Has Been Added',
+                            verb='Suggestion Added',
                             action_object=self)
             suggestion.delete()
 

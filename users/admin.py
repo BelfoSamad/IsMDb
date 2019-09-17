@@ -1,9 +1,9 @@
 from django.contrib.auth.admin import UserAdmin, GroupAdmin
+from django.contrib import admin
 from notifications.signals import notify
 
 from users.forms import CustomUserCreationForm, CustomUserChangeForm
 from users.models import Member, MemberGroup
-from admin.admin import admin_site
 
 
 class CustomUserAdmin(UserAdmin):
@@ -23,5 +23,5 @@ class CustomGroupAdmin(GroupAdmin):
     pass
 
 
-admin_site.register(Member, CustomUserAdmin)
-admin_site.register(MemberGroup, CustomGroupAdmin)
+admin.site.register(Member, CustomUserAdmin)
+admin.site.register(MemberGroup, CustomGroupAdmin)

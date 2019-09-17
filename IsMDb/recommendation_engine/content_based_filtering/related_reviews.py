@@ -1,3 +1,4 @@
+from IsMDb.recommendation_engine.content_based_filtering.criteria_similarity import get_criteria_similarity
 from IsMDb.utils import convert_to_dataframe, non_duplicated_words
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
@@ -30,6 +31,8 @@ def get_related(qs, title):
     count = CountVectorizer()
     count_matrix = count.fit_transform(df['words'])
 
+    #print(get_criteria_similarity(qs, None))
+
     # get indices
     indices = pd.Series(df['title'])
 
@@ -45,10 +48,10 @@ def get_related(qs, title):
     score_series = pd.Series(cosine_sim[idx]).sort_values(ascending=False)
 
     # getting the indexes of the 10 most similar movies
-    top_10_indexes = list(score_series.iloc[1:5].index)
+    top_4_indexes = list(score_series.iloc[1:5].index)
 
     # populating the list with the titles of the best 10 matching movies
-    for i in top_10_indexes:
+    for i in top_4_indexes:
         related_movies.append(list(df['title'])[i])
 
     return related_movies

@@ -1,7 +1,9 @@
 {% extends 'reviews/content.html' %}
 {% load static %}
 {% load movie_review_extras %}
+
 {% block review %}
+    <input type="hidden" value="{{ object.id }}" id="review_id"/>
     <div class="review-holder">
         <div class="back-cover">
             <div></div>
@@ -262,7 +264,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="comments">
+                <div class="comments" data-href="{% url 'comments:comments' id=object.id %}">
                     {% for comment in comments %}
                         <div class="com-review v-flex">
                             <div class="com-header h-flex">
@@ -298,7 +300,8 @@
                                         <span>Show Review</span>
                                         <i class="fas fa-sort-down"></i>
                                     </button>
-                                    <button title="Report" class="h-flex btn btn-nbg report">
+                                    <button title="Report" onclick="showCommentModal({{ comment.id }})"
+                                            class="h-flex btn btn-nbg report" id="report_comment">
                                         <i class="fas fa-flag"></i>
                                     </button>
                                 </div>
@@ -379,7 +382,6 @@
                         <button>Show More</button>
                     </div>
                 </div>
-                <!-- TODO: Remove Those -->
             </div>
         </div>
         <div class="related-reviews">
@@ -425,6 +427,44 @@
                         </div>
                     {% endfor %}
                 </div>
+            </div>
+        </div>
+    </div>
+    <div id="ReportCommentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close_report_comment">&times;</span>
+                <h2>Modal Header</h2>
+            </div>
+            <div class="modal-body">
+                <fieldset id="report_comment_content">
+                    <input type="radio" value="value1" name="report_comment_content"> Value 1<br/>
+                    <input type="radio" value="value2" name="report_comment_content"> Value 2<br/>
+                    <input type="radio" value="value3" name="report_comment_content"> Value 3<br/>
+                </fieldset>
+            </div>
+            <div class="modal-footer">
+                <input type="submit" value="Report" class="report_comment"
+                       data-href="{% url 'reports:report_comment' %}">
+            </div>
+        </div>
+    </div>
+    <div id="ReportReviewModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close_report_comment">&times;</span>
+                <h2>Modal Header</h2>
+            </div>
+            <div class="modal-body">
+                <fieldset id="report_review_content">
+                    <input type="radio" value="value1" name="report_review_content"> Value 1<br/>
+                    <input type="radio" value="value2" name="report_review_content"> Value 2<br/>
+                    <input type="radio" value="value3" name="report_review_content"> Value 3<br/>
+                </fieldset>
+            </div>
+            <div class="modal-footer">
+                <input type="submit" value="Report" class="report_review"
+                       data-href="{% url 'reports:report_review' %}">
             </div>
         </div>
     </div>

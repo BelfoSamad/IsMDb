@@ -49,22 +49,13 @@
             font-size: 16px;
             font-weight: bold;
             color: rgba(34, 34, 34, 0.9); }
-      .advanced-search-wrapper .filters .content #year {
-        width: 100%;
-        margin-top: 32px;
-        justify-content: flex-start;
-        align-items: flex-start;
-        max-height: 75%;
-        overflow-y: scroll; }
-        .advanced-search-wrapper .filters .content #year .genre {
-          margin-bottom: 16px; }
-          .advanced-search-wrapper .filters .content #year .genre input:checked + label:before {
-            color: black;
-            background: #EC7063;
-            transform: scale(0.9); }
-          .advanced-search-wrapper .filters .content #year .genre span {
-            font-size: 18px;
-            font-weight: bold; }
+      .advanced-search-wrapper .filters .content #year .range-field label {
+        font-size: 16px; }
+      .advanced-search-wrapper .filters .content #year .range-field input[type=range] + .thumb {
+        background: #EC7063; }
+      .advanced-search-wrapper .filters .content #year .range-field input[type=range] + .thumb.active .value {
+        color: white;
+        font-weight: bold; }
       .advanced-search-wrapper .filters .content #duration .range-field label {
         font-size: 16px; }
       .advanced-search-wrapper .filters .content #duration .range-field input[type=range] + .thumb {

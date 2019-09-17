@@ -17,7 +17,6 @@ Autocomplete.prototype.setup = function () {
     // Watch the input box.
     this.query_box.on('keyup', function () {
         const query = self.query_box.val();
-        document.getElementById("id_title").value = query;
         if (query.length < self.minimum_length) {
             return false
         }

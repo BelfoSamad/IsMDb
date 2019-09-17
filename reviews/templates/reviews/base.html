@@ -1,5 +1,6 @@
 {% load static %}
 {% load notifications_tags %}
+{% load movie_review_extras %}
 <!DOCTYPE html>
 <html lang="EN">
 
@@ -40,6 +41,11 @@
 </head>
 
 <body>
+{% if user.is_authenticated %}
+    <input type="hidden" id="user_auth" value="true"/>
+{% else %}
+    <input type="hidden" id="user_auth" value="false"/>
+{% endif %}
 <div id="main" class="v-flex">
     <div id="topnav" class="h-flex">
         <div class="logo">
@@ -74,49 +80,57 @@
         </div>
         <div class="other-actions h-flex">
             <div class="library v-flex">
-                <a class="c-link" href="{% url 'reviews:library' library="your-watchlist" sort="alphabetical-order" %}"><i
-                        class="fas fa-folder"></i></a>
+                {% if user.is_authenticated %}
+                    <a class="c-link"
+                       href="{% url 'reviews:get_library' library="your-watchlist" sort="alphabetical-order" %}"><i
+                            class="fas fa-folder"></i></a>
+                {% else %}
+                    <a class="c-link"
+                       href="/test"><i
+                            class="fas fa-folder"></i></a>
+                {% endif %}
             </div>
             <div class="notifications v-flex">
                 <div class="bell v-flex"><i class="fas fa-bell"></i></div>
                 <div class="dropdown hidden visually-hidden v-flex">
                     <div class="notification-title">NOTIFICATIONS</div>
-                    <div class="notification v-flex">
-                        <div class="notif-content">Your account has been unbanned account has been unbanned account
-                            has been unbanned account has been unbanned account has been unbanned
-                        </div>
-                        <div class="notif-timestamp">2 hours ago</div>
-                    </div>
-                    <div class="notification v-flex">
-                        <div class="notif-content">@username liked your comment</div>
-                        <div class="notif-timestamp">7 hours ago</div>
-                    </div>
-                    <div class="notification v-flex">
-                        <div class="notif-content">@username liked your comment</div>
-                        <div class="notif-timestamp">6 hours ago</div>
-                    </div>
-                    <div class="notification v-flex">
-                        <div class="notif-content">@username liked your comment</div>
-                        <div class="notif-timestamp">7 hours ago</div>
-                    </div>
-                    <div class="notification v-flex">
-                        <div class="notif-content">Your suggestion has been upvoted by @username</div>
-                        <div class="notif-timestamp">yesterday</div>
-                    </div>
-                    <div class="notification v-flex">
-                        <div class="notif-content">You might be interested in this review: Avengers</div>
-                        <div class="notif-timestamp">3 days ago</div>
-                    </div>
-                    <div class="notification v-flex">
-                        <div class="notif-content">Please review our rules before making a post</div>
-                        <div class="notif-timestamp">7 weeks ago</div>
-                    </div>
-                    <div class="notification v-flex">
-                        <div class="notif-content">Your registration was successful. Welcome in our community!</div>
-                        <div class="notif-timestamp">7 weeks ago</div>
-                    </div>
+                    {% for notification in notifications %}
+                        {% if notification.verb == 'Comment Liked' %}
+                            <div class="notification v-flex">
+                                <div class="notif-content">{{ notification.actor }} Liked Your Comment
+                                    On {{ notification.action_object.title }}</div>
+                                <div class="notif-timestamp">{{ notification|timesince_notifications }}</div>
+                            </div>
+                        {% elif notification.verb == 'Suggestion Approved' %}
+                            <div class="notification v-flex">
+                                <div class="notif-content">Your Suggestion {{ notification.action_object.title }} Has
+                                    Been Approved
+                                </div>
+                                <div class="notif-timestamp">{{ notification|timesince_notifications }}</div>
+                            </div>
+                        {% elif notification.verb == 'Suggestion Upvoted' %}
+                            <div class="notification v-flex">
+                                <div class="notif-content">{{ notification.actor }} Upvoted Your
+                                    Suggestion {{ notification.action_object.title }}</div>
+                                <div class="notif-timestamp">{{ notification|timesince_notifications }}</div>
+                            </div>
+                        {% elif notification.verb == 'Suggestion Added' %}
+                            <div class="notification v-flex">
+                                <div class="notif-content">he Suggestion You Upvoted Has Been Added</div>
+                                <div class="notif-timestamp">{{ notification|timesince_notifications }}</div>
+                            </div>
+                        {% elif notification.verb == 'Comment Disabled' %}
+                            <div class="notification v-flex">
+                                <div class="notif-content">Due To your last actions you can no longer comment, If you
+                                    think there's a misunderstanding, contact us
+                                </div>
+                                <div class="notif-timestamp">{{ notification|timesince_notifications }}</div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
+
             <div class="profile v-flex">
                 <div class="profile-icon v-flex">
                     <img src="{% static 'reviews/assets/profile-image.jpeg' %}" alt="profile-photo">
@@ -204,7 +218,6 @@
         <div class="h-flex copyright">COPYRIGHT © 2019 — IsMDb.</div>
     </div>
 </div>
-
 <script src="{% static 'notifications/notify.js' %}" type="text/javascript"></script>
 <!-- TODO: Change the Elements For the Live Updater -->
 {% register_notify_callbacks callbacks='fill_notification_list,fill_notification_badge' %}
@@ -217,8 +230,12 @@
 <script type="text/javascript" src="{% static 'reviews/js/autocomplete.js' %}"></script>
 <script type="text/javascript" src="{% static 'search/js/autocomplete_search.js' %}"></script>
 <script type="text/javascript" src="{% static 'suggestions/js/suggestions_upvote.js' %}"></script>
+<script type="text/javascript" src="{% static 'suggestions/js/add_suggestion.js' %}"></script>
+<script type="text/javascript" src="{% static 'suggestions/js/autocomplete_suggestion.js' %}"></script>
 <script type="text/javascript" src="{% static 'comments/js/reactions.js' %}"></script>
 <script type="text/javascript" src="{% static 'reviews/js/library.js' %}"></script>
+<script type="text/javascript" src="{% static 'reviews/js/modals.js' %}"></script>
+<script type="text/javascript" src="{% static 'search/js/autocomplete_filter.js' %}"></script>
 </body>
 
 </html>

@@ -1,9 +1,9 @@
 {% extends 'reviews/content.html' %}
+{% load movie_review_extras %}
 {% load static %}
 
 {% block advanced_search %}
     <div class="advanced-search-wrapper h-flex">
-
         <div class="filters v-flex">
             <div class="header">
                 Filters
@@ -16,183 +16,82 @@
                     <li class="tab"><a href="#duration">Duration</a></li>
                 </ul>
                 <div id="genres" class="tab-content v-flex">
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>Action</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>Adventure</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>Drama</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>Thriller</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>Action</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>Adventure</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>Drama</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>Thriller</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>Action</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>Adventure</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>Drama</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>Thriller</span>
-                    </label>
+                    {% for genre in genres %}
+                        <label class="genre h-flex">
+                            <input type="checkbox" class="filled-in" id="{{ genre|genre_text }}"
+                                   onchange="filter()"/>
+                            <span>{{ genre|genre_text }}</span>
+                        </label>
+                    {% endfor %}
                 </div>
                 <div id="criteria" class="tab-content v-flex">
                     <p class="range-field">
-                        <label>Nudity</label>
-                        <input type="range" min="0" max="5" step="0.1"/>
+                        <label>Nudity Min</label>
+                        <input type="range" id="min_nudity" value="0" onchange="filter()" min="0" max="5" step="0.1"/>
                     </p>
                     <p class="range-field">
-                        <label>Violence</label>
-                        <input type="range" min="0" max="5" step="0.1"/>
+                        <label>Nudity Max</label>
+                        <input type="range" id="max_nudity" value="5" onchange="filter()" min="0" max="5" step="0.1"/>
                     </p>
                     <p class="range-field">
-                        <label>LGBTQ</label>
-                        <input type="range" min="0" max="5" step="0.1"/>
+                        <label>Violence Min</label>
+                        <input type="range" id="min_violence" value="0" onchange="filter()" min="0" max="5" step="0.1"/>
                     </p>
                     <p class="range-field">
-                        <label>Morality</label>
-                        <input type="range" min="0" max="5" step="0.1"/>
+                        <label>Violence Max</label>
+                        <input type="range" id="max_violence" value="5" onchange="filter()" min="0" max="5" step="0.1"/>
                     </p>
                     <p class="range-field">
-                        <label>Sex</label>
-                        <input type="range" min="0" max="5" step="0.1"/>
+                        <label>LGBTQ Min</label>
+                        <input type="range" id="min_lgbtq" value="0" onchange="filter()" min="0" max="5" step="0.1"/>
                     </p>
                     <p class="range-field">
-                        <label>Language</label>
-                        <input type="range" min="0" max="5" step="0.1"/>
+                        <label>LGBTQ Max</label>
+                        <input type="range" id="max_lgbtq" value="5" onchange="filter()" min="0" max="5" step="0.1"/>
+                    </p>
+                    <p class="range-field">
+                        <label>Alcohol Min</label>
+                        <input type="range" id="min_alcohol" value="0" onchange="filter()" min="0" max="5" step="0.1"/>
+                    </p>
+                    <p class="range-field">
+                        <label>Alcohol Max</label>
+                        <input type="range" id="max_alcohol" value="5" onchange="filter()" min="0" max="5" step="0.1"/>
+                    </p>
+                    <p class="range-field">
+                        <label>Sex Min</label>
+                        <input type="range" id="min_sex" value="0" onchange="filter()" min="0" max="5" step="0.1"/>
+                    </p>
+                    <p class="range-field">
+                        <label>Sex Max</label>
+                        <input type="range" id="max_sex" value="5" onchange="filter()" min="0" max="5" step="0.1"/>
+                    </p>
+                    <p class="range-field">
+                        <label>Language Min</label>
+                        <input type="range" id="min_language" value="0" onchange="filter()" min="0" max="5" step="0.1"/>
+                    </p>
+                    <p class="range-field">
+                        <label>Language Max</label>
+                        <input type="range" id="max_language" value="5" onchange="filter()" min="0" max="5" step="0.1"/>
                     </p>
                 </div>
                 <div id="year" class="tab-content v-flex">
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>2019</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>2018</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>2017</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>2016</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>2015</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>2014</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>2013</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>2012</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>2011</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>2010</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>2009</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>2008</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>2007</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>2006</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>2005</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>2004</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>2003</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>2002</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>2001</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>2000</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>1999</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>1998</span>
-                    </label>
-                    <label class="genre h-flex">
-                        <input type="checkbox" class="filled-in"/>
-                        <span>1997</span>
-                    </label>
+                    <p class="range-field">
+                        <label>From</label>
+                        <input type="range" id="min_year" value="1900" onchange="filter()" min="1900" max="2019"/>
+                    </p>
+                    <p class="range-field">
+                        <label>To</label>
+                        <input type="range" id="max_year" value="2019" onchange="filter()" min="1900" max="2019"/>
+                    </p>
                 </div>
                 <div id="duration" class="tab-content v-flex">
                     <p class="range-field">
                         <label>Minimum Duration (minutes)</label>
-                        <input type="range" min="0" max="240"/>
+                        <input type="range" id="min_time" value="0" onchange="filter()" min="0" max="240"/>
                     </p>
                     <p class="range-field">
                         <label>Maximum Duration (minutes)</label>
-                        <input type="range" min="0" max="240"/>
+                        <input type="range" id="max_time" value="240" onchange="filter()" min="0" max="240"/>
                     </p>
                 </div>
             </div>
@@ -229,5 +128,3 @@
 
 <!-- Search bar and Filters and Results Here -->
 <script src="{% static 'js/jquery-3.4.1.js' %}"></script>
-<script src="{% static 'search/js/autocomplete_search.js' %}"></script>
-<script src="{% static 'search/js/autocomplete_filter.js' %}"></script>

@@ -1318,7 +1318,7 @@
       if (node.parentNode && node.outerHTML) {
         node.outerHTML = newOuterHTML + (config.keepOriginalSource && node.tagName.toLowerCase() !== 'svg' ? "<!-- ".concat(node.outerHTML, " -->") : '');
       } else if (node.parentNode) {
-        var newNode = document.createElement('span');
+        var newNode = document.createElement('report_comment_span');
         node.parentNode.replaceChild(newNode, node);
         newNode.outerHTML = newOuterHTML;
       }
