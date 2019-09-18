@@ -1,36 +1,40 @@
 // Get the modal
 var report_comment_modal = document.getElementById("ReportCommentModal");
 
-// Get the <span> element that closes the modal
-var report_comment_span = document.getElementsByClassName("close_report_comment")[0];
 
 // When the user clicks on the button, open the modal
 let comment_id = 0;
 
 function showCommentModal(id) {
     comment_id = id;
-    report_comment_modal.style.display = "block";
+    if (document.getElementById("user_auth").value === "false")
+        window.location.href = "http://http://127.0.0.1:8000/test";
+    else {
+        report_comment_modal.style.display = "block";
+    }
 }
 
 // When the user clicks on <span> (x), close the modal
-// TODO: report_comment_span.onclick = function () {
-//     report_comment_modal.style.display = "none";
-// }
+function CloseReportComment() {
+    report_comment_modal.style.display = "none";
+}
+
 //-----------------------------------------------------------------------------------------------------
 // Get the modal
 var report_review_modal = document.getElementById("ReportReviewModal");
 
-// Get the <span> element that closes the modal
-var report_review_span = document.getElementsByClassName("close_report_review")[0];
-
 function showReviewModal() {
-    report_review_modal.style.display = "block";
+    if (document.getElementById("user_auth").value === "false")
+        window.location.href = "http://http://127.0.0.1:8000/test";
+    else {
+        report_review_modal.style.display = "block";
+    }
 }
 
 // When the user clicks on <span> (x), close the modal
-// TODO: report_review_span.onclick = function () {
-//     report_review_modal.style.display = "none";
-// }
+function CloseReportReview() {
+    report_review_modal.style.display = "none";
+}
 
 //------------------------------------------------------------------------------------------------------
 // When the user clicks anywhere outside of the modal, close it

@@ -42,6 +42,11 @@ def timesince_n(notification):
 
 
 @register.filter('range')
-def duration_format(value):
+def get_range(value):
     value = round(value * 10)
     return range(value)
+
+
+@register.filter('enumerate')
+def get_enumeration(list):
+    return enumerate(list)

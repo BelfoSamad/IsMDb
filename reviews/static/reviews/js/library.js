@@ -20,7 +20,7 @@ $(".watchlist").click(function (e) {
         }
     }
 );
-$(".review_later").click(function (e) {
+$(".review-later").click(function (e) {
         e.preventDefault();
         if (document.getElementById("user_auth").value === "false")
             window.location.href = "http://http://127.0.0.1:8000/test";

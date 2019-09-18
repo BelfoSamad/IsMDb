@@ -1,6 +1,7 @@
 import datetime
 
 from django.shortcuts import render, get_object_or_404
+from notifications.models import Notification
 from notifications.signals import notify
 from rest_framework import authentication, permissions
 from rest_framework.response import Response

@@ -9,7 +9,11 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal
 function addSuggestion() {
-    modal.style.display = "block";
+    if (document.getElementById("user_auth").value === "false")
+        window.location.href = "http://http://127.0.0.1:8000/test";
+    else {
+        modal.style.display = "block";
+    }
 }
 
 // When the user clicks on <span> (x), close the modal

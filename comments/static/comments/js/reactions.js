@@ -35,13 +35,19 @@ $(".add_comment").click(function (e) {
                         selector.load(selector.attr("data-href"));
                         $('#id_title').val('');
                         $('#id_content').val('');
+                        var rating_box = $(".view-review").closest(".com-review").find(".rating-content");
+                        rating_box.addClass("visually-hidden");
+                        rating_box.one("transitionend", function () {
+                            rating_box.addClass("hidden");
+                            $(".view-review").find("span").text("Show Rating");
+                            $(".view-review").find("i").css("transform", "rotate(0deg) translateY(0px)");
+                        });
                         $('#alcohol').val(0);
                         $('#language').val(0);
                         $('#lgbtq').val(0);
                         $('#nudity').val(0);
                         $('#sex').val(0);
                         $('#violence').val(0);
-                        showRating(this, 'Show Review', 'Hide Review');
                     }
                 },
                 error: function (error) {

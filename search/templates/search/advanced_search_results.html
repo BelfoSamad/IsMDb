@@ -6,7 +6,8 @@
             <p class="plot">{{ review.description }}</p>
         </div>
         <div class="actions h-flex">
-            <button class="btn"><i title="Review later" class="far fa-clock"></i></button>
+            <button class="btn review-later" data-href="{% url 'reviews:review_later' id=review.id %}"><i
+                    title="Review later" class="far fa-clock"></i></button>
             <a href="{{ review.object.get_absolute_url }}">
                 <button class="btn">View Review</button>
             </a>

@@ -201,7 +201,6 @@ $(".content-holder").scroll(() => {
 });
 
 $(".bell").click(() => {
-    console.log("yo")
     var notif_box = $(".dropdown");
     if (notif_box.hasClass("hidden")) {
         notif_box.removeClass("hidden");
@@ -217,7 +216,6 @@ $(".bell").click(() => {
 });
 
 $(".profile-icon").click(() => {
-    console.log("yo")
     var notif_box = $(".profile-dropdown");
     if (notif_box.hasClass("hidden")) {
         notif_box.removeClass("hidden");

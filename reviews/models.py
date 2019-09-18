@@ -77,6 +77,7 @@ class MovieReview(models.Model):
     time = models.IntegerField(blank=True, null=False, default=0)
     release_date = models.DateField(default=datetime.date.today)
     description = models.TextField(max_length=255, blank=True, null=False)
+    review = models.TextField(max_length=255, blank=True, null=True)
     tags = models.TextField(blank=True)
     suggestion = models.ForeignKey(Suggestion, on_delete=models.SET_NULL, null=True, blank=True)
     country = CountryField(default='US', null=False)

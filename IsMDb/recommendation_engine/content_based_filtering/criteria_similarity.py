@@ -174,18 +174,10 @@ def get_criteria_similarity(qs, collected_reviews):
         for index2, row2 in df.iterrows():
             for col in columns:
                 if col == 'words':
-                    print('----------------------------------')
-                    print(row1[col])
-                    print('----------------------------------')
-                    print(row2[col])
                     matrix[i, j] = get_integral_similarity(row1[col], row2[col])
             j = j + 1
         j = 0
         i = i + 1
-
-    print(matrix)
-    print("--------------------------------------------------------------")
-    print(matrix[0][0])
 
     # get indices
     indices = pd.Series(df['title'])
@@ -197,3 +189,5 @@ def get_criteria_similarity(qs, collected_reviews):
         for i in top_10_indexes:
             # Adding the Top 10 for every review
             full_similarity_matrix.append(list(df['title'])[i])
+
+    return full_similarity_matrix

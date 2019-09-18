@@ -4,6 +4,7 @@ from django.template import loader
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DeleteView
 from haystack.query import SearchQuerySet
+from notifications.models import Notification
 from notifications.signals import notify
 from rest_framework import authentication, permissions
 from rest_framework.response import Response
@@ -81,7 +82,9 @@ class SuggestionUpVote(APIView):
                 else:
                     up_voted = True
                     obj.up_votes.add(user)
-                    notify.send(user, recipient=obj.memberID, verb='Suggestion Upvoted', action_object=obj)
+                    if not Notification.objects.filter(actor=user, recipient=obj.memberID, verb='Suggestion Upvoted',
+                                                       action_object=obj).exists():
+                        notify.send(user, recipient=obj.memberID, verb='Suggestion Upvoted', action_object=obj)
             up_votes = obj.up_votes.count()
         updated = True
         data = {

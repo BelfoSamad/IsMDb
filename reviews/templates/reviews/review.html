@@ -69,11 +69,12 @@
                         <i class="fas fa-plus"></i>
                         <div>Watchlist</div>
                     </button>
-                    <!-- TODO: Add Trailer action Here -->
-                    <button class="h-flex trailer">
-                        <i class="fas fa-play"></i>
-                        <div>Trailer</div>
-                    </button>
+                    <a href="{{ object.trailer }}">
+                        <button class="h-flex trailer">
+                            <i class="fas fa-play"></i>
+                            <div>Trailer</div>
+                        </button>
+                    </a>
                     <button class="h-flex review">
                         <a href="#" class="c-link h-flex">
                             <div>Review Now</div>
@@ -89,7 +90,7 @@
             <div class="content v-flex">
                 <div class="summary">
                     <p>
-                        {{ object.description }}
+                        {{ object.review }}
                     </p>
                 </div>
                 <div class="rating-content">
@@ -408,8 +409,14 @@
                                     </div>
                                     <div class="review-actions h-flex">
                                         <div class="bookmark-rev-later">
-                                            <button><i title="Bookmark" class="far fa-bookmark"></i></button>
-                                            <button><i title="Review later" class="far fa-clock"></i></button>
+                                            <button><i title="Bookmark" class="far fa-bookmark watchlist"
+                                                       data-href="{% url 'reviews:bookmark' id=review.id %}"></i>
+                                            </button>
+                                            <button data-href="{% url 'reviews:review_later' id=review.id %}"
+                                                    class="review-later"><i
+                                                    title="Review later"
+                                                    class="far fa-clock"></i>
+                                            </button>
                                         </div>
                                         <a href="{{ review.get_absolute_url }}">
                                             <button class="view-review" type="submit" name="action">View Review<i
@@ -428,7 +435,7 @@
     <div id="ReportCommentModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <span class="close_report_comment">&times;</span>
+                <span class="close_report_comment" onclick="CloseReportComment()">&times;</span>
                 <h2>Modal Header</h2>
             </div>
             <div class="modal-body">
@@ -447,7 +454,7 @@
     <div id="ReportReviewModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <span class="close_report_comment">&times;</span>
+                <span class="close_report_comment" onclick="CloseReportReview()">&times;</span>
                 <h2>Modal Header</h2>
             </div>
             <div class="modal-body">
