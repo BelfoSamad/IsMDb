@@ -62,10 +62,10 @@
                     <button class="h-flex like_review" data-href="{% url 'reviews:like' id=object.id %}">
                         <i class="far fa-heart"></i>
                     </button>
-                    <button class="h-flex watchlist"
+                    <button class="btn waves-effect waves-light watchlist"
                             data-href="{% url 'reviews:bookmark' id=object.id %}">
                         <i class="fas fa-plus"></i>
-                        <div>Watchlist</div>
+                        Watchlist
                     </button>
                     <!-- TODO: Add Trailer action Here -->
                     <button class="h-flex trailer">
