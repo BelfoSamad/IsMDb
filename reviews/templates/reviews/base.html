@@ -30,7 +30,7 @@
     <link href="{% static 'reviews/style/css/review-cover.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'reviews/style/css/review.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'reviews/style/css/footer.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'reviews/style/css/materialize.css' %}" rel="stylesheet" type="text/css">
+    <!-- <link href="{ static 'reviews/style/css/materialize.css' %}" rel="stylesheet" type="text/css"> -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
@@ -72,7 +72,8 @@
                 <form method="post" action="/search/" class="autocomplete-me" id="search_filter">
                     <input type="search" autocomplete="off" placeholder="Search..." name="q" id="id_q">
                 </form>
-                <button title="Advanced Search (Filters)"><i class="fas fa-sliders-h"></i></button>
+                <button title="Advanced Search (Filters)"><a href="{% url 'search:advanced_search' %}"><i
+                        class="fas fa-sliders-h"></i></a></button>
             </div>
             <div class="search-results v-flex">
 
@@ -96,36 +97,48 @@
                     <div class="notification-title">NOTIFICATIONS</div>
                     {% for notification in notifications %}
                         {% if notification.verb == 'Comment Liked' %}
-                            <div class="notification v-flex">
-                                <div class="notif-content">{{ notification.actor }} Liked Your Comment
-                                    On {{ notification.action_object.title }}</div>
-                                <div class="notif-timestamp">{{ notification|timesince_notifications }}</div>
-                            </div>
+                            <a href="{{ notification.action_object.get_absolute_url }}">
+                                <div class="notification v-flex">
+                                    <div class="notif-content">{{ notification.actor }} Liked Your Comment
+                                        On {{ notification.action_object.title }}</div>
+                                    <div class="notif-timestamp">{{ notification|timesince_notifications }}</div>
+                                </div>
+                            </a>
                         {% elif notification.verb == 'Suggestion Approved' %}
-                            <div class="notification v-flex">
-                                <div class="notif-content">Your Suggestion {{ notification.action_object.title }} Has
-                                    Been Approved
+                            <a href="{% url 'suggestions:suggestions' %}">
+                                <div class="notification v-flex">
+                                    <div class="notif-content">Your Suggestion {{ notification.action_object.title }}
+                                        Has
+                                        Been Approved
+                                    </div>
+                                    <div class="notif-timestamp">{{ notification|timesince_notifications }}</div>
                                 </div>
-                                <div class="notif-timestamp">{{ notification|timesince_notifications }}</div>
-                            </div>
+                            </a>
                         {% elif notification.verb == 'Suggestion Upvoted' %}
-                            <div class="notification v-flex">
-                                <div class="notif-content">{{ notification.actor }} Upvoted Your
-                                    Suggestion {{ notification.action_object.title }}</div>
-                                <div class="notif-timestamp">{{ notification|timesince_notifications }}</div>
-                            </div>
-                        {% elif notification.verb == 'Suggestion Added' %}
-                            <div class="notification v-flex">
-                                <div class="notif-content">he Suggestion You Upvoted Has Been Added</div>
-                                <div class="notif-timestamp">{{ notification|timesince_notifications }}</div>
-                            </div>
-                        {% elif notification.verb == 'Comment Disabled' %}
-                            <div class="notification v-flex">
-                                <div class="notif-content">Due To your last actions you can no longer comment, If you
-                                    think there's a misunderstanding, contact us
+                            <a href="{% url 'suggestions:suggestions' %}">
+                                <div class="notification v-flex">
+                                    <div class="notif-content">{{ notification.actor }} Upvoted Your
+                                        Suggestion {{ notification.action_object.title }}</div>
+                                    <div class="notif-timestamp">{{ notification|timesince_notifications }}</div>
                                 </div>
-                                <div class="notif-timestamp">{{ notification|timesince_notifications }}</div>
-                            </div>
+                            </a>
+                        {% elif notification.verb == 'Suggestion Added' %}
+                            <a href="{{ notification.action_object.get_absolute_url }}">
+                                <div class="notification v-flex">
+                                    <div class="notif-content">The Suggestion You Upvoted Has Been Added</div>
+                                    <div class="notif-timestamp">{{ notification|timesince_notifications }}</div>
+                                </div>
+                            </a>
+                        {% elif notification.verb == 'Comment Disabled' %}
+                            <a href="{{ notification.action_object.get_absolute_url }}">
+                                <div class="notification v-flex">
+                                    <div class="notif-content">Due To your last actions you can no longer comment, If
+                                        you
+                                        think there's a misunderstanding, contact us
+                                    </div>
+                                    <div class="notif-timestamp">{{ notification|timesince_notifications }}</div>
+                                </div>
+                            </a>
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -139,8 +152,8 @@
                     <div class="header h-flex">
                         <img src="{% static 'reviews/assets/profile-image.jpeg' %}" alt="profile-image">
                         <div class="info v-flex">
-                            <span class="nickname">@nickname</span>
-                            <span class="honors">521 <i class="fas fa-award"></i></span>
+                            <span class="nickname">{{ user.username }}</span>
+                            <span class="honors">{{ user.honor_points }} <i class="fas fa-award"></i></span>
                         </div>
                     </div>
                     <div class="option h-flex">
@@ -185,24 +198,47 @@
             <div class="category v-flex">
                 <div class="cat-title">Categories</div>
                 <div class="cat-links v-flex">
-                    <a class="c-link" href="#">Explore</a>
-                    <a class="c-link" href="#">Popular</a>
-                    <a class="c-link" href="#">Recently Added</a>
+                    <a class="c-link" href="{% url 'reviews:category' category="explore" %}">Explore</a>
+                    <a class="c-link" href="{% url 'reviews:category' category="popular" %}">Popular</a>
+                    <a class="c-link" href="{% url 'reviews:category' category="recently_added" %}">Recently Added</a>
                 </div>
             </div>
             <div class="category v-flex">
                 <div class="cat-title">Library</div>
                 <div class="cat-links v-flex">
-                    <a class="c-link" href="#">Your Watchlist</a>
-                    <a class="c-link" href="#">Liked</a>
-                    <a class="c-link" href="#">Review Later</a>
+                    {% if user.authenticated %}
+                        <a class="c-link"
+                           href="{% url 'reviews:get_library' library="your-watchlist" sort="alphabetical-order" %}">Your
+                            Watchlist</a>
+                    {% else %}
+                        <a class="c-link"
+                           href="#">Your Watchlist</a>
+                    {% endif %}
+
+                    {% if user.authenticated %}
+                        <a class="c-link"
+                           href="{% url 'reviews:get_library' library="liked" sort="alphabetical-order" %}">Liked</a>
+                    {% else %}
+                        <a class="c-link"
+                           href="#">Liked</a>
+                    {% endif %}
+
+                    {% if user.authenticated %}
+                        <a class="c-link"
+                           href="{% url 'reviews:get_library' library="review-later" sort="alphabetical-order" %}">Review
+                            Later</a>
+                    {% else %}
+                        <a class="c-link"
+                           href="#">Review
+                            Later</a>
+                    {% endif %}
                 </div>
             </div>
             <div class="category v-flex">
                 <div class="cat-title">MISC</div>
                 <div class="cat-links v-flex">
-                    <a class="c-link" href="#">Advanced Search (Filters)</a>
-                    <a class="c-link" href="#">Suggest a Review</a>
+                    <a class="c-link" href="{% url 'search:advanced_search' %}">Advanced Search (Filters)</a>
+                    <a class="c-link" href="{% url 'suggestions:suggestions' %}">Suggest a Review</a>
                     <a class="c-link" href="#">FAQ</a>
                 </div>
             </div>

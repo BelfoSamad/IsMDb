@@ -128,8 +128,10 @@ def get_integral_similarity(f1, f2, step=1):
                                                                   segment_area_from_f2)
         area_difference += segment_area_difference
         i += 1
-
-    return 1 - area_difference / biggest_area
+    if biggest_area != 0:
+        return 1 - area_difference / biggest_area
+    else:
+        return 1
 
 
 def get_criteria_similarity(qs, collected_reviews):
@@ -153,7 +155,6 @@ def get_criteria_similarity(qs, collected_reviews):
 
     criteria = []
     for index, row in df_copy.iterrows():
-        print(row['alcohol'])
         c = [row['alcohol'], row['nudity'], row['LGBTQ'], row['sex'], row['language'], row['violence']]
         criteria.append(c)
 
@@ -173,24 +174,26 @@ def get_criteria_similarity(qs, collected_reviews):
         for index2, row2 in df.iterrows():
             for col in columns:
                 if col == 'words':
+                    print('----------------------------------')
+                    print(row1[col])
+                    print('----------------------------------')
+                    print(row2[col])
                     matrix[i, j] = get_integral_similarity(row1[col], row2[col])
             j = j + 1
         j = 0
         i = i + 1
 
     print(matrix)
+    print("--------------------------------------------------------------")
+    print(matrix[0][0])
 
     # get indices
     indices = pd.Series(df['title'])
 
-    print(collected_reviews)
-    print(type(collected_reviews))
-
-    if collected_reviews is not None:
-        for review in collected_reviews.all():
-            idx = indices[indices == review.title].index[0]
-            score_series = pd.Series(matrix[idx]).sort_values(ascending=False)
-            top_10_indexes = list(score_series.iloc[1:11].index)
-            for i in top_10_indexes:
-                # Adding the Top 10 for every review
-                full_similarity_matrix.append(list(df['title'])[i])
+    for review in collected_reviews.all():
+        idx = indices[indices == review.title].index[0]
+        score_series = pd.Series(matrix[idx]).sort_values(ascending=False)
+        top_10_indexes = list(score_series.iloc[1:11].index)
+        for i in top_10_indexes:
+            # Adding the Top 10 for every review
+            full_similarity_matrix.append(list(df['title'])[i])

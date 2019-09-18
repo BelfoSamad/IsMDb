@@ -27,7 +27,7 @@ class ReportComment(APIView):
                  s.groups.filter(name='Admin').exists() or s.groups.filter(name='Moderator').exists()]
         comment = Comment.objects.get(id=comment_id)
         print(staff)
-        notify.send(user, recipient=staff, verb='Reported Comment', action_object=comment.reviewID)
+        notify.send(user, recipient=staff, verb='Reported Comment', action_object=comment)
         data = {
             "Reported": True,
         }
@@ -47,7 +47,7 @@ class ReportReview(APIView):
         staff = [s for s in Member.objects.all() if
                  s.groups.filter(name='Admin').exists() or s.groups.filter(name='Moderator').exists()]
         review = MovieReview.objects.get(id=review_id)
-        notify.send(user, recipient=staff, verb='Reported Comment', action_object=review)
+        notify.send(user, recipient=staff, verb='Reported Review', action_object=review)
         data = {
             "Reported": True,
         }

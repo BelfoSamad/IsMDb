@@ -13,9 +13,9 @@ function showCommentModal(id) {
 }
 
 // When the user clicks on <span> (x), close the modal
-report_comment_span.onclick = function () {
-    report_comment_modal.style.display = "none";
-}
+// TODO: report_comment_span.onclick = function () {
+//     report_comment_modal.style.display = "none";
+// }
 //-----------------------------------------------------------------------------------------------------
 // Get the modal
 var report_review_modal = document.getElementById("ReportReviewModal");

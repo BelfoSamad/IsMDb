@@ -6,16 +6,14 @@ $(".up_vote").click(function (e) {
         var this_ = $(this);
         var upvote_url = this_.attr("data-href");
         console.log(upvote_url);
-        var countClass = $("#" + this_.attr("id"));
+        var countClass = $("." + this_.attr("id"));
         $.ajax({
             url: upvote_url,
             method: "GET",
             data: {},
             success: function (data) {
                 console.log(data);
-                if (data.up_voted) {
-                    countClass.text("Upvotes" + data.up_votes)
-                }
+                countClass.text(data.up_votes + " upvotes")
             }, error: function (error) {
                 console.log(error);
                 console.log("error");
@@ -52,6 +50,10 @@ $(".delete").click(function (e) {
         data: {},
         success: function (data) {
             console.log(data);
+            if (data.deleted) {
+                var selector = $(".four-suggs");
+                selector.load(selector.attr("data-href"));
+            }
         }, error: function (error) {
             console.log(error);
         }

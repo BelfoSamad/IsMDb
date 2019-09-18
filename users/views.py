@@ -16,10 +16,6 @@ def index(request):
     return render(request, 'users/index.html')
 
 
-@login_required
-def special(request):
-    return HttpResponse("You are logged in !")
-
 
 @login_required
 def user_logout(request):
@@ -70,7 +66,7 @@ def user_login(request):
             print("They used username: {} and password: {}".format(username, password))
             return HttpResponse("Invalid login details given")
     else:
-        return render(request, 'users/login.html', {})
+        return render(request, 'reviews/login.html', {})
 
 
 class BookmarkReview(APIView):
@@ -97,10 +93,5 @@ class BookmarkReview(APIView):
         return Response(data)
 
 
-class WatchListView(ListView):
-    template_name = 'users/bookmarks.html'
-    context_object_name = 'reviews_list'
-
-    def get_queryset(self):
-        queryset = self.request.user.watchlist.all()
-        return queryset
+def signup(request):
+    return render(request, 'reviews/signup.html', {})

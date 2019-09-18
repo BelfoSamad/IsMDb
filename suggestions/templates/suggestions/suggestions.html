@@ -8,7 +8,7 @@
                 <button class="btn add" id="add_suggestion" onclick="addSuggestion()">Add A Suggestion</button>
             </div>
             <div class="content v-flex">
-                <div class="four-suggs v-flex">
+                <div class="four-suggs v-flex" data-href="{% url 'suggestions:my_suggestions' %}">
                     {% for suggestion in my_suggestions %}
                         <div class="my-suggestion v-flex">
                             <div class="header h-flex">
@@ -46,11 +46,11 @@
                                             data-href="{% url 'suggestions:upvote' id=suggestion.id %}"
                                             id="sugg_{{ suggestion.id }}"><i
                                             class="fas fa-level-up-alt"></i></button>
-                                    <span class="upvotes" id="sugg_{{ suggestion.id }}">{{ suggestion.up_votes.count }} upvotes</span>
+                                    <span class="upvotes sugg_{{ suggestion.id }}">{{ suggestion.up_votes.count }} upvotes</span>
                                 </div>
                             </div>
                             <div class="content">
-                                <p>No description</p>
+                                <p>{{ suggestion.description }}</p>
                             </div>
                         </div>
                     {% empty %}
@@ -67,7 +67,7 @@
                 <h2>Modal Header</h2>
             </div>
             <div class="modal-body">
-                <form method="post" action="/search/" class="autocomplete-me" id="search_filter">
+                <form method="post" action="/search/" class="autocomplete-me-suggestions" id="search_filter">
                     <label for="id_title_auto">Title:</label>
                     <br/>
                     <input type="search" name="title_auto" maxlength="255" id="id_title_auto" autocomplete="off">

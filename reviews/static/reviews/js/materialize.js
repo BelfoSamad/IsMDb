@@ -10367,7 +10367,7 @@ $jscomp.polyfill = function (e, r, p, m) {
     }, {
       key: "_setupCounter",
       value: function _setupCounter() {
-        this.counterEl = document.createElement('report_comment_span');
+        this.counterEl = document.createElement('span');
         $(this.counterEl).addClass('character-counter').css({
           float: 'right',
           'font-size': '12px',
@@ -12285,8 +12285,8 @@ $jscomp.polyfill = function (e, r, p, m) {
     }, {
       key: "_setupThumb",
       value: function _setupThumb() {
-        this.thumb = document.createElement('report_comment_span');
-        this.value = document.createElement('report_comment_span');
+        this.thumb = document.createElement('span');
+        this.value = document.createElement('span');
         $(this.thumb).addClass('thumb');
         $(this.value).addClass('value');
         $(this.thumb).append(this.value);

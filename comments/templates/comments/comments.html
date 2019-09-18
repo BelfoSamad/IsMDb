@@ -9,7 +9,7 @@
                     <span class="honors">1033 <i class="fas fa-award"></i></span>
                 </div>
             </div>
-            <div class="timestamp">2 days ago</div>
+            <div class="timestamp">{{ comment.date_added|timesince }}</div>
         </div>
         <div class="com-content">
             <p>{{ comment.content }}</p>

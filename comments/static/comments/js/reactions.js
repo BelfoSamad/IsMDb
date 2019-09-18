@@ -1,45 +1,47 @@
 $(".add_comment").click(function (e) {
         e.preventDefault();
-        if (document.getElementById("user_auth").val === "false")
+        if (document.getElementById("user_auth").value === "false")
             window.location.href = "http://http://127.0.0.1:8000/test";
         else {
             var this_ = $(this);
             var id = this_.attr("id");
             var add_comment_url = this_.attr("data-href");
-            var title = "test";
-            //document.getElementById("id_title").value;
-            var content = document.getElementById("id_content").value;
-            var alcohol = 2.5;
-            //document.getElementById("id_alcohol").value;
-            var language = 4.2;
-            //document.getElementById("id_language").value;
-            var lgbtq = 1;
-            //document.getElementById("id_lgbtq").value;
-            var nudity = 1;
-            //document.getElementById("id_nudity").value;
-            var sex = 3;
-            //document.getElementById("id_sex").value;
-            var violence = 2;
-            //document.getElementById("id_violence").value;
+            var title = document.getElementById("id_title");
+            var content = document.getElementById("id_content");
+            var alcohol = document.getElementById("alcohol");
+            var language = document.getElementById("language");
+            var lgbtq = document.getElementById("lgbtq");
+            var nudity = document.getElementById("nudity");
+            var sex = document.getElementById("sex");
+            var violence = document.getElementById("violence");
             $.ajax({
                 url: add_comment_url,
                 method: "GET",
                 data: {
-                    'title': title,
-                    'content': content,
+                    'title': title.value,
+                    'content': content.value,
                     'id': id,
-                    'alcohol': alcohol,
-                    'language': language,
-                    'lgbtq': lgbtq,
-                    'nudity': nudity,
-                    'sex': sex,
-                    'violence': violence
+                    'alcohol': alcohol.value,
+                    'language': language.value,
+                    'lgbtq': lgbtq.value,
+                    'nudity': nudity.value,
+                    'sex': sex.value,
+                    'violence': violence.value
                 },
                 success: function (data) {
                     console.log(data);
                     if (data.added) {
                         var selector = $(".comments");
                         selector.load(selector.attr("data-href"));
+                        $('#id_title').val('');
+                        $('#id_content').val('');
+                        $('#alcohol').val(0);
+                        $('#language').val(0);
+                        $('#lgbtq').val(0);
+                        $('#nudity').val(0);
+                        $('#sex').val(0);
+                        $('#violence').val(0);
+                        showRating(this, 'Show Review', 'Hide Review');
                     }
                 },
                 error: function (error) {
@@ -51,7 +53,7 @@ $(".add_comment").click(function (e) {
     }
 );
 $(".like").click(function (e) {
-        if (document.getElementById("user_auth").val === "false")
+        if (document.getElementById("user_auth").value === "false")
             window.location.href = "http://http://127.0.0.1:8000/test";
         else {
             var this_ = $(this);
@@ -72,7 +74,7 @@ $(".like").click(function (e) {
     }
 );
 $(".dislike").click(function (e) {
-        if (document.getElementById("user_auth").val === "false")
+        if (document.getElementById("user_auth").value === "false")
             window.location.href = "http://http://127.0.0.1:8000/test";
         else {
             var this_ = $(this);

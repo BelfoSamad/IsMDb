@@ -108,9 +108,6 @@ class MovieReview(models.Model):
         super(MovieReview, self).save(*args, **kwargs)
         suggestion = self.suggestion
         if suggestion is not None:
-            notify.send(suggestion.memberID, recipient=suggestion.memberID,
-                        verb='Suggestion Added',
-                        action_object=self)
             for user in suggestion.up_votes.all():
                 notify.send(user, recipient=user,
                             verb='Suggestion Added',

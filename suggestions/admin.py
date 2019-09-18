@@ -26,6 +26,9 @@ class SuggestionFilter(SimpleListFilter):
 def approve_suggestion(modelAdmin, request, queryset):
     for suggestion in queryset:
         user = request.user
+        print(user)
+        print(suggestion.memberID)
+        print(suggestion)
         notify.send(user, recipient=suggestion.memberID, verb='Suggestion Approved', action_object=suggestion)
         suggestion.approved = True
         suggestion.save()

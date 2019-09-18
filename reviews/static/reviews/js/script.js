@@ -90,6 +90,7 @@ class CarouselV2 {
 }
 
 displayCarousel = new CarouselV2($("#content").find(".display"));
+
 //setInterval(() => displayCarousel.swipeRight(), 15000)
 
 function hideReviewDetails(element) {
@@ -258,6 +259,13 @@ function showRating(element, text1, text2) {
             $(element).find("span").text(text1);
             $(element).find("i").css("transform", "rotate(0deg) translateY(0px)");
         });
+        $('#alcohol').val(0);
+        $('#language').val(0);
+        $('#lgbtq').val(0);
+        $('#nudity').val(0);
+        $('#sex').val(0);
+        $('#violence').val(0);
+
     }
 };
 
