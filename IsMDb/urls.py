@@ -15,6 +15,7 @@ Including another URLconf
 """
 import notifications.urls
 from django.conf.urls import url
+from django.contrib import admin
 from django.urls import include
 from admin.admin import admin_site
 from django.conf import settings
@@ -23,8 +24,10 @@ from django.conf.urls.static import static
 urlpatterns = [
                   url(r'^', include('reviews.urls')),
                   url(r'^suggestions/', include('suggestions.urls')),
+                  url(r'^report/', include('reports.urls')),
                   url(r'^', include('comments.urls')),
+                  url(r'^', include('users.urls')),
                   url(r'^search/', include('search.urls')),
                   url('^inbox/notifications/', include(notifications.urls, namespace='notifications')),
-                  url('admin/', admin_site.urls),
+                  url('admin/', admin.site.urls),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

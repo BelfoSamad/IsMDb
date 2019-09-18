@@ -1,0 +1,36 @@
+{% for review in reviews %}
+    <div class="review h-flex">
+        <div class="v-flex review-cover">
+            <img class="film-cover" src="{{ review.poster.url }}">
+        </div>
+        <div class="more-info">
+            <div class="animation-div"></div>
+            <div class="more-info-wrapper v-flex">
+                <div class="film-title h-flex">
+                    <h4>{{ review.title }}</h4>
+                    <span title="IsMDb Rating" class="rating">{{ review.IMDB_rating }}</span>
+                </div>
+                <div class="plot">
+                    <p>{{ review.description }}</p>
+                </div>
+                <div class="metadata h-flex">
+                    <div class="year"><span>{{ review.year }}</span></div>
+                    <div class="genres">
+                        {% for genre in review.genre %}
+                            <span>{{ genre }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="review-actions h-flex">
+                    <div class="bookmark-rev-later">
+                        <button><i title="Bookmark" class="far fa-bookmark"></i></button>
+                        <button><i title="Review later" class="far fa-clock"></i></button>
+                    </div>
+                    <button class="view-review" type="button" name="action">View Review<i
+                            class="fas fa-long-arrow-alt-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}

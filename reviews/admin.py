@@ -1,14 +1,13 @@
-# from django.contrib import admin
-from admin.admin import admin_site
-from admin.admin import MyModelAdmin
+from django.contrib import admin
 from reviews.models import Actor, Director, Writer, MovieReview
 
 
-class MovieReviewAdmin(MyModelAdmin):
-    exclude = ['slug', 'pub_date', 'likes']
+class MovieReviewAdmin(admin.ModelAdmin):
+    #TODO: exclude likes
+    exclude = ['slug', 'pub_date']
 
 
-admin_site.register(Actor)
-admin_site.register(Director)
-admin_site.register(Writer)
-admin_site.register(MovieReview, MovieReviewAdmin)
+admin.site.register(Actor)
+admin.site.register(Director)
+admin.site.register(Writer)
+admin.site.register(MovieReview, MovieReviewAdmin)

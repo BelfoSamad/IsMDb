@@ -90,6 +90,7 @@ class CarouselV2 {
 }
 
 displayCarousel = new CarouselV2($("#content").find(".display"));
+
 //setInterval(() => displayCarousel.swipeRight(), 15000)
 
 function hideReviewDetails(element) {
@@ -200,7 +201,6 @@ $(".content-holder").scroll(() => {
 });
 
 $(".bell").click(() => {
-    console.log("yo")
     var notif_box = $(".dropdown");
     if (notif_box.hasClass("hidden")) {
         notif_box.removeClass("hidden");
@@ -216,7 +216,6 @@ $(".bell").click(() => {
 });
 
 $(".profile-icon").click(() => {
-    console.log("yo")
     var notif_box = $(".profile-dropdown");
     if (notif_box.hasClass("hidden")) {
         notif_box.removeClass("hidden");
@@ -258,6 +257,13 @@ function showRating(element, text1, text2) {
             $(element).find("span").text(text1);
             $(element).find("i").css("transform", "rotate(0deg) translateY(0px)");
         });
+        $('#alcohol').val(0);
+        $('#language').val(0);
+        $('#lgbtq').val(0);
+        $('#nudity').val(0);
+        $('#sex').val(0);
+        $('#violence').val(0);
+
     }
 };
 

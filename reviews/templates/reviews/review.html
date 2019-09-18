@@ -1,7 +1,9 @@
 {% extends 'reviews/content.html' %}
 {% load static %}
 {% load movie_review_extras %}
+
 {% block review %}
+    <input type="hidden" value="{{ object.id }}" id="review_id"/>
     <div class="review-holder">
         <div class="back-cover">
             <div></div>
@@ -67,11 +69,12 @@
                         <i class="fas fa-plus"></i>
                         Watchlist
                     </button>
-                    <!-- TODO: Add Trailer action Here -->
-                    <button class="h-flex trailer">
-                        <i class="fas fa-play"></i>
-                        <div>Trailer</div>
-                    </button>
+                    <a href="{{ object.trailer }}">
+                        <button class="h-flex trailer">
+                            <i class="fas fa-play"></i>
+                            <div>Trailer</div>
+                        </button>
+                    </a>
                     <button class="h-flex review">
                         <a href="#" class="c-link h-flex">
                             <div>Review Now</div>
@@ -87,7 +90,7 @@
             <div class="content v-flex">
                 <div class="summary">
                     <p>
-                        {{ object.description }}
+                        {{ object.review }}
                     </p>
                 </div>
                 <div class="rating-content">
@@ -102,57 +105,54 @@
                             <div class="bar-rating h-flex">
                                 <div class="bars v-flex">
                                     <div class="rating h-flex">
-                                        <div class="title">Nudity</div>
+                                        <div class="title">Alcohol</div>
                                         <div class="value h-flex">
-                                            <div class="unit"></div>
-                                            <div class="unit"></div>
-                                            <div class="unit"></div>
-                                            <div class="unit"></div>
-                                            <div class="unit"></div>
+                                            {% for x in object.alcohol|range %}
+                                                <div class="unit"></div>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                     <div class="rating h-flex">
-                                        <div class="title">LGBT</div>
+                                        <div class="title">Language</div>
                                         <div class="value h-flex">
-                                            <div class="unit"></div>
-                                            <div class="unit"></div>
-                                            <div class="unit"></div>
+                                            {% for x in object.language|range %}
+                                                <div class="unit"></div>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                     <div class="rating h-flex">
-                                        <div class="title">Violence</div>
+                                        <div class="title">LGBTQ</div>
                                         <div class="value h-flex">
-                                            <div class="unit"></div>
-                                            <div class="unit"></div>
-                                            <div class="unit"></div>
-                                            <div class="unit"></div>
+                                            {% for x in object.LGBTQ|range %}
+                                                <div class="unit"></div>
+                                            {% endfor %}
                                         </div>
 
                                     </div>
                                 </div>
                                 <div class="bars v-flex">
                                     <div class="rating h-flex">
-                                        <div class="title">Morality</div>
+                                        <div class="title">Nudity</div>
                                         <div class="value h-flex">
-                                            <div class="unit"></div>
+                                            {% for x in object.nudity|range %}
+                                                <div class="unit"></div>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                     <div class="rating h-flex">
                                         <div class="title">Sex</div>
                                         <div class="value h-flex">
-                                            <div class="unit"></div>
-                                            <div class="unit"></div>
-                                            <div class="unit"></div>
-                                            <div class="unit"></div>
+                                            {% for x in object.sex|range %}
+                                                <div class="unit"></div>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                     <div class="rating h-flex">
-                                        <div class="title">Morality</div>
+                                        <div class="title">Violence</div>
                                         <div class="value h-flex">
-                                            <div class="unit"></div>
-                                            <div class="unit"></div>
-                                            <div class="unit"></div>
-                                            <div class="unit"></div>
+                                            {% for x in object.violence|range %}
+                                                <div class="unit"></div>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>
@@ -203,57 +203,58 @@
                                 <div class="bar-rating h-flex">
                                     <div class="bars v-flex">
                                         <div class="rating h-flex">
-                                            <div class="title">Nudity</div>
+                                            <div class="title">Alcohol</div>
                                             <div class="value h-flex">
-                                                <div class="unit"></div>
-                                                <div class="unit"></div>
-                                                <div class="unit"></div>
-                                                <div class="unit"></div>
-                                                <div class="unit"></div>
+                                                <p class="range-field">
+                                                    <input type="range" id="alcohol" value="0" step="0.1" min="0"
+                                                           max="5"/>
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="rating h-flex">
-                                            <div class="title">LGBT</div>
+                                            <div class="title">Language</div>
                                             <div class="value h-flex">
-                                                <div class="unit"></div>
-                                                <div class="unit"></div>
-                                                <div class="unit"></div>
+                                                <p class="range-field">
+                                                    <input type="range" id="language" value="0" step="0.1" min="0"
+                                                           max="5"/>
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="rating h-flex">
-                                            <div class="title">Violence</div>
+                                            <div class="title">LGBTQ</div>
                                             <div class="value h-flex">
-                                                <div class="unit"></div>
-                                                <div class="unit"></div>
-                                                <div class="unit"></div>
-                                                <div class="unit"></div>
+                                                <p class="range-field">
+                                                    <input type="range" id="lgbtq" value="0" step="0.1" min="0"
+                                                           max="5"/>
+                                                </p>
                                             </div>
-
                                         </div>
                                     </div>
                                     <div class="bars v-flex">
                                         <div class="rating h-flex">
-                                            <div class="title">Morality</div>
+                                            <div class="title">Nudity</div>
                                             <div class="value h-flex">
-                                                <div class="unit"></div>
+                                                <p class="range-field">
+                                                    <input type="range" id="nudity" value="0" step="0.1" min="0"
+                                                           max="5"/>
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="rating h-flex">
                                             <div class="title">Sex</div>
                                             <div class="value h-flex">
-                                                <div class="unit"></div>
-                                                <div class="unit"></div>
-                                                <div class="unit"></div>
-                                                <div class="unit"></div>
+                                                <p class="range-field">
+                                                    <input type="range" id="sex" value="0" step="0.1" min="0" max="5"/>
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="rating h-flex">
-                                            <div class="title">Morality</div>
+                                            <div class="title">Violence</div>
                                             <div class="value h-flex">
-                                                <div class="unit"></div>
-                                                <div class="unit"></div>
-                                                <div class="unit"></div>
-                                                <div class="unit"></div>
+                                                <p class="range-field">
+                                                    <input type="range" id="violence" value="0" step="0.1" min="0"
+                                                           max="5"/>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -262,7 +263,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="comments">
+                <div class="comments" data-href="{% url 'comments:comments' id=object.id %}">
                     {% for comment in comments %}
                         <div class="com-review v-flex">
                             <div class="com-header h-flex">
@@ -298,7 +299,8 @@
                                         <span>Show Review</span>
                                         <i class="fas fa-sort-down"></i>
                                     </button>
-                                    <button title="Report" class="h-flex btn btn-nbg report">
+                                    <button title="Report" onclick="showCommentModal({{ comment.id }})"
+                                            class="h-flex btn btn-nbg report" id="report_comment">
                                         <i class="fas fa-flag"></i>
                                     </button>
                                 </div>
@@ -306,8 +308,8 @@
                             <div class="hidden visually-hidden rating-content">
                                 <div class="ismdb-rating v-flex">
                                     <div class="rating-header h-flex">
-                                <span class="text">rating based on the following
-                                    criteria:</span>
+                        <span class="text">rating based on the following
+                            criteria:</span>
                                         <i class="far fa-question-circle"></i>
                                     </div>
                                     <div class="ratings h-flex">
@@ -315,57 +317,54 @@
                                         <div class="bar-rating h-flex">
                                             <div class="bars v-flex">
                                                 <div class="rating h-flex">
-                                                    <div class="title">Nudity</div>
+                                                    <div class="title">Alcohol</div>
                                                     <div class="value h-flex">
-                                                        <div class="unit"></div>
-                                                        <div class="unit"></div>
-                                                        <div class="unit"></div>
-                                                        <div class="unit"></div>
-                                                        <div class="unit"></div>
+                                                        {% for x in comment.alcohol|range %}
+                                                            <div class="unit"></div>
+                                                        {% endfor %}
                                                     </div>
                                                 </div>
                                                 <div class="rating h-flex">
-                                                    <div class="title">LGBT</div>
+                                                    <div class="title">Language</div>
                                                     <div class="value h-flex">
-                                                        <div class="unit"></div>
-                                                        <div class="unit"></div>
-                                                        <div class="unit"></div>
+                                                        {% for x in comment.language|range %}
+                                                            <div class="unit"></div>
+                                                        {% endfor %}
                                                     </div>
                                                 </div>
                                                 <div class="rating h-flex">
-                                                    <div class="title">Violence</div>
+                                                    <div class="title">LGBTQ</div>
                                                     <div class="value h-flex">
-                                                        <div class="unit"></div>
-                                                        <div class="unit"></div>
-                                                        <div class="unit"></div>
-                                                        <div class="unit"></div>
+                                                        {% for x in comment.LGBTQ|range %}
+                                                            <div class="unit"></div>
+                                                        {% endfor %}
                                                     </div>
 
                                                 </div>
                                             </div>
                                             <div class="bars v-flex">
                                                 <div class="rating h-flex">
-                                                    <div class="title">Morality</div>
+                                                    <div class="title">Nudity</div>
                                                     <div class="value h-flex">
-                                                        <div class="unit"></div>
+                                                        {% for x in comment.nudity|range %}
+                                                            <div class="unit"></div>
+                                                        {% endfor %}
                                                     </div>
                                                 </div>
                                                 <div class="rating h-flex">
                                                     <div class="title">Sex</div>
                                                     <div class="value h-flex">
-                                                        <div class="unit"></div>
-                                                        <div class="unit"></div>
-                                                        <div class="unit"></div>
-                                                        <div class="unit"></div>
+                                                        {% for x in comment.sex|range %}
+                                                            <div class="unit"></div>
+                                                        {% endfor %}
                                                     </div>
                                                 </div>
                                                 <div class="rating h-flex">
-                                                    <div class="title">Morality</div>
+                                                    <div class="title">Violence</div>
                                                     <div class="value h-flex">
-                                                        <div class="unit"></div>
-                                                        <div class="unit"></div>
-                                                        <div class="unit"></div>
-                                                        <div class="unit"></div>
+                                                        {% for x in comment.violence|range %}
+                                                            <div class="unit"></div>
+                                                        {% endfor %}
                                                     </div>
                                                 </div>
                                             </div>
@@ -379,7 +378,6 @@
                         <button>Show More</button>
                     </div>
                 </div>
-                <!-- TODO: Remove Those -->
             </div>
         </div>
         <div class="related-reviews">
@@ -411,8 +409,14 @@
                                     </div>
                                     <div class="review-actions h-flex">
                                         <div class="bookmark-rev-later">
-                                            <button><i title="Bookmark" class="far fa-bookmark"></i></button>
-                                            <button><i title="Review later" class="far fa-clock"></i></button>
+                                            <button><i title="Bookmark" class="far fa-bookmark watchlist"
+                                                       data-href="{% url 'reviews:bookmark' id=review.id %}"></i>
+                                            </button>
+                                            <button data-href="{% url 'reviews:review_later' id=review.id %}"
+                                                    class="review-later"><i
+                                                    title="Review later"
+                                                    class="far fa-clock"></i>
+                                            </button>
                                         </div>
                                         <a href="{{ review.get_absolute_url }}">
                                             <button class="view-review" type="submit" name="action">View Review<i
@@ -425,6 +429,44 @@
                         </div>
                     {% endfor %}
                 </div>
+            </div>
+        </div>
+    </div>
+    <div id="ReportCommentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close_report_comment" onclick="CloseReportComment()">&times;</span>
+                <h2>Modal Header</h2>
+            </div>
+            <div class="modal-body">
+                <fieldset id="report_comment_content">
+                    <input type="radio" value="value1" name="report_comment_content"> Value 1<br/>
+                    <input type="radio" value="value2" name="report_comment_content"> Value 2<br/>
+                    <input type="radio" value="value3" name="report_comment_content"> Value 3<br/>
+                </fieldset>
+            </div>
+            <div class="modal-footer">
+                <input type="submit" value="Report" class="report_comment"
+                       data-href="{% url 'reports:report_comment' %}">
+            </div>
+        </div>
+    </div>
+    <div id="ReportReviewModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close_report_comment" onclick="CloseReportReview()">&times;</span>
+                <h2>Modal Header</h2>
+            </div>
+            <div class="modal-body">
+                <fieldset id="report_review_content">
+                    <input type="radio" value="value1" name="report_review_content"> Value 1<br/>
+                    <input type="radio" value="value2" name="report_review_content"> Value 2<br/>
+                    <input type="radio" value="value3" name="report_review_content"> Value 3<br/>
+                </fieldset>
+            </div>
+            <div class="modal-footer">
+                <input type="submit" value="Report" class="report_review"
+                       data-href="{% url 'reports:report_review' %}">
             </div>
         </div>
     </div>

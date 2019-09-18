@@ -178,7 +178,7 @@
                 .review-holder .ismdb-review .content .rating-content .ismdb-rating .ratings .bar-rating .bars .rating .value .unit {
                   background: #EC7063;
                   height: 100%;
-                  width: 25px;
+                  width: 2.5px;
                   margin-rigth: 1px; }
             .review-holder .ismdb-review .content .rating-content .ismdb-rating .ratings .bar-rating .bars:nth-child(1) {
               margin-right: 48px; }
@@ -333,7 +333,7 @@
                   .review-holder .community-review .content .com-review .rating-content .ismdb-rating .ratings .bar-rating .bars .rating .value .unit {
                     background: #EC7063;
                     height: 100%;
-                    width: 25px;
+                    width: 2.5px;
                     margin-rigth: 1px; }
               .review-holder .community-review .content .com-review .rating-content .ismdb-rating .ratings .bar-rating .bars:nth-child(1) {
                 margin-right: 48px; }

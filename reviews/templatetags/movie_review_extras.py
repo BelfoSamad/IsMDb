@@ -1,4 +1,5 @@
 from django import template
+from notifications.signals import notify
 
 register = template.Library()
 
@@ -33,3 +34,19 @@ def genre_text(value):
                      (14, 'Sci-Fi'))
     choices = dict(genre_choices)
     return choices[value]
+
+
+@register.filter('timesince_notifications')
+def timesince_n(notification):
+    return notification.timesince()
+
+
+@register.filter('range')
+def get_range(value):
+    value = round(value * 10)
+    return range(value)
+
+
+@register.filter('enumerate')
+def get_enumeration(list):
+    return enumerate(list)

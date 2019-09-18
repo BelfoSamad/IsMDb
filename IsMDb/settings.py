@@ -32,8 +32,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'admin.apps.MyAdminConfig',
+    # 'admin.apps.MyAdminConfig',
     'django.contrib.auth',
+    'django.contrib.admin',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -71,7 +72,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [TEMPLATE_DIR,
-                 os.path.join(BASE_DIR, 'admin/templates'),
+                 # os.path.join(BASE_DIR, 'admin/templates'),
                  # os.path.join(BASE_DIR, 'users/templates'),
                  # TODO: add templates
                  os.path.join(BASE_DIR, 'reviews/templates')],
@@ -147,3 +148,4 @@ MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'users.Member'
+

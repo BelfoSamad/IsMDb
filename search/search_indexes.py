@@ -21,9 +21,9 @@ class MovieReviewIndex(indexes.SearchIndex, indexes.Indexable):
 
 class SuggestionIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
-    title = indexes.CharField(model_attr='title')
+    title_suggestions = indexes.CharField(model_attr='title')
 
-    content_auto = indexes.EdgeNgramField(model_attr='title')
+    content_auto_suggestion = indexes.EdgeNgramField(model_attr='title')
 
     def get_model(self):
         return Suggestion

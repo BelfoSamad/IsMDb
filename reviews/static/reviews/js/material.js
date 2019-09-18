@@ -635,9 +635,9 @@ MaterialButton.prototype['enable'] = MaterialButton.prototype.enable;
 MaterialButton.prototype.init = function () {
     if (this.element_) {
         if (this.element_.classList.contains(this.CssClasses_.RIPPLE_EFFECT)) {
-            var rippleContainer = document.createElement('span');
+            var rippleContainer = document.createElement('report_comment_span');
             rippleContainer.classList.add(this.CssClasses_.RIPPLE_CONTAINER);
-            this.rippleElement_ = document.createElement('span');
+            this.rippleElement_ = document.createElement('report_comment_span');
             this.rippleElement_.classList.add(this.CssClasses_.RIPPLE);
             rippleContainer.appendChild(this.rippleElement_);
             this.boundRippleBlurHandler = this.blurHandler_.bind(this);
@@ -847,24 +847,24 @@ MaterialCheckbox.prototype['uncheck'] = MaterialCheckbox.prototype.uncheck;
 MaterialCheckbox.prototype.init = function () {
     if (this.element_) {
         this.inputElement_ = this.element_.querySelector('.' + this.CssClasses_.INPUT);
-        var boxOutline = document.createElement('span');
+        var boxOutline = document.createElement('report_comment_span');
         boxOutline.classList.add(this.CssClasses_.BOX_OUTLINE);
-        var tickContainer = document.createElement('span');
+        var tickContainer = document.createElement('report_comment_span');
         tickContainer.classList.add(this.CssClasses_.FOCUS_HELPER);
-        var tickOutline = document.createElement('span');
+        var tickOutline = document.createElement('report_comment_span');
         tickOutline.classList.add(this.CssClasses_.TICK_OUTLINE);
         boxOutline.appendChild(tickOutline);
         this.element_.appendChild(tickContainer);
         this.element_.appendChild(boxOutline);
         if (this.element_.classList.contains(this.CssClasses_.RIPPLE_EFFECT)) {
             this.element_.classList.add(this.CssClasses_.RIPPLE_IGNORE_EVENTS);
-            this.rippleContainerElement_ = document.createElement('span');
+            this.rippleContainerElement_ = document.createElement('report_comment_span');
             this.rippleContainerElement_.classList.add(this.CssClasses_.RIPPLE_CONTAINER);
             this.rippleContainerElement_.classList.add(this.CssClasses_.RIPPLE_EFFECT);
             this.rippleContainerElement_.classList.add(this.CssClasses_.RIPPLE_CENTER);
             this.boundRippleMouseUp = this.onMouseUp_.bind(this);
             this.rippleContainerElement_.addEventListener('mouseup', this.boundRippleMouseUp);
-            var ripple = document.createElement('span');
+            var ripple = document.createElement('report_comment_span');
             ripple.classList.add(this.CssClasses_.RIPPLE);
             this.rippleContainerElement_.appendChild(ripple);
             this.element_.appendChild(this.rippleContainerElement_);
@@ -1077,13 +1077,13 @@ MaterialIconToggle.prototype.init = function () {
         this.inputElement_ = this.element_.querySelector('.' + this.CssClasses_.INPUT);
         if (this.element_.classList.contains(this.CssClasses_.JS_RIPPLE_EFFECT)) {
             this.element_.classList.add(this.CssClasses_.RIPPLE_IGNORE_EVENTS);
-            this.rippleContainerElement_ = document.createElement('span');
+            this.rippleContainerElement_ = document.createElement('report_comment_span');
             this.rippleContainerElement_.classList.add(this.CssClasses_.RIPPLE_CONTAINER);
             this.rippleContainerElement_.classList.add(this.CssClasses_.JS_RIPPLE_EFFECT);
             this.rippleContainerElement_.classList.add(this.CssClasses_.RIPPLE_CENTER);
             this.boundRippleMouseUp = this.onMouseUp_.bind(this);
             this.rippleContainerElement_.addEventListener('mouseup', this.boundRippleMouseUp);
-            var ripple = document.createElement('span');
+            var ripple = document.createElement('report_comment_span');
             ripple.classList.add(this.CssClasses_.RIPPLE);
             this.rippleContainerElement_.appendChild(ripple);
             this.element_.appendChild(this.rippleContainerElement_);
@@ -1238,9 +1238,9 @@ MaterialMenu.prototype.init = function () {
             this.element_.classList.add(this.CssClasses_.RIPPLE_IGNORE_EVENTS);
             for (i = 0; i < items.length; i++) {
                 var item = items[i];
-                var rippleContainer = document.createElement('span');
+                var rippleContainer = document.createElement('report_comment_span');
                 rippleContainer.classList.add(this.CssClasses_.ITEM_RIPPLE_CONTAINER);
-                var ripple = document.createElement('span');
+                var ripple = document.createElement('report_comment_span');
                 ripple.classList.add(this.CssClasses_.RIPPLE);
                 rippleContainer.appendChild(ripple);
                 item.appendChild(rippleContainer);
@@ -1831,21 +1831,21 @@ MaterialRadio.prototype.init = function () {
         this.boundFocusHandler_ = this.onChange_.bind(this);
         this.boundBlurHandler_ = this.onBlur_.bind(this);
         this.boundMouseUpHandler_ = this.onMouseup_.bind(this);
-        var outerCircle = document.createElement('span');
+        var outerCircle = document.createElement('report_comment_span');
         outerCircle.classList.add(this.CssClasses_.RADIO_OUTER_CIRCLE);
-        var innerCircle = document.createElement('span');
+        var innerCircle = document.createElement('report_comment_span');
         innerCircle.classList.add(this.CssClasses_.RADIO_INNER_CIRCLE);
         this.element_.appendChild(outerCircle);
         this.element_.appendChild(innerCircle);
         var rippleContainer;
         if (this.element_.classList.contains(this.CssClasses_.RIPPLE_EFFECT)) {
             this.element_.classList.add(this.CssClasses_.RIPPLE_IGNORE_EVENTS);
-            rippleContainer = document.createElement('span');
+            rippleContainer = document.createElement('report_comment_span');
             rippleContainer.classList.add(this.CssClasses_.RIPPLE_CONTAINER);
             rippleContainer.classList.add(this.CssClasses_.RIPPLE_EFFECT);
             rippleContainer.classList.add(this.CssClasses_.RIPPLE_CENTER);
             rippleContainer.addEventListener('mouseup', this.boundMouseUpHandler_);
-            var ripple = document.createElement('span');
+            var ripple = document.createElement('report_comment_span');
             ripple.classList.add(this.CssClasses_.RIPPLE);
             rippleContainer.appendChild(ripple);
             this.element_.appendChild(rippleContainer);
@@ -2573,7 +2573,7 @@ MaterialSwitch.prototype.init = function () {
         track.classList.add(this.CssClasses_.TRACK);
         var thumb = document.createElement('div');
         thumb.classList.add(this.CssClasses_.THUMB);
-        var focusHelper = document.createElement('span');
+        var focusHelper = document.createElement('report_comment_span');
         focusHelper.classList.add(this.CssClasses_.FOCUS_HELPER);
         thumb.appendChild(focusHelper);
         this.element_.appendChild(track);
@@ -2581,12 +2581,12 @@ MaterialSwitch.prototype.init = function () {
         this.boundMouseUpHandler = this.onMouseUp_.bind(this);
         if (this.element_.classList.contains(this.CssClasses_.RIPPLE_EFFECT)) {
             this.element_.classList.add(this.CssClasses_.RIPPLE_IGNORE_EVENTS);
-            this.rippleContainerElement_ = document.createElement('span');
+            this.rippleContainerElement_ = document.createElement('report_comment_span');
             this.rippleContainerElement_.classList.add(this.CssClasses_.RIPPLE_CONTAINER);
             this.rippleContainerElement_.classList.add(this.CssClasses_.RIPPLE_EFFECT);
             this.rippleContainerElement_.classList.add(this.CssClasses_.RIPPLE_CENTER);
             this.rippleContainerElement_.addEventListener('mouseup', this.boundMouseUpHandler);
-            var ripple = document.createElement('span');
+            var ripple = document.createElement('report_comment_span');
             ripple.classList.add(this.CssClasses_.RIPPLE);
             this.rippleContainerElement_.appendChild(ripple);
             this.element_.appendChild(this.rippleContainerElement_);
@@ -2722,10 +2722,10 @@ MaterialTabs.prototype.init = function () {
 function MaterialTab(tab, ctx) {
     if (tab) {
         if (ctx.element_.classList.contains(ctx.CssClasses_.MDL_JS_RIPPLE_EFFECT)) {
-            var rippleContainer = document.createElement('span');
+            var rippleContainer = document.createElement('report_comment_span');
             rippleContainer.classList.add(ctx.CssClasses_.MDL_RIPPLE_CONTAINER);
             rippleContainer.classList.add(ctx.CssClasses_.MDL_JS_RIPPLE_EFFECT);
-            var ripple = document.createElement('span');
+            var ripple = document.createElement('report_comment_span');
             ripple.classList.add(ctx.CssClasses_.MDL_RIPPLE);
             rippleContainer.appendChild(ripple);
             tab.appendChild(rippleContainer);
@@ -3584,10 +3584,10 @@ function MaterialLayoutTab(tab, tabs, panels, layout) {
         panel.classList.add(layout.CssClasses_.IS_ACTIVE);
     }
     if (layout.tabBar_.classList.contains(layout.CssClasses_.JS_RIPPLE_EFFECT)) {
-        var rippleContainer = document.createElement('span');
+        var rippleContainer = document.createElement('report_comment_span');
         rippleContainer.classList.add(layout.CssClasses_.RIPPLE_CONTAINER);
         rippleContainer.classList.add(layout.CssClasses_.JS_RIPPLE_EFFECT);
-        var ripple = document.createElement('span');
+        var ripple = document.createElement('report_comment_span');
         ripple.classList.add(layout.CssClasses_.RIPPLE);
         rippleContainer.appendChild(ripple);
         tab.appendChild(rippleContainer);

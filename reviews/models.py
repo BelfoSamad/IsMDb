@@ -77,6 +77,7 @@ class MovieReview(models.Model):
     time = models.IntegerField(blank=True, null=False, default=0)
     release_date = models.DateField(default=datetime.date.today)
     description = models.TextField(max_length=255, blank=True, null=False)
+    review = models.TextField(max_length=255, blank=True, null=True)
     tags = models.TextField(blank=True)
     suggestion = models.ForeignKey(Suggestion, on_delete=models.SET_NULL, null=True, blank=True)
     country = CountryField(default='US', null=False)
@@ -108,12 +109,9 @@ class MovieReview(models.Model):
         super(MovieReview, self).save(*args, **kwargs)
         suggestion = self.suggestion
         if suggestion is not None:
-            notify.send(suggestion.memberID, recipient=suggestion.memberID,
-                        verb='The Movie You Suggested Has Been Added',
-                        action_object=self)
             for user in suggestion.up_votes.all():
                 notify.send(user, recipient=user,
-                            verb='The Movie You Up voted Has Been Added',
+                            verb='Suggestion Added',
                             action_object=self)
             suggestion.delete()
 

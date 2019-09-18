@@ -1,5 +1,5 @@
 //TODO: Change Class Name
-var Autocomplete = function (options) {
+var Autocomplete_Suggestion = function (options) {
     this.form_selector = options.form_selector;
     this.url = options.url || '/search/autocomplete/';
     this.delay = parseInt(options.delay || 100);
@@ -8,7 +8,7 @@ var Autocomplete = function (options) {
     this.query_box = null;
 };
 
-Autocomplete.prototype.setup = function () {
+Autocomplete_Suggestion.prototype.setup = function () {
     var self = this;
 
     this.form_elem = $(this.form_selector);
@@ -17,7 +17,6 @@ Autocomplete.prototype.setup = function () {
     // Watch the input box.
     this.query_box.on('keyup', function () {
         const query = self.query_box.val();
-        document.getElementById("id_title").value = query;
         if (query.length < self.minimum_length) {
             return false
         }
@@ -33,14 +32,14 @@ Autocomplete.prototype.setup = function () {
     })
 };
 
-Autocomplete.prototype.fetch = function (query) {
+Autocomplete_Suggestion.prototype.fetch = function (query) {
     console.log(query);
     $(".results").load("autocomplete/" + query);
 };
 
 $(document).ready(function () {
-    window.autocomplete = new Autocomplete({
-        form_selector: '.autocomplete-me'
+    window.autocomplete = new Autocomplete_Suggestion({
+        form_selector: '.autocomplete-me-suggestions'
     });
     window.autocomplete.setup()
 });

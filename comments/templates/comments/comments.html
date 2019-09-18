@@ -1,0 +1,114 @@
+{% load static %}
+{% for comment in comments %}
+    <div class="com-review v-flex">
+        <div class="com-header h-flex">
+            <div class="profile h-flex">
+                <img src="{% static 'reviews/assets/profile-image.jpeg' %}" alt="profile-image">
+                <div class="v-flex">
+                    <span class="nickname">{{ comment.memberId }}</span>
+                    <span class="honors">1033 <i class="fas fa-award"></i></span>
+                </div>
+            </div>
+            <div class="timestamp">{{ comment.date_added|timesince }}</div>
+        </div>
+        <div class="com-content">
+            <p>{{ comment.content }}</p>
+        </div>
+        <div class="buttons h-flex">
+            <div class="h-flex reactions">
+                <button title="Like" class="h-flex btn btn-nbg btn-l-icon like"
+                        data-href="{% url 'comments:like' id=comment.id movie_id=comment.reviewID.id %}"
+                        id="{{ comment.id }}">
+                    <i class="fas fa-thumbs-up"></i>
+                    <span id="like_{{ comment.id }}">{{ comment.likes.count }}</span>
+                </button>
+                <button title="Dislike" class="h-flex btn btn-nbg dislike"
+                        data-href="{% url 'comments:dislike' id=comment.id %}"
+                        id="{{ comment.id }}">
+                    <i class="fas fa-thumbs-down"></i>
+                </button>
+            </div>
+            <div class="h-flex actions">
+                <button onclick="showRating(this, 'Show Review', 'Hide Review')"
+                        class="h-flex btn btn-r-icon view-review">
+                    <span>Show Review</span>
+                    <i class="fas fa-sort-down"></i>
+                </button>
+                <button title="Report" class="h-flex btn btn-nbg report">
+                    <i class="fas fa-flag"></i>
+                </button>
+            </div>
+        </div>
+        <div class="hidden visually-hidden rating-content">
+            <div class="ismdb-rating v-flex">
+                <div class="rating-header h-flex">
+                                <span class="text">rating based on the following
+                                    criteria:</span>
+                    <i class="far fa-question-circle"></i>
+                </div>
+                <div class="ratings h-flex">
+                    <!--<div class="circle-rating v-flex">2.4</div>-->
+                    <div class="bar-rating h-flex">
+                        <div class="bars v-flex">
+                            <div class="rating h-flex">
+                                <div class="title">Nudity</div>
+                                <div class="value h-flex">
+                                    <div class="unit"></div>
+                                    <div class="unit"></div>
+                                    <div class="unit"></div>
+                                    <div class="unit"></div>
+                                    <div class="unit"></div>
+                                </div>
+                            </div>
+                            <div class="rating h-flex">
+                                <div class="title">LGBT</div>
+                                <div class="value h-flex">
+                                    <div class="unit"></div>
+                                    <div class="unit"></div>
+                                    <div class="unit"></div>
+                                </div>
+                            </div>
+                            <div class="rating h-flex">
+                                <div class="title">Violence</div>
+                                <div class="value h-flex">
+                                    <div class="unit"></div>
+                                    <div class="unit"></div>
+                                    <div class="unit"></div>
+                                    <div class="unit"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="bars v-flex">
+                            <div class="rating h-flex">
+                                <div class="title">Morality</div>
+                                <div class="value h-flex">
+                                    <div class="unit"></div>
+                                </div>
+                            </div>
+                            <div class="rating h-flex">
+                                <div class="title">Sex</div>
+                                <div class="value h-flex">
+                                    <div class="unit"></div>
+                                    <div class="unit"></div>
+                                    <div class="unit"></div>
+                                    <div class="unit"></div>
+                                </div>
+                            </div>
+                            <div class="rating h-flex">
+                                <div class="title">Morality</div>
+                                <div class="value h-flex">
+                                    <div class="unit"></div>
+                                    <div class="unit"></div>
+                                    <div class="unit"></div>
+                                    <div class="unit"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+<script type="text/javascript" src="{% static 'comments/js/reactions.js' %}"></script>

@@ -1,6 +1,15 @@
-<!-- TODO: Add Results Code -->
 {% load static %}
-{% for result in results %}
+{% for suggestion in suggestions %}
+    <div class="header h-flex">
+        <h1>{{ suggestion.title }}</h1>
+        <div class="actions h-flex">
+            <button title="Upvote" class="up_vote_result btn"
+                    data-href="{% url 'suggestions:upvote' id=suggestion.object.id %}"
+                    id="sugg_result_{{ suggestion.object.id }}"><i
+                    class="fas fa-level-up-alt"></i></button>
+            <span class="upvotes" id="sugg__result_{{ suggestion.object.id }}">{{ suggestion.up_votes.count }} upvotes</span>
+        </div>
+    </div>
 {% endfor %}
 <script src="{% static 'js/jquery-3.4.1.js' %}"></script>
 <script src="{% static 'suggestions/js/suggestions_upvote.js' %}"></script>

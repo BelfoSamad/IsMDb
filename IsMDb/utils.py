@@ -77,9 +77,3 @@ def non_duplicated_words(wlist):
     [unique_list.append(x) for x in wlist if x not in unique_list]
     return unique_list
 
-
-def get_similar_to_criteria(qs, likes):
-    df = convert_to_dataframe(qs, fields=['alcohol', 'nudity', 'LGBTQ', 'sex', 'language', 'violence'])
-
-    for review in likes:
-        df = convert_to_dataframe(qs, fields=['title', 'genre'])

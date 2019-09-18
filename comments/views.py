@@ -1,6 +1,7 @@
 import datetime
 
 from django.shortcuts import render, get_object_or_404
+from notifications.models import Notification
 from notifications.signals import notify
 from rest_framework import authentication, permissions
 from rest_framework.response import Response
@@ -11,8 +12,8 @@ from reviews.models import MovieReview
 
 
 def load_comments(request, id):
-    object = get_object_or_404(MovieReview, id=id)
-    return render(request, 'comments/comments.html', {'object': object})
+    obj = get_object_or_404(MovieReview, id=id)
+    return render(request, 'comments/comments.html', {'comments': reversed(obj.comment_set.all())})
 
 
 class CommentCreateView(APIView):
@@ -55,14 +56,14 @@ class CommentLike(APIView):
                 liked = True
                 obj.dislikes.remove(user)
                 obj.likes.add(user)
-                notify.send(user, recipient=obj.memberID, verb='Liked Your Comment On', action_object=movie)
+                notify.send(user, recipient=obj.memberID, verb='Comment Liked', action_object=movie)
             elif user in obj.likes.all():
                 liked = False
                 obj.likes.remove(user)
             else:
                 liked = True
                 obj.likes.add(user)
-                notify.send(user, recipient=obj.memberID, verb='Liked Your Comment On', action_object=movie)
+                notify.send(user, recipient=obj.memberID, verb='Comment Liked', action_object=movie)
             likes = obj.likes.count()
         updated = True
         data = {

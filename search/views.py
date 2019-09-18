@@ -15,7 +15,12 @@ class AdvancedSearch(SearchView):
         context = super().get_context_data(**kwargs)
         global search_result
         search_result = MovieReview.objects.all()
+        genres = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
         context['reviews'] = search_result
+        context['genres'] = genres
+        # Notification:
+        if self.request.user.is_authenticated:
+            context['notifications'] = self.request.user.notifications.unread()
         return context
 
 
@@ -34,16 +39,28 @@ def auto_search(request, query):
     return HttpResponse(template.render({'reviews': search_result}, request))
 
 
-def auto_filter(request, max_year, min_year, max_time, min_time, genre, alcohol, language, lgbtq, nudity, sex,
-                violence):
+def auto_filter(request, max_year, min_year, max_time, min_time, genres, max_alcohol, min_alcohol, max_language,
+                min_language, max_lgbtq, min_lgbtq, max_nudity, min_nudity, max_sex, min_sex, max_violence,
+                min_violence):
     global search_result
-    results = [result for result in search_result if
-               (result.year >= max_year) and (result.year <= min_year) and (result.time >= max_time) and (
-                       result.time <= min_time) and (result.alcohol >= alcohol) and (result.alcohol <= alcohol) and (
-                       result.language >= language) and (result.language <= language) and (
-                       result.lgbtq >= lgbtq) and (result.lgbtq <= lgbtq) and (result.nudity >= nudity) and (
-                       result.nudity <= nudity) and (result.sex >= sex) and (result.sex <= sex) and (
-                       result.violence >= violence) and (result.violence <= violence)]
+    if genres == 'NAN':
+        g = []
+    else:
+        g = genres.split('_')
+
+    results = []
+    for result in search_result:
+        if (int(max_year) >= result.year >= int(min_year)) and (int(max_time) >= result.time >= int(min_time)) and (
+                (int(max_alcohol) / 10) >= result.alcohol >= (int(min_alcohol) / 10)) and (
+                (int(max_language) / 10) >= result.language >= (int(min_language) / 10)) and (
+                (int(max_lgbtq) / 10) >= result.LGBTQ >= (int(min_lgbtq) / 10)) and (
+                (int(max_nudity) / 10) >= result.nudity >= (int(min_nudity) / 10)) and (
+                (int(max_sex) / 10) >= result.sex >= (int(min_sex) / 10)) and (
+                (int(max_violence) / 10) >= result.violence >= (int(min_violence) / 10)) and (
+                all(elem in get_genres(result) for elem in g)):
+            results.append(result)
+
+    print(results)
     template = loader.get_template('search/advanced_search_results.html')
     return HttpResponse(template.render({'reviews': results}, request))
 
@@ -52,3 +69,25 @@ def autocomplete(request, query):
     sqs = SearchQuerySet().autocomplete(content_auto=query)
     template = loader.get_template('search/autocomplete_template.html')
     return HttpResponse(template.render({'reviews': sqs}, request))
+
+
+def get_genres(result):
+    genre_choices = ((1, 'Action'),
+                     (2, 'Adventure'),
+                     (3, 'Animation'),
+                     (4, 'Comedy'),
+                     (5, 'Crime'),
+                     (6, 'Drama'),
+                     (7, 'Fantasy'),
+                     (8, 'Historical'),
+                     (9, 'Horror'),
+                     (10, 'Mystery'),
+                     (11, 'Political'),
+                     (12, 'Romance'),
+                     (13, 'Satire'),
+                     (14, 'Sci-Fi'))
+    choices = dict(genre_choices)
+    result_genres = []
+    for x in result.genre:
+        result_genres.append(choices[int(x)])
+    return result_genres

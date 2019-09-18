@@ -1,5 +1,4 @@
-//TODO: Change Variables
-var Autocomplete = function (options) {
+var Autocomplete_Advanced = function (options) {
     this.form_selector = options.form_selector;
     this.url = options.url || '/search/autocomplete/';
     this.delay = parseInt(options.delay || 100);
@@ -8,7 +7,7 @@ var Autocomplete = function (options) {
     this.query_box = null;
 };
 
-Autocomplete.prototype.setup = function () {
+Autocomplete_Advanced.prototype.setup = function () {
     var self = this;
 
     this.form_elem = $(this.form_selector);
@@ -32,13 +31,13 @@ Autocomplete.prototype.setup = function () {
     })
 };
 
-Autocomplete.prototype.fetch = function (query) {
+Autocomplete_Advanced.prototype.fetch = function (query) {
     console.log(query);
     $(".search-results1").load("search/auto_search/" + query);
 };
 
 $(document).ready(function () {
-    window.autocomplete = new Autocomplete({
+    window.autocomplete = new Autocomplete_Advanced({
         form_selector: '.autocomplete-me1'
     });
     window.autocomplete.setup()
