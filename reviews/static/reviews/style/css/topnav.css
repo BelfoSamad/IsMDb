@@ -121,6 +121,14 @@
         cursor: pointer; }
   #topnav .other-actions {
     height: 100%; }
+    #topnav .other-actions .login-register {
+      width: 180px;
+      font-weight: bold;
+      justify-content: space-between; }
+    #topnav .other-actions .register-btn {
+      background: #EC7063; }
+    #topnav .other-actions .register-btn:hover {
+      background: rgba(236, 112, 99, 0.9); }
     #topnav .other-actions i {
       font-size: 20px;
       color: #111; }
