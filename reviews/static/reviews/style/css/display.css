@@ -45,10 +45,15 @@
           align-items: flex-start; }
           .display .elements .element .content .left .top {
             width: 100%; }
+            .display .elements .element .content .left .top .rec-title {
+              font-size: 14px;
+              font-weight: bold;
+              align-self: flex-start;
+              color: rgba(255, 255, 255, 0.5); }
             .display .elements .element .content .left .top .title-div {
               width: 100%; }
               .display .elements .element .content .left .top .title-div .title {
-                font-size: 48pt;
+                font-size: 30pt;
                 font-weight: bold;
                 color: rgba(238, 238, 238, 0.9);
                 position: relative;
@@ -139,21 +144,28 @@
                       width: 25px;
                       margin-rigth: 1px; }
           .display .elements .element .content .left .buttons {
-            width: 100%;
-            justify-content: flex-start; }
-            .display .elements .element .content .left .buttons a {
+            width: 100%; }
+            .display .elements .element .content .left .buttons .viewReview {
+              border-right: 8px solid #EC7063; }
+            .display .elements .element .content .left .buttons i {
+              font-size: 14px; }
+            .display .elements .element .content .left .buttons .btn {
+              font-weight: bold;
+              background: #EEE;
+              color: #111;
               margin-right: 4px;
-              background: rgba(238, 238, 238, 0.9);
-              color: #222;
-              font-weight: bold; }
+              border-radius: 0px;
+              transition: 250ms; }
+              .display .elements .element .content .left .buttons .btn i {
+                margin-right: 16px; }
+            .display .elements .element .content .left .buttons .btn:hover {
+              background: rgba(238, 238, 238, 0.9); }
+            .display .elements .element .content .left .buttons a {
+              font-weight: bold;
+              justify-self: flex-end;
+              padding-right: 4px; }
               .display .elements .element .content .left .buttons a i {
-                font-size: 14px;
-                margin-right: 8px; }
-            .display .elements .element .content .left .buttons .view {
-              justify-self: flex-end; }
-              .display .elements .element .content .left .buttons .view i {
-                margin-right: 0;
-                margin-left: 8px; }
+                margin-left: 16px; }
         .display .elements .element .content .right {
           height: 100%;
           width: 35%;
