@@ -106,25 +106,28 @@
                                 <div class="rating h-flex">
                                     <div class="title">Alcohol</div>
                                     <div class="value h-flex">
-                                        {% for x in object.alcohol|range %}
-                                        <div class="unit"></div>
-                                        {% endfor %}
+                                        <p class="range-field">
+                                            <input type="range" id="min_nudity" value="0" onchange="filter()" min="0"
+                                                max="5" step="0.1" />
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="rating h-flex">
                                     <div class="title">Language</div>
                                     <div class="value h-flex">
-                                        {% for x in object.language|range %}
-                                        <div class="unit"></div>
-                                        {% endfor %}
+                                        <p class="range-field">
+                                            <input type="range" id="min_nudity" value="0" onchange="filter()" min="0"
+                                                max="5" step="0.1" />
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="rating h-flex">
                                     <div class="title">LGBTQ</div>
                                     <div class="value h-flex">
-                                        {% for x in object.LGBTQ|range %}
-                                        <div class="unit"></div>
-                                        {% endfor %}
+                                        <p class="range-field">
+                                            <input type="range" id="min_nudity" value="0" onchange="filter()" min="0"
+                                                max="5" step="0.1" />
+                                        </p>
                                     </div>
 
                                 </div>
@@ -133,25 +136,28 @@
                                 <div class="rating h-flex">
                                     <div class="title">Nudity</div>
                                     <div class="value h-flex">
-                                        {% for x in object.nudity|range %}
-                                        <div class="unit"></div>
-                                        {% endfor %}
+                                        <p class="range-field">
+                                            <input type="range" id="min_nudity" value="0" onchange="filter()" min="0"
+                                                max="5" step="0.1" />
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="rating h-flex">
                                     <div class="title">Sex</div>
                                     <div class="value h-flex">
-                                        {% for x in object.sex|range %}
-                                        <div class="unit"></div>
-                                        {% endfor %}
+                                        <p class="range-field">
+                                            <input type="range" id="min_nudity" value="0" onchange="filter()" min="0"
+                                                max="5" step="0.1" />
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="rating h-flex">
                                     <div class="title">Violence</div>
                                     <div class="value h-flex">
-                                        {% for x in object.violence|range %}
-                                        <div class="unit"></div>
-                                        {% endfor %}
+                                        <p class="range-field">
+                                            <input type="range" id="min_nudity" value="0" onchange="filter()" min="0"
+                                                max="5" step="0.1" />
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -210,7 +216,8 @@
                                         <div class="title">Alcohol</div>
                                         <div class="value h-flex">
                                             <p class="range-field">
-                                                <input type="range" id="alcohol" value="0" step="0.1" min="0" max="5" />
+                                                <input type="range" id="min_nudity" value="0" onchange="filter()"
+                                                    min="0" max="5" step="0.1" />
                                             </p>
                                         </div>
                                     </div>
@@ -218,8 +225,8 @@
                                         <div class="title">Language</div>
                                         <div class="value h-flex">
                                             <p class="range-field">
-                                                <input type="range" id="language" value="0" step="0.1" min="0"
-                                                    max="5" />
+                                                <input type="range" id="min_nudity" value="0" onchange="filter()"
+                                                    min="0" max="5" step="0.1" />
                                             </p>
                                         </div>
                                     </div>
@@ -227,7 +234,8 @@
                                         <div class="title">LGBTQ</div>
                                         <div class="value h-flex">
                                             <p class="range-field">
-                                                <input type="range" id="lgbtq" value="0" step="0.1" min="0" max="5" />
+                                                <input type="range" id="min_nudity" value="0" onchange="filter()"
+                                                    min="0" max="5" step="0.1" />
                                             </p>
                                         </div>
                                     </div>
@@ -272,7 +280,6 @@
                             <img src="{% static 'reviews/assets/profile-image.jpeg' %}" alt="profile-image">
                             <div class="v-flex">
                                 <span class="nickname">{{ comment.memberId }}</span>
-                                <span class="honors">1033 <i class="fas fa-award"></i></span>
                             </div>
                         </div>
                         <div class="timestamp">2 days ago</div>
@@ -282,25 +289,25 @@
                     </div>
                     <div class="buttons h-flex">
                         <div class="h-flex reactions">
-                            <button title="Like" class="h-flex btn btn-nbg btn-l-icon like"
+                            <button title="Like" class="h-flex btn-flat left like"
                                 data-href="{% url 'comments:like' id=comment.id movie_id=object.id %}"
                                 id="{{ comment.id }}">
                                 <i class="fas fa-thumbs-up"></i>
                                 <span id="like_{{ comment.id }}">{{ comment.likes.count }}</span>
                             </button>
-                            <button title="Dislike" class="h-flex btn btn-nbg dislike"
+                            <button title="Dislike" class="h-flex btn-flat dislike"
                                 data-href="{% url 'comments:dislike' id=comment.id %}" id="{{ comment.id }}">
                                 <i class="fas fa-thumbs-down"></i>
                             </button>
                         </div>
                         <div class="h-flex actions">
                             <button onclick="showRating(this, 'Show Review', 'Hide Review')"
-                                class="h-flex btn btn-r-icon view-review">
-                                <span>Show Review</span>
+                                class="h-flex btn right view-review">
+                                Show Review
                                 <i class="fas fa-sort-down"></i>
                             </button>
                             <button title="Report" onclick="showCommentModal({{ comment.id }})"
-                                class="h-flex btn btn-nbg report" id="report_comment">
+                                class="h-flex btn-flat report" id="report_comment">
                                 <i class="fas fa-flag"></i>
                             </button>
                         </div>
@@ -319,25 +326,28 @@
                                         <div class="rating h-flex">
                                             <div class="title">Alcohol</div>
                                             <div class="value h-flex">
-                                                {% for x in comment.alcohol|range %}
-                                                <div class="unit"></div>
-                                                {% endfor %}
+                                                <p class="range-field">
+                                                    <input type="range" id="min_nudity" value="0" onchange="filter()"
+                                                        min="0" max="5" step="0.1" />
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="rating h-flex">
                                             <div class="title">Language</div>
                                             <div class="value h-flex">
-                                                {% for x in comment.language|range %}
-                                                <div class="unit"></div>
-                                                {% endfor %}
+                                                <p class="range-field">
+                                                    <input type="range" id="min_nudity" value="0" onchange="filter()"
+                                                        min="0" max="5" step="0.1" />
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="rating h-flex">
                                             <div class="title">LGBTQ</div>
                                             <div class="value h-flex">
-                                                {% for x in comment.LGBTQ|range %}
-                                                <div class="unit"></div>
-                                                {% endfor %}
+                                                <p class="range-field">
+                                                    <input type="range" id="min_nudity" value="0" onchange="filter()"
+                                                        min="0" max="5" step="0.1" />
+                                                </p>
                                             </div>
 
                                         </div>
@@ -346,25 +356,28 @@
                                         <div class="rating h-flex">
                                             <div class="title">Nudity</div>
                                             <div class="value h-flex">
-                                                {% for x in comment.nudity|range %}
-                                                <div class="unit"></div>
-                                                {% endfor %}
+                                                <p class="range-field">
+                                                    <input type="range" id="min_nudity" value="0" onchange="filter()"
+                                                        min="0" max="5" step="0.1" />
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="rating h-flex">
                                             <div class="title">Sex</div>
                                             <div class="value h-flex">
-                                                {% for x in comment.sex|range %}
-                                                <div class="unit"></div>
-                                                {% endfor %}
+                                                <p class="range-field">
+                                                    <input type="range" id="min_nudity" value="0" onchange="filter()"
+                                                        min="0" max="5" step="0.1" />
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="rating h-flex">
                                             <div class="title">Violence</div>
                                             <div class="value h-flex">
-                                                {% for x in comment.violence|range %}
-                                                <div class="unit"></div>
-                                                {% endfor %}
+                                                <p class="range-field">
+                                                    <input type="range" id="min_nudity" value="0" onchange="filter()"
+                                                        min="0" max="5" step="0.1" />
+                                                </p>
                                             </div>
                                         </div>
                                     </div>

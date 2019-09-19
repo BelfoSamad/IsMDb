@@ -85,7 +85,8 @@
   .advanced-search-wrapper .search {
     width: 65%;
     max-height: 100%;
-    padding-left: 32px; }
+    padding-left: 32px;
+    justify-content: flex-start; }
     .advanced-search-wrapper .search .search-bar {
       height: 45px;
       width: 80%;
@@ -96,6 +97,8 @@
         width: 100%;
         position: relative;
         border-radius: 1px; }
+        .advanced-search-wrapper .search .search-bar .search-input form {
+          width: 100%; }
         .advanced-search-wrapper .search .search-bar .search-input input {
           color: #222;
           font-size: 16px;

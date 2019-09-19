@@ -134,15 +134,10 @@
                     margin-right: 16px; }
                   .display .elements .element .content .left .ismdb-rating .ratings .bar-rating .bars .rating .value {
                     justify-content: flex-start;
-                    background: #EAEAEA;
-                    border-radius: 0px;
-                    height: 8px;
-                    width: 125px; }
-                    .display .elements .element .content .left .ismdb-rating .ratings .bar-rating .bars .rating .value .unit {
-                      background: #EC7063;
-                      height: 100%;
-                      width: 25px;
-                      margin-rigth: 1px; }
+                    border-radius: 0px; }
+                    .display .elements .element .content .left .ismdb-rating .ratings .bar-rating .bars .rating .value input {
+                      width: 100px;
+                      background: red; }
           .display .elements .element .content .left .buttons {
             width: 100%; }
             .display .elements .element .content .left .buttons .viewReview {
