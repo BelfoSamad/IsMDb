@@ -18,6 +18,10 @@ body {
 .waves-effect.waves-darker .waves-ripple {
   background-color: rgba(0, 0, 0, 0.9); }
 
+.btn {
+  border-radius: 0px;
+  transition: 250ms; }
+
 .h-flex, .v-flex {
   display: flex;
   justify-content: space-between;

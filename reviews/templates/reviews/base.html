@@ -15,11 +15,11 @@
 
     <link href="{% static 'reviews/style/css/style.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'reviews/style/css/components.css' %}" rel="stylesheet" type="text/css">
-    <!-- <link href="{ static 'reviews/style/css/all.css' %}" rel="stylesheet" type="text/css">
-    <link href="{ static 'reviews/style/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
-    <link href="{ static 'reviews/style/css/brands.css' %}" rel="stylesheet" type="text/css">
-    <link href="{ static 'reviews/style/css/solid.css' %}" rel="stylesheet" type="text/css">
-    <link href="{ static 'reviews/style/css/regular.css' %}" rel="stylesheet" type="text/css">-->
+    <link href="{% static 'reviews/style/css/all.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'reviews/style/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'reviews/style/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'reviews/style/css/solid.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'reviews/style/css/regular.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'reviews/style/css/topnav.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'reviews/style/css/content.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'reviews/style/css/category.css' %}" rel="stylesheet" type="text/css">
@@ -30,7 +30,7 @@
     <link href="{% static 'reviews/style/css/review-cover.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'reviews/style/css/review.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'reviews/style/css/footer.css' %}" rel="stylesheet" type="text/css">
-    <!-- <link href="{ static 'reviews/style/css/materialize.css' %}" rel="stylesheet" type="text/css"> -->
+    <link href="{% static 'reviews/style/css/materialize.css' %}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
@@ -104,9 +104,7 @@
                                 <a href="{% url 'suggestions:suggestions' %}">
                                     <div class="notification v-flex">
                                         <div class="notif-content">Your
-                                            Suggestion {{ notification.action_object.title }}
-                                            Has
-                                            Been Approved
+                                            Suggestion {{ notification.action_object.title }} Has Been Approved
                                         </div>
                                         <div class="notif-timestamp">{{ notification|timesince_notifications }}</div>
                                     </div>
@@ -119,6 +117,13 @@
                                         <div class="notif-timestamp">{{ notification|timesince_notifications }}</div>
                                     </div>
                                 </a>
+                            {% elif notification.verb == 'Honor Points Added' %}
+                                <div class="notification v-flex">
+                                    <div class="notif-content">You Have 1 More Honor Points added to your account for
+                                        your action
+                                    </div>
+                                    <div class="notif-timestamp">{{ notification|timesince_notifications }}</div>
+                                </div>
                             {% elif notification.verb == 'Suggestion Added' %}
                                 <a href="{{ notification.action_object.get_absolute_url }}">
                                     <div class="notification v-flex">
@@ -130,9 +135,7 @@
                                 <a href="{{ notification.action_object.get_absolute_url }}">
                                     <div class="notification v-flex">
                                         <div class="notif-content">Due To your last actions you can no longer comment,
-                                            If
-                                            you
-                                            think there's a misunderstanding, contact us
+                                            If you think there's a misunderstanding, contact us
                                         </div>
                                         <div class="notif-timestamp">{{ notification|timesince_notifications }}</div>
                                     </div>
@@ -176,7 +179,15 @@
                     </div>
                 </div>
             {% else %}
-                <!-- TODO: Add Login/Register Icon -->
+                <div class="h-flex login-register">
+                    <!-- TODO Add Links -->
+                    <a href="#" class="register-btn btn waves-effect light-effect">
+                        Sign Up
+                    </a>
+                    <a href="#" class="login-btn btn-flat waves-effect light-effect">
+                        Login
+                    </a>
+                </div>
             {% endif %}
         </div>
     </div>
@@ -200,7 +211,8 @@
                 <div class="cat-links v-flex">
                     <a class="c-link" href="{% url 'reviews:category' category="explore" %}">Explore</a>
                     <a class="c-link" href="{% url 'reviews:category' category="popular" %}">Popular</a>
-                    <a class="c-link" href="{% url 'reviews:category' category="recently_added" %}">Recently Added</a>
+                    <a class="c-link" href="{% url 'reviews:category' category="recently_added" %}">Recently
+                        Added</a>
                 </div>
             </div>
             <div class="category v-flex">
@@ -211,16 +223,14 @@
                            href="{% url 'reviews:get_library' library="your-watchlist" sort="alphabetical-order" %}">Your
                             Watchlist</a>
                     {% else %}
-                        <a class="c-link"
-                           href="#">Your Watchlist</a>
+                        <a class="c-link" href="#">Your Watchlist</a>
                     {% endif %}
 
                     {% if user.authenticated %}
                         <a class="c-link"
                            href="{% url 'reviews:get_library' library="liked" sort="alphabetical-order" %}">Liked</a>
                     {% else %}
-                        <a class="c-link"
-                           href="#">Liked</a>
+                        <a class="c-link" href="#">Liked</a>
                     {% endif %}
 
                     {% if user.authenticated %}
@@ -228,8 +238,7 @@
                            href="{% url 'reviews:get_library' library="review-later" sort="alphabetical-order" %}">Review
                             Later</a>
                     {% else %}
-                        <a class="c-link"
-                           href="#">Review
+                        <a class="c-link" href="#">Review
                             Later</a>
                     {% endif %}
                 </div>

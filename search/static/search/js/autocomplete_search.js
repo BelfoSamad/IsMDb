@@ -14,14 +14,16 @@ Autocomplete_Advanced.prototype.setup = function () {
     this.query_box = this.form_elem.find('input[name=q1]');
 
     // Watch the input box.
-    this.query_box.on('keyup', function () {
+    this.query_box.on('change keyup copy paste cut', function () {
         const query = self.query_box.val();
         if (query.length < self.minimum_length) {
-            $(".search-results1").load("search/init");
+            $('.search-results1').remove();
         }
 
         self.fetch(query)
     });
+
+    this.query_box.
 
     // On selecting a result, populate the search field.
     this.form_elem.on('click', '.search-results1', function () {

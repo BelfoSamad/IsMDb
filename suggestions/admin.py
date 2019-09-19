@@ -26,10 +26,10 @@ class SuggestionFilter(SimpleListFilter):
 def approve_suggestion(modelAdmin, request, queryset):
     for suggestion in queryset:
         user = request.user
-        print(user)
-        print(suggestion.memberID)
-        print(suggestion)
         notify.send(user, recipient=suggestion.memberID, verb='Suggestion Approved', action_object=suggestion)
+        user.honor_points = user.honor_points + 1
+        user.save()
+        notify.send(user, recipient=user, verb='Honor Points Added')
         suggestion.approved = True
         suggestion.save()
 

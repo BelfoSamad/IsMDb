@@ -51,6 +51,7 @@ class Writer(Staff):
 
 
 class MovieReview(models.Model):
+    published = models.BooleanField(default=True)
     title = models.CharField(max_length=255, blank=True, null=False)
     slug = SlugField(max_length=255)
     poster = models.ImageField(default='default_poster.png', upload_to="gallery")

@@ -22,17 +22,17 @@ def get_random_list(l):
 
 def get_reviews(request):
     template = 'reviews/home.html'
-    popular = MovieReview.objects.order_by('likes')
-    recently_added = MovieReview.objects.order_by('-pub_date')
-    explore = MovieReview.objects.order_by('title')
+    popular = MovieReview.objects.filter(published=True).order_by('likes')
+    recently_added = MovieReview.objects.filter(published=True).order_by('-pub_date')
+    explore = MovieReview.objects.filter(published=True).order_by('title')
 
     if request.user.is_authenticated:
         context = {
             'popular_reviews': popular,
             'recently_added_reviews': recently_added,
             'explore_reviews': explore,
-            'recommendations': [MovieReview.objects.get(title=x) for x in
-                                get_random_list(get_criteria_similarity(MovieReview.objects.all(),
+            'recommendations': [MovieReview.objects.filter(published=True).get(title=x) for x in
+                                get_random_list(get_criteria_similarity(MovieReview.objects.filter(published=True),
                                                                         get_object_or_404(Member,
                                                                                           id=request.user.id).review_likes))],
             'notifications': request.user.notifications.unread()
@@ -42,7 +42,7 @@ def get_reviews(request):
             'popular_reviews': popular,
             'recently_added_reviews': recently_added,
             'explore_reviews': explore,
-            'recommendations': get_random_list(MovieReview.objects.all())
+            'recommendations': get_random_list(MovieReview.objects.filter(published=True))
         }
 
     return render(request, template, context)
@@ -52,11 +52,11 @@ def get_category(request, category):
     template = 'reviews/category.html'
     reviews = None
     if category == 'recently_added':
-        reviews = MovieReview.objects.order_by('-pub_date')
+        reviews = MovieReview.objects.filter(published=True).order_by('-pub_date')
     elif category == 'popular':
-        reviews = MovieReview.objects.order_by('likes')
+        reviews = MovieReview.objects.filter(published=True).order_by('likes')
     elif category == 'explore':
-        reviews = MovieReview.objects.order_by('title')
+        reviews = MovieReview.objects.filter(published=True).order_by('title')
 
     if request.user.is_authenticated:
         context = {
@@ -152,7 +152,7 @@ def load_library(request, library, sort):
 
 
 class MovieDetailView(DetailView):
-    model = MovieReview
+    queryset = MovieReview.objects.filter(published=True)
     template_name = 'reviews/review.html'
 
     def get_context_data(self, **kwargs):
@@ -173,7 +173,7 @@ class MovieDetailView(DetailView):
 
         # Related Movies
         title = self.object.title
-        qs = MovieReview.objects.all()
+        qs = MovieReview.objects.filter(published=True)
 
         # Recommendation based on likes
         # user = self.request.user
@@ -184,7 +184,7 @@ class MovieDetailView(DetailView):
 
         related_qs = []
         for x in related:
-            related_qs.extend(MovieReview.objects.filter(title=x))
+            related_qs.extend(MovieReview.objects.filter(title=x, published=True))
         context["related"] = related_qs
 
         # Form
@@ -202,7 +202,7 @@ class LikeReview(APIView):
         user = self.request.user
         liked = False
         if id != -1:
-            obj = MovieReview.objects.get(id=id)
+            obj = MovieReview.objects.filter(published=True).get(id=id)
             if user in obj.likes.all():
                 liked = False
                 obj.likes.remove(user)
@@ -226,7 +226,7 @@ class BookmarkReview(APIView):
         user = self.request.user
         bookmarked = False
         if id != -1:
-            obj = MovieReview.objects.get(id=id)
+            obj = MovieReview.objects.filter(published=True).get(id=id)
             if obj in user.watchlist.all():
                 bookmarked = False
                 user.watchlist.remove(obj)
@@ -250,7 +250,7 @@ class ReviewLater(APIView):
         user = self.request.user
         bookmarked = False
         if id != -1:
-            obj = MovieReview.objects.get(id=id)
+            obj = MovieReview.objects.filter(published=True).get(id=id)
             if obj in user.review_later.all():
                 bookmarked = False
                 user.review_later.remove(obj)

@@ -104,12 +104,19 @@
       .review-holder .film-content .text .buttons {
         width: 100%; }
         .review-holder .film-content .text .buttons .btn {
-          height: 36px;
           font-size: 13px;
           font-weight: bold;
-          text-transform: uppercase; }
+          text-transform: uppercase;
+          background: #eeeeee;
+          color: #111;
+          margin-right: 4px;
+          border-radius: 0px;
+          transition: 250ms; }
           .review-holder .film-content .text .buttons .btn i {
+            font-size: 14px;
             color: #111; }
+        .review-holder .film-content .text .buttons .trailer i, .review-holder .film-content .text .buttons .watchlist i {
+          margin-right: 16px; }
         .review-holder .film-content .text .buttons .actions .btn:nth-child(1) {
           margin-right: 4px; }
         .review-holder .film-content .text .buttons .reactions .btn:nth-child(1) {
@@ -117,7 +124,10 @@
         .review-holder .film-content .text .buttons .reactions i {
           font-size: 16px; }
         .review-holder .film-content .text .buttons .review {
-          border-right: 4px solid #ec7063; }
+          justify-self: flex-end;
+          border-right: 8px solid #ec7063; }
+          .review-holder .film-content .text .buttons .review i {
+            margin-left: 16px; }
         .review-holder .film-content .text .buttons .btn:not(.btn-nbg):hover {
           background: rgba(204, 204, 204, 0.9); }
   .review-holder .ismdb-review {
@@ -178,7 +188,7 @@
                 .review-holder .ismdb-review .content .rating-content .ismdb-rating .ratings .bar-rating .bars .rating .value .unit {
                   background: #EC7063;
                   height: 100%;
-                  width: 2.5px;
+                  width: 25px;
                   margin-rigth: 1px; }
             .review-holder .ismdb-review .content .rating-content .ismdb-rating .ratings .bar-rating .bars:nth-child(1) {
               margin-right: 48px; }
@@ -216,27 +226,23 @@
                 font-size: 14px; }
         .review-holder .community-review .content .com-post .com-content {
           width: 100%; }
-          .review-holder .community-review .content .com-post .com-content textarea {
+          .review-holder .community-review .content .com-post .com-content .materialize-textarea {
             font-size: 16px;
             width: 100%;
-            margin-top: 16px;
-            resize: none;
-            border: none;
-            outline: none;
-            padding: 8px;
-            border-bottom: 4px solid rgba(236, 112, 99, 0); }
-          .review-holder .community-review .content .com-post .com-content textarea:focus {
-            border-bottom: 4px solid #ec7063; }
+            padding: 8px; }
         .review-holder .community-review .content .com-post .buttons {
           width: 100%;
           margin-top: 16px;
           justify-content: flex-end; }
           .review-holder .community-review .content .com-post .buttons .btn {
-            height: 36px;
             font-size: 13px;
-            font-weight: bold; }
-          .review-holder .community-review .content .com-post .buttons .btn:not(.btn-nbg):hover {
-            background: rgba(204, 204, 204, 0.9); }
+            font-weight: bold;
+            background: #ec7063; }
+            .review-holder .community-review .content .com-post .buttons .btn i {
+              margin-left: 8px;
+              transform: translateY(-2px); }
+          .review-holder .community-review .content .com-post .buttons .btn:hover {
+            background: rgba(236, 112, 99, 0.9); }
           .review-holder .community-review .content .com-post .buttons .btn:first-child {
             margin-right: 8px; }
       .review-holder .community-review .content .com-review {
@@ -333,7 +339,7 @@
                   .review-holder .community-review .content .com-review .rating-content .ismdb-rating .ratings .bar-rating .bars .rating .value .unit {
                     background: #EC7063;
                     height: 100%;
-                    width: 2.5px;
+                    width: 25px;
                     margin-rigth: 1px; }
               .review-holder .community-review .content .com-review .rating-content .ismdb-rating .ratings .bar-rating .bars:nth-child(1) {
                 margin-right: 48px; }

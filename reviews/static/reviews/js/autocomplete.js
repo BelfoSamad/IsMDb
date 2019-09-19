@@ -14,11 +14,10 @@ Autocomplete.prototype.setup = function () {
     this.query_box = this.form_elem.find('input[name=q]');
 
     // Watch the input box.
-    this.query_box.on('keyup', function () {
+    this.query_box.on('change keyup copy paste cut', function () {
         const query = self.query_box.val();
-        console.log(query);
         if (query.length < self.minimum_length) {
-            return false
+            $('.search-results1').remove();
         }
 
         self.fetch(query)
@@ -34,7 +33,10 @@ Autocomplete.prototype.setup = function () {
 
 Autocomplete.prototype.fetch = function (query) {
     console.log(query);
-    $(".search-results").load("../../search/autocomplete/" + query);
+    if (query === "")
+        $(".search-results").load("../../search/autocomplete/" + "NAN");
+    else
+        $(".search-results").load("../../search/autocomplete/" + query);
 };
 
 $(document).ready(function () {

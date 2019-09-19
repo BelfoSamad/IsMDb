@@ -3,101 +3,203 @@
 {% load movie_review_extras %}
 
 {% block review %}
-    <input type="hidden" value="{{ object.id }}" id="review_id"/>
-    <div class="review-holder">
-        <div class="back-cover">
-            <div></div>
-            <img src="{{ object.cover.url }}" alt="film-cover">
+<input type="hidden" value="{{ object.id }}" id="review_id" />
+<div class="review-holder">
+    <div class="back-cover">
+        <div></div>
+        <img src="{{ object.cover.url }}" alt="film-cover">
+    </div>
+    <div class="h-flex film-content">
+        <div class="cover">
+            <img src="{{ object.poster.url }}" alt="film-cover">
         </div>
-        <div class="h-flex film-content">
-            <div class="cover">
-                <img src="{{ object.poster.url }}" alt="film-cover">
+        <div class="text v-flex">
+            <div class="header h-flex">
+                <div class="title">{{ object.title }}</div>
+                <span class="rating">{{ object.IMDB_rating }}</span>
             </div>
-            <div class="text v-flex">
-                <div class="header h-flex">
-                    <div class="title">{{ object.title }}</div>
-                    <span class="rating">{{ object.IMDB_rating }}</span>
+            <div class="plot">
+                <h1>Story Line</h1>
+                <div class="separator"></div>
+                <p>{{ object.description }}</p>
+                <div class="metadata h-flex">
+                    <div class="year"><span>{{ object.year }}</span></div>
+                    <div class="duration"><span>{{ object.time|duration_format }}</span></div>
+                    <div class="genres">
+                        {% for genre in object.genre %}
+                        <span>{{ genre|genre_text }}</span>
+                        {% endfor %}
+                    </div>
                 </div>
-                <div class="plot">
-                    <h1>Story Line</h1>
-                    <div class="separator"></div>
-                    <p>{{ object.description }}</p>
-                    <div class="metadata h-flex">
-                        <div class="year"><span>{{ object.year }}</span></div>
-                        <div class="duration"><span>{{ object.time|duration_format }}</span></div>
-                        <div class="genres">
-                            {% for genre in object.genre %}
-                                <span>{{ genre|genre_text }}</span>
-                            {% endfor %}
+            </div>
+            <div class="information">
+                <div class="director">
+                    <span class="not">Director: </span>
+                    {% for director in directors %}
+                    <span class="star">{{ director.first_name }} {{ director.last_name }}</span>,
+                    {% endfor %}
+                </div>
+                <div class="stars">
+                    <span class="not">Stars:</span>
+                    {% for actor in actors %}
+                    <span class="star">{{ actor.first_name }} {{ actor.last_name }}</span>,
+                    {% endfor %}
+                </div>
+                <div class="writers">
+                    <span class="not">Writers:</span>
+                    {% for director in directors %}
+                    <span class="star">{{ director.first_name }} {{ director.last_name }}</span>,
+                    {% endfor %}
+                </div>
+                <div class="release-date">
+                    <span class="not">Release Date: </span>
+                    <span class="release">{{ object.release_date }}</span>
+                </div>
+                <div class="country">
+                    <span class="not">Country: </span>
+                    <span class="c-value">{{ object.country }}</span>
+                </div>
+            </div>
+            <div class="buttons h-flex">
+                <div class="h-flex">
+                    <button class="btn waves-effect waves-light h-flex like_review"
+                        data-href="{% url 'reviews:like' id=object.id %}">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <button class="btn waves-effect waves-light watchlist"
+                        data-href="{% url 'reviews:bookmark' id=object.id %}">
+                        <i class="fas fa-plus"></i>
+                        Watchlist
+                    </button>
+                    <a class="btn waves-effect waves-light trailer h-flex" href="{{ object.trailer }}">
+                        <i class="fas fa-play"></i>
+                        Trailer
+                    </a></div>
+                <div class="h-flex">
+                    <a class="btn waves-effect waves-light h-flex review" href="#" class="c-link h-flex">
+                        Review Later
+                        <i class="fas fa-long-arrow-alt-right"></i>
+                    </a></div>
+            </div>
+        </div>
+    </div>
+    <div class="ismdb-review">
+        <div class="header">REVIEW
+        </div>
+        <div class="content v-flex">
+            <div class="summary">
+                <p>
+                    {{ object.review }}
+                </p>
+            </div>
+            <div class="rating-content">
+                <div class="ismdb-rating v-flex">
+                    <div class="rating-header h-flex">
+                        <span class="text">rating based on the following
+                            criteria:</span>
+                        <i class="far fa-question-circle"></i>
+                    </div>
+                    <div class="ratings h-flex">
+                        <!--<div class="circle-rating v-flex">2.4</div>-->
+                        <div class="bar-rating h-flex">
+                            <div class="bars v-flex">
+                                <div class="rating h-flex">
+                                    <div class="title">Alcohol</div>
+                                    <div class="value h-flex">
+                                        {% for x in object.alcohol|range %}
+                                        <div class="unit"></div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="rating h-flex">
+                                    <div class="title">Language</div>
+                                    <div class="value h-flex">
+                                        {% for x in object.language|range %}
+                                        <div class="unit"></div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="rating h-flex">
+                                    <div class="title">LGBTQ</div>
+                                    <div class="value h-flex">
+                                        {% for x in object.LGBTQ|range %}
+                                        <div class="unit"></div>
+                                        {% endfor %}
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="bars v-flex">
+                                <div class="rating h-flex">
+                                    <div class="title">Nudity</div>
+                                    <div class="value h-flex">
+                                        {% for x in object.nudity|range %}
+                                        <div class="unit"></div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="rating h-flex">
+                                    <div class="title">Sex</div>
+                                    <div class="value h-flex">
+                                        {% for x in object.sex|range %}
+                                        <div class="unit"></div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="rating h-flex">
+                                    <div class="title">Violence</div>
+                                    <div class="value h-flex">
+                                        {% for x in object.violence|range %}
+                                        <div class="unit"></div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="information">
-                    <div class="director">
-                        <span class="not">Director: </span>
-                        {% for director in directors %}
-                            <span class="star">{{ director.first_name }} {{ director.last_name }}</span>,
-                        {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="community-review">
+        <div class="community-header">Community</div>
+        <div class="content">
+            <div class="com-review com-post v-flex">
+                <div class="com-header h-flex">
+                    <div class="profile h-flex">
+                        <img src="{% static 'reviews/assets/profile-image.jpeg' %}" alt="profile-image">
+                        <div class="v-flex">
+                            <span class="nickname">nickname</span>
+                        </div>
                     </div>
-                    <div class="stars">
-                        <span class="not">Stars:</span>
-                        {% for actor in actors %}
-                            <span class="star">{{ actor.first_name }} {{ actor.last_name }}</span>,
-                        {% endfor %}
+                </div>
+                <div class="com-content">
+                    <div class="input-field">
+                        <textarea name="title" id="id_title" class="materialize-textarea" data-length="120"></textarea>
+                        <label for="id_title">Type in the title of the comment</label>
                     </div>
-                    <div class="writers">
-                        <span class="not">Writers:</span>
-                        {% for director in directors %}
-                            <span class="star">{{ director.first_name }} {{ director.last_name }}</span>,
-                        {% endfor %}
-                    </div>
-                    <div class="release-date">
-                        <span class="not">Release Date: </span>
-                        <span class="release">{{ object.release_date }}</span>
-                    </div>
-                    <div class="country">
-                        <span class="not">Country: </span>
-                        <span class="c-value">{{ object.country }}</span>
+                    <div class="input-field">
+                        <textarea name="comment" id="id_content" class="materialize-textarea"
+                            data-length="120"></textarea>
+                        <label for="id_content">Type in a comment</label>
                     </div>
                 </div>
                 <div class="buttons h-flex">
-                    <button class="h-flex like_review" data-href="{% url 'reviews:like' id=object.id %}">
-                        <i class="far fa-heart"></i>
+                    <button onclick="showRating(this, 'Add Review', 'Remove Review')"
+                        class="h-flex btn waves-effect light-effect view-review">
+                        Add Review
+                        <i class="fas fa-sort-down"></i>
                     </button>
-                    <button class="h-flex watchlist"
-                            data-href="{% url 'reviews:bookmark' id=object.id %}">
-                        <i class="fas fa-plus"></i>
-                        <div>Watchlist</div>
-                    </button>
-                    <a href="{{ object.trailer }}">
-                        <button class="h-flex trailer">
-                            <i class="fas fa-play"></i>
-                            <div>Trailer</div>
-                        </button>
-                    </a>
-                    <button class="h-flex review">
-                        <a href="#" class="c-link h-flex">
-                            <div>Review Now</div>
-                            <i class="fas fa-long-arrow-alt-right"></i>
-                        </a>
+                    <button class="add_comment h-flex btn" data-href="{% url 'comments:add_comment' %}"
+                        id="{{ object.id }}">
+                        Comment
                     </button>
                 </div>
-            </div>
-        </div>
-        <div class="ismdb-review">
-            <div class="header">REVIEW
-            </div>
-            <div class="content v-flex">
-                <div class="summary">
-                    <p>
-                        {{ object.review }}
-                    </p>
-                </div>
-                <div class="rating-content">
+                <div class="hidden visually-hidden rating-content">
                     <div class="ismdb-rating v-flex">
                         <div class="rating-header h-flex">
-                        <span class="text">rating based on the following
-                            criteria:</span>
+                            <span class="text">rating based on the following
+                                criteria:</span>
                             <i class="far fa-question-circle"></i>
                         </div>
                         <div class="ratings h-flex">
@@ -107,52 +209,53 @@
                                     <div class="rating h-flex">
                                         <div class="title">Alcohol</div>
                                         <div class="value h-flex">
-                                            {% for x in object.alcohol|range %}
-                                                <div class="unit"></div>
-                                            {% endfor %}
+                                            <p class="range-field">
+                                                <input type="range" id="alcohol" value="0" step="0.1" min="0" max="5" />
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="rating h-flex">
                                         <div class="title">Language</div>
                                         <div class="value h-flex">
-                                            {% for x in object.language|range %}
-                                                <div class="unit"></div>
-                                            {% endfor %}
+                                            <p class="range-field">
+                                                <input type="range" id="language" value="0" step="0.1" min="0"
+                                                    max="5" />
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="rating h-flex">
                                         <div class="title">LGBTQ</div>
                                         <div class="value h-flex">
-                                            {% for x in object.LGBTQ|range %}
-                                                <div class="unit"></div>
-                                            {% endfor %}
+                                            <p class="range-field">
+                                                <input type="range" id="lgbtq" value="0" step="0.1" min="0" max="5" />
+                                            </p>
                                         </div>
-
                                     </div>
                                 </div>
                                 <div class="bars v-flex">
                                     <div class="rating h-flex">
                                         <div class="title">Nudity</div>
                                         <div class="value h-flex">
-                                            {% for x in object.nudity|range %}
-                                                <div class="unit"></div>
-                                            {% endfor %}
+                                            <p class="range-field">
+                                                <input type="range" id="nudity" value="0" step="0.1" min="0" max="5" />
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="rating h-flex">
                                         <div class="title">Sex</div>
                                         <div class="value h-flex">
-                                            {% for x in object.sex|range %}
-                                                <div class="unit"></div>
-                                            {% endfor %}
+                                            <p class="range-field">
+                                                <input type="range" id="sex" value="0" step="0.1" min="0" max="5" />
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="rating h-flex">
                                         <div class="title">Violence</div>
                                         <div class="value h-flex">
-                                            {% for x in object.violence|range %}
-                                                <div class="unit"></div>
-                                            {% endfor %}
+                                            <p class="range-field">
+                                                <input type="range" id="violence" value="0" step="0.1" min="0"
+                                                    max="5" />
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -161,41 +264,52 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="community-review">
-            <div class="community-header">Community</div>
-            <div class="content">
-                <div class="com-review com-post v-flex">
+            <div class="comments" data-href="{% url 'comments:comments' id=object.id %}">
+                {% for comment in comments %}
+                <div class="com-review v-flex">
                     <div class="com-header h-flex">
                         <div class="profile h-flex">
                             <img src="{% static 'reviews/assets/profile-image.jpeg' %}" alt="profile-image">
                             <div class="v-flex">
-                                <span class="nickname">nickname</span>
-                                <span class="honors">521 <i class="fas fa-award"></i></span>
+                                <span class="nickname">{{ comment.memberId }}</span>
+                                <span class="honors">1033 <i class="fas fa-award"></i></span>
                             </div>
                         </div>
+                        <div class="timestamp">2 days ago</div>
                     </div>
                     <div class="com-content">
-                        <textarea name="title" id="id_title" rows="3"
-                                  placeholder="Type in the title of the Comment..."></textarea>
-                        <textarea name="comment" id="id_content" rows="3" placeholder="Type in a comment..."></textarea>
+                        <p>{{ comment.content }}</p>
                     </div>
                     <div class="buttons h-flex">
-                        <button onclick="showRating(this, 'Add Review', 'Remove Review')"
+                        <div class="h-flex reactions">
+                            <button title="Like" class="h-flex btn btn-nbg btn-l-icon like"
+                                data-href="{% url 'comments:like' id=comment.id movie_id=object.id %}"
+                                id="{{ comment.id }}">
+                                <i class="fas fa-thumbs-up"></i>
+                                <span id="like_{{ comment.id }}">{{ comment.likes.count }}</span>
+                            </button>
+                            <button title="Dislike" class="h-flex btn btn-nbg dislike"
+                                data-href="{% url 'comments:dislike' id=comment.id %}" id="{{ comment.id }}">
+                                <i class="fas fa-thumbs-down"></i>
+                            </button>
+                        </div>
+                        <div class="h-flex actions">
+                            <button onclick="showRating(this, 'Show Review', 'Hide Review')"
                                 class="h-flex btn btn-r-icon view-review">
-                            <span>Add Review</span>
-                            <i class="fas fa-sort-down"></i>
-                        </button>
-                        <button class="add_comment h-flex btn" data-href="{% url 'comments:add_comment' %}"
-                                id="{{ object.id }}">
-                            <span>Comment</span>
-                        </button>
+                                <span>Show Review</span>
+                                <i class="fas fa-sort-down"></i>
+                            </button>
+                            <button title="Report" onclick="showCommentModal({{ comment.id }})"
+                                class="h-flex btn btn-nbg report" id="report_comment">
+                                <i class="fas fa-flag"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="hidden visually-hidden rating-content">
                         <div class="ismdb-rating v-flex">
                             <div class="rating-header h-flex">
-                            <span class="text">rating based on the following
-                                criteria:</span>
+                                <span class="text">rating based on the following
+                                    criteria:</span>
                                 <i class="far fa-question-circle"></i>
                             </div>
                             <div class="ratings h-flex">
@@ -205,56 +319,52 @@
                                         <div class="rating h-flex">
                                             <div class="title">Alcohol</div>
                                             <div class="value h-flex">
-                                                <p class="range-field">
-                                                    <input type="range" id="alcohol" value="0" step="0.1" min="0"
-                                                           max="5"/>
-                                                </p>
+                                                {% for x in comment.alcohol|range %}
+                                                <div class="unit"></div>
+                                                {% endfor %}
                                             </div>
                                         </div>
                                         <div class="rating h-flex">
                                             <div class="title">Language</div>
                                             <div class="value h-flex">
-                                                <p class="range-field">
-                                                    <input type="range" id="language" value="0" step="0.1" min="0"
-                                                           max="5"/>
-                                                </p>
+                                                {% for x in comment.language|range %}
+                                                <div class="unit"></div>
+                                                {% endfor %}
                                             </div>
                                         </div>
                                         <div class="rating h-flex">
                                             <div class="title">LGBTQ</div>
                                             <div class="value h-flex">
-                                                <p class="range-field">
-                                                    <input type="range" id="lgbtq" value="0" step="0.1" min="0"
-                                                           max="5"/>
-                                                </p>
+                                                {% for x in comment.LGBTQ|range %}
+                                                <div class="unit"></div>
+                                                {% endfor %}
                                             </div>
+
                                         </div>
                                     </div>
                                     <div class="bars v-flex">
                                         <div class="rating h-flex">
                                             <div class="title">Nudity</div>
                                             <div class="value h-flex">
-                                                <p class="range-field">
-                                                    <input type="range" id="nudity" value="0" step="0.1" min="0"
-                                                           max="5"/>
-                                                </p>
+                                                {% for x in comment.nudity|range %}
+                                                <div class="unit"></div>
+                                                {% endfor %}
                                             </div>
                                         </div>
                                         <div class="rating h-flex">
                                             <div class="title">Sex</div>
                                             <div class="value h-flex">
-                                                <p class="range-field">
-                                                    <input type="range" id="sex" value="0" step="0.1" min="0" max="5"/>
-                                                </p>
+                                                {% for x in comment.sex|range %}
+                                                <div class="unit"></div>
+                                                {% endfor %}
                                             </div>
                                         </div>
                                         <div class="rating h-flex">
                                             <div class="title">Violence</div>
                                             <div class="value h-flex">
-                                                <p class="range-field">
-                                                    <input type="range" id="violence" value="0" step="0.1" min="0"
-                                                           max="5"/>
-                                                </p>
+                                                {% for x in comment.violence|range %}
+                                                <div class="unit"></div>
+                                                {% endfor %}
                                             </div>
                                         </div>
                                     </div>
@@ -263,213 +373,99 @@
                         </div>
                     </div>
                 </div>
-                <div class="comments" data-href="{% url 'comments:comments' id=object.id %}">
-                    {% for comment in comments %}
-                        <div class="com-review v-flex">
-                            <div class="com-header h-flex">
-                                <div class="profile h-flex">
-                                    <img src="{% static 'reviews/assets/profile-image.jpeg' %}" alt="profile-image">
-                                    <div class="v-flex">
-                                        <span class="nickname">{{ comment.memberId }}</span>
-                                        <span class="honors">1033 <i class="fas fa-award"></i></span>
-                                    </div>
-                                </div>
-                                <div class="timestamp">2 days ago</div>
+                {% endfor %}
+                <div class="com-more h-flex">
+                    <button>Show More</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="related-reviews">
+        <div class="related-header">Similar Reviews</div>
+        <div class="content v-flex">
+            <div class="reviews h-flex">
+                {% for review in related %}
+                <div class="review h-flex">
+                    <div class="v-flex review-cover">
+                        <img class="film-cover" src="{{ review.poster.url }}">
+                    </div>
+                    <div class="more-info">
+                        <div class="animation-div"></div>
+                        <div class="more-info-wrapper v-flex">
+                            <div class="film-title h-flex">
+                                <h4>{{ review.title }}</h4>
+                                <span title="IsMDb Rating" class="rating">{{ review.IMDB_rating }}</span>
                             </div>
-                            <div class="com-content">
-                                <p>{{ comment.content }}</p>
+                            <div class="plot">
+                                <p>{{ review.description }}</p>
                             </div>
-                            <div class="buttons h-flex">
-                                <div class="h-flex reactions">
-                                    <button title="Like" class="h-flex btn btn-nbg btn-l-icon like"
-                                            data-href="{% url 'comments:like' id=comment.id movie_id=object.id %}"
-                                            id="{{ comment.id }}">
-                                        <i class="fas fa-thumbs-up"></i>
-                                        <span id="like_{{ comment.id }}">{{ comment.likes.count }}</span>
-                                    </button>
-                                    <button title="Dislike" class="h-flex btn btn-nbg dislike"
-                                            data-href="{% url 'comments:dislike' id=comment.id %}"
-                                            id="{{ comment.id }}">
-                                        <i class="fas fa-thumbs-down"></i>
-                                    </button>
-                                </div>
-                                <div class="h-flex actions">
-                                    <button onclick="showRating(this, 'Show Review', 'Hide Review')"
-                                            class="h-flex btn btn-r-icon view-review">
-                                        <span>Show Review</span>
-                                        <i class="fas fa-sort-down"></i>
-                                    </button>
-                                    <button title="Report" onclick="showCommentModal({{ comment.id }})"
-                                            class="h-flex btn btn-nbg report" id="report_comment">
-                                        <i class="fas fa-flag"></i>
-                                    </button>
+                            <div class="metadata h-flex">
+                                <div class="year"><span>{{ review.year }}</span></div>
+                                <div class="genres">
+                                    {% for genre in review.genre %}
+                                    <span>{{ genre|genre_text }}</span>
+                                    {% endfor %}
                                 </div>
                             </div>
-                            <div class="hidden visually-hidden rating-content">
-                                <div class="ismdb-rating v-flex">
-                                    <div class="rating-header h-flex">
-                        <span class="text">rating based on the following
-                            criteria:</span>
-                                        <i class="far fa-question-circle"></i>
-                                    </div>
-                                    <div class="ratings h-flex">
-                                        <!--<div class="circle-rating v-flex">2.4</div>-->
-                                        <div class="bar-rating h-flex">
-                                            <div class="bars v-flex">
-                                                <div class="rating h-flex">
-                                                    <div class="title">Alcohol</div>
-                                                    <div class="value h-flex">
-                                                        {% for x in comment.alcohol|range %}
-                                                            <div class="unit"></div>
-                                                        {% endfor %}
-                                                    </div>
-                                                </div>
-                                                <div class="rating h-flex">
-                                                    <div class="title">Language</div>
-                                                    <div class="value h-flex">
-                                                        {% for x in comment.language|range %}
-                                                            <div class="unit"></div>
-                                                        {% endfor %}
-                                                    </div>
-                                                </div>
-                                                <div class="rating h-flex">
-                                                    <div class="title">LGBTQ</div>
-                                                    <div class="value h-flex">
-                                                        {% for x in comment.LGBTQ|range %}
-                                                            <div class="unit"></div>
-                                                        {% endfor %}
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            <div class="bars v-flex">
-                                                <div class="rating h-flex">
-                                                    <div class="title">Nudity</div>
-                                                    <div class="value h-flex">
-                                                        {% for x in comment.nudity|range %}
-                                                            <div class="unit"></div>
-                                                        {% endfor %}
-                                                    </div>
-                                                </div>
-                                                <div class="rating h-flex">
-                                                    <div class="title">Sex</div>
-                                                    <div class="value h-flex">
-                                                        {% for x in comment.sex|range %}
-                                                            <div class="unit"></div>
-                                                        {% endfor %}
-                                                    </div>
-                                                </div>
-                                                <div class="rating h-flex">
-                                                    <div class="title">Violence</div>
-                                                    <div class="value h-flex">
-                                                        {% for x in comment.violence|range %}
-                                                            <div class="unit"></div>
-                                                        {% endfor %}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="review-actions h-flex">
+                                <div class="bookmark-rev-later">
+                                    <button><i title="Bookmark" class="far fa-bookmark watchlist"
+                                            data-href="{% url 'reviews:bookmark' id=review.id %}"></i>
+                                    </button>
+                                    <button data-href="{% url 'reviews:review_later' id=review.id %}"
+                                        class="review-later"><i title="Review later" class="far fa-clock"></i>
+                                    </button>
                                 </div>
+                                <a href="{{ review.get_absolute_url }}">
+                                    <button class="view-review" type="submit" name="action">View Review<i
+                                            class="fas fa-long-arrow-alt-right"></i>
+                                    </button>
+                                </a>
                             </div>
                         </div>
-                    {% endfor %}
-                    <div class="com-more h-flex">
-                        <button>Show More</button>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="related-reviews">
-            <div class="related-header">Similar Reviews</div>
-            <div class="content v-flex">
-                <div class="reviews h-flex">
-                    {% for review in related %}
-                        <div class="review h-flex">
-                            <div class="v-flex review-cover">
-                                <img class="film-cover" src="{{ review.poster.url }}">
-                            </div>
-                            <div class="more-info">
-                                <div class="animation-div"></div>
-                                <div class="more-info-wrapper v-flex">
-                                    <div class="film-title h-flex">
-                                        <h4>{{ review.title }}</h4>
-                                        <span title="IsMDb Rating" class="rating">{{ review.IMDB_rating }}</span>
-                                    </div>
-                                    <div class="plot">
-                                        <p>{{ review.description }}</p>
-                                    </div>
-                                    <div class="metadata h-flex">
-                                        <div class="year"><span>{{ review.year }}</span></div>
-                                        <div class="genres">
-                                            {% for genre in review.genre %}
-                                                <span>{{ genre|genre_text }}</span>
-                                            {% endfor %}
-                                        </div>
-                                    </div>
-                                    <div class="review-actions h-flex">
-                                        <div class="bookmark-rev-later">
-                                            <button><i title="Bookmark" class="far fa-bookmark watchlist"
-                                                       data-href="{% url 'reviews:bookmark' id=review.id %}"></i>
-                                            </button>
-                                            <button data-href="{% url 'reviews:review_later' id=review.id %}"
-                                                    class="review-later"><i
-                                                    title="Review later"
-                                                    class="far fa-clock"></i>
-                                            </button>
-                                        </div>
-                                        <a href="{{ review.get_absolute_url }}">
-                                            <button class="view-review" type="submit" name="action">View Review<i
-                                                    class="fas fa-long-arrow-alt-right"></i>
-                                            </button>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
-    <div id="ReportCommentModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="close_report_comment" onclick="CloseReportComment()">&times;</span>
-                <h2>Modal Header</h2>
-            </div>
-            <div class="modal-body">
-                <fieldset id="report_comment_content">
-                    <input type="radio" value="value1" name="report_comment_content"> Value 1<br/>
-                    <input type="radio" value="value2" name="report_comment_content"> Value 2<br/>
-                    <input type="radio" value="value3" name="report_comment_content"> Value 3<br/>
-                </fieldset>
-            </div>
-            <div class="modal-footer">
-                <input type="submit" value="Report" class="report_comment"
-                       data-href="{% url 'reports:report_comment' %}">
-            </div>
+</div>
+<div id="ReportCommentModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close_report_comment" onclick="CloseReportComment()">&times;</span>
+            <h2>Modal Header</h2>
+        </div>
+        <div class="modal-body">
+            <fieldset id="report_comment_content">
+                <input type="radio" value="value1" name="report_comment_content"> Value 1<br />
+                <input type="radio" value="value2" name="report_comment_content"> Value 2<br />
+                <input type="radio" value="value3" name="report_comment_content"> Value 3<br />
+            </fieldset>
+        </div>
+        <div class="modal-footer">
+            <input type="submit" value="Report" class="report_comment" data-href="{% url 'reports:report_comment' %}">
         </div>
     </div>
-    <div id="ReportReviewModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="close_report_comment" onclick="CloseReportReview()">&times;</span>
-                <h2>Modal Header</h2>
-            </div>
-            <div class="modal-body">
-                <fieldset id="report_review_content">
-                    <input type="radio" value="value1" name="report_review_content"> Value 1<br/>
-                    <input type="radio" value="value2" name="report_review_content"> Value 2<br/>
-                    <input type="radio" value="value3" name="report_review_content"> Value 3<br/>
-                </fieldset>
-            </div>
-            <div class="modal-footer">
-                <input type="submit" value="Report" class="report_review"
-                       data-href="{% url 'reports:report_review' %}">
-            </div>
+</div>
+<div id="ReportReviewModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close_report_comment" onclick="CloseReportReview()">&times;</span>
+            <h2>Modal Header</h2>
+        </div>
+        <div class="modal-body">
+            <fieldset id="report_review_content">
+                <input type="radio" value="value1" name="report_review_content"> Value 1<br />
+                <input type="radio" value="value2" name="report_review_content"> Value 2<br />
+                <input type="radio" value="value3" name="report_review_content"> Value 3<br />
+            </fieldset>
+        </div>
+        <div class="modal-footer">
+            <input type="submit" value="Report" class="report_review" data-href="{% url 'reports:report_review' %}">
         </div>
     </div>
+</div>
 {% endblock %}
 
 <script src="{% static 'js/jquery-3.4.1.js' %}"></script>
