@@ -21,30 +21,6 @@ $(".up_vote").click(function (e) {
         });
     }
 });
-$(".up_vote_result").click(function (e) {
-        e.preventDefault();
-        if (document.getElementById("user_auth").value === "false")
-            window.location.href = "http://http://127.0.0.1:8000/test";
-        else {
-            var this_ = $(this);
-            var like_url = this_.attr("data-href");
-            $.ajax({
-                url: like_url,
-                method: "GET",
-                data: {},
-                success: function (data) {
-                    console.log(data);
-                    document.getElementById("myModal").style.display = "none";
-                    document.getElementById("id_title_auto").value = '';
-                    document.getElementById("id_description").value = '';
-                    $(".results").load("");
-                }, error: function (error) {
-                    console.log(error);
-                }
-            });
-        }
-    }
-);
 $(".delete").click(function (e) {
     e.preventDefault();
     var this_ = $(this);

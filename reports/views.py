@@ -20,8 +20,9 @@ class ReportComment(APIView):
     def get(self, request):
         user = self.request.user
         content = request.GET.get('content', None)
+        message = request.GET.get('message', None)
         comment_id = request.GET.get('id', None)
-        ReportComm.objects.create(content=content, memberID=user, commentID_id=comment_id,
+        ReportComm.objects.create(content=content, memberID=user, message=message, commentID_id=comment_id,
                                   date_added=datetime.datetime.now())
         staff = [s for s in Member.objects.all() if
                  s.groups.filter(name='Admin').exists() or s.groups.filter(name='Moderator').exists()]
@@ -42,7 +43,8 @@ class ReportReview(APIView):
         user = self.request.user
         content = request.GET.get('content', None)
         review_id = request.GET.get('id', None)
-        ReportRev.objects.create(content=content, memberID=user, reviewID_id=review_id,
+        message = request.GET.get('message', None)
+        ReportRev.objects.create(content=content, memberID=user, message=message, reviewID_id=review_id,
                                  date_added=datetime.datetime.now())
         staff = [s for s in Member.objects.all() if
                  s.groups.filter(name='Admin').exists() or s.groups.filter(name='Moderator').exists()]

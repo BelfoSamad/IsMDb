@@ -27,16 +27,25 @@ def get_reviews(request):
     explore = MovieReview.objects.filter(published=True).order_by('title')
 
     if request.user.is_authenticated:
-        context = {
-            'popular_reviews': popular,
-            'recently_added_reviews': recently_added,
-            'explore_reviews': explore,
-            'recommendations': [MovieReview.objects.filter(published=True).get(title=x) for x in
-                                get_random_list(get_criteria_similarity(MovieReview.objects.filter(published=True),
-                                                                        get_object_or_404(Member,
-                                                                                          id=request.user.id).review_likes))],
-            'notifications': request.user.notifications.unread()
-        }
+        if len(get_object_or_404(Member, id=request.user.id).review_likes.all()) > 0:
+            context = {
+                'popular_reviews': popular,
+                'recently_added_reviews': recently_added,
+                'explore_reviews': explore,
+                'recommendations': [MovieReview.objects.filter(published=True).get(title=x) for x in
+                                    get_random_list(get_criteria_similarity(MovieReview.objects.filter(published=True),
+                                                                            get_object_or_404(Member,
+                                                                                              id=request.user.id).review_likes))],
+                'notifications': request.user.notifications.unread()
+            }
+        else:
+            context = {
+                'popular_reviews': popular,
+                'recently_added_reviews': recently_added,
+                'explore_reviews': explore,
+                'recommendations': get_random_list(MovieReview.objects.filter(published=True)),
+                'notifications': request.user.notifications.unread()
+            }
     else:
         context = {
             'popular_reviews': popular,
@@ -166,6 +175,16 @@ class MovieDetailView(DetailView):
         # Comment
         comments = self.object.comment_set.all()
         context["comments"] = reversed(comments)
+
+        # Liked?
+        if self.request.user.is_authenticated:
+            member = get_object_or_404(Member, id=self.request.user.id)
+            if member in self.object.likes.all():
+                context['liked'] = True
+            else:
+                context['liked'] = False
+        else:
+            context['liked'] = False
 
         # Notification:
         if self.request.user.is_authenticated:

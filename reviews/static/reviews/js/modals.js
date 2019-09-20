@@ -53,6 +53,7 @@ $(".report_comment").click(function (e) {
         var this_ = $(this);
         var report_comment_url = this_.attr("data-href");
         var content = $('#report_comment_content input:radio').val();
+        let message = $(".comment-report").attr("value");
         console.log(content);
         console.log(comment_id);
         $.ajax({
@@ -60,6 +61,7 @@ $(".report_comment").click(function (e) {
             method: "GET",
             data: {
                 'content': content,
+                'message': message,
                 'id': comment_id
             },
             success: function (data) {
@@ -81,11 +83,15 @@ $(".report_review").click(function (e) {
         var this_ = $(this);
         var report_review_url = this_.attr("data-href");
         var content = $('#report_review_content input:radio').val();
+        if (content === "Others")
+            content = $('#report_comment_content input:text').val();
+        let message = $(".review-report").attr("value");
         $.ajax({
             url: report_review_url,
             method: "GET",
             data: {
                 'content': content,
+                'message': message,
                 'id': document.getElementById("review_id").val
             },
             success: function (data) {

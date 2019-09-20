@@ -181,15 +181,7 @@
                 margin-right: 16px; }
               .review-holder .ismdb-review .content .rating-content .ismdb-rating .ratings .bar-rating .bars .rating .value {
                 justify-content: flex-start;
-                background: #F8F8F8;
-                border-radius: 0px;
-                height: 8px;
-                width: 125px; }
-                .review-holder .ismdb-review .content .rating-content .ismdb-rating .ratings .bar-rating .bars .rating .value .unit {
-                  background: #EC7063;
-                  height: 100%;
-                  width: 25px;
-                  margin-rigth: 1px; }
+                border-radius: 0px; }
             .review-holder .ismdb-review .content .rating-content .ismdb-rating .ratings .bar-rating .bars:nth-child(1) {
               margin-right: 48px; }
   .review-holder .community-review {
@@ -284,8 +276,6 @@
             height: 36px;
             font-size: 13px;
             font-weight: bold; }
-          .review-holder .community-review .content .com-review .buttons .btn:not(.btn-nbg):hover {
-            background: rgba(204, 204, 204, 0.9); }
           .review-holder .community-review .content .com-review .buttons .btn-nbg:hover i {
             transform: translateY(-1px); }
           .review-holder .community-review .content .com-review .buttons .reactions i {
@@ -296,8 +286,10 @@
             margin-right: 16px; }
           .review-holder .community-review .content .com-review .buttons .view-review i {
             font-size: 18px;
+            margin-left: 8px;
             height: 24px;
-            transition: 0.3s; }
+            transition: 0.3s;
+            transform: translateY(-3px); }
         .review-holder .community-review .content .com-review .rating-content {
           background: rgba(128, 128, 128, 0.15);
           padding: 16px 16px;
@@ -332,15 +324,7 @@
                   margin-right: 16px; }
                 .review-holder .community-review .content .com-review .rating-content .ismdb-rating .ratings .bar-rating .bars .rating .value {
                   justify-content: flex-start;
-                  background: #F8F8F8;
-                  border-radius: 0px;
-                  height: 8px;
-                  width: 125px; }
-                  .review-holder .community-review .content .com-review .rating-content .ismdb-rating .ratings .bar-rating .bars .rating .value .unit {
-                    background: #EC7063;
-                    height: 100%;
-                    width: 25px;
-                    margin-rigth: 1px; }
+                  border-radius: 0px; }
               .review-holder .community-review .content .com-review .rating-content .ismdb-rating .ratings .bar-rating .bars:nth-child(1) {
                 margin-right: 48px; }
       .review-holder .community-review .content .com-more {

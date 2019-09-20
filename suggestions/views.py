@@ -95,17 +95,6 @@ class SuggestionUpVote(APIView):
         return Response(data)
 
 
-def autocomplete(request, query):
-    sqs = SearchQuerySet().autocomplete(content_auto_suggestion=query)
-    results = []
-    for result in sqs:
-        if (result.object.approved is True) and (request.user not in result.object.up_votes.all()) and (
-                result.object.memberID is not request.user):
-            results.append(result)
-    template = loader.get_template('suggestions/suggestions_results.html')
-    return HttpResponse(template.render({'suggestions': results}, request))
-
-
 def load_my_suggestions(request):
     current_user = request.user
     my_suggestions = Suggestion.objects.filter(memberID=current_user)

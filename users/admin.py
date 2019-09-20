@@ -10,12 +10,12 @@ class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = Member
-    list_display = ['email', 'username', ]
+    list_display = ['username', 'email', 'avatar', 'country', 'birthday_date', 'gender', ]
 
     def save_model(self, request, obj, form, change):
         user = request.user
         if obj.cant_comment:
-            notify.send(user, recipient=obj, verb='Can\'t Comment Due To a Report')
+            notify.send(user, recipient=obj, verb='Comment Disabled')
         super().save_model(request, obj, form, change)
 
 

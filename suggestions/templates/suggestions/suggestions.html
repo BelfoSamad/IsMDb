@@ -5,7 +5,9 @@
         <div class="my-suggestions v-flex">
             <div class="header h-flex">
                 <h1>My Suggestions</h1>
-                <button class="btn waves-effect light-effect add" id="add_suggestion" onclick="addSuggestion()">Add A Suggestion</button>
+                <button class="btn waves-effect light-effect add" id="add_suggestion" onclick="addSuggestion()">Add A
+                    Suggestion
+                </button>
             </div>
             <div class="content v-flex">
                 <div class="four-suggs v-flex" data-href="{% url 'suggestions:my_suggestions' %}">
@@ -41,7 +43,6 @@
                             <div class="header h-flex">
                                 <h1>{{ suggestion.title }}</h1>
                                 <div class="actions h-flex">
-                                    <button title="Report" class="btn"><i class="fas fa-flag"></i></button>
                                     <button title="Upvote" class="up_vote btn"
                                             data-href="{% url 'suggestions:upvote' id=suggestion.id %}"
                                             id="sugg_{{ suggestion.id }}"><i
@@ -61,29 +62,24 @@
         </div>
     </div>
     <div id="myModal" class="modal">
+        <div class="modal-header">
+            <span class="close" onclick="closeAddSuggestion()">&times;</span>
+            <h2>Modal Header</h2>
+        </div>
         <div class="modal-content">
-            <div class="modal-header">
-                <span class="close" onclick="closeAddSuggestion()">&times;</span>
-                <h2>Modal Header</h2>
-            </div>
             <div class="modal-body">
-                <form method="post" action="/search/" class="autocomplete-me-suggestions" id="search_filter">
-                    <label for="id_title_auto">Title:</label>
-                    <br/>
-                    <input type="search" name="title_auto" maxlength="255" id="id_title_auto" autocomplete="off">
-                </form>
-                <div class="results">
-
-                </div>
+                <label for="id_title_auto">Title:</label>
+                <br/>
+                <input type="search" name="title" maxlength="255" id="id_title" autocomplete="off">
                 <label for="id_description">Description:</label>
                 <br/>
-                <input type="text" name="description" maxlength="255" id="id_description">
+                <input type="text" name="description" maxlength="255" id="id_description" autocomplete="off">
                 <br/>
             </div>
-            <div class="modal-footer">
-                <input type="submit" value="Add" class="add_suggestion"
-                       data-href="{% url 'suggestions:add_suggestion' %}">
-            </div>
+        </div>
+        <div class="modal-footer">
+            <input type="submit" value="Add" class="add_suggestion"
+                   data-href="{% url 'suggestions:add_suggestion' %}">
         </div>
     </div>
 {% endblock %}

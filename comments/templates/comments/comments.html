@@ -3,10 +3,10 @@
     <div class="com-review v-flex">
         <div class="com-header h-flex">
             <div class="profile h-flex">
-                <img src="{% static 'reviews/assets/profile-image.jpeg' %}" alt="profile-image">
+                <img src="{{ comment.memberID.avatar.url }}" alt="profile-image">
                 <div class="v-flex">
-                    <span class="nickname">{{ comment.memberId }}</span>
-                    <span class="honors">1033 <i class="fas fa-award"></i></span>
+                    <span class="nickname">{{ comment.memberID.username }}</span>
+                    <span class="honors">{{ comment.memberID.honor_points }} <i class="fas fa-award"></i></span>
                 </div>
             </div>
             <div class="timestamp">{{ comment.date_added|timesince }}</div>
@@ -17,7 +17,7 @@
         <div class="buttons h-flex">
             <div class="h-flex reactions">
                 <button title="Like" class="h-flex btn btn-nbg btn-l-icon like"
-                        data-href="{% url 'comments:like' id=comment.id movie_id=comment.reviewID.id %}"
+                        data-href="{% url 'comments:like' id=comment.id movie_id=object.id %}"
                         id="{{ comment.id }}">
                     <i class="fas fa-thumbs-up"></i>
                     <span id="like_{{ comment.id }}">{{ comment.likes.count }}</span>
@@ -34,7 +34,8 @@
                     <span>Show Review</span>
                     <i class="fas fa-sort-down"></i>
                 </button>
-                <button title="Report" class="h-flex btn btn-nbg report">
+                <button title="Report" onclick="showCommentModal({{ comment.id }})"
+                        class="h-flex btn btn-nbg report" id="report_comment">
                     <i class="fas fa-flag"></i>
                 </button>
             </div>
@@ -51,57 +52,61 @@
                     <div class="bar-rating h-flex">
                         <div class="bars v-flex">
                             <div class="rating h-flex">
-                                <div class="title">Nudity</div>
+                                <div class="title">Alcohol</div>
                                 <div class="value h-flex">
-                                    <div class="unit"></div>
-                                    <div class="unit"></div>
-                                    <div class="unit"></div>
-                                    <div class="unit"></div>
-                                    <div class="unit"></div>
+                                    <p class="range-field">
+                                        <input type="range" value="{{ comment.alcohol }}" min="0"
+                                               max="5" step="0.1" disabled/>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="rating h-flex">
+                                <div class="title">Language</div>
+                                <div class="value h-flex">
+                                    <p class="range-field">
+                                        <input type="range" value="{{ comment.language }}" min="0"
+                                               max="5" step="0.1" disabled/>
+                                    </p>
                                 </div>
                             </div>
                             <div class="rating h-flex">
                                 <div class="title">LGBT</div>
                                 <div class="value h-flex">
-                                    <div class="unit"></div>
-                                    <div class="unit"></div>
-                                    <div class="unit"></div>
+                                    <p class="range-field">
+                                        <input type="range" value="{{ comment.LGBTQ }}" min="0"
+                                               max="5" step="0.1" disabled/>
+                                    </p>
                                 </div>
                             </div>
-                            <div class="rating h-flex">
-                                <div class="title">Violence</div>
-                                <div class="value h-flex">
-                                    <div class="unit"></div>
-                                    <div class="unit"></div>
-                                    <div class="unit"></div>
-                                    <div class="unit"></div>
-                                </div>
 
-                            </div>
                         </div>
                         <div class="bars v-flex">
                             <div class="rating h-flex">
-                                <div class="title">Morality</div>
+                                <div class="title">Nudity</div>
                                 <div class="value h-flex">
-                                    <div class="unit"></div>
+                                    <p class="range-field">
+                                        <input type="range" value="{{ comment.nudity }}" min="0"
+                                               max="5" step="0.1" disabled/>
+                                    </p>
                                 </div>
                             </div>
                             <div class="rating h-flex">
                                 <div class="title">Sex</div>
                                 <div class="value h-flex">
-                                    <div class="unit"></div>
-                                    <div class="unit"></div>
-                                    <div class="unit"></div>
-                                    <div class="unit"></div>
+                                    <p class="range-field">
+                                        <input type="range" value="{{ comment.sex }}" min="0"
+                                               max="5" step="0.1" disabled/>
+                                    </p>
                                 </div>
                             </div>
                             <div class="rating h-flex">
-                                <div class="title">Morality</div>
+                                <div class="title">Violence</div>
                                 <div class="value h-flex">
-                                    <div class="unit"></div>
-                                    <div class="unit"></div>
-                                    <div class="unit"></div>
-                                    <div class="unit"></div>
+                                    <p class="range-field">
+                                        <input type="range" value="{{ comment.violence }}"
+                                               min="0"
+                                               max="5" step="0.1" disabled/>
+                                    </p>
                                 </div>
                             </div>
                         </div>

@@ -17,16 +17,3 @@ class MovieReviewIndex(indexes.SearchIndex, indexes.Indexable):
 
     def index_queryset(self, using=None):
         return self.get_model().objects.all()
-
-
-class SuggestionIndex(indexes.SearchIndex, indexes.Indexable):
-    text = indexes.CharField(document=True, use_template=True)
-    title_suggestions = indexes.CharField(model_attr='title')
-
-    content_auto_suggestion = indexes.EdgeNgramField(model_attr='title')
-
-    def get_model(self):
-        return Suggestion
-
-    def index_queryset(self, using=None):
-        return self.get_model().objects.all()

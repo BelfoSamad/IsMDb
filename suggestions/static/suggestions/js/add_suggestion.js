@@ -37,7 +37,7 @@ $(".add_suggestion").click(function (e) {
         else {
             var this_ = $(this);
             var add_suggestion_url = this_.attr("data-href");
-            var title = document.getElementById("id_title_auto").value;
+            var title = document.getElementById("id_title").value;
             var description = document.getElementById("id_description").value;
             $.ajax({
                 url: add_suggestion_url,

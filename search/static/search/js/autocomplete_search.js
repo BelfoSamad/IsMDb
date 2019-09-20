@@ -17,25 +17,26 @@ Autocomplete_Advanced.prototype.setup = function () {
     this.query_box.on('change keyup copy paste cut', function () {
         const query = self.query_box.val();
         if (query.length < self.minimum_length) {
-            $('.search-results1').remove();
+            $(".search-results1").load("search/init");
         }
 
         self.fetch(query)
     });
 
-    this.query_box.
-
-    // On selecting a result, populate the search field.
+    this.query_box.// On selecting a result, populate the search field.
     this.form_elem.on('click', '.search-results1', function () {
         self.query_box.val($(this).text());
-        $('.search-results1').remove();
+        $(".search-results1").load("search/init");
         return false
     })
 };
 
 Autocomplete_Advanced.prototype.fetch = function (query) {
-    console.log(query);
-    $(".search-results1").load("search/auto_search/" + query);
+    if (query === "")
+        $(".search-results1").load("search/init");
+    else
+        $(".search-results1").load("search/auto_search/" + query);
+
 };
 
 $(document).ready(function () {

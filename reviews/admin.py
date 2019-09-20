@@ -3,8 +3,7 @@ from reviews.models import Actor, Director, Writer, MovieReview
 
 
 class MovieReviewAdmin(admin.ModelAdmin):
-    #TODO: exclude likes
-    exclude = ['slug', 'pub_date']
+    exclude = ['slug', 'pub_date', 'likes']
 
 
 admin.site.register(Actor)

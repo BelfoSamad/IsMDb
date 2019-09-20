@@ -74,8 +74,10 @@ TEMPLATES = [
         'DIRS': [TEMPLATE_DIR,
                  # os.path.join(BASE_DIR, 'admin/templates'),
                  # os.path.join(BASE_DIR, 'users/templates'),
-                 # TODO: add templates
-                 os.path.join(BASE_DIR, 'reviews/templates')],
+                 os.path.join(BASE_DIR, 'reviews/templates'),
+                 os.path.join(BASE_DIR, 'suggestions/templates'),
+                 os.path.join(BASE_DIR, 'search/templates'),
+                 os.path.join(BASE_DIR, 'comments/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
