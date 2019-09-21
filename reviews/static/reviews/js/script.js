@@ -248,14 +248,14 @@ function showRating(element, text1, text2) {
         setTimeout(function () {
             rating_box.removeClass("visually-hidden");
             $(element).find("span").text(text2);
-            $(element).find("i").css("transform", "rotate(180deg) translateY(-1px)");
+            $(element).find("i").css("transform", "rotate(180deg) translateY(-16px)");
         }, 20);
     } else {
         rating_box.addClass("visually-hidden");
         rating_box.one("transitionend", function () {
             rating_box.addClass("hidden");
             $(element).find("span").text(text1);
-            $(element).find("i").css("transform", "rotate(0deg) translateY(0px)");
+            $(element).find("i").css("transform", "rotate(0deg) translateY(-2px)");
         });
         $('#alcohol').val(0);
         $('#language').val(0);

@@ -68,6 +68,8 @@
         height: 100%;
         width: 55px;
         justify-content: center; }
+      #topnav .search-bar .search-input .filters-link {
+        height: 100%; }
     #topnav .search-bar .search-results {
       position: absolute;
       top: 45px;
@@ -134,10 +136,12 @@
       color: #111; }
     #topnav .other-actions div {
       justify-content: center; }
-    #topnav .other-actions .library {
-      height: 100%;
-      padding: 0 24px;
-      position: relative; }
+    #topnav .other-actions .lib-link {
+      height: 100%; }
+      #topnav .other-actions .lib-link .library {
+        height: 100%;
+        padding: 0 24px;
+        position: relative; }
     #topnav .other-actions .notifications {
       height: 100%;
       position: relative; }
@@ -148,7 +152,7 @@
         justify-content: flex-start;
         position: absolute;
         width: 480px;
-        height: 80vh;
+        max-height: 80vh;
         top: 80px;
         right: 0;
         background: #f0f0f0;
@@ -178,6 +182,14 @@
             text-align: right; }
         #topnav .other-actions .notifications .dropdown .notification:last-child {
           border-bottom: none; }
+        #topnav .other-actions .notifications .dropdown .no-notification {
+          width: 100%;
+          padding: 16px;
+          font-weight: bold;
+          color: #333;
+          align-items: flex-start; }
+          #topnav .other-actions .notifications .dropdown .no-notification div {
+            width: 100%; }
     #topnav .other-actions .profile {
       height: 100%;
       width: 80px;
@@ -220,6 +232,8 @@
             color: #111; }
             #topnav .other-actions .profile .profile-dropdown .header .info i {
               font-size: 16px; }
+        #topnav .other-actions .profile .profile-dropdown a {
+          width: 100%; }
         #topnav .other-actions .profile .profile-dropdown .option {
           width: 100%;
           justify-content: flex-start;

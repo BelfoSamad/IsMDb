@@ -140,7 +140,8 @@
       padding: 16px;
       align-items: center; }
       .review-holder .ismdb-review .content .summary {
-        padding: 16px 0; }
+        padding: 16px 0;
+        align-self: flex-start; }
         .review-holder .ismdb-review .content .summary p {
           padding: 0;
           color: #111;
@@ -182,6 +183,13 @@
               .review-holder .ismdb-review .content .rating-content .ismdb-rating .ratings .bar-rating .bars .rating .value {
                 justify-content: flex-start;
                 border-radius: 0px; }
+                .review-holder .ismdb-review .content .rating-content .ismdb-rating .ratings .bar-rating .bars .rating .value input {
+                  width: 100px;
+                  background: 100px; }
+              .review-holder .ismdb-review .content .rating-content .ismdb-rating .ratings .bar-rating .bars .rating .val {
+                margin-left: 8px;
+                font-weight: bold;
+                color: #222; }
             .review-holder .ismdb-review .content .rating-content .ismdb-rating .ratings .bar-rating .bars:nth-child(1) {
               margin-right: 48px; }
   .review-holder .community-review {
@@ -273,15 +281,10 @@
           width: 100%;
           margin-top: 16px; }
           .review-holder .community-review .content .com-review .buttons .btn {
-            height: 36px;
             font-size: 13px;
             font-weight: bold; }
-          .review-holder .community-review .content .com-review .buttons .btn-nbg:hover i {
-            transform: translateY(-1px); }
-          .review-holder .community-review .content .com-review .buttons .reactions i {
-            font-size: 16px; }
-          .review-holder .community-review .content .com-review .buttons .reactions .btn:first-child {
-            margin-right: 16px; }
+          .review-holder .community-review .content .com-review .buttons .btn-flat:hover {
+            background: #CCC; }
           .review-holder .community-review .content .com-review .buttons .actions .btn:first-child {
             margin-right: 16px; }
           .review-holder .community-review .content .com-review .buttons .view-review i {
@@ -325,20 +328,17 @@
                 .review-holder .community-review .content .com-review .rating-content .ismdb-rating .ratings .bar-rating .bars .rating .value {
                   justify-content: flex-start;
                   border-radius: 0px; }
+                  .review-holder .community-review .content .com-review .rating-content .ismdb-rating .ratings .bar-rating .bars .rating .value input {
+                    width: 100px;
+                    background: red; }
+                .review-holder .community-review .content .com-review .rating-content .ismdb-rating .ratings .bar-rating .bars .rating .val {
+                  margin-left: 8px;
+                  font-weight: bold;
+                  color: #222; }
               .review-holder .community-review .content .com-review .rating-content .ismdb-rating .ratings .bar-rating .bars:nth-child(1) {
                 margin-right: 48px; }
       .review-holder .community-review .content .com-more {
         justify-content: flex-end; }
-        .review-holder .community-review .content .com-more button {
-          padding: 12px 16px;
-          font-size: 13px;
-          font-weight: bold;
-          background: rgba(204, 204, 204, 0.7);
-          border: none;
-          outline: none;
-          cursor: pointer; }
-        .review-holder .community-review .content .com-more button:hover {
-          background: rgba(204, 204, 204, 0.9); }
   .review-holder .related-reviews {
     margin-top: 32px; }
     .review-holder .related-reviews .related-header {
@@ -357,6 +357,9 @@
           height: 310px;
           border-radius: 5px;
           background: #BBB; }
+        .review-holder .related-reviews .content .reviews .review-cover .viewReview {
+          height: 100%;
+          width: 100%; }
         .review-holder .related-reviews .content .reviews .review:nth-child(4n) {
           margin-right: 0px; }
         .review-holder .related-reviews .content .reviews .review:nth-last-child(1), .review-holder .related-reviews .content .reviews .review:nth-last-child(2), .review-holder .related-reviews .content .reviews .review:nth-last-child(3), .review-holder .related-reviews .content .reviews .review:nth-last-child(4) {
