@@ -45,10 +45,15 @@
           align-items: flex-start; }
           .display .elements .element .content .left .top {
             width: 100%; }
+            .display .elements .element .content .left .top .rec-title {
+              font-size: 14px;
+              font-weight: bold;
+              align-self: flex-start;
+              color: rgba(255, 255, 255, 0.5); }
             .display .elements .element .content .left .top .title-div {
               width: 100%; }
               .display .elements .element .content .left .top .title-div .title {
-                font-size: 48pt;
+                font-size: 30pt;
                 font-weight: bold;
                 color: rgba(238, 238, 238, 0.9);
                 position: relative;
@@ -129,48 +134,33 @@
                     margin-right: 16px; }
                   .display .elements .element .content .left .ismdb-rating .ratings .bar-rating .bars .rating .value {
                     justify-content: flex-start;
-                    background: #EAEAEA;
-                    border-radius: 0px;
-                    height: 8px;
-                    width: 125px; }
-                    .display .elements .element .content .left .ismdb-rating .ratings .bar-rating .bars .rating .value .unit {
-                      background: #EC7063;
-                      height: 100%;
-                      width: 25px;
-                      margin-rigth: 1px; }
+                    border-radius: 0px; }
+                    .display .elements .element .content .left .ismdb-rating .ratings .bar-rating .bars .rating .value input {
+                      width: 100px;
+                      background: red; }
           .display .elements .element .content .left .buttons {
-            width: 100%;
-            justify-content: flex-start; }
-            .display .elements .element .content .left .buttons button {
-              background: #EEE;
-              justify-content: center;
-              width: 120px;
-              height: 36px;
-              margin-right: 8px;
-              padding: 0 8px;
-              font-size: 13px;
+            width: 100%; }
+            .display .elements .element .content .left .buttons .viewReview {
+              border-right: 8px solid #EC7063; }
+            .display .elements .element .content .left .buttons i {
+              font-size: 14px; }
+            .display .elements .element .content .left .buttons .btn {
               font-weight: bold;
-              text-transform: uppercase;
-              border: none;
-              outline: none;
-              cursor: pointer;
-              box-sizing: border-box; }
-              .display .elements .element .content .left .buttons button i {
-                color: #111;
-                margin-right: 12px; }
-              .display .elements .element .content .left .buttons button .btn-sep {
-                height: 32px;
-                width: 1px;
-                background: rgba(17, 17, 17, 0.7); }
-            .display .elements .element .content .left .buttons .view {
-              margin-left: auto;
-              width: 160px;
-              border-right: 8px solid #ec7063; }
-              .display .elements .element .content .left .buttons .view i {
-                margin-left: 12px;
-                margin-right: 0; }
-            .display .elements .element .content .left .buttons button:hover {
-              background: #dddddd; }
+              background: #EEE;
+              color: #111;
+              margin-right: 4px;
+              border-radius: 0px;
+              transition: 250ms; }
+              .display .elements .element .content .left .buttons .btn i {
+                margin-right: 16px; }
+            .display .elements .element .content .left .buttons .btn:hover {
+              background: rgba(238, 238, 238, 0.9); }
+            .display .elements .element .content .left .buttons a {
+              font-weight: bold;
+              justify-self: flex-end;
+              padding-right: 4px; }
+              .display .elements .element .content .left .buttons a i {
+                margin-left: 16px; }
         .display .elements .element .content .right {
           height: 100%;
           width: 35%;

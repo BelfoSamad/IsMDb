@@ -1,0 +1,131 @@
+{% extends 'reviews/content.html' %}
+{% load movie_review_extras %}
+{% load static %}
+
+{% block advanced_search %}
+    <div class="advanced-search-wrapper h-flex">
+        <div class="filters v-flex">
+            <div class="header">
+                Filters
+            </div>
+            <div class="content">
+                <ul class="tabs">
+                    <li class="tab"><a class="active" href="#genres">Genres</a></li>
+                    <li class="tab"><a href="#criteria">Criteria</a></li>
+                    <li class="tab"><a href="#year">Year</a></li>
+                    <li class="tab"><a href="#duration">Duration</a></li>
+                </ul>
+                <div id="genres" class="tab-content v-flex">
+                    {% for genre in genres %}
+                        <label class="genre h-flex">
+                            <input type="checkbox" class="filled-in" id="{{ genre|genre_text }}"
+                                   onchange="filter()"/>
+                            <span>{{ genre|genre_text }}</span>
+                        </label>
+                    {% endfor %}
+                </div>
+                <div id="criteria" class="tab-content v-flex">
+                    <p class="range-field">
+                        <label>Nudity Min</label>
+                        <input type="range" id="min_nudity" value="0" onchange="filter()" min="0" max="5" step="0.1"/>
+                    </p>
+                    <p class="range-field">
+                        <label>Nudity Max</label>
+                        <input type="range" id="max_nudity" value="5" onchange="filter()" min="0" max="5" step="0.1"/>
+                    </p>
+                    <p class="range-field">
+                        <label>Violence Min</label>
+                        <input type="range" id="min_violence" value="0" onchange="filter()" min="0" max="5" step="0.1"/>
+                    </p>
+                    <p class="range-field">
+                        <label>Violence Max</label>
+                        <input type="range" id="max_violence" value="5" onchange="filter()" min="0" max="5" step="0.1"/>
+                    </p>
+                    <p class="range-field">
+                        <label>LGBTQ Min</label>
+                        <input type="range" id="min_lgbtq" value="0" onchange="filter()" min="0" max="5" step="0.1"/>
+                    </p>
+                    <p class="range-field">
+                        <label>LGBTQ Max</label>
+                        <input type="range" id="max_lgbtq" value="5" onchange="filter()" min="0" max="5" step="0.1"/>
+                    </p>
+                    <p class="range-field">
+                        <label>Alcohol Min</label>
+                        <input type="range" id="min_alcohol" value="0" onchange="filter()" min="0" max="5" step="0.1"/>
+                    </p>
+                    <p class="range-field">
+                        <label>Alcohol Max</label>
+                        <input type="range" id="max_alcohol" value="5" onchange="filter()" min="0" max="5" step="0.1"/>
+                    </p>
+                    <p class="range-field">
+                        <label>Sex Min</label>
+                        <input type="range" id="min_sex" value="0" onchange="filter()" min="0" max="5" step="0.1"/>
+                    </p>
+                    <p class="range-field">
+                        <label>Sex Max</label>
+                        <input type="range" id="max_sex" value="5" onchange="filter()" min="0" max="5" step="0.1"/>
+                    </p>
+                    <p class="range-field">
+                        <label>Language Min</label>
+                        <input type="range" id="min_language" value="0" onchange="filter()" min="0" max="5" step="0.1"/>
+                    </p>
+                    <p class="range-field">
+                        <label>Language Max</label>
+                        <input type="range" id="max_language" value="5" onchange="filter()" min="0" max="5" step="0.1"/>
+                    </p>
+                </div>
+                <div id="year" class="tab-content v-flex">
+                    <p class="range-field">
+                        <label>From</label>
+                        <input type="range" id="min_year" value="1900" onchange="filter()" min="1900" max="2019"/>
+                    </p>
+                    <p class="range-field">
+                        <label>To</label>
+                        <input type="range" id="max_year" value="2019" onchange="filter()" min="1900" max="2019"/>
+                    </p>
+                </div>
+                <div id="duration" class="tab-content v-flex">
+                    <p class="range-field">
+                        <label>Minimum Duration (minutes)</label>
+                        <input type="range" id="min_time" value="0" onchange="filter()" min="0" max="240"/>
+                    </p>
+                    <p class="range-field">
+                        <label>Maximum Duration (minutes)</label>
+                        <input type="range" id="max_time" value="240" onchange="filter()" min="0" max="240"/>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="search v-flex">
+            <div class="search-bar h-flex">
+                <div class="search-input h-flex">
+                    <div class="search-icon v-flex"><i class="fa fa-search"></i></div>
+                    <form method="post" action="/search/" class="autocomplete-me1" id="search_filter">
+                        <input type="search" placeholder="Search..." name="q1" id="id_q">
+                    </form>
+                </div>
+            </div>
+            <div class="search-results1 v-flex">
+                {% for review in reviews %}
+                    <div class="result h-flex">
+                        <div class="cover"><img src="{{ review.poster.url }}" alt=""></div>
+                        <div class="info v-flex">
+                            <h1 class="title">{{ review.title }}</h1>
+                            <p class="plot">{{ review.description }}</p>
+                        </div>
+                        <div class="actions h-flex">
+                            <button class="btn-flat review-later"
+                                    data-href="{% url 'reviews:review_later' id=review.id %}">
+                                <i title="Review later" class="far fa-clock"></i></button>
+                            <a class="btn waves-effect light-effect" href="{{ review.get_absolute_url }}">
+                                View Review
+                            </a>
+                        </div>
+                    </div>
+                {% empty %}
+                    <div class="no-suggestions">No Results.</div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

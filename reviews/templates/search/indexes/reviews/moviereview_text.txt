@@ -1,3 +1,4 @@
-{{ object.cover }}
+{{ object.poster }}
 {{ object.title }}
 {{ object.description }}
+{{ object.genre }}

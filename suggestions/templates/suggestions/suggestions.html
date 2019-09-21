@@ -1,0 +1,85 @@
+{% extends 'reviews/content.html' %}
+{% load static %}
+{% block suggestions %}
+    <div class="suggestions-wrapper v-flex">
+        <div class="my-suggestions v-flex">
+            <div class="header h-flex">
+                <h1>My Suggestions</h1>
+                <button class="btn waves-effect light-effect add" id="add_suggestion" onclick="addSuggestion()">Add A
+                    Suggestion
+                </button>
+            </div>
+            <div class="content v-flex">
+                <div class="four-suggs v-flex" data-href="{% url 'suggestions:my_suggestions' %}">
+                    {% for suggestion in my_suggestions %}
+                        <div class="my-suggestion v-flex">
+                            <div class="header h-flex">
+                                <h1>{{ suggestion.title }}</h1>
+                                <div class="actions h-flex">
+                                    <button title="Delete" class="delete btn"
+                                            data-href="{% url 'suggestions:delete' id=suggestion.id %}"><i
+                                            class="far fa-trash-alt"></i></button>
+                                    <span class="upvotes">{{ suggestion.up_votes.count }} upvotes</span>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <p>{{ suggestion.description }}</p>
+                            </div>
+                        </div>
+                    {% empty %}
+                        <div class="no-suggestions">No suggestions yet.</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="com-suggestions v-flex">
+            <div class="header h-flex">
+                <h1>Community Suggestions</h1>
+            </div>
+            <div class="content v-flex">
+                <div class="four-suggs v-flex">
+                    {% for suggestion in other_suggestions %}
+                        <div class="com-suggestion v-flex">
+                            <div class="header h-flex">
+                                <h1>{{ suggestion.title }}</h1>
+                                <div class="actions h-flex">
+                                    <button title="Upvote" class="up_vote btn"
+                                            data-href="{% url 'suggestions:upvote' id=suggestion.id %}"
+                                            id="sugg_{{ suggestion.id }}"><i
+                                            class="fas fa-level-up-alt"></i></button>
+                                    <span class="upvotes sugg_{{ suggestion.id }}">{{ suggestion.up_votes.count }} upvotes</span>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <p>{{ suggestion.description }}</p>
+                            </div>
+                        </div>
+                    {% empty %}
+                        <div class="no-suggestions">No suggestions yet.</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal" class="modal">
+        <div class="modal-header">
+            <span class="close" onclick="closeAddSuggestion()">&times;</span>
+            <h2>Modal Header</h2>
+        </div>
+        <div class="modal-content">
+            <div class="modal-body">
+                <label for="id_title_auto">Title:</label>
+                <br/>
+                <input type="search" name="title" maxlength="255" id="id_title" autocomplete="off">
+                <label for="id_description">Description:</label>
+                <br/>
+                <input type="text" name="description" maxlength="255" id="id_description" autocomplete="off">
+                <br/>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <input type="submit" value="Add" class="add_suggestion"
+                   data-href="{% url 'suggestions:add_suggestion' %}">
+        </div>
+    </div>
+{% endblock %}

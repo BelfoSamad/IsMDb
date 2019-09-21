@@ -1,10 +1,12 @@
-from admin.admin import admin_site
+from django.contrib import admin
+from reviews.models import Actor, Director, Writer, MovieReview
 
-# Register your models here.
-from reviews.models import MovieReview, Actor, Director, Producer, Writer
 
-admin_site.register(Actor)
-admin_site.register(Director)
-admin_site.register(Producer)
-admin_site.register(Writer)
-admin_site.register(MovieReview)
+class MovieReviewAdmin(admin.ModelAdmin):
+    exclude = ['slug', 'pub_date', 'likes']
+
+
+admin.site.register(Actor)
+admin.site.register(Director)
+admin.site.register(Writer)
+admin.site.register(MovieReview, MovieReviewAdmin)

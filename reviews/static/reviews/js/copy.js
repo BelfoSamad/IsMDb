@@ -11,6 +11,7 @@ class Carousel {
         this.swipeRightListener = this.rightSwipeIcon.click(this.swipeRight.bind(this));
         this.swipeLeftListener = this.leftSwipeIcon.click(this.swipeLeft.bind(this));
     }
+
     swipeRight() {
         let revs_right = this.reviews.offset().left + this.reviews.width();
         let revs_wrapper_right = this.reviewsWrapper.offset().left + this.reviewsWrapper.width();
@@ -18,6 +19,7 @@ class Carousel {
         this.leftValue = difference > 205 ? this.leftValue - 205 : this.leftValue - difference;
         this.swipe();
     }
+
     swipeLeft() {
         let revs_left = this.reviews.offset().left;
         let revs_wrapper_left = this.reviewsWrapper.offset().left;
@@ -25,6 +27,7 @@ class Carousel {
         this.leftValue = difference > 205 ? this.leftValue + 205 : this.leftValue + difference;
         this.swipe();
     }
+
     swipe() {
         if (lastActiveReview && isDisplayed(lastActiveReview))
             hideReviewDetails(lastActiveReview);
@@ -77,7 +80,7 @@ function showReviewDetails(element, direction) {
 }
 
 function leftShown(element) {
-    console.log("leftShown")
+    console.log("leftShown");
     let revs_wrapper = $("#home").find(".reviews-wrapper");
     let elementy = $("#home").find(element);
     let elementy_right = elementy.offset().left + elementy.width() + 400;
@@ -88,6 +91,7 @@ function leftShown(element) {
 function isDisplayed(element) {
     return $("#home").find(element).siblings(".more-info").css("width") !== "0px";
 }
+
 loadHtml("home.html");
 
 // Event Listeners
@@ -111,15 +115,12 @@ $("#home").on("click", ".reviews-cover", () => {
                 else showReviewDetails(this_elem, "right");
                 lastActiveReview = this_elem;
             }, 700);
-        }
-        else {
+        } else {
             if (leftShown($(this_elem).parent())) showReviewDetails(this_elem, "left");
             else showReviewDetails(this_elem, "right");
             lastActiveReview = this_elem;
         }
-    }
-
-    else hideReviewDetails(this_elem);
+    } else hideReviewDetails(this_elem);
 });
 
 $(".search-icon").click(() => {
@@ -137,27 +138,30 @@ $(".content-holder").scroll(() => {
     var scrollPos = $(".content-holder").scrollTop();
     if (scrollPos > 0) {
         $("#topnav").addClass("shadow");
-    }
-    else {
+    } else {
         $("#topnav").removeClass("shadow");
     }
 });
 
 $(".bell-icon").click(() => {
-    var notif_box = $(".c-notifications");
-    if (notif_box.hasClass("hidden")) {
-        notif_box.removeClass("hidden");
-        setTimeout(function () {
-            notif_box.removeClass("visually-hidden");
-        }, 20);
+        if (document.getElementById("user_auth").value === "false")
+            window.location.href = "http://http://127.0.0.1:8000/test";
+        else {
+            var notif_box = $(".c-notifications");
+            if (notif_box.hasClass("hidden")) {
+                notif_box.removeClass("hidden");
+                setTimeout(function () {
+                    notif_box.removeClass("visually-hidden");
+                }, 20);
+            } else {
+                notif_box.addClass("visually-hidden");
+                notif_box.one("transitionend", function () {
+                    notif_box.addClass("hidden");
+                });
+            }
+        }
     }
-    else {
-        notif_box.addClass("visually-hidden");
-        notif_box.one("transitionend", function () {
-            notif_box.addClass("hidden");
-        });
-    }
-});
+);
 //$(".settings-wrapper").hide();
 
 $(".set-icon").click(() => {
@@ -171,7 +175,7 @@ $(".close-icon").click(() => {
 });
 
 /**
-$("#email-username").focusout(function () {
+ $("#email-username").focusout(function () {
     if ($(this).text() == '') {
         $(this).css("border-bottom", "none");
         $(this).css("border-bottom", "1px solid blue");
@@ -182,4 +186,5 @@ $("#email-username").focusout(function () {
     }
 }) */
 
-(function ($) {}(jQuery));
+(function ($) {
+}(jQuery));

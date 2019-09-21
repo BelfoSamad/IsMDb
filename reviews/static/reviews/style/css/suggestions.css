@@ -14,14 +14,13 @@
         font-weight: bold;
         color: rgba(34, 34, 34, 0.55); }
       .suggestions-wrapper .my-suggestions .header .add, .suggestions-wrapper .com-suggestions .header .add {
-        padding: 16px;
         font-weight: bold;
         font-size: 15px;
-        color: rgba(34, 34, 34, 0.8);
-        text-transform: uppercase;
-        border-right: 4px solid #EC7063; }
+        height: 42px;
+        background: #EC7063;
+        text-transform: uppercase; }
       .suggestions-wrapper .my-suggestions .header .add:hover, .suggestions-wrapper .com-suggestions .header .add:hover {
-        background: rgba(204, 204, 204, 0.8); }
+        background: rgba(236, 112, 99, 0.95); }
     .suggestions-wrapper .my-suggestions .four-suggs, .suggestions-wrapper .com-suggestions .four-suggs {
       width: 100%;
       margin-bottom: 16px; }

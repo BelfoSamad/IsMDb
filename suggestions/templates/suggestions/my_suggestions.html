@@ -1,0 +1,21 @@
+{% load static %}
+{% for suggestion in suggestions %}
+    <div class="my-suggestion v-flex">
+        <div class="header h-flex">
+            <h1>{{ suggestion.title }}</h1>
+            <div class="actions h-flex">
+                <button title="Delete" class="delete btn"
+                        data-href="{% url 'suggestions:delete' id=suggestion.id %}"><i
+                        class="far fa-trash-alt"></i></button>
+                <span class="upvotes">{{ suggestion.up_votes.count }} upvotes</span>
+            </div>
+        </div>
+        <div class="content">
+            <p>{{ suggestion.description }}</p>
+        </div>
+    </div>
+{% empty %}
+    <div class="no-suggestions">No suggestions yet.</div>
+
+    <script type="text/javascript" src="{% static 'suggestions/js/suggestions_upvote.js' %}"></script>
+{% endfor %}

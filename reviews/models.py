@@ -9,7 +9,9 @@ from django.utils.text import slugify
 from django_countries.fields import CountryField
 from languages.fields import LanguageField
 from multiselectfield import MultiSelectField
+from notifications.signals import notify
 
+from suggestions.models import Suggestion
 from users.models import Member
 
 
@@ -44,15 +46,12 @@ class Director(Staff):
     pass
 
 
-class Producer(Staff):
-    pass
-
-
 class Writer(Staff):
     pass
 
 
 class MovieReview(models.Model):
+    published = models.BooleanField(default=True)
     title = models.CharField(max_length=255, blank=True, null=False)
     slug = SlugField(max_length=255)
     poster = models.ImageField(default='default_poster.png', upload_to="gallery")
@@ -79,7 +78,9 @@ class MovieReview(models.Model):
     time = models.IntegerField(blank=True, null=False, default=0)
     release_date = models.DateField(default=datetime.date.today)
     description = models.TextField(max_length=255, blank=True, null=False)
+    review = models.TextField(max_length=255, blank=True, null=True)
     tags = models.TextField(blank=True)
+    suggestion = models.ForeignKey(Suggestion, on_delete=models.SET_NULL, null=True, blank=True)
     country = CountryField(default='US', null=False)
     movie_language = LanguageField(default='En', null=False)
     IMDB_rating = models.FloatField(max_length=255, blank=True, null=True)
@@ -91,9 +92,9 @@ class MovieReview(models.Model):
     language = FloatRangeField(min_value=0.0, max_value=5.0, default=0.0)
     violence = FloatRangeField(min_value=0.0, max_value=5.0, default=0.0)
     cast_actor = models.ManyToManyField(Actor)
-    cast_producer = models.ManyToManyField(Producer)
     cast_writer = models.ManyToManyField(Writer)
     cast_director = models.ManyToManyField(Director)
+    trailer = models.CharField(max_length=255, blank=True)
     likes = models.ManyToManyField(Member, blank=True, related_name='review_likes')
 
     def get_absolute_url(self):
@@ -104,6 +105,16 @@ class MovieReview(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        super(MovieReview, self).save(*args, **kwargs)
+        suggestion = self.suggestion
+        if suggestion is not None:
+            for user in suggestion.up_votes.all():
+                notify.send(user, recipient=user,
+                            verb='Suggestion Added',
+                            action_object=self)
+            suggestion.delete()
 
 
 def pre_save_movie_receiver(sender, instance, *args, **kwargs):

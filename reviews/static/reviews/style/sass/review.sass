@@ -140,14 +140,22 @@
                 width: 100%
 
                 .btn
-                    height: 36px
                     font-size: 13px
                     font-weight: bold
                     text-transform: uppercase
+                    background: #eeeeee
+                    color: #111
+                    margin-right: 4px
+                    border-radius: 0px
+                    transition: 250ms
 
                     i
+                        font-size: 14px
                         color: #111
 
+                .trailer, .watchlist
+                    i
+                        margin-right: 16px
                 .actions
                     .btn:nth-child(1)
                         margin-right: 4px
@@ -160,7 +168,10 @@
                         font-size: 16px
 
                 .review
-                    border-right: 4px solid #ec7063
+                    justify-self: flex-end
+                    border-right: 8px solid #ec7063
+                    i
+                        margin-left: 16px
 
                 .btn:not(.btn-nbg):hover
                     background: rgba(#CCC, 0.9)
@@ -236,16 +247,7 @@
 
                                     .value
                                         justify-content: flex-start
-                                        background: #F8F8F8
                                         border-radius: 0px
-                                        height: 8px
-                                        width: 125px
-
-                                        .unit
-                                            background: #EC7063
-                                            height: 100%
-                                            width: 25px
-                                            margin-rigth: 1px
 
                             .bars:nth-child(1)
                                 margin-right: 48px
@@ -297,18 +299,11 @@
                 .com-content
                     width: 100%
 
-                    textarea
+                    .materialize-textarea
                         font-size: 16px
                         width: 100%
-                        margin-top: 16px
-                        resize: none
-                        border: none
-                        outline: none
                         padding: 8px
-                        border-bottom: 4px solid rgba(#ec7063, 0)
 
-                    textarea:focus
-                        border-bottom: 4px solid #ec7063
 
                 .buttons
                     width: 100%
@@ -316,16 +311,17 @@
                     justify-content: flex-end
 
                     .btn
-                        //background: #DADADA
-                        height: 36px
                         font-size: 13px
                         font-weight: bold
-
-                    .btn:not(.btn-nbg):hover
-                        background: rgba(#CCC, 0.9)
-
+                        background: rgba(#EC7063, 1)
+                        i
+                            margin-left: 8px
+                            transform: translateY(-2px)
+                    .btn:hover
+                        background: rgba(#EC7063, .9)
                     .btn:first-child
                         margin-right: 8px
+
 
             .com-review
                 width: 100%
@@ -381,9 +377,6 @@
                         font-size: 13px
                         font-weight: bold
 
-                    .btn:not(.btn-nbg):hover
-                        background: rgba(#CCC, 0.9)
-
                     .btn-nbg:hover
                         i
                             transform: translateY(-1px)
@@ -402,8 +395,10 @@
                     .view-review
                         i
                             font-size: 18px
+                            margin-left: 8px
                             height: 24px
                             transition: 0.3s
+                            transform: translateY(-3px)
 
                 .rating-content
                     background: rgba(grey, 0.15)
@@ -453,16 +448,7 @@
 
                                         .value
                                             justify-content: flex-start
-                                            background: #F8F8F8
                                             border-radius: 0px
-                                            height: 8px
-                                            width: 125px
-
-                                            .unit
-                                                background: #EC7063
-                                                height: 100%
-                                                width: 25px
-                                                margin-rigth: 1px
 
                                 .bars:nth-child(1)
                                     margin-right: 48px

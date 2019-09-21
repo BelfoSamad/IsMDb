@@ -1,0 +1,85 @@
+
+$colors: (
+        primary: #d5d9c8,
+        primary-dark: #000000,
+        light-dark: #0b0b0b,
+        accent: #ffca28,
+        accent-text : white,
+        white-grayish: #f0f0f0,
+        gray: #95a5a6,
+        transparent: rgba(255, 255, 255, 0),
+        card-bg: white,
+);
+
+@function color($color-name) {
+  @return map_get($colors, $color-name);
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+
+// Bootstrap table caption fix
+#content-main .caption {
+  background-color: color(accent);
+  color: color(accent-text);
+}
+
+#content-main h1 {
+    padding: 16px;
+  margin: 0 !important;
+}
+
+.cards-container {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 100%;
+}
+
+.cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card h2 {
+  font-size: large;
+  background: none ;
+}
+
+
+/* Style the counter cards */
+.card {
+  padding: 16px;
+  border : none;
+  text-align: center;
+  border-radius: 0;
+  background-color: color(card-bg);
+}
+
+.card .btn-group {
+  width: 100%;
+}
+
+.card button {
+  width: 50%;
+  box-shadow: none !important;
+  margin: 0 !important;
+  background: none !important;
+}
+
+.card button a {
+  color: blue !important;
+  font-size: 18px;
+}
+
+
+/* Responsive columns - one column layout (vertical) on small screens */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+

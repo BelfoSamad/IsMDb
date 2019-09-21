@@ -1,3 +1,102 @@
+from django.http import HttpResponse
 from django.shortcuts import render
+from django.template import loader
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, DeleteView
+from haystack.query import SearchQuerySet
+from notifications.models import Notification
+from notifications.signals import notify
+from rest_framework import authentication, permissions
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-# Create your views here.
+from suggestions.models import Suggestion
+
+
+class SuggestionsListView(ListView):
+    template_name = 'suggestions/suggestions.html'
+    model = Suggestion
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        current_user = self.request.user
+        if current_user.is_authenticated:
+            my_suggestions = Suggestion.objects.filter(memberID=current_user)
+            context['my_suggestions'] = my_suggestions.filter(approved=True)
+            other_suggestions = Suggestion.objects.exclude(memberID=current_user)
+        else:
+            context['my_suggestions'] = []
+            other_suggestions = Suggestion.objects.all()
+
+        context['other_suggestions'] = other_suggestions.filter(approved=True)
+        # Notification:
+        if self.request.user.is_authenticated:
+            context['notifications'] = current_user.notifications.unread()
+        return context
+
+
+class SuggestionCreateView(APIView):
+    authentication_classes = (authentication.SessionAuthentication,)
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request):
+        user = self.request.user
+        title = request.GET.get('title', None)
+        description = request.GET.get('description', None)
+        Suggestion.objects.create(title=title, description=description, memberID=user)
+        data = {
+            "added": True,
+        }
+        return Response(data)
+
+
+class SuggestionDelete(APIView):
+    authentication_classes = (authentication.SessionAuthentication,)
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request, id=None):
+        deleted = False
+        if id != -1:
+            Suggestion.objects.filter(id=id).delete()
+            deleted = True
+        data = {
+            "deleted": deleted,
+        }
+        return Response(data)
+
+
+class SuggestionUpVote(APIView):
+    authentication_classes = (authentication.SessionAuthentication,)
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request, id=None):
+        user = self.request.user
+        up_voted = False
+        up_votes = 0
+        if id != -1:
+            obj = Suggestion.objects.get(id=id)
+            if request.user is not obj.memberID:
+                if user in obj.up_votes.all():
+                    up_voted = False
+                    obj.up_votes.remove(user)
+                else:
+                    up_voted = True
+                    obj.up_votes.add(user)
+                    if not Notification.objects.filter(actor=user, recipient=obj.memberID, verb='Suggestion Upvoted',
+                                                       action_object=obj).exists():
+                        notify.send(user, recipient=obj.memberID, verb='Suggestion Upvoted', action_object=obj)
+            up_votes = obj.up_votes.count()
+        updated = True
+        data = {
+            "updated": updated,
+            "up_voted": up_voted,
+            "up_votes": up_votes
+        }
+        return Response(data)
+
+
+def load_my_suggestions(request):
+    current_user = request.user
+    my_suggestions = Suggestion.objects.filter(memberID=current_user)
+    my_suggestions = my_suggestions.filter(approved=True)
+    return render(request, 'suggestions/my_suggestions.html', {'suggestions': my_suggestions})

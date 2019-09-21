@@ -95,11 +95,12 @@
           padding: 0 16px;
           align-items: flex-start; }
           #topnav .search-bar .search-results .search-result .details .title {
-            font-size: 24px;
+            font-size: 18px;
             font-weight: bold;
-            color: #111; }
+            color: #222; }
           #topnav .search-bar .search-results .search-result .details .plot {
-            font-size: 12px; }
+            font-size: 12px;
+            color: #111; }
             #topnav .search-bar .search-results .search-result .details .plot p {
               line-height: 16px;
               max-height: calc(16px * 4);
@@ -120,6 +121,14 @@
         cursor: pointer; }
   #topnav .other-actions {
     height: 100%; }
+    #topnav .other-actions .login-register {
+      width: 180px;
+      font-weight: bold;
+      justify-content: space-between; }
+    #topnav .other-actions .register-btn {
+      background: #EC7063; }
+    #topnav .other-actions .register-btn:hover {
+      background: rgba(236, 112, 99, 0.9); }
     #topnav .other-actions i {
       font-size: 20px;
       color: #111; }
