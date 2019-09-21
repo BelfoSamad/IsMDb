@@ -78,6 +78,8 @@
                 height: 100%
                 width: 55px
                 justify-content: center
+            .filters-link
+                height: 100%
         .search-results
             position: absolute
             top: 45px
@@ -153,10 +155,13 @@
         div
             justify-content: center
 
-        .library
+        .lib-link
             height: 100%
-            padding: 0 24px
-            position: relative
+            .library
+                height: 100%
+                padding: 0 24px
+                position: relative
+
 
         .notifications
             height: 100%
@@ -171,7 +176,7 @@
                 justify-content: flex-start
                 position: absolute
                 width: 480px
-                height: 80vh
+                max-height: 80vh
                 top: 80px
                 right: 0
                 background: #f0f0f0
@@ -206,6 +211,14 @@
 
                 .notification:last-child
                     border-bottom: none
+                .no-notification
+                    width: 100%
+                    padding: 16px
+                    font-weight: bold
+                    color: #333
+                    align-items: flex-start
+                    div
+                        width: 100%
 
         .profile
             height: 100%
@@ -251,6 +264,8 @@
                         color: #111
                         i
                             font-size: 16px
+                a
+                    width: 100%
                 .option
                     width: 100%
                     justify-content: flex-start

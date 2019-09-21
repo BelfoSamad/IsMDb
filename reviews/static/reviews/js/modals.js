@@ -7,6 +7,7 @@ let comment_id = 0;
 
 function showCommentModal(id) {
     comment_id = id;
+    console.log(id);
     if (document.getElementById("user_auth").value === "false")
         window.location.href = "http://http://127.0.0.1:8000/test";
     else {

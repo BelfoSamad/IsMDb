@@ -191,6 +191,7 @@
             .summary
                 //background: grey
                 padding: 16px 0
+                align-self: flex-start
 
                 p
                     padding: 0
@@ -248,6 +249,13 @@
                                     .value
                                         justify-content: flex-start
                                         border-radius: 0px
+                                        input
+                                            width: 100px
+                                            background: 100px
+                                    .val
+                                        margin-left: 8px
+                                        font-weight: bold
+                                        color: #222
 
                             .bars:nth-child(1)
                                 margin-right: 48px
@@ -362,8 +370,6 @@
 
                 .com-content
                     width: 100%
-
-                    //padding: 0 32px
                     margin-top: 16px
                     justify-content: flex-start
 
@@ -373,20 +379,10 @@
 
                     .btn
                         //background: #DADADA
-                        height: 36px
                         font-size: 13px
                         font-weight: bold
-
-                    .btn-nbg:hover
-                        i
-                            transform: translateY(-1px)
-
-                    .reactions
-                        i
-                            font-size: 16px
-
-                        .btn:first-child
-                            margin-right: 16px
+                    .btn-flat:hover
+                        background: #CCC
 
                     .actions
                         .btn:first-child
@@ -445,26 +441,22 @@
                                             text-transform: uppercase
                                             text-align: left
                                             margin-right: 16px
-
                                         .value
                                             justify-content: flex-start
                                             border-radius: 0px
+                                            input
+                                                width: 100px
+                                                background: red
+                                        .val
+                                            margin-left: 8px
+                                            font-weight: bold
+                                            color: #222
 
                                 .bars:nth-child(1)
                                     margin-right: 48px
             .com-more
                 //background: rgba(#CCC, 0.9)
                 justify-content: flex-end
-                button
-                    padding: 12px 16px
-                    font-size: 13px
-                    font-weight: bold
-                    background: rgba(#CCC, .7)
-                    border: none
-                    outline: none
-                    cursor: pointer
-                button:hover
-                    background: rgba(#CCC, .9)
 
     .related-reviews
         margin-top: 32px
@@ -490,6 +482,10 @@
                     height: 310px
                     border-radius: 5px
                     background: #BBB
+                .review-cover
+                    .viewReview
+                        height: 100%
+                        width: 100%
 
                 .review:nth-child(4n)
                     margin-right: 0px

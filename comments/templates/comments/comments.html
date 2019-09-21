@@ -115,5 +115,7 @@
             </div>
         </div>
     </div>
+{% empty %}
+    <div class="no-suggestions">No Comments. :(</div>
 {% endfor %}
 <script type="text/javascript" src="{% static 'comments/js/reactions.js' %}"></script>
