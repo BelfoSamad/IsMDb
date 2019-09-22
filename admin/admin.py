@@ -1,31 +1,52 @@
-from django.apps import apps
+import simple_history
 from django.conf.urls import url
-from django.contrib.admin import AdminSite, ModelAdmin
-# from .sites import AdminSite,ModelAdmin
-from django.contrib.auth.models import Group, User
+from django.db import models
 from django.http import HttpResponse
 from django.template import loader
-# from django.contrib.auth.admin import GroupAdmin, UserAdmin
+from django.contrib.admin import AdminSite, ModelAdmin
+from django.contrib.auth.models import User
 from django.urls import reverse, NoReverseMatch
 from django.utils.text import capfirst
+from django.apps import apps
+from simple_history.admin import SimpleHistoryAdmin
 
-import admin.views as my_views
-import logging
+from admin.widgets import MyAdminSplitDateTime , AdminDateWidget , AdminTimeWidget
+from reviews.models import Actor, Director, Writer, MovieReview
+from suggestions.models import Suggestion
+from users.models import Member, MemberGroup
+from . import views as my_views
+from django.contrib import messages
+from django.contrib.auth.decorators import user_passes_test
+from django.shortcuts import render, redirect
+
+
+from django.contrib.auth.models import User
+
 
 class CustomAdminSite(AdminSite):
     site_header = 'IsMDb'
+    site_title = 'IsMDb'
+
+    def each_context(self, request):
+        context = super().each_context(request)
+
+        # Notification:
+        if request.user.is_authenticated:
+            context['notifications'] = request.user.notifications.unread()
+
+        return context
 
     def get_urls(self):
         urls = super(CustomAdminSite, self).get_urls()
         custom_urls = [
             # re_path(r'^.*\.html', views.custom_admin_template_loader, name='custom-loader'),
 
-            url(r'^.*\.html', self.my_view, name="my-view"),
-            url('account/', my_views.account, {'admin_instance': self}, name='account'),
-            url('authorization/', self.my_view, name='authorization'),
-            url('suggestions/', self.my_view, name='suggestions'),
-            url('reports/', self.my_view, name='reports'),
-            url('history/', self.my_view, name='history'),
+            # url(r'^.*\.html', self.my_view, name="my-view"),
+            url('account/', my_views.account, {'admin_site_instance': self}, name='account'),
+            url('manage_users/', self.my_view, name='manage_users'),
+            url('manage_suggestions/', self.my_view, name='manage_suggestions'),
+            url('manage_reports/', self.my_view, name='manage_reports'),
+            url('global_history/', my_views.history,{'admin_site_instance': self}, name='global_history'),
             url('manage_reviews/', self.my_view, name='manage_reviews'),
         ]
         return urls + custom_urls
@@ -46,6 +67,7 @@ class CustomAdminSite(AdminSite):
         load_template += '.html'
         template = loader.get_template(load_template)
         return HttpResponse(template.render(context, request))
+
 
     def _build_app_dict(self, request, label=None):
         """
@@ -77,14 +99,24 @@ class CustomAdminSite(AdminSite):
                 continue
 
             info = (app_label, model._meta.model_name)
-            model_dict = {
-                'name': capfirst(model._meta.verbose_name_plural),
-                'object_name': model._meta.object_name,
-                'perms': perms,
-                'admin_url': None,
-                'add_url': None,
-                'count': model.objects.count(),
-            }
+            if hasattr(model, 'objects'):
+                model_dict = {
+                    'class': model,
+                    'name': capfirst(model._meta.verbose_name_plural),
+                    'object_name': model._meta.object_name,
+                    'perms': perms,
+                    'admin_url': None,
+                    'add_url': None,
+                    'count': model.objects.count(),
+                }
+            else:
+                model_dict = {
+                    'name': capfirst(model._meta.verbose_name_plural),
+                    'object_name': model._meta.object_name,
+                    'perms': perms,
+                    'admin_url': None,
+                    'add_url': None,
+                }
             if perms.get('change') or perms.get('view'):
                 model_dict['view_only'] = not perms.get('change')
                 try:
@@ -119,7 +151,9 @@ class CustomAdminSite(AdminSite):
 
 class MyModelAdmin(ModelAdmin):
     # default_site = CustomAdminSite
-    pass
+    formfield_overrides = {
+        models.DateTimeField : { 'widget' : MyAdminSplitDateTime}
+    }
 
     # def _registry_getter(self):
     #     return default_site._registry
@@ -138,7 +172,34 @@ class MyModelAdmin(ModelAdmin):
 # custom_admin.register(User)
 
 
-admin_site = CustomAdminSite(name='myadmin')
-# admin_site.register(User, MyModelAdmin)
+# class CategoryAdmin(ModelAdmin):
+#     pass
+#     change_list_template = 'admin/category/change_list.html' # definitely not 'admin/change_list.html'
+#     list_per_page = 2
+#     formfield_overrides = {
+#         models.DateTimeField : { 'widget' : MyAdminSplitDateTime},
+#         models.TimeField: { 'widget' : AdminTimeWidget},
+#         models.DateField: { 'widget' : AdminDateWidget},
+#     }
+    # list_display = [Category,'name']
+    # def get_list_display(self, request):
+    #     list_display = super(CategoryAdmin, self).get_list_display(request)
+    #     return list_display + ['name']
 
-# admin_site.register(Group, MyModelAdmin)
+class CustomSimpleHistoryAdmin(SimpleHistoryAdmin):
+    object_history_template = "simple_history/object_history.html"
+    object_history_form_template = "simple_history/object_history_form.html"
+
+
+
+admin_site = CustomAdminSite(name='myadmin')
+
+
+# Registering Proxy models to CustomSimpleHistoryAdmin
+simple_history.register(Member)
+simple_history.register(MemberGroup)
+simple_history.register(Suggestion)
+simple_history.register(Actor)
+simple_history.register(Director)
+simple_history.register(Writer)
+simple_history.register(MovieReview)

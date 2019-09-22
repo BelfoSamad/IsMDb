@@ -1,57 +1,36 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from rest_framework import permissions, authentication
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from reviews.models import MovieReview
-from users.forms import UserForm, UserMemberInfoForm
+from users.forms import UserForm, UserMemberInfoForm, UserRegisterForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 
-def index(request):
-    return render(request, 'users/index.html')
-
-
-@login_required
-def special(request):
-    return HttpResponse("You are logged in !")
 
 
 @login_required
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(reverse('reviews:reviews'))
 
 
-def register(request):
-    registered = False
+def signup(request):
+    print(request.POST)
     if request.method == 'POST':
-        user_form = UserForm(data=request.POST)
-        profile_form = UserMemberInfoForm(data=request.POST)
-        if user_form.is_valid() and profile_form.is_valid():
-            user = user_form.save()
-            user.set_password(user.password)
-            user.save()
-            profile = profile_form.save(commit=False)
-            profile.user = user
-            if 'profile_pic' in request.FILES:
-                print('found it')
-                profile.profile_pic = request.FILES['profile_pic']
-            profile.save()
-            registered = True
-        else:
-            print(user_form.errors, profile_form.errors)
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('users:login')
     else:
-        user_form = UserForm()
-        profile_form = UserMemberInfoForm()
-    return render(request, 'users/registration.html',
-                  {'user_form': user_form,
-                   'profile_form': profile_form,
-                   'registered': registered})
+        form = UserRegisterForm()
+    return render(request, 'users/signup.html', {'form': form})
 
 
 def user_login(request):
@@ -62,12 +41,10 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(reverse('index'))
+                return HttpResponseRedirect(reverse('reviews:reviews'))
             else:
-                return HttpResponse("Your account was inactive.")
+                return HttpResponse("Your account is inactive.")
         else:
-            print("Someone tried to login and failed.")
-            print("They used username: {} and password: {}".format(username, password))
             return HttpResponse("Invalid login details given")
     else:
         return render(request, 'users/login.html', {})
@@ -96,11 +73,3 @@ class BookmarkReview(APIView):
         }
         return Response(data)
 
-
-class WatchListView(ListView):
-    template_name = 'users/bookmarks.html'
-    context_object_name = 'reviews_list'
-
-    def get_queryset(self):
-        queryset = self.request.user.watchlist.all()
-        return queryset

@@ -15,8 +15,29 @@ body {
   justify-content: space-between;
   scroll: hidden; }
 
+.c-toast {
+  display: none;
+  z-index: 100;
+  background: #222;
+  color: #eee;
+  font-size: 16px;
+  font-weight: bold;
+  position: absolute;
+  bottom: 0;
+  margin-left: 8px;
+  margin-bottom: 8px;
+  padding: 12px 16px;
+  width: 200px;
+  border-radius: 2px;
+  border-left: 8px solid #EC7063;
+  box-shadow: 0 10px 10px 5px rgba(0, 0, 0, 0.5); }
+
 .waves-effect.waves-darker .waves-ripple {
   background-color: rgba(0, 0, 0, 0.9); }
+
+.btn {
+  border-radius: 0px;
+  transition: 250ms; }
 
 .h-flex, .v-flex {
   display: flex;

@@ -114,17 +114,18 @@
                             <p class="plot">{{ review.description }}</p>
                         </div>
                         <div class="actions h-flex">
-                            <button class="btn"><i title="Review later" class="far fa-clock"></i></button>
-                            <a href="{{ review.get_absolute_url }}">
-                                <button class="btn">View Review</button>
+                            <button class="btn-flat review-later"
+                                    data-href="{% url 'reviews:review_later' id=review.id %}">
+                                <i title="Review later" class="far fa-clock"></i></button>
+                            <a class="btn waves-effect light-effect" href="{{ review.get_absolute_url }}">
+                                View Review
                             </a>
                         </div>
                     </div>
+                {% empty %}
+                    <div class="no-suggestions">No results. :(</div>
                 {% endfor %}
             </div>
         </div>
     </div>
 {% endblock %}
-
-<!-- Search bar and Filters and Results Here -->
-<script src="{% static 'js/jquery-3.4.1.js' %}"></script>

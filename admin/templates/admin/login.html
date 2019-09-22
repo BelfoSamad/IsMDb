@@ -1,75 +1,86 @@
-{% extends "admin/base.html" %}
 {% load i18n static %}
 
-{% block extrastyle %}{{ block.super }}
-    <link rel="stylesheet" type="text/css" href="{% static "admin/css/login.css" %}">
-    {{ form.media }}
-{% endblock %}
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<head>
+<title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static "materialize/css/materialize.min.css" %}">
+{#    <link rel="stylesheet" href="{% static "custom/css/my_styles.css" %}">#}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+          crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
 
-{% block bodyclass %}{{ block.super }} login{% endblock %}
+{#{% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% static "admin/css/rtl.css" %}{% endblock %}">{% endif %}#}
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+{#    <link rel="stylesheet" type="text/css" href="{% static "admin/css/responsive.css" %}">#}
+{#    {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% static "admin/css/responsive_rtl.css" %}">{% endif %}#}
+    <meta name="robots" content="NONE,NOARCHIVE">
 
-{% block header %}
-    <div id="branding">
-        <h1 id="site-name"><a
-                href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
-    </div>
-{% endblock %}
+<body style="padding: 100px">
+    <div class="col s12" id="content">
 
-{% block usertools %}{% endblock %}
-
-{% block nav-global %}{% endblock %}
-
-{% block content_title %}{% endblock %}
-
-{% block breadcrumbs %}{% endblock %}
-
-{% block content %}
-    {% if form.errors and not form.non_field_errors %}
+        {% if form.errors and not form.non_field_errors %}
         <p class="errornote">
-            {% if form.errors.items|length == 1 %}{% trans "Please correct the error below." %}{% else %}
-                {% trans "Please correct the errors below." %}{% endif %}
+        {% if form.errors.items|length == 1 %}{% trans "Please correct the error below." %}{% else %}{% trans "Please correct the errors below." %}{% endif %}
         </p>
-    {% endif %}
-
-    {% if form.non_field_errors %}
-        {% for error in form.non_field_errors %}
-            <p class="errornote">
-                {{ error }}
-            </p>
-        {% endfor %}
-    {% endif %}
-
-    <div id="content-main">
-
-        {% if user.is_authenticated %}
-            <p class="errornote">
-                {% blocktrans trimmed %}
-                    You are authenticated as {{ username }}, but are not authorized to
-                    access this page. Would you like to login to a different account?
-                {% endblocktrans %}
-            </p>
         {% endif %}
 
-        <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
-            <div class="form-row">
-                {{ form.username.errors }}
-                {{ form.username.label_tag }} {{ form.username }}
-            </div>
-            <div class="form-row">
-                {{ form.password.errors }}
-                {{ form.password.label_tag }} {{ form.password }}
-                <input type="hidden" name="next" value="{{ next }}">
-            </div>
-            {% url 'admin_password_reset' as password_reset_url %}
-            {% if password_reset_url %}
-                <div class="password-reset-link">
-                    <a href="{{ password_reset_url }}">{% trans 'Forgotten your password or username?' %}</a>
-                </div>
+        {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+        <p class="errornote">
+            {{ error }}
+        </p>
+        {% endfor %}
+        {% endif %}
+
+        <div id="content-main">
+
+            {% if user.is_authenticated %}
+            <p class="errornote">
+            {% blocktrans trimmed %}
+                You are authenticated as {{ username }}, but are not authorized to
+                access this page. Would you like to login to a different account?
+            {% endblocktrans %}
+            </p>
             {% endif %}
-            <div class="submit-row">
-                <label>&nbsp;</label><input type="submit" value="{% trans 'Log in' %}">
-            </div>
-        </form>
+
+            <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+              <div class="row">
+                  <div class="input-field col s12">
+                      <i class="material-icons prefix">account_circle</i>
+                    {{ form.username.errors }}
+                    {{ form.username.label_tag }} {{ form.username }}
+                  </div>
+                  <div class="input-field col s12">
+                      <i class="material-icons prefix">lock</i>
+                    {{ form.password.errors }}
+                    {{ form.password.label_tag }} {{ form.password }}
+                    <input type="hidden" name="next" value="{{ next }}">
+                  </div>
+              </div>
+              <div class="row">
+              </div>
+              {% url 'admin_password_reset' as password_reset_url %}
+              {% if password_reset_url %}
+              <div class="password-reset-link">
+                <a href="{{ password_reset_url }}">{% trans 'Forgotten your password or username?' %}</a>
+              </div>
+              {% endif %}
+              <div class="row">
+                <button class="btn waves-effect waves-light" type="submit" name="action">{% trans 'Log in' %}
+                </button>
+{#                <label>&nbsp;</label><input type="submit" value="{% trans 'Log in' %}" class="waves-effect btn-large center-align">#}
+{#                  <a class="waves-effect waves-light btn-large">Button</a>#}
+              </div>
+            </form>
+
+        </div>
 
     </div>
-{% endblock %}
+
+
+
+<script src="{% static 'materialize/js/materialize.min.js' %}"></script>
+</body>

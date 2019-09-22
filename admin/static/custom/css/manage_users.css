@@ -1,0 +1,40 @@
+
+h3 {
+    text-align: center !important;
+}
+h3 a {
+    color: #000 !important;
+}
+h4 {
+    text-align: center !important;
+}
+h4 a {
+    color: white !important;
+}
+
+.caption-divider{
+    horiz-align: center;
+    border-bottom: 3px solid #ec7063;
+    width: 80%;
+    margin: 0 auto;
+
+}
+.card {
+    background: rgba(236,112,99,0.85);
+    /*background : #ec7063 !important;*/
+}
+.card-action {
+    background: #2d2d2d !important;
+    text-align: center !important;
+}
+.btn-group {
+    justify-content: center !important;
+    text-align: center !important;
+}
+.card-action a {
+    color: #ff4346 !important;
+    font-weight: bold;
+}
+.btn-group .btn {
+    min-width: 110px !important;
+}

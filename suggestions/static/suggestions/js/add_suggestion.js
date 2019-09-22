@@ -9,7 +9,11 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal
 function addSuggestion() {
-    modal.style.display = "block";
+    if (document.getElementById("user_auth").value === "false")
+            window.location.href = "http://http://127.0.0.1:8000/login";
+    else {
+        modal.style.display = "block";
+    }
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -33,7 +37,7 @@ $(".add_suggestion").click(function (e) {
         else {
             var this_ = $(this);
             var add_suggestion_url = this_.attr("data-href");
-            var title = document.getElementById("id_title_auto").value;
+            var title = document.getElementById("id_title").value;
             var description = document.getElementById("id_description").value;
             $.ajax({
                 url: add_suggestion_url,

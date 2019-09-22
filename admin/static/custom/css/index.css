@@ -1,0 +1,12 @@
+#dashboard-card {
+    height: 120px !important;
+    background-color: #ee3e3e !important;
+    color: white !important;
+    font-family: "Roboto Medium", sans-serif;
+    font-size: larger !important;
+    text-align: center;
+}
+
+#dashboard-card span {
+    margin-top: 32px;
+}

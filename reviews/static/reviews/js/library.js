@@ -1,7 +1,7 @@
 $(".watchlist").click(function (e) {
         e.preventDefault();
         if (document.getElementById("user_auth").value === "false")
-            window.location.href = "http://http://127.0.0.1:8000/test";
+            window.location.href = "http://http://127.0.0.1:8000/login";
         else {
             var this_ = $(this);
             console.log("test");
@@ -20,10 +20,10 @@ $(".watchlist").click(function (e) {
         }
     }
 );
-$(".review_later").click(function (e) {
+$(".review-later").click(function (e) {
         e.preventDefault();
         if (document.getElementById("user_auth").value === "false")
-            window.location.href = "http://http://127.0.0.1:8000/test";
+            window.location.href = "http://http://127.0.0.1:8000/login";
         else {
             var this_ = $(this);
             var review_later_url = this_.attr("data-href");
@@ -44,7 +44,7 @@ $(".review_later").click(function (e) {
 $(".like_review").click(function (e) {
         e.preventDefault();
         if (document.getElementById("user_auth").value === "false") {
-            window.location.href = "http://http://127.0.0.1:8000/test";
+            window.location.href = "http://http://127.0.0.1:8000/login";
         }
         else {
             var this_ = $(this);

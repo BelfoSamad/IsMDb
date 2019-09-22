@@ -1,0 +1,42 @@
+
+#sidenav-menu {
+    z-index: 999;
+    background: white;
+}
+
+#sidenav-menu li {
+    margin-right: 15px;
+    border-radius: 0 10px 10px 0;
+}
+
+#sidenav-menu li.active{
+    box-shadow: 0 2px 5px rgba(255, 50, 36, 0.4), 0 2px 10px rgba(238, 41, 27, 0.6) !important;
+    background: linear-gradient(to right, #d76150, #ee3e3e);
+}
+
+#sidenav-menu li.active a,
+#sidenav-menu li.active a i{
+    color: white !important;
+}
+
+/* {*/
+/*    color: white !important;*/
+/*}*/
+
+#sidenav-menu #branding {
+    height: 128px;
+    display: flex;
+    justify-content: center;
+    line-height: 60px;
+}
+
+#sidenav-menu #branding a{
+    height: 80px;
+    width: auto;
+   margin: auto;
+   vertical-align: middle;
+}
+#sidenav-menu #branding a img {
+    height: 80px;
+    width: auto;
+}

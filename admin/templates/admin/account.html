@@ -4,41 +4,46 @@
 {% block extrastyle %}{{ block.super }}
 {% endblock %}
 
-{% block coltype %}colMS{% endblock %}
 
-{% block bodyclass %}{{ block.super }} dashboard{% endblock %}
-
-{% block breadcrumbs %}{% endblock %}
-
-{% load crispy_forms_tags %}
-
-
-{% block account_item_class %}active{% endblock %}
 
 
 {% block content %}
-<div id="content-main">
-    <div class="content-section">
-        <div class="media">
-            <div class="media-body">
-                <h2 class="account-heading">{{ user.username }}</h2>
-                <p class="text-secondary">{{ user.email }}</p>
+<div id="content-main" class="row">
+        <div class="col s12">
+            <div class="card-panel col s12 px-32">
+                        <form method="POST" enctype="multipart/form-data" class="col s12">
+                            {% csrf_token %}
+                        <div class="row valign-wrapper">
+                            <div class="col s6">
+                                <img src="{% get_media_prefix %}{{ user.avatar  }}" alt="df" class="responsive-img circle small-image">
+                            </div>
+                            <div class="file-field input-field col s6 ">
+                                <button type="button" class="btn-large blue">upload image</button>
+                                    <input id="{{ u_form.avatar.id_for_label }}" type="{{ u_form.avatar.field.widget.input_type }}"
+                                         name="{{ u_form.avatar.name }}" value="{{ u_form.avatar.value }}" required class="validate">
+                            </div>
+                        </div>
+                                {% for field in u_form %}
+                                    {% if field is not u_form.avatar %}
+                                        <div class="input-field col s12">
+                                          <input id="{{ field.id_for_label }}" type="{{ field.field.widget.input_type }}"
+                                                 name="{{ field.name }}" value="{{ field.value }}" required class="validate">
+                                          <label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+                                        </div>
+                                    {% endif %}
+                                {% endfor%}
+                            <div class="btn-group" role="group">
+                                <button class="btn waves-effect ml-16" type="submit">Update</button>
+                                <a href="{% url 'admin:password_change' %}"
+                                        class="btn waves-effect orange darken-1 white-text ml-16" >
+                                    Change Password
+                                </a>
+                            </div>
+                        </form>
             </div>
-        </div>
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Profile Info</legend>
-                {{  u_form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Update</button>
-            </div>
-        </form>
-                <button class="btn btn-outline-info" type="button">
-                    <a href="{% url 'admin:password_change' %}">Change Password</a>
-                </button>
+
     </div>
+
 </div>
 {% endblock %}
 

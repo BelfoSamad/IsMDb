@@ -28,3 +28,20 @@ class UserMemberInfoForm(forms.ModelForm):
     class Meta:
         model = Member
         fields = ('birthday_date', 'country')
+
+
+class UserRegisterForm(UserCreationForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = Member
+        fields = ['username','email','password1','password2']
+
+
+class UserUpdateForm(forms.ModelForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = Member
+        fields = ['username','email','avatar']
+

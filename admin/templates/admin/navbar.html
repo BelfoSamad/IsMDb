@@ -1,0 +1,119 @@
+{% load i18n static %}
+{% load movie_review_extras %}
+<link rel="stylesheet" href="{% static 'custom/css/navbar.css' %}">
+            <nav class="z-depth-0">
+                <div class="nav-wrapper z-depth-1" id="header">
+
+                    <!-- Sidebar Toggle Button -->
+                    <a href="#" class="sidenav-trigger left hide-on-large-only" data-target="sidenav-menu">
+                        <i class="material-icons">menu</i>
+                    </a>
+                    <!-- END Sidebar Toggle Button -->
+
+{#                    <div class= "brand-logo show-on-small" id="branding">#}
+{#                        <a href="{% url 'admin:index' %}" class="brand-logo" id="site-name">#}
+{#                        {{ site_header|default:_('Django administration') }}#}
+{#                        </a>#}
+{#                    </div>#}
+
+                    <div class= "brand-logo show-on-small" id="branding">
+                        <a href="/" class="brand-logo black-text" id="site-name">
+        {#                <h3>{{ site_header|default:_('Django administration') }}</h3>#}
+                            <img src="{% static 'custom/assets/ismdb-logo-v2.jpg' %}" alt="IsMDb" >
+                        </a>
+                    </div>
+                    {% block usertools %}
+                    {% if has_permission %}
+                        <ul class="right" id="user-tools">
+                            {% block welcome-msg %}
+                            <li class="hide-on-small-only">
+                                {% trans 'Welcome,' %}
+                                <strong>{% firstof user.get_short_name user.get_username %}</strong>
+                            </li>
+                            {% endblock %}
+                            {% block userlinks %}
+{#                                <li>#}
+{#                                {% if site_url %}#}
+{#                                    <a href="{{ site_url }}">{% trans 'View site' %}</a>#}
+{#                                {% endif %}#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                {% if user.is_active and user.is_staff %}#}
+{#                                    {% url 'django-admindocs-docroot' as docsroot %}#}
+{#                                    {% if docsroot %}#}
+{#                                        <a href="{{ docsroot }}">{% trans 'Documentation' %}</a>#}
+{#                                    {% endif %}#}
+{#                                {% endif %}#}
+{#                                </li>#}
+
+                                <!-- NOTIFICATION -->
+
+{#                                <div class="notifications">#}
+{#                                    <div class="dropdown-trigger btn-floating"><i class="fas fa-bell"></i></div>#}
+                                      <a class='dropdown-trigger  btn-floating shadow-less border-less' href='#' data-target='notification_dropdown' id="notification_dropdown_trigger">
+                                         <i class="material-icons white black-text">notification_important</i>
+                                      </a>
+                                    <ul id='notification_dropdown' class='dropdown-content right'>
+                                        <li class="notification-title">NOTIFICATIONS</li>
+                                        {% for notification in notifications %}
+                                            {% if notification.verb == 'Comment Liked' %}
+                                                <li class="notification">
+                                                    <div class="notif-content">{{ notification.actor }} Liked Your Comment
+                                                        On {{ notification.action_object.title }}</div>
+                                                    <div class="notif-timestamp">{{ notification|timesince_notifications }}</div>
+                                                </li>
+                                            {% elif notification.verb == 'Suggestion Approved' %}
+                                                <li class="notification">
+                                                    <div class="notif-content">Your Suggestion {{ notification.action_object.title }} Has
+                                                        Been Approved
+                                                    </div>
+                                                    <div class="notif-timestamp">{{ notification|timesince_notifications }}</div>
+                                                </li>
+                                            {% elif notification.verb == 'Suggestion Upvoted' %}
+                                                <li class="notification">
+                                                    <div class="notif-content">{{ notification.actor }} Upvoted Your
+                                                        Suggestion {{ notification.action_object.title }}</div>
+                                                    <div class="notif-timestamp">{{ notification|timesince_notifications }}</div>
+                                                </li>
+                                            {% elif notification.verb == 'Suggestion Added' %}
+                                                <li class="notification">
+                                                    <div class="notif-content">The Suggestion You Upvoted Has Been Added</div>
+                                                    <div class="notif-timestamp">{{ notification|timesince_notifications }}</div>
+                                                </li>
+                                            {% elif notification.verb == 'Comment Disabled' %}
+                                                <li class="notification">
+                                                    <div class="notif-content">Due To your last actions you can no longer comment, If you
+                                                        think there's a misunderstanding, contact us
+                                                    </div>
+                                                    <div class="notif-timestamp">{{ notification|timesince_notifications }}</div>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+{#                                </div>#}
+
+
+
+                                <!-- Dropdown Trigger -->
+                              <a class='dropdown-trigger btn-floating' href='#' data-target='profile_dropdown' id="profile_dropdown_trigger">
+                                 <img class="responsive-img circle" src="{% get_media_prefix %}{{ user.avatar }}" alt="Picture" id="profile_image">
+                              </a>
+
+                              <!-- Dropdown Structure -->
+                              <ul id='profile_dropdown' class='dropdown-content right'>
+                                <li>
+                                {% if user.has_usable_password %}
+                                    <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a>
+                                {% endif %}
+                                </li>
+                                <li>
+                                    <a href="{% url 'admin:logout' %}">{% trans 'Log out' %}</a>
+                                </li>
+                              </ul>
+                            {% endblock %}
+                        </ul>
+                    {% endif %}
+                    {% endblock %}
+                    {% block nav-global %}{% endblock %}
+                </div>
+            </nav>

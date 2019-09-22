@@ -39,3 +39,14 @@ def genre_text(value):
 @register.filter('timesince_notifications')
 def timesince_n(notification):
     return notification.timesince()
+
+
+@register.filter('range')
+def get_range(value):
+    value = round(value * 10)
+    return range(value)
+
+
+@register.filter('enumerate')
+def get_enumeration(list):
+    return enumerate(list)

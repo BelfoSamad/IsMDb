@@ -1,6 +1,7 @@
 import datetime
 
 from django.shortcuts import render, get_object_or_404
+from notifications.models import Notification
 from notifications.signals import notify
 from rest_framework import authentication, permissions
 from rest_framework.response import Response
@@ -8,6 +9,7 @@ from rest_framework.views import APIView
 
 from comments.models import Comment
 from reviews.models import MovieReview
+from users.models import Member
 
 
 def load_comments(request, id):
@@ -33,6 +35,9 @@ class CommentCreateView(APIView):
         Comment.objects.create(title=title, content=content, memberID=user, reviewID_id=review_id,
                                alcohol=alcohol, language=language, LGBTQ=lgbtq, nudity=nudity, sex=sex,
                                violence=violence, date_added=datetime.datetime.now())
+        user.honor_points = user.honor_points + 1
+        user.save()
+        notify.send(user, recipient=user, verb='Honor Points Added')
         data = {
             "added": True,
         }
@@ -79,7 +84,6 @@ class CommentDislike(APIView):
 
     def get(self, request, id=None):
         user = self.request.user
-        print(id)
         disliked = False
         dislikes = 0
         likes = 0

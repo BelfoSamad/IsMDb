@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+    <title>IsMDb — Islamic Movie Reviews</title>
+
+    <meta charset="UTF-8">
+    <meta name="description" content="An islamic movie reviews website.">
+    <meta name="keywords" content="Movie, Review, Movie Review, Islam, Islamic Movie Review">
+    <meta name="author" content="IsMDb">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="{% static 'reviews/style/css/style.css' %}" rel="stylesheet" type="text/css">
+    <link href="../../static/reviews/style/css/login.css" rel="stylesheet" type="text/css">
+    <link href="../../static/reviews/style/css/style.css" rel="stylesheet" type="text/css">
+    <link href="../../static/reviews/style/css/materialize.css" rel="stylesheet" type="text/css">
+    <link href="{% static 'reviews/style/css/materialize.css' %}" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+        integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Stardos+Stencil" rel="stylesheet" />
+
+</head>
+
+<body>
+    <div class="wrapper v-flex">
+        <div class="form-wrapper v-flex">
+            <form id="form" class="" method="POST">
+                <div class="logo">
+                    <img src="../../static/reviews/assets/ismdb-logo-v2.jpg">
+                </div>
+                <div class="credentials-row">
+                    <div class="input-field">
+                        <input class="validate" required="" aria-required="true" id="email-username" autocomplete="off"
+                            type="text" pattern="(^\w+\d*)|(^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$)">
+                        <label for="email-username">Username or email</label>
+                        <span class="helper-text" data-error="Incorrect username or email" data-success=""></span>
+                    </div>
+                    <div class="input-field">
+                        <input class="validate" required="" aria-required="true" id="password" type="password">
+                        <label for="password">Password</label>
+                        <span class="helper-text" data-error="Incorrect password" data-success=""></span>
+                    </div>
+                    <div class="forgot-password">
+                        <a href="#">Forgot password?</a>
+                    </div>
+                </div>
+                <div class="login-row v-flex">
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Login
+                    </button>
+                </div>
+                <div class="signup-row">
+                    Don't have an account? <a href="signup.html" class="signup-link">Sign up</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="{% static 'reviews/js/materialize.js' %}"></script>
+    <script src="{% static 'reviews/js/jquery-3.4.1.js' %}"></script>
+    <script type="text/javascript" src="../../static/reviews/js/materialize.js"></script>
+    <script type="text/javascript" src="{% static 'reviews/js/script.js' %}"></script>
+</body>
+
+</html>

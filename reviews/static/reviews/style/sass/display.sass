@@ -45,6 +45,7 @@
                 height: 100%
                 background: rgba(#111, 0.85)
                 position: relative
+                justify-content: flex-start
 
                 .left
                     color: #EEE
@@ -59,25 +60,21 @@
                         width: 100%
 
                         //background: rgba(#EEE, .8)
-
+                        .rec-title
+                            font-size: 14px
+                            font-weight: bold
+                            align-self: flex-start
+                            color: rgba(white, .5)
                         .title-div
                             width: 100%
 
                             .title
-                                font-size: 48pt
+                                font-size: 30px
                                 font-weight: bold
 
                                 color: rgba(#EEE, .9)
                                 position: relative
                                 z-index: 2
-
-                            .ttitle::before
-                                content: ""
-                                position: absolute
-                                z-index: -1
-                                width: 100%
-                                height: 100%
-                                background: rgba(#EC7063, 0.5)
 
                         .rating
                             margin-right: 4px
@@ -89,10 +86,12 @@
 
                     .plot
                         width: 100%
-
-                        //margin: 32px 0 16px 0
+                        //background: rgba(orange, .3)
+                        padding: 0
 
                         h1
+                            margin: 0
+                            padding: 0
                             font-size: 12pt
                             font-weight: bold
                             color: rgba(#EEE, 0.8)
@@ -155,11 +154,12 @@
                                 cursor: pointer
 
                         .ratings
-                            width: 80%
+                            width: 90%
                             padding: 0 16px
                             align-self: center
 
                             .bar-rating
+                                width: 100%
                                 //background: rgba(yellow, .2)
 
                                 .bars
@@ -179,58 +179,39 @@
 
                                         .value
                                             justify-content: flex-start
-                                            background: #EAEAEA
                                             border-radius: 0px
-                                            height: 8px
-                                            width: 125px
-
-                                            .unit
-                                                background: #EC7063
-                                                height: 100%
-                                                width: 25px
-                                                margin-rigth: 1px
+                                            input
+                                                width: 100px
+                                                background: red
+                                        .val
+                                            margin-left: 8px
+                                            font-weight: bold
+                                            color: #EEE
 
                     .buttons
                         width: 100%
-                        //margin-top: auto
-                        //justify-self: flex-end
-                        justify-content: flex-start
-
-                        button
-                            background: #EEE
-                            justify-content: center
-                            width: 120px
-                            height: 36px
-                            margin-right: 8px
-                            padding: 0 8px
-                            font-size: 13px
+                        .viewReview
+                            border-right: 8px solid #EC7063
+                        i
+                            font-size: 14px
+                        
+                        .btn
                             font-weight: bold
-                            text-transform: uppercase
-                            border: none
-                            outline: none
-                            cursor: pointer
-                            box-sizing: border-box
-
+                            background: #EEE
+                            color: #111
+                            margin-right: 4px
+                            border-radius: 0px
+                            transition: 250ms
                             i
-                                color: #111
-                                margin-right: 12px
-
-                            .btn-sep
-                                height: 32px
-                                width: 1px
-                                background: rgba(#111, 0.7)
-
-                        .view
-                            margin-left: auto
-                            width: 160px
-                            border-right: 8px solid #ec7063
-
+                                margin-right: 16px
+                        .btn:hover
+                            background: rgba(#EEE, .9)
+                        a
+                            font-weight: bold
+                            justify-self: flex-end
+                            padding-right: 4px
                             i
-                                margin-left: 12px
-                                margin-right: 0
-
-                        button:hover
-                            background: rgba(#DDD, 1)
+                                margin-left: 16px
 
                 .right
                     height: 100%

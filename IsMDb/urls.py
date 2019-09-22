@@ -26,7 +26,8 @@ urlpatterns = [
                   url(r'^suggestions/', include('suggestions.urls')),
                   url(r'^report/', include('reports.urls')),
                   url(r'^', include('comments.urls')),
+                  url(r'^', include('users.urls')),
                   url(r'^search/', include('search.urls')),
                   url('^inbox/notifications/', include(notifications.urls, namespace='notifications')),
-                  url('admin/', admin.site.urls),
+                  url('admin/', admin_site.urls),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

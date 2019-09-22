@@ -104,12 +104,19 @@
       .review-holder .film-content .text .buttons {
         width: 100%; }
         .review-holder .film-content .text .buttons .btn {
-          height: 36px;
           font-size: 13px;
           font-weight: bold;
-          text-transform: uppercase; }
+          text-transform: uppercase;
+          background: #eeeeee;
+          color: #111;
+          margin-right: 4px;
+          border-radius: 0px;
+          transition: 250ms; }
           .review-holder .film-content .text .buttons .btn i {
+            font-size: 14px;
             color: #111; }
+        .review-holder .film-content .text .buttons .trailer i, .review-holder .film-content .text .buttons .watchlist i {
+          margin-right: 16px; }
         .review-holder .film-content .text .buttons .actions .btn:nth-child(1) {
           margin-right: 4px; }
         .review-holder .film-content .text .buttons .reactions .btn:nth-child(1) {
@@ -117,7 +124,10 @@
         .review-holder .film-content .text .buttons .reactions i {
           font-size: 16px; }
         .review-holder .film-content .text .buttons .review {
-          border-right: 4px solid #ec7063; }
+          justify-self: flex-end;
+          border-right: 8px solid #ec7063; }
+          .review-holder .film-content .text .buttons .review i {
+            margin-left: 16px; }
         .review-holder .film-content .text .buttons .btn:not(.btn-nbg):hover {
           background: rgba(204, 204, 204, 0.9); }
   .review-holder .ismdb-review {
@@ -130,7 +140,8 @@
       padding: 16px;
       align-items: center; }
       .review-holder .ismdb-review .content .summary {
-        padding: 16px 0; }
+        padding: 16px 0;
+        align-self: flex-start; }
         .review-holder .ismdb-review .content .summary p {
           padding: 0;
           color: #111;
@@ -171,15 +182,14 @@
                 margin-right: 16px; }
               .review-holder .ismdb-review .content .rating-content .ismdb-rating .ratings .bar-rating .bars .rating .value {
                 justify-content: flex-start;
-                background: #F8F8F8;
-                border-radius: 0px;
-                height: 8px;
-                width: 125px; }
-                .review-holder .ismdb-review .content .rating-content .ismdb-rating .ratings .bar-rating .bars .rating .value .unit {
-                  background: #EC7063;
-                  height: 100%;
-                  width: 25px;
-                  margin-rigth: 1px; }
+                border-radius: 0px; }
+                .review-holder .ismdb-review .content .rating-content .ismdb-rating .ratings .bar-rating .bars .rating .value input {
+                  width: 100px;
+                  background: 100px; }
+              .review-holder .ismdb-review .content .rating-content .ismdb-rating .ratings .bar-rating .bars .rating .val {
+                margin-left: 8px;
+                font-weight: bold;
+                color: #222; }
             .review-holder .ismdb-review .content .rating-content .ismdb-rating .ratings .bar-rating .bars:nth-child(1) {
               margin-right: 48px; }
   .review-holder .community-review {
@@ -216,27 +226,23 @@
                 font-size: 14px; }
         .review-holder .community-review .content .com-post .com-content {
           width: 100%; }
-          .review-holder .community-review .content .com-post .com-content textarea {
+          .review-holder .community-review .content .com-post .com-content .materialize-textarea {
             font-size: 16px;
             width: 100%;
-            margin-top: 16px;
-            resize: none;
-            border: none;
-            outline: none;
-            padding: 8px;
-            border-bottom: 4px solid rgba(236, 112, 99, 0); }
-          .review-holder .community-review .content .com-post .com-content textarea:focus {
-            border-bottom: 4px solid #ec7063; }
+            padding: 8px; }
         .review-holder .community-review .content .com-post .buttons {
           width: 100%;
           margin-top: 16px;
           justify-content: flex-end; }
           .review-holder .community-review .content .com-post .buttons .btn {
-            height: 36px;
             font-size: 13px;
-            font-weight: bold; }
-          .review-holder .community-review .content .com-post .buttons .btn:not(.btn-nbg):hover {
-            background: rgba(204, 204, 204, 0.9); }
+            font-weight: bold;
+            background: #ec7063; }
+            .review-holder .community-review .content .com-post .buttons .btn i {
+              margin-left: 8px;
+              transform: translateY(-2px); }
+          .review-holder .community-review .content .com-post .buttons .btn:hover {
+            background: rgba(236, 112, 99, 0.9); }
           .review-holder .community-review .content .com-post .buttons .btn:first-child {
             margin-right: 8px; }
       .review-holder .community-review .content .com-review {
@@ -275,23 +281,18 @@
           width: 100%;
           margin-top: 16px; }
           .review-holder .community-review .content .com-review .buttons .btn {
-            height: 36px;
             font-size: 13px;
             font-weight: bold; }
-          .review-holder .community-review .content .com-review .buttons .btn:not(.btn-nbg):hover {
-            background: rgba(204, 204, 204, 0.9); }
-          .review-holder .community-review .content .com-review .buttons .btn-nbg:hover i {
-            transform: translateY(-1px); }
-          .review-holder .community-review .content .com-review .buttons .reactions i {
-            font-size: 16px; }
-          .review-holder .community-review .content .com-review .buttons .reactions .btn:first-child {
-            margin-right: 16px; }
+          .review-holder .community-review .content .com-review .buttons .btn-flat:hover {
+            background: #CCC; }
           .review-holder .community-review .content .com-review .buttons .actions .btn:first-child {
             margin-right: 16px; }
           .review-holder .community-review .content .com-review .buttons .view-review i {
             font-size: 18px;
+            margin-left: 8px;
             height: 24px;
-            transition: 0.3s; }
+            transition: 0.3s;
+            transform: translateY(-3px); }
         .review-holder .community-review .content .com-review .rating-content {
           background: rgba(128, 128, 128, 0.15);
           padding: 16px 16px;
@@ -326,29 +327,18 @@
                   margin-right: 16px; }
                 .review-holder .community-review .content .com-review .rating-content .ismdb-rating .ratings .bar-rating .bars .rating .value {
                   justify-content: flex-start;
-                  background: #F8F8F8;
-                  border-radius: 0px;
-                  height: 8px;
-                  width: 125px; }
-                  .review-holder .community-review .content .com-review .rating-content .ismdb-rating .ratings .bar-rating .bars .rating .value .unit {
-                    background: #EC7063;
-                    height: 100%;
-                    width: 25px;
-                    margin-rigth: 1px; }
+                  border-radius: 0px; }
+                  .review-holder .community-review .content .com-review .rating-content .ismdb-rating .ratings .bar-rating .bars .rating .value input {
+                    width: 100px;
+                    background: red; }
+                .review-holder .community-review .content .com-review .rating-content .ismdb-rating .ratings .bar-rating .bars .rating .val {
+                  margin-left: 8px;
+                  font-weight: bold;
+                  color: #222; }
               .review-holder .community-review .content .com-review .rating-content .ismdb-rating .ratings .bar-rating .bars:nth-child(1) {
                 margin-right: 48px; }
       .review-holder .community-review .content .com-more {
         justify-content: flex-end; }
-        .review-holder .community-review .content .com-more button {
-          padding: 12px 16px;
-          font-size: 13px;
-          font-weight: bold;
-          background: rgba(204, 204, 204, 0.7);
-          border: none;
-          outline: none;
-          cursor: pointer; }
-        .review-holder .community-review .content .com-more button:hover {
-          background: rgba(204, 204, 204, 0.9); }
   .review-holder .related-reviews {
     margin-top: 32px; }
     .review-holder .related-reviews .related-header {
@@ -367,6 +357,9 @@
           height: 310px;
           border-radius: 5px;
           background: #BBB; }
+        .review-holder .related-reviews .content .reviews .review-cover .viewReview {
+          height: 100%;
+          width: 100%; }
         .review-holder .related-reviews .content .reviews .review:nth-child(4n) {
           margin-right: 0px; }
         .review-holder .related-reviews .content .reviews .review:nth-last-child(1), .review-holder .related-reviews .content .reviews .review:nth-last-child(2), .review-holder .related-reviews .content .reviews .review:nth-last-child(3), .review-holder .related-reviews .content .reviews .review:nth-last-child(4) {

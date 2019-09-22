@@ -11,6 +11,7 @@ from languages.fields import LanguageField
 from multiselectfield import MultiSelectField
 from notifications.signals import notify
 
+from admin.custom_fields.fields import CustomMultiSelectField
 from suggestions.models import Suggestion
 from users.models import Member
 
@@ -51,6 +52,7 @@ class Writer(Staff):
 
 
 class MovieReview(models.Model):
+    published = models.BooleanField(default=True)
     title = models.CharField(max_length=255, blank=True, null=False)
     slug = SlugField(max_length=255)
     poster = models.ImageField(default='default_poster.png', upload_to="gallery")
@@ -73,10 +75,11 @@ class MovieReview(models.Model):
                      (12, 'Romance'),
                      (13, 'Satire'),
                      (14, 'Sci-Fi'))
-    genre = MultiSelectField(choices=GENRE_CHOICES, null=False)
+    genre = CustomMultiSelectField(choices=GENRE_CHOICES, null=False)
     time = models.IntegerField(blank=True, null=False, default=0)
     release_date = models.DateField(default=datetime.date.today)
     description = models.TextField(max_length=255, blank=True, null=False)
+    review = models.TextField(max_length=255, blank=True, null=True)
     tags = models.TextField(blank=True)
     suggestion = models.ForeignKey(Suggestion, on_delete=models.SET_NULL, null=True, blank=True)
     country = CountryField(default='US', null=False)
@@ -108,9 +111,6 @@ class MovieReview(models.Model):
         super(MovieReview, self).save(*args, **kwargs)
         suggestion = self.suggestion
         if suggestion is not None:
-            notify.send(suggestion.memberID, recipient=suggestion.memberID,
-                        verb='Suggestion Added',
-                        action_object=self)
             for user in suggestion.up_votes.all():
                 notify.send(user, recipient=user,
                             verb='Suggestion Added',

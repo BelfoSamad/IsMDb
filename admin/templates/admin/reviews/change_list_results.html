@@ -1,0 +1,102 @@
+{% load i18n static %}
+
+
+
+
+{% if result_hidden_fields %}
+<div class="hiddenfields">{# DIV for HTML validation #}
+{% for item in result_hidden_fields %}{{ item }}{% endfor %}
+</div>
+{% endif %}
+
+{% if results %}
+<div class="results">
+<div class="row" id="result_list">
+<div class="col s12" id="results-headers">
+{#    {% for header in result_headers %}#}
+{#        <th scope="col" {{ header.class_attrib }}>#}
+{#           {% if header.sortable %}#}
+{#             {% if header.sort_priority > 0 %}#}
+{#               <div class="sortoptions">#}
+{#                 <a class="sortremove" href="{{ header.url_remove }}" title="{% trans "Remove from sorting" %}"></a>#}
+{#                 {% if num_sorted_fields > 1 %}<span class="sortpriority" title="{% blocktrans with priority_number=header.sort_priority %}Sorting priority: {{ priority_number }}{% endblocktrans %}">{{ header.sort_priority }}</span>{% endif %}#}
+{#                 <a href="{{ header.url_toggle }}" class="toggle {% if header.ascending %}ascending{% else %}descending{% endif %}" title="{% trans "Toggle sorting" %}"></a>#}
+{#               </div>#}
+{#             {% endif %}#}
+{#           {% endif %}#}
+{#            {% if 'checkbox' in header.text %}#}
+{#                <div class="action-checkbox-column">#}
+{#                    <div class="text">{% if header.sortable %}<a href="{{ header.url_primary }}">{{ header.text|capfirst }}</a>{% else %}<span>{{ header.text|capfirst }}</span>{% endif %}</div>#}
+{#                    <div class="clear"></div>#}
+{#                </div>#}
+{#            {% else %}#}
+{#                <div class="text">{% if header.sortable %}<a href="{{ header.url_primary }}">{{ header.text|capfirst }}</a>{% else %}<span>{{ header.text|capfirst }}</span>{% endif %}</div>#}
+{#                <div class="clear"></div>#}
+{#            {% endif %}#}
+{#        </th>#}
+{#    {% endfor %}#}
+    <label class="flow-text orange-text text-darken-2 unselectable">Select {% if cl.result_count != cl.result_list|length %} this page's {% else %} all {% endif %} {{ opts.verbose_name_plural }} : <input type="checkbox" id="action-toggle" class="filled-in" ><span></span></label>
+</div>
+</div>
+
+ <div class="row">
+    {% for result in results %}
+    {% if result.form and result.form.non_field_errors %}
+        <div class="length-is-{{ result|length }}">{{ result.form.non_field_errors }}</div>
+    {% endif %}
+    {#    <td class="action-checkbox">#}
+    {#        <label>#}
+    {#            <input type="checkbox" name="_selected_action" value="1" class="action-select">#}
+    {#            <span></span>#}
+    {#        </label>#}
+    {#    </td>#}
+        <div class="col s12 m6 l4">
+            {% if result.poster %}
+                  <div class="card">
+                    <div class="card-image">
+                      <img src="{{ result.poster.url }}" alt="Image">
+                        <div class="action-checkbox checkbox-circle halfway-checkbox left ">
+                        <label>
+                            <input type="checkbox" name="_selected_action" value="{{ result.id }}" class="action-select filled-in ">
+                            <span></span>
+                        </label>
+                        </div>
+                      <a href="{{ result.id }}/change" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">edit</i></a>
+                    </div>
+                    <div class="card-content">
+                      <span class="card-title truncate">{{ result.title }}</span>
+                    </div>
+                  </div>
+            {% else %}
+                <link rel="stylesheet" type="text/css" href="{% static "custom/css/inline_models.css" %}">
+                  <div class="card">
+                    <div class="card-content">
+                      <span class="card-title truncate">{{ result.first_name }} {{ result.last_name }}</span>
+                    </div>
+                    <div class="card-action">
+
+                        <div class="action-checkbox ">
+                        <label>
+                            <input type="checkbox" name="_selected_action" value="{{ result.id }}" class="action-select filled-in ">
+                            <span></span>
+                        </label>
+                        </div>
+                      <a href="{{ result.id }}/change" class="red-text">Edit</a>
+                    </div>
+                  </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+
+
+
+
+
+
+
+
+

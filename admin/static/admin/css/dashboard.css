@@ -1,32 +1,27 @@
-#container {
-  display: flex !important;
+/* DASHBOARD */
+
+.dashboard .module table th {
+    width: 100%;
 }
 
-#content-main {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important;
+.dashboard .module table td {
+    white-space: nowrap;
 }
 
-.card {
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.125), 0 1px 3px rgba(0, 0, 0, 0.2) !important;
-  border-radius: 0.25rem !important;
-  margin: 20px !important;
-  padding: 0 !important;
+.dashboard .module table td a {
+    display: block;
+    padding-right: .6em;
 }
 
-.card-header {
-  height: 50%;
-  background-color: #ffffff;
+/* RECENT ACTIONS MODULE */
+
+.module ul.actionlist {
+    margin-left: 0;
 }
 
-.card-header h1 {
-  color: #b21f2d;
-  font-family: "Raleway SemiBold", sans-serif;
+ul.actionlist li {
+    list-style-type: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
 }
-
-.card-body h1 {
-  font-family: "Raleway SemiBold", sans-serif;
-}
-
-/*# sourceMappingURL=dashboard.css.map */

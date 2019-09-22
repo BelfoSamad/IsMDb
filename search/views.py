@@ -59,8 +59,6 @@ def auto_filter(request, max_year, min_year, max_time, min_time, genres, max_alc
                 (int(max_violence) / 10) >= result.violence >= (int(min_violence) / 10)) and (
                 all(elem in get_genres(result) for elem in g)):
             results.append(result)
-
-    print(results)
     template = loader.get_template('search/advanced_search_results.html')
     return HttpResponse(template.render({'reviews': results}, request))
 

@@ -32,9 +32,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    # 'admin.apps.MyAdminConfig',
-    'django.contrib.auth',
+    'admin.apps',
     'django.contrib.admin',
+    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'reports',
     'pandas',
     'crispy_forms',
+    'simple_history',
 ]
 
 MIDDLEWARE = [
@@ -64,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
 ROOT_URLCONF = 'IsMDb.urls'
@@ -74,8 +76,11 @@ TEMPLATES = [
         'DIRS': [TEMPLATE_DIR,
                  # os.path.join(BASE_DIR, 'admin/templates'),
                  # os.path.join(BASE_DIR, 'users/templates'),
-                 # TODO: add templates
-                 os.path.join(BASE_DIR, 'reviews/templates')],
+                 os.path.join(BASE_DIR, 'reviews/templates'),
+                 os.path.join(BASE_DIR, 'suggestions/templates'),
+                 os.path.join(BASE_DIR, 'search/templates'),
+                 os.path.join(BASE_DIR, 'comments/templates'),
+                 os.path.join(BASE_DIR, 'admin/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,6 +89,13 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries':{
+                'my_custom_tags': 'admin.templatetags.my_custom_tags',
+                'my_custom_filters': 'admin.templatetags.my_custom_filters',
+                'my_reviews_tags': 'admin.templatetags.my_reviews_tags',
+                'my_simple_tags': 'admin.templatetags.my_simple_tags',
+
+                }
         },
     },
 ]
@@ -148,3 +160,4 @@ MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'users.Member'
+

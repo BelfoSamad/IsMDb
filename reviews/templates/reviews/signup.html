@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+    <title>IsMDb — Islamic Movie Reviews</title>
+
+    <meta charset="UTF-8">
+    <meta name="description" content="An islamic movie reviews website.">
+    <meta name="keywords" content="Movie, Review, Movie Review, Islam, Islamic Movie Review">
+    <meta name="author" content="IsMDb">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="{% static 'reviews/style/css/style.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'reviews/style/css/signup.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'reviews/style/css/materialize.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'reviews/style/css/style.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'reviews/style/css/materialize.css' %}" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+        integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Stardos+Stencil" rel="stylesheet" />
+
+
+</head>
+
+<body>
+    <div class="wrapper v-flex">
+        <div class="form-wrapper v-flex">
+            <form class="v-flex">
+                <div class="logo">
+                    <img src="../../static/reviews/assets/ismdb-logo-v2.jpg" alt="">
+                </div>
+                <div class="username-row">
+                    <div class="input-field">
+                        <input class="validate" required="" aria-required="true" id="username" autocomplete="off"
+                            type="text" pattern="(^\w+\d*)">
+                        <label for="username">Choose a username</label>
+                        <span class="helper-text" data-error="Username exists already" data-success=""></span>
+                    </div>
+                </div>
+                <div class="email-row">
+                    <div class="input-field">
+                        <input class="validate" required="" aria-required="true" id="email" autocomplete="off"
+                            type="email">
+                        <label for="email">Enter your email address</label>
+                        <span class="helper-text" data-error="Email address exists already" data-success=""></span>
+                    </div>
+                </div>
+                <div class="password-row h-flex">
+                    <div class="input-field" style="margin-right: 24px">
+                        <input class="validate" required="" aria-required="true" id="password" autocomplete="off"
+                            type="password">
+                        <label for="password">Choose a password</label>
+                        <span class="helper-text" data-error="Password exists already" data-success=""></span>
+                    </div>
+                    <div class="input-field">
+                        <input class="validate" required="" aria-required="true" id="re-password" autocomplete="off"
+                            type="password">
+                        <label for="re-password">Confirm your password</label>
+                        <span class="helper-text" data-error="Incorrect password" data-success=""></span>
+                    </div>
+                </div>
+                <label>
+                    <input type="checkbox" />
+                    <span>By signing up, you agree to our <a href="#">Terms of Service</a> and our <a href="#">Privacy
+                            Policy</a></span>
+                </label>
+                <div class="signup-row v-flex">
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Sign up
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="{% static 'reviews/js/materialize.js' %}"></script>
+    <script src="{% static 'reviews/js/jquery-3.4.1.js' %}"></script>
+    <script type="text/javascript" src="{% static 'reviews/js/script.js' %}"></script>
+</body>
+
+</html>

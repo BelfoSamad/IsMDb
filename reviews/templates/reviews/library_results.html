@@ -23,12 +23,20 @@
                 </div>
                 <div class="review-actions h-flex">
                     <div class="bookmark-rev-later">
-                        <button><i title="Bookmark" class="far fa-bookmark"></i></button>
-                        <button><i title="Review later" class="far fa-clock"></i></button>
+                        <button><i title="Bookmark" class="far fa-bookmark watchlist"
+                                   data-href="{% url 'reviews:bookmark' id=review.id %}"></i>
+                        </button>
+
+                        <button data-href="{% url 'reviews:review_later' id=review.id %}"
+                                class="review-later"><i title="Review later"
+                                                        class="far fa-clock"></i>
+                        </button>
                     </div>
-                    <button class="view-review" type="button" name="action">View Review<i
-                            class="fas fa-long-arrow-alt-right"></i>
-                    </button>
+                    <a href="{{ review.get_absolute_url }}">
+                        <button class="view-review" type="submit" name="action">View Review<i
+                                class="fas fa-long-arrow-alt-right"></i>
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>

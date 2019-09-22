@@ -1,51 +1,61 @@
-{% load static %}
-
 <!-- Sidebar -->
-<nav id="sidebar">
+{% load static %}
+<link rel="stylesheet" href="{% static 'custom/css/sidebar.css' %}">
 
-
-    <div id="branding">
-        <h1 id="site-name"><a
-                href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
-    </div>
-
-
-    <ul class="nav flex-column nav-pills">
-        <li class="nav-item">
-            <a class="nav-link" href="index.html">
-                <i class="fas fa-home"></i>
-                Dashboard</a>
+        <ul class="sidenav sidenav-fixed white-text z-depth-1-half" id="sidenav-menu">
+        <li>
+            <div class= "brand-logo" id="branding">
+                <a href="/" class="brand-logo black-text" id="site-name">
+{#                <h3>{{ site_header|default:_('Django administration') }}</h3>#}
+                    <img src="{% static 'custom/assets/ismdb-logo-v2.jpg' %}" alt="IsMDb">
+                </a>
+            </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="reviews.html">
-                <i class="fas fa-briefcase"></i>
-                Manage Users</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="reviews.html">
-                <i class="fas fa-briefcase"></i>
-                Manage Groups</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="reviews.html">
-                <i class="fas fa-briefcase"></i>
-                Manage Reviews</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="reviews.html">
-                <i class="fas fa-briefcase"></i>
-                Manage Suggestions</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="reviews.html">
-                <i class="fas fa-briefcase"></i>
-                Manage Reports</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="history.html">
-                <i class="fas fa-copy"></i>
-                History
-            </a>
-        </li>
-    </ul>
-</nav>
+        <li class="divider"></li>
+            <li class="{% if request.resolver_match.url_name == 'index' %}active{% endif %}">
+                <a  href="{% url 'admin:index' %}" class="black-text">
+                   <i class="material-icons black-text">dashboard</i>
+                    Dashboard</a>
+            </li>
+            <li class="{% if opts.app_label == 'users' or request.resolver_match.url_name == 'manage_users'  %}active{% endif %}">
+                <a href="{% url 'admin:manage_users' %}" class="black-text">
+                   <i class="material-icons black-text">category</i>
+                    Manage Users</a>
+            </li>
+            <li class="{% if opts.app_label == 'reviews' or opts.model_name == 'historicalmoviereview' or request.resolver_match.url_name == 'manage_reviews' %}active{% endif %}">
+                <a href="{% url 'admin:manage_reviews' %}" class="black-text">
+                   <i class="material-icons black-text">photo_library</i>
+                    Manage Reviews</a>
+            </li>
+            <li class="{% if opts.model_name == 'suggestion' or request.resolver_match.url_name == 'manage_suggestions' %}active{% endif %}">
+                <a href="{% url 'admin:manage_suggestions' %}" class="black-text">
+                   <i class="material-icons black-text">tune</i>
+                    Manage Suggestions
+                </a>
+            </li>
+            <li class="{% if request.resolver_match.url_name == 'reports' or request.resolver_match.url_name == 'manage_reports' %}active{% endif %}">
+                <a href="{% url 'admin:manage_reports' %}" class="black-text">
+                   <i class="material-icons black-text">tune</i>
+                    Manage Reports
+                </a>
+            </li>
+            <li class="{% if request.resolver_match.url_name == 'global_history' %}active{% endif %}">
+                <a href="{% url 'admin:global_history' %}" class="black-text">
+                   <i class="material-icons black-text">history</i>
+                    Global History
+                </a>
+            </li>
+            <li class="{% if request.resolver_match.url_name == 'account' %}active{% endif %}">
+                <a href="{% url 'admin:account' %}" class="black-text">
+                   <i class="material-icons black-text">account_circle</i>
+                    Account
+                </a>
+            </li>
+{#            <li class="{% if opts.model_name == 'config' %}active{% endif %}">#}
+{#                <a href="{% url 'admin:constance_config_changelist' %}" class="black-text">#}
+{#                   <i class="material-icons black-text">settings</i>#}
+{#                    Settings#}
+{#                </a>#}
+{#            </li>#}
+        </ul>
+{#    </nav>#}

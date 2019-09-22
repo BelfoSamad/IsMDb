@@ -1,123 +1,84 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
+{% load i18n static %}<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
 <head>
-    <title>{{ title }} | {{ site_title|default:_('Django site admin') }}</title>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'admin/css/admin_styles.css' %}">
+<title>{% block title %}{% endblock %}</title>
+{#<link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}">#}
+    <link rel="stylesheet" href="{% static "materialize/css/materialize.min.css" %}">
+    <link rel="stylesheet" href="{% static "custom/css/my_styles.css" %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
           integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
           crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Roboto|Stardos+Stencil|Circular+Std" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}">
-    {% block extrastyle %}{% endblock %}
-    {% block extrahead %}{% endblock %}
-    {% block responsive %}
-        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="{% static "admin/css/responsive.css" %}">
-    {% endblock %}
-    {% block blockbots %}
-        <meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
+{% block extrastyle %}{% endblock %}
+{#{% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% static "admin/css/rtl.css" %}{% endblock %}">{% endif %}#}
+{% block extrahead %}{% endblock %}
+{% block responsive %}
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+{#    <link rel="stylesheet" type="text/css" href="{% static "admin/css/responsive.css" %}">#}
+{#    {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% static "admin/css/responsive_rtl.css" %}">{% endif %}#}
+{% endblock %}
+{% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
 </head>
+{% load i18n %}
 
+<body class=" {% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}"
+  data-admin-utc-offset="{% now "Z" %}">
 
-<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}"
-      data-admin-utc-offset="{% now "Z" %}">
-
+    {% if not is_popup %}
+        <!-- Header -->
+        {% block header %}
+        {% endblock %}
+                <!-- END Header -->
+    {% endif %}
+    {% if not is_popup %}
+        <!-- SideBar -->
+        {% block left_navigation %}{% endblock %}
+    {% endif %}
 <!-- Container -->
 <div id="container">
-    <!-- Header -->
-
-    {#    {% block messages %}#}
-    {#        {% if messages %}#}
-    {#        <ul class="messagelist">{% for message in messages %}#}
-    {#          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>#}
-    {#        {% endfor %}</ul>#}
-    {#        {% endif %}#}
-    {#    {% endblock messages %}#}
-
-    <!-- Left Panel -->
-    {% block left_panel %}
-
-    {% endblock %}
-    <!-- END Left Panel -->
-
-    <div id="wrapper">
-
-        <div id="header">
-
-            {% block sidebar_toggler %}
-            {% endblock %}
-
-            {% block header %}
-            {% endblock %}
 
 
+{# <div id="wrapper" >#}
 
-            {% block usertools %}
-                {% if has_permission %}
-                    <div id="user-tools">
-                        {% block welcome-msg %}
-                            Welcome ,
-                            <strong>{% firstof user.get_short_name user.get_username %}</strong>
-                        {% endblock %}
-                        {% block userlinks %}
-                            {% if site_url %}
-                                <button type="button" class="btn btn-light">
-                                    <a href="{{ site_url }}">View site</a>
-                                </button>
-                            {% endif %}
-                            {% if user.is_active and user.is_staff %}
-                                {% url 'django-admindocs-docroot' as docsroot %}
-                                {% if docsroot %}
-                                    <button type="button" class="btn btn-light">
-                                        <a href="{{ docsroot }}">Documentation</a>
-                                    </button>
-                                {% endif %}
-                            {% endif %}
-                            <button class="btn btn-light" type="button">
-                                <a href="{% url 'admin:logout' %}">Log out</a>
-                            </button>
-                        {% endblock %}
-                    </div>
+{#    <!-- Content -->{% block coltype %}colM{% endblock %}#}
+    <div id="content">
+        <div class="col s12" id="content-wrapper">
+            {% block messages %}
+                {% if messages %}
+                <ul class="messagelist ">{% for message in messages %}
+                  <li class="{% if message.tags %} {{ message.tags }} {% endif %} ">{{ message|capfirst }}</li>
+                {% endfor %}</ul>
                 {% endif %}
-            {% endblock %}
-        </div>
-
-        <!-- Content -->
-
-        <div id="content">
-            {% block pretitle %}{% endblock %}
-            {#            {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}#}
+            {% endblock messages %}
             {% block content %}
-                {% block object-tools %}{% endblock %}
-                {{ content }}
+            {% block object-tools %}{% endblock %}
+            {{ content }}
             {% endblock %}
-            <br class="clear">
+            {% block sidebar %}{% endblock %}
         </div>
+        <br class="clear">
     </div>
+    <!-- END Content -->
 
+{#    {% block footer %}<div id="footer"></div>{% endblock %}#}
+{#</div>#}
 
 </div>
-<!-- END Main Content Container -->
+<!-- END Container -->
 
-
-<!-- Scripts required for bootstrap -->
-{#<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"#}
-{#        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"#}
-{#        crossorigin="anonymous"></script>#}
-{#<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"#}
-{#        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"#}
-{#        crossorigin="anonymous"></script>#}
-
-<script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
-<script src="{% static 'jquery/jquery-3.4.1.js' %}"></script>
-<script src="{% static 'popper/popper.min.js' %}"></script>
-<script src="{% static 'admin/js/panel.js' %}"></script>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+{#<script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>#}
+<script src="{% static 'materialize/js/materialize.min.js' %}"></script>
+<script src="{% static 'custom/js/panel.js' %}"></script>
+{% block extrascript %}{% endblock %}
 </body>
 </html>

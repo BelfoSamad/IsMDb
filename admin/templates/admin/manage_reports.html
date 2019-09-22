@@ -1,0 +1,77 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}{{ block.super }}
+    <link rel="stylesheet" href="{% static 'custom/css/manage_users.css' %}">
+{% endblock %}
+
+{% block coltype %}colMS{% endblock %}
+
+{% block bodyclass %}{{ block.super }} dashboard{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block authorization_item_class %}active{% endblock %}
+
+
+{% block content %}
+    <div id="content-main">
+
+        {% if app_list %}
+            <div class="row">
+                    {% for app in app_list %}
+                        {% if app.app_label == 'reports' %}
+                                <div class="col s12 caption">
+                                    <h3>
+                                        <a href="{{ app.app_url }}" class="section"
+                                           title="{% blocktrans with name=app.name %}Models in the {{ name }} application{% endblocktrans %}">Manage
+                                            Reviews</a>
+                                    </h3>
+                                    <div class="caption-divider"></div>
+                                </div>
+
+                                {% for model in app.models %}
+                                    <div class="col s12 m6">
+                                        <div class="card">
+                                            <div class="card-content">
+                                            <span class="card-title">
+                                                {% if model.admin_url %}
+                                                    <h4><a href="{{ model.admin_url }}">{{ model.name }}</a></h4>
+                                                {% else %}
+                                                    <h4>{{ model.name }}</h4>
+                                                {% endif %}
+                                            </span>
+                                            </div>
+                                        <div class="divider"></div>
+                                            <div class="card-action">
+                                                <div class="btn-group">
+                                                    {% if model.add_url %}
+                                                        <a href="{{ model.add_url }}"
+                                                                   class="addlink mr-16">{% trans 'Add' %}</a>
+
+                                                    {% endif %}
+
+
+                                                    {% if model.admin_url %}
+                                                        {% if model.view_only %}
+                                                            <a href="{{ model.admin_url }}"
+                                                                       class="viewlink ml-16">{% trans 'View' %}</a>
+                                                        {% else %}
+                                                            <a href="{{ model.admin_url }}"
+                                                                       class="changelink ml-16 mr-0">{% trans 'Change' %}</a>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+            </div>
+
+        {% else %}
+            <p>{% trans "You don't have permission to view or edit anything." %}</p>
+        {% endif %}
+    </div>
+{% endblock %}
