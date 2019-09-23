@@ -10,29 +10,6 @@
   .library-holder .options {
     width: 100%;
     margin: 32px 0; }
-    .library-holder .options .selection {
-      position: relative;
-      z-index: 2; }
-      .library-holder .options .selection .select {
-        border: none;
-        border-bottom: 4px solid #ec7063;
-        outline: none;
-        background: none;
-        padding: 8px 0px;
-        padding-right: 32px;
-        font-weight: bold;
-        text-transform: uppercase;
-        color: #222;
-        cursor: pointer;
-        -webkit-appearance: none; }
-      .library-holder .options .selection i {
-        position: absolute;
-        z-index: -1;
-        top: 2px;
-        right: 0;
-        margin-top: auto;
-        font-size: 18px;
-        color: #111; }
   .library-holder .content .reviews-wrapper {
     width: 100%;
     position: relative; }

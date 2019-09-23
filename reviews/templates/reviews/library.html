@@ -4,21 +4,23 @@
     <div class="library-holder v-flex">
         <div class="header">Library</div>
         <div class="h-flex options">
-            <div class="selection">
+            <div class="input-field">
                 <select class="select" id="library_select" onchange="getLibraryList()">
                     <option value="your-watchlist">Your Watchlist</option>
                     <option value="liked">Liked</option>
                     <option value="review-later">Review Later</option>
                 </select>
-                <i class="fas fa-sort-down"></i>
+                <label for="library_select"></label>
+{#                <i class="fas fa-sort-down"></i>#}
             </div>
-            <div class="selection">
+            <div class="input-field">
                 <select class="select" id="sort_select" onchange="getLibraryList()">
                     <option value="alphabetical-order">Alphabetical Order</option>
                     <option value="date-order-oldest">Date Order (Oldest)</option>
                     <option value="date-order-newest">Date Order (Newest)</option>
                 </select>
-                <i class="fas fa-sort-down"></i>
+                <label for="sort_select"></label>
+{#                <i class="fas fa-sort-down"></i>#}
             </div>
         </div>
         <div class="h-flex content">
@@ -72,4 +74,9 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('select').formSelect();
+      });
+    </script>
 {% endblock %}
