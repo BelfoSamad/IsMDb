@@ -4,7 +4,7 @@ django-haystack==2.8.1
 django-language-field==0.0.3
 django-multiselectfield==0.1.8
 djangorestframework==3.9.4
-Pillow==6.0.0
+Pillow==6.2.0
 pytz==2019.1
 sqlparse==0.3.0
 Whoosh==2.7.4
