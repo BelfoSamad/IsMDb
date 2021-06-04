@@ -1,4 +1,4 @@
-Django==2.2.3
+Django==2.2.21
 django-countries==5.3.3
 django-haystack==2.8.1
 django-language-field==0.0.3
